@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include <cstring>
 /*
  * "$Id: bitmap.c,v 1.2 1996/01/09 22:52:53 mike Exp mike $"
