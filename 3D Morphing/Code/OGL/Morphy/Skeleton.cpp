@@ -21,7 +21,7 @@
 #ifdef _MSC_VER
 #include "stdafx.h"
 #endif
-#include "skeleton.h"
+#include "Skeleton.h"
 #include <cstddef>
 #include <cstdlib>
 
@@ -38,7 +38,7 @@ void DestroySkeleton(t_Bone *root)
 		{
 			if (child->childCnt > 0)
 				DestroySkeleton(child);
-			if (child->primChannel > NULL)
+			if (child->primChannel != NULL)
 			{
 				free(child->primChannel);
 				child->primChannel = NULL;
