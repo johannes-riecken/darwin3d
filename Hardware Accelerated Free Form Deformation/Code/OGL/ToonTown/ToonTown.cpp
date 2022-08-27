@@ -18,7 +18,9 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 // Include files
+#ifdef _MSC_VER
 #include <windows.h>            // Window defines
+#endif
 #include <math.h>				// Include for sqrt()
 #include <GL/gl.h>              // OpenGL
 #include <GL/glut.h>             // GLU library

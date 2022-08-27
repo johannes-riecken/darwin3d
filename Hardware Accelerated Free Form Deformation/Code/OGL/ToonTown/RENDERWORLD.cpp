@@ -17,7 +17,9 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
+#ifdef _MSC_VER
 #include <windows.h>	// Normal Windows stuff
+#endif
 #include <math.h>
 #include <stdio.h>
 #include <GL/hl.h>		// Core OpenGL functions

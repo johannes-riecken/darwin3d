@@ -20,7 +20,9 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
+#ifdef _MSC_VER
 #include <windows.h>	// Normal Windows stuff
+#endif
 #include <assert.h>
 #include <GL/gl.h>
 #include <GL/glut.h>

@@ -2,7 +2,9 @@
 // This file contains the window procedure and code related to the
 // view window. This window does the OpenGL rendering of the terrain.
 
+#ifdef _MSC_VER
 #include <windows.h>	// Normal Windows stuff
+#endif
 #include <math.h>
 #include <GL/gl.h>		// Core OpenGL functions
 #include <GL/glut.h>		// OpenGL Utility functions

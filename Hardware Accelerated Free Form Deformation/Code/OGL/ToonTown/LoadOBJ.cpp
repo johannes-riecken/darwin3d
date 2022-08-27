@@ -18,11 +18,14 @@
 //  Thanks - jeffl@darwin3d.com
 //
 ///////////////////////////////////////////////////////////////////////////////
+#ifdef _MSC_VER
 #include <windows.h>	// Normal Windows stuff
+#endif
 #include <stdio.h>
 //#include <GL/gl.h>
 //#include <GL/glut.h>
 #include "loadOBJ.h"
+#include <cstdlib>
 
 char *gMatName;
 
