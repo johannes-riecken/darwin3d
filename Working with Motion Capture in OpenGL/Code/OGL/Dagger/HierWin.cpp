@@ -85,7 +85,7 @@ void CHierWin::SetSkeleton(t_Bone *skeleton, HTREEITEM item)
 	{
 		item = m_TreeRoot;
 		m_Skeleton = skeleton;
-		SetItemData( item, (DWORD)m_Skeleton );
+		SetItemData( item, (unsigned int)m_Skeleton );
 	}
 
 	if (skeleton->childCnt > 0)
@@ -94,7 +94,7 @@ void CHierWin::SetSkeleton(t_Bone *skeleton, HTREEITEM item)
 		for (loop = 0; loop < skeleton->childCnt; loop++,child++)
 		{
 			curItem = InsertItem( child->name, item, TVI_LAST );
-			SetItemData( curItem, (DWORD)child );
+			SetItemData( curItem, (unsigned int)child );
 			EnsureVisible( curItem );
 			if (child->childCnt > 0)
 				SetSkeleton(child,curItem);

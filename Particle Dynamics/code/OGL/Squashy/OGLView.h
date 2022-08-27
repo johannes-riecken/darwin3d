@@ -53,8 +53,8 @@ public:
 	bool	m_DrawGeometry,m_SimRunning;
 	int		m_curVisual;
 	float	m_MorphPos;
-	DWORD	m_StartTime;
-	DWORD	m_FrameCnt;
+	unsigned int	m_StartTime;
+	unsigned int	m_FrameCnt;
 	int		m_TimeIterations;
 	bool	m_UseFixedTimeStep;
 	float	m_MaxTimeStep;
@@ -87,7 +87,7 @@ public:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(COGLView)
 	public:
-	virtual bool Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext = NULL);
+	virtual bool Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, unsigned int dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext = NULL);
 	//}}AFX_VIRTUAL
 
 // Implementation

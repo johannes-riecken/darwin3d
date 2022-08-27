@@ -78,7 +78,7 @@ COGLView::~COGLView()
 }
 
 
-bool COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext)
+bool COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, unsigned int dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	t_Visual	*visual = NULL;
@@ -103,14 +103,14 @@ END_MESSAGE_MAP()
 
 float COGLView::GetTime( void )
 {
-    static DWORD StartMilliseconds;
+    static unsigned int StartMilliseconds;
     if(!StartMilliseconds)
     {
         // yes, the first time through will be a 0 timestep
         StartMilliseconds = timeGetTime();
     }
 
-    DWORD CurrentMilliseconds = timeGetTime();
+    unsigned int CurrentMilliseconds = timeGetTime();
     return float(CurrentMilliseconds - StartMilliseconds) / 1000.0f;
 }
 

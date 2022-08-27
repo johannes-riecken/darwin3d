@@ -65,7 +65,7 @@ COGLView::~COGLView()
 }
 
 
-bool COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CSlider *slider, CCreateContext* pContext)
+bool COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, unsigned int dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CSlider *slider, CCreateContext* pContext)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	t_Visual	*visual = NULL;

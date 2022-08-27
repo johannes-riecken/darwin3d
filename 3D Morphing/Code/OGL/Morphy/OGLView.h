@@ -71,7 +71,7 @@ public:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(COGLView)
 	public:
-	virtual bool Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CSlider *slider, CCreateContext* pContext = NULL);
+	virtual bool Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, unsigned int dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CSlider *slider, CCreateContext* pContext = NULL);
 	//}}AFX_VIRTUAL
 
 // Implementation

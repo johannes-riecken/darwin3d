@@ -563,9 +563,9 @@ GLubyte *LoadTGAFile( TCHAR* strFilename,tTGAHeader_s *header)
     }
 
     // Parse the TGA header
-    DWORD dwWidth, dwHeight;
-	dwWidth = (DWORD)header->d_width;
-	dwHeight = (DWORD)header->d_height;
+    unsigned int dwWidth, dwHeight;
+	dwWidth = (unsigned int)header->d_width;
+	dwHeight = (unsigned int)header->d_height;
 	BPP = (short)header->d_pixel_size;          // 16, 24, or 32
 
 	// JL TEST SMALL TEXTURES ONLY

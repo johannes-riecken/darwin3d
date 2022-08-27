@@ -42,7 +42,7 @@ public:
 	int m_AnimSpeed;				// SPEED OF PLAYBACK IN FPS
 	bool m_Animating;
 	// for elapsed timing calculations
-	DWORD		m_StartTime,m_ElapsedTime,m_previousElapsedTime;
+	unsigned int		m_StartTime,m_ElapsedTime,m_previousElapsedTime;
 
 // Operations
 public:
@@ -50,9 +50,9 @@ public:
 
 	// The Timing Member Functions
 	// The following are used in timing calulations
-	DWORD	ElapsedTime( void )
+	unsigned int	ElapsedTime( void )
 		{ return( m_ElapsedTime - m_StartTime );}
-	DWORD	ElapsedTimeRender( void )
+	unsigned int	ElapsedTimeRender( void )
 		{ return( m_ElapsedTime-m_previousElapsedTime);}
 
 // Overrides

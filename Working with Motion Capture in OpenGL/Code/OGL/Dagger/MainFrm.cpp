@@ -87,7 +87,7 @@ static UINT indicators[] =
 CMainFrame::CMainFrame()
 {
 	m_Animating = false;
-	m_ElapsedTime = ~(DWORD)0; // initialize to a big number
+	m_ElapsedTime = ~(unsigned int)0; // initialize to a big number
 	m_Animation_Direction = 1;
 	m_AnimSpeed = 30;			// DEFAULT PLAYBACK SPEED AS FRAME DELAY
 	m_HArrow = AfxGetApp()->LoadStandardCursor(IDC_ARROW);

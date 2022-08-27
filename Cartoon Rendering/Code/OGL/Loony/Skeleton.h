@@ -141,12 +141,12 @@ struct t_Bone
 	tMatrix matrix;						// PLACE TO STORE THE MATRIX
 
 	// ANIMATION INFO
-	DWORD	primChanType;				// WHAT TYPE OF PREIMARY CHAN IS ATTACHED
+	unsigned int	primChanType;				// WHAT TYPE OF PREIMARY CHAN IS ATTACHED
 	float	*primChannel;				// POINTER TO PRIMARY CHANNEL OF ANIMATION
 	float 	primFrameCount;				// FRAMES IN PRIMARY CHANNEL
 	float	primSpeed;					// CURRENT PLAYBACK SPEED
 	float	primCurFrame;				// CURRENT FRAME NUMBER IN CHANNEL
-	DWORD	secChanType;				// WHAT TYPE OF SECONDARY CHAN IS ATTACHED
+	unsigned int	secChanType;				// WHAT TYPE OF SECONDARY CHAN IS ATTACHED
 	float	*secChannel;				// POINTER TO SECONDARY CHANNEL OF ANIMATION
 	float	secFrameCount;				// FRAMES IN SECONDARY CHANNEL
 	float	secCurFrame;				// CURRENT FRAME NUMBER IN CHANNEL

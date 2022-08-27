@@ -85,7 +85,7 @@ void COGLView::UpdateStatus()
 	m_ptrStatusBar->SetPaneText(3,message);
 }
 
-bool COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, t_Bone *skeleton, CCreateContext* pContext)
+bool COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, unsigned int dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, t_Bone *skeleton, CCreateContext* pContext)
 {
 	m_Skeleton = skeleton;
 	UpdateStatus();	// DRAW INITIAL STATUS BAR
