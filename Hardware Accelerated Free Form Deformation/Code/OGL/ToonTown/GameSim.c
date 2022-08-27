@@ -19,10 +19,9 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-#include <windows.h>	// Normal Windows stuff
 #include <assert.h>
-#include <gl\gl.h>
-#include <gl\glu.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
 #include <math.h>
 #include "externs.h"	// Data shared between files
 
@@ -36,7 +35,7 @@
 
 void			SetupWorld();
 
-t_Particle		g_Particle[FFD_NODE_COUNT];		
+t_Particle		g_Particle[FFD_NODE_COUNT];
 
 float			g_Kd;
 float			g_Kr;	// Particle to Wall Coefficient of Restitution
@@ -56,19 +55,19 @@ int				g_DrawCVs = TRUE;
 int				g_DrawMesh = TRUE;
 int				g_Pick[2];
 
-tVector			g_CueForce;							
+tVector			g_CueForce;
 tVector			g_Gravity;
 tVector			g_MouseDragPos[2];
 
 t_Contact		g_Contact[MAX_CONTACTS];			// LIST OF POSSIBLE COLLISIONS
 int				g_ContactCnt;						// COLLISION COUNT
 t_CollisionPlane	g_CollisionPlane[4];		// LIST OF COLLISION PLANES
-int					g_CollisionPlaneCnt;			
+int					g_CollisionPlaneCnt;
 t_Particle			g_GameSys[SYSTEM_COUNT][FFD_NODE_COUNT];			// LIST OF PHYSICAL PARTICLES
 t_Particle			*g_CurrentSys,*g_TargetSys;
 int				g_ParticleCount;
 t_Spring		*g_Spring;				// VALID SPRINGS IN SYSTEM
-int				g_SpringCnt;		
+int				g_SpringCnt;
 float			g_WorldSizeX,g_WorldSizeY,g_WorldSizeZ;
 tVector			g_FFDmin,g_FFDmax;
 ///////////////////////////////////////////////////////////////////////////////
@@ -153,8 +152,8 @@ void AddSpring(int p1, int p2,t_Particle *sys)
 	tempSprings->Kd = g_Ksd;
 	tempSprings->p1 = p1;
 	tempSprings->p2 = p2;
-	tempSprings->restLen = 
-		sqrt(VectorSquaredDistance(&sys[p1].pos, 
+	tempSprings->restLen =
+		sqrt(VectorSquaredDistance(&sys[p1].pos,
 								   &sys[p2].pos));
 }
 
@@ -168,7 +167,7 @@ void SetupWorld()
 	for (loop = 0; loop < SYSTEM_COUNT; loop++)
 	{
 		for (loop2 = 0; loop2 < g_ParticleCount; loop2++)
-		{	
+		{
 			MAKEVECTOR(g_GameSys[loop][loop2].pos,3.0f - ((loop2 % 4) * 2.0f), FFD_STARTY - ((loop2 / 16) * 1.4f), 6.0f - (((loop2 % 16) / 4) * 4.0f))
 			memcpy(&g_GameSys[loop][loop2].rest_pos,&g_GameSys[loop][loop2].pos,sizeof(tVector));
 			MAKEVECTOR(g_GameSys[loop][loop2].v,0.0f, 0.0f, 0.0f)
@@ -201,7 +200,7 @@ void SetupWorld()
 	g_SpringCnt = 0;
 	// Setup the springs
 	for (loop = 0; loop < g_ParticleCount; loop++)
-	{	
+	{
 		px = loop % FFD_WIDTH;
 		pz = (loop % (FFD_WIDTH * FFD_HEIGHT)) / FFD_WIDTH;
 		py = loop / (FFD_WIDTH * FFD_HEIGHT);
@@ -271,7 +270,7 @@ void DrawSimWorld()
 	t_Spring		*tempSpring;
 	int				loop;
 
-	// FIRST DRAW THE WORLD CONTAINER  
+	// FIRST DRAW THE WORLD CONTAINER
 	glColor3f(1.0f,1.0f,1.0f);
     // do a big linestrip to get most of edges
     glBegin(GL_LINE_STRIP);
@@ -293,7 +292,7 @@ void DrawSimWorld()
         glVertex3f(-g_WorldSizeX/2.0f, g_WorldSizeY/2.0f, g_WorldSizeZ/2.0f);
         glVertex3f(-g_WorldSizeX/2.0f,-g_WorldSizeY/2.0f, g_WorldSizeZ/2.0f);
     glEnd();
-    
+
     // draw floor
     glDisable(GL_CULL_FACE);
     glBegin(GL_QUADS);
@@ -448,14 +447,14 @@ void GetNearestPoint(int x, int y)
 		tempParticle++;
 	}
 	hitCount = glRenderMode(GL_RENDER); // HOW MANY HITS DID I GET
-	CompareBuffer(hitCount,feedBuffer,(float)x,(float)y);		// CHECK THE HIT 
+	CompareBuffer(hitCount,feedBuffer,(float)x,(float)y);		// CHECK THE HIT
 	free(feedBuffer);		// GET RID OF THE MEMORY
 }
 ////// GetNearestPoint ////////////////////////////////////////////////////////
 
 
 // Velocity Threshold that decides between Static and Kinetic Friction
-#define STATIC_THRESHOLD	0.03f				
+#define STATIC_THRESHOLD	0.03f
 
 void ComputeForces( t_Particle	*system)
 {
@@ -463,7 +462,7 @@ void ComputeForces( t_Particle	*system)
 	int loop;
 	t_Particle		*curPart,*p1,*p2;
 	tVector		contactN;
-	float		FdotN,VdotN,Vmag;		
+	float		FdotN,VdotN,Vmag;
 	tVector		Vn,Vt;				// CONTACT RESOLUTION IMPULSE
 	t_Spring		*spring;
 	float		dist, Hterm, Dterm;
@@ -500,7 +499,7 @@ void ComputeForces( t_Particle	*system)
 		// Handle Friction forces for  points in Contact with the a surface
 		if (g_UseFriction)
 		{
-			// Calculate Fn 
+			// Calculate Fn
 			FdotN = g_Gravity.y / curPart->oneOverM;		// Gravity
 			// Calculate Vt Velocity Tangent to Normal Plane
 			MAKEVECTOR(contactN,0.0f, 1.0f, 0.0f)
@@ -533,14 +532,14 @@ void ComputeForces( t_Particle	*system)
 	{
 		p1 = &system[spring->p1];
 		p2 = &system[spring->p2];
-		VectorDifference(&p1->pos,&p2->pos,&deltaP);	// Vector distance 
+		VectorDifference(&p1->pos,&p2->pos,&deltaP);	// Vector distance
 		dist = VectorLength(&deltaP);					// Magnitude of deltaP
 
 		Hterm = (dist - spring->restLen) * spring->Ks;	// Ks * (dist - rest)
-		
+
 		VectorDifference(&p1->v,&p2->v,&deltaV);		// Delta Velocity Vector
 		Dterm = (DotProduct(&deltaV,&deltaP) * spring->Kd) / dist; // Damping Term
-		
+
 		ScaleVector(&deltaP,1.0f / dist, &springForce);	// Normalize Distance Vector
 		ScaleVector(&springForce,-(Hterm + Dterm),&springForce);	// Calc Force
 		VectorSum(&p1->f,&springForce,&p1->f);			// Apply to Particle 1
@@ -555,7 +554,7 @@ void ComputeForces( t_Particle	*system)
 		if (g_Pick[0] > -1)
 		{
 			p1 = &system[g_Pick[0]];
-			VectorDifference(&p1->pos,&g_MouseDragPos[0],&deltaP);	// Vector distance 
+			VectorDifference(&p1->pos,&g_MouseDragPos[0],&deltaP);	// Vector distance
 			dist = VectorLength(&deltaP);					// Magnitude of deltaP
 
 			if (dist != 0.0f)
@@ -570,7 +569,7 @@ void ComputeForces( t_Particle	*system)
 		if (g_Pick[1] > -1)
 		{
 			p1 = &system[g_Pick[1]];
-			VectorDifference(&p1->pos,&g_MouseDragPos[1],&deltaP);	// Vector distance 
+			VectorDifference(&p1->pos,&g_MouseDragPos[1],&deltaP);	// Vector distance
 			dist = VectorLength(&deltaP);					// Magnitude of deltaP
 
 			if (dist != 0.0f)
@@ -583,11 +582,11 @@ void ComputeForces( t_Particle	*system)
 			}
 		}
 	}
-}   
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// Function:	IntegrateSysOverTime 
+// Function:	IntegrateSysOverTime
 // Purpose:		Does the Integration for all the points in a system
 // Arguments:	Initial Position, Source and Target Particle Systems and Time
 // Notes:		Computes a single integration step
@@ -620,7 +619,7 @@ void IntegrateSysOverTime(t_Particle *initial,t_Particle *source, t_Particle *ta
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// Function:	EulerIntegrate 
+// Function:	EulerIntegrate
 // Purpose:		Calculate new Positions and Velocities given a deltatime
 // Arguments:	DeltaTime that has passed since last iteration
 // Notes:		This integrator uses Euler's method
@@ -632,7 +631,7 @@ void EulerIntegrate( float DeltaTime)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// Function:	MidPointIntegrate 
+// Function:	MidPointIntegrate
 // Purpose:		Calculate new Positions and Velocities given a deltatime
 // Arguments:	DeltaTime that has passed since last iteration
 // Notes:		This integrator uses the Midpoint method
@@ -669,7 +668,7 @@ int CheckForCollisions( t_Particle	*system )
 	g_ContactCnt = 0;		// THERE ARE CURRENTLY NO CONTACTS
 
 	curPart = system;
-	for (loop = 0; (loop < FFD_NODE_COUNT) && (collisionState != PENETRATING); 
+	for (loop = 0; (loop < FFD_NODE_COUNT) && (collisionState != PENETRATING);
 			loop++,curPart++)
 	{
         for(planeIndex = 0;(planeIndex < g_CollisionPlaneCnt) &&
@@ -692,7 +691,7 @@ int CheckForCollisions( t_Particle	*system )
                 {
                     collisionState = COLLIDING_WITH_WALL;
 					g_Contact[g_ContactCnt].type = COLLIDING_WITH_WALL;
-					g_Contact[g_ContactCnt].particle = loop; 
+					g_Contact[g_ContactCnt].particle = loop;
 					g_Contact[g_ContactCnt].Kr = g_Kr;		// Particle to wall
 					memcpy(&g_Contact[g_ContactCnt].normal,&plane->normal,sizeof(tVector));
 					g_ContactCnt++;
@@ -709,7 +708,7 @@ void ResolveCollisions( t_Particle	*system )
 {
 	t_Contact	*contact;
 	t_Particle		*part;		// THE PARTICLE COLLIDING
-	float		VdotN;		
+	float		VdotN;
 	tVector		Vn,Vt;				// CONTACT RESOLUTION IMPULSE
 	int			loop;
 
@@ -802,7 +801,7 @@ void Simulate(float DeltaTime, BOOL running)
 
             // we made a successful step, so swap configurations
             // to "save" the data for the next step
-            
+
 			CurrentTime = TargetTime;
 			TargetTime = DeltaTime;
 
@@ -817,7 +816,7 @@ void Simulate(float DeltaTime, BOOL running)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// Function:	SetMouseForce 
+// Function:	SetMouseForce
 // Purpose:		Allows the user to interact with selected points by dragging
 // Arguments:	Delta distance from clicked point, local x and y axes
 ///////////////////////////////////////////////////////////////////////////////
@@ -842,7 +841,7 @@ void SetMouseForce(int deltaX,int deltaY, tVector *localX, tVector *localY)
 /// SetMouseForce /////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////
-// Function:	SetFFDWeights 
+// Function:	SetFFDWeights
 // Purpose:		Approximate an FFD by setting up control weights
 // Arguments:	Pointer to base mesh visual structure
 ///////////////////////////////////////////////////////////////////////////////
@@ -862,7 +861,7 @@ void SetFFDWeights(t_ToonVisual *visual)
 	// Go through all the vertices
 	for (loop = 0; loop < visual->vertexCnt; loop++, vertex++)
 	{
-		// Find where each vertex is within the FFD grid 
+		// Find where each vertex is within the FFD grid
 		// Effectively scales each vertex to 0-1
 		u = (vertex->x - g_FFDmin.x)/(g_FFDmax.x - g_FFDmin.x);
 		v = (vertex->y - g_FFDmin.y)/(g_FFDmax.y - g_FFDmin.y);
@@ -895,7 +894,7 @@ void SetFFDWeights(t_ToonVisual *visual)
 			px = FFD_WIDTH - (cvLoop % FFD_WIDTH) - 1;
 			py = FFD_HEIGHT - (cvLoop / (FFD_WIDTH * FFD_HEIGHT)) - 1;
 			pz = FFD_DEPTH - ((cvLoop % (FFD_WIDTH * FFD_HEIGHT)) / FFD_WIDTH) - 1;
-			
+
 			// set the vertex weight for this CV
 			*vertexWeight = (XBasis[px] * YBasis[py] * ZBasis[pz]);
 		}

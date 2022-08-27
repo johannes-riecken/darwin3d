@@ -1,12 +1,12 @@
 /////////////////////////////////////////////////////////////////////////////////////
 // ToonTown.c
 // This is the application shell for the ToonTown simulator
-// 
+//
 // The code base was pulled from the OpenGL Super Bible.
 // Great book that I highly recommend
 //
 // Created:
-//		JL 9/5/99		
+//		JL 9/5/99
 //
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -89,10 +89,10 @@ BOOL BuildClasses(void)
 	wc.hInstance            = hInstance;
 	wc.hIcon                = LoadIcon(NULL,"APPICON");
 	wc.hCursor              = LoadCursor(NULL, IDC_ARROW);
-	
+
 	// No need for background brush for this window
-	wc.hbrBackground        = NULL;          
-	
+	wc.hbrBackground        = NULL;
+
 	wc.lpszMenuName         = MAKEINTRESOURCE(IDR_MENU);
 	wc.lpszClassName        = lpszMainWndClass;
 
@@ -108,7 +108,7 @@ BOOL BuildClasses(void)
 
 	// May want to change the cursor
 	wc.hCursor              = LoadCursor(NULL, IDC_ARROW);
-	
+
 	// No need for background brush for this window
 	// Delete me later
 	wc.hbrBackground        = NULL;
@@ -140,7 +140,7 @@ float GetTime( void )
 // Purpose:		Actual simulation loop
 // Notes:		Allows you to adjust the rate of simulation or to change it
 //				to fixed time steps or actual timesteps.
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 void RunSim()
 {
 /// Local Variables ///////////////////////////////////////////////////////////
@@ -257,15 +257,15 @@ LRESULT CALLBACK WndProcMain(HWND    hWnd,
 			CheckMenuItem(hMenu,ID_VIEW_SPRINGS,MF_BYCOMMAND | MF_CHECKED);
 			CheckMenuItem(hMenu,ID_VIEW_CVS,MF_BYCOMMAND | MF_CHECKED);
 			CheckMenuItem(hMenu,ID_VIEW_MESH,MF_BYCOMMAND | MF_CHECKED);
-			CheckMenuItem(hMenu,ID_VIEW_VERTEXINFLUENCES,MF_BYCOMMAND | MF_UNCHECKED);		
-			
+			CheckMenuItem(hMenu,ID_VIEW_VERTEXINFLUENCES,MF_BYCOMMAND | MF_UNCHECKED);
+
 			// Create the child windows
 			// View Window
 			g_hViewWnd = CreateWindow(
 					lpszViewWndClass,
 					NULL,
 					WS_DLGFRAME | WS_CHILD | WS_CLIPCHILDREN | WS_CLIPSIBLINGS| WS_VISIBLE,
-					0, 0,               
+					0, 0,
 					10, 10,
 					hWnd,
 					NULL,
@@ -289,7 +289,7 @@ LRESULT CALLBACK WndProcMain(HWND    hWnd,
 		// instead of just creating the windows where we want them? Because
 		// changes to the GUI may change the size of borders, etc. This
 		// code should continue to work regardless of any changes to the
-		// GUI. 
+		// GUI.
 		case WM_SIZE:
 			{
 			RECT clientRect;
@@ -307,7 +307,7 @@ LRESULT CALLBACK WndProcMain(HWND    hWnd,
 			break;
 
 		// Windows is telling the application that it may modify
-		// the system palette.  This message in essance asks the 
+		// the system palette.  This message in essance asks the
 		// application for a new palette.
 		case WM_QUERYNEWPALETTE:
 			// Pass the message to the OpenGL Windows, none of the other
@@ -315,8 +315,8 @@ LRESULT CALLBACK WndProcMain(HWND    hWnd,
 			PostMessage(g_hViewWnd,message,wParam,lParam);
 			break;
 
-	
-		// This window may set the palette, even though it is not the 
+
+		// This window may set the palette, even though it is not the
 		// currently active window.
 		case WM_PALETTECHANGED:
 			// Pass the message to the OpenGL Windows, none of the other
@@ -345,7 +345,7 @@ LRESULT CALLBACK WndProcMain(HWND    hWnd,
 				case VK_UP:		// Up arrow, move forward
 					{
 
-					if (g_POV.rot.x > 0.0f) g_POV.rot.x -= 1.0;			
+					if (g_POV.rot.x > 0.0f) g_POV.rot.x -= 1.0;
 					// Invalidate the view window (compass doesn't change)
 					InvalidateRect(g_hViewWnd,NULL,FALSE);
 					break;
@@ -354,7 +354,7 @@ LRESULT CALLBACK WndProcMain(HWND    hWnd,
 				case VK_DOWN: // Down arrow, move backward
 					{
 
-					if (g_POV.rot.x < 90.0f) g_POV.rot.x += 1.0;			
+					if (g_POV.rot.x < 90.0f) g_POV.rot.x += 1.0;
 					// Invalidate the view window (compass doesn't change)
 					InvalidateRect(g_hViewWnd,NULL,FALSE);
 					break;
@@ -362,21 +362,21 @@ LRESULT CALLBACK WndProcMain(HWND    hWnd,
 
 				case VK_LEFT:		// Left arrow, turn left
 					{
-					g_POV.rot.y += 1.0;			
+					g_POV.rot.y += 1.0;
 					InvalidateRect(g_hViewWnd,NULL,FALSE);
 					break;
 					}
-		
+
 				case VK_RIGHT:		// Right Arrow, turn right
 					{
-					g_POV.rot.y -= 1.0;			
+					g_POV.rot.y -= 1.0;
 					InvalidateRect(g_hViewWnd,NULL,FALSE);
 					break;
 					}
 				case VK_PRIOR:		// PGUP Zoom Out
 					{
 
-					if (g_POV.trans.z > 1.0f) g_POV.trans.z -= 1.0;			
+					if (g_POV.trans.z > 1.0f) g_POV.trans.z -= 1.0;
 					// Invalidate the view window (compass doesn't change)
 					InvalidateRect(g_hViewWnd,NULL,FALSE);
 					break;
@@ -384,7 +384,7 @@ LRESULT CALLBACK WndProcMain(HWND    hWnd,
 				case VK_NEXT:		// PGDN Zoom In
 					{
 
-					if (g_POV.trans.z < 9.0f) g_POV.trans.z += 1.0;			
+					if (g_POV.trans.z < 9.0f) g_POV.trans.z += 1.0;
 					// Invalidate the view window (compass doesn't change)
 					InvalidateRect(g_hViewWnd,NULL,FALSE);
 					break;
@@ -497,13 +497,13 @@ LRESULT CALLBACK WndProcMain(HWND    hWnd,
 
 
 ///////////////////////////////////////////////////////////////////////////
-// Dialog procedure 
+// Dialog procedure
 BOOL APIENTRY AboutDlgProc (HWND hDlg, UINT message, UINT wParam, LONG lParam)
 {
 	switch (message)
 	{
 		// Process command messages
-	    case WM_COMMAND:      
+	    case WM_COMMAND:
 			{
 			// Validate and Make the changes
 			if(LOWORD(wParam) == IDOK)

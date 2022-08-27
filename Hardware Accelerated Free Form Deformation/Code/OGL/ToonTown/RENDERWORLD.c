@@ -1,12 +1,12 @@
 /////////////////////////////////////////////////////////////////////////////////////
 // RenderWorld.c
 // This file actually renders the world complete
-// 
+//
 // Some code was pulled from the OpenGL Super Bible.
 // Great book that I highly recommend
 //
 // Created:
-//		JL 2/15/00		
+//		JL 2/15/00
 //
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -60,7 +60,7 @@ void InitRender(void)
 	// Set the Default Light Direction
 	g_ShadeLight.x = 0.0f;
 	g_ShadeLight.y = 0.8f;
-	g_ShadeLight.z = 0.3f;	
+	g_ShadeLight.z = 0.3f;
 	NormalizeVector(&g_ShadeLight);	// Normalize it since I know I didn't
 
 	glNewList(OGL_AXIS_DLIST,GL_COMPILE);
@@ -76,7 +76,7 @@ void InitRender(void)
 			glVertex3f( 0.15f, -0.04f, 0.0f);
 			glColor3f(0.0f, 1.0f, 0.0f);	// Y AXIS STARTS - COLOR GREEN
 			glVertex3f( 0.0f,  0.2f, 0.0f);
-			glVertex3f( 0.0f, -0.2f, 0.0f);			
+			glVertex3f( 0.0f, -0.2f, 0.0f);
 			glVertex3f( 0.0f,  0.2f, 0.0f);	// TOP PIECE OF ARROWHEAD
 			glVertex3f( 0.04f,  0.15f, 0.0f);
 			glVertex3f( 0.0f,  0.2f, 0.0f);	// BOTTOM PIECE OF ARROWHEAD
@@ -153,7 +153,7 @@ void LoadShadeTexture(char *texfile)
 	glBindTexture(GL_TEXTURE_1D, g_ShadeTexture);
 
 	// Do not allow bilinear filtering - not for cartoon rendering
-	glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);	
+	glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
 	glTexImage1D(GL_TEXTURE_1D, 0, GL_RGB, 32, 0,
@@ -292,7 +292,7 @@ void DrawToonMesh(t_Mesh *mesh)
 		face = visual->index;
 		for (loop = 0; loop < visual->faceCnt; loop++,face++)
 		{
-			glColor3fv(&visual->matColor[face->mat].r);	
+			glColor3fv(&visual->matColor[face->mat].r);
 			glBegin(GL_TRIANGLES);
 				for (loop2 = 0; loop2 < 3; loop2++)
 				{
@@ -313,7 +313,7 @@ void DrawToonMesh(t_Mesh *mesh)
 		for (loop = 0; loop < visual->vertexCnt; loop++)
 		{
 			weight = visual->weightData[(loop * 64) + g_Pick[0]];
-			if (weight > max) 
+			if (weight > max)
 			{
 				max = weight;
 				winner = loop;
@@ -327,7 +327,7 @@ void DrawToonMesh(t_Mesh *mesh)
 		}
 		// Show closest
 		glDisable(GL_DEPTH_TEST);
-		glColor3f(1.0f, 1.0f, 1.0f);	
+		glColor3f(1.0f, 1.0f, 1.0f);
 		glEnable(GL_DEPTH_TEST);
 	}
 
@@ -345,7 +345,7 @@ void RenderWorld(void)
 	glTranslatef(-g_POV.trans.x, -g_POV.trans.y, -g_POV.trans.z);
 
 	glRotatef(g_POV.rot.z, 0.0f, 0.0f, 1.0f);
-	glRotatef(g_POV.rot.x, 1.0f, 0.0f, 0.0f); 
+	glRotatef(g_POV.rot.x, 1.0f, 0.0f, 0.0f);
 	glRotatef(g_POV.rot.y, 0.0f, 1.0f, 0.0f);
 
 	DrawToonMesh(&g_Mesh);
