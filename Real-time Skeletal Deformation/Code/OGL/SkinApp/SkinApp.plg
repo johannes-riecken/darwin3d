@@ -1,0 +1,71 @@
+--------------------Configuration: SkinApp - Win32 Release--------------------
+Begining build with project "D:\Code\OGL\SkinApp\SkinApp.dsp", at root.
+Active configuration is Win32 (x86) Application (based on Win32 (x86) Application)
+
+Project's tools are:
+			"32-bit C/C++ Compiler for 80x86" with flags "/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /Fp"Release/SkinApp.pch" /Yu"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c "
+			"OLE Type Library Maker" with flags "/nologo /D "NDEBUG" /mktyplib203 /o NUL /win32 "
+			"Win32 Resource Compiler" with flags "/l 0x409 /fo"Release/SkinApp.res" /d "NDEBUG" "
+			"Browser Database Maker" with flags "/nologo /o"Release/SkinApp.bsc" "
+			"COFF Linker for 80x86" with flags "opengl32.lib glu32.lib glaux.lib /nologo /subsystem:windows /incremental:no /pdb:"Release/DemBones.pdb" /machine:I386 /out:"Release/DemBones.exe" "
+			"Custom Build" with flags ""
+			"<Component 0xa>" with flags ""
+
+Creating command line "rc.exe /l 0x409 /fo"Release/SkinApp.res" /d "NDEBUG" "D:\Code\OGL\SkinApp\SkinApp.rc"" 
+Creating temp file "C:\WINDOWS\TEMP\RSPE0B6.TMP" with contents </nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /Fp"Release/SkinApp.pch" /Yu"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"D:\Code\OGL\SkinApp\MainFrm.cpp"
+"D:\Code\OGL\SkinApp\Matrix.cpp"
+"D:\Code\OGL\SkinApp\OGLView.cpp"
+"D:\Code\OGL\SkinApp\Quatern.cpp"
+"D:\Code\OGL\SkinApp\SetRot.cpp"
+"D:\Code\OGL\SkinApp\Skeleton.cpp"
+"D:\Code\OGL\SkinApp\SkinApp.cpp"
+"D:\Code\OGL\SkinApp\Weight.cpp"
+>
+Creating command line "cl.exe @C:\WINDOWS\TEMP\RSPE0B6.TMP" 
+Creating temp file "C:\WINDOWS\TEMP\RSPE0C0.TMP" with contents </nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /Fp"Release/SkinApp.pch" /Yc"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"D:\Code\OGL\SkinApp\StdAfx.cpp"
+>
+Creating command line "cl.exe @C:\WINDOWS\TEMP\RSPE0C0.TMP" 
+Creating temp file "C:\WINDOWS\TEMP\RSPE0C1.TMP" with contents <opengl32.lib glu32.lib glaux.lib /nologo /subsystem:windows /incremental:no /pdb:"Release/DemBones.pdb" /machine:I386 /out:"Release/DemBones.exe" 
+.\Release\MainFrm.obj
+.\Release\Matrix.obj
+.\Release\OGLView.obj
+.\Release\Quatern.obj
+.\Release\SetRot.obj
+.\Release\Skeleton.obj
+.\Release\SkinApp.obj
+.\Release\StdAfx.obj
+.\Release\Weight.obj
+.\Release\SkinApp.res>
+Creating command line "link.exe @C:\WINDOWS\TEMP\RSPE0C1.TMP" 
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+MainFrm.cpp
+Matrix.cpp
+OGLView.cpp
+Quatern.cpp
+D:\Code\OGL\SkinApp\Quatern.cpp(350) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+D:\Code\OGL\SkinApp\Quatern.cpp(351) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+D:\Code\OGL\SkinApp\Quatern.cpp(352) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+D:\Code\OGL\SkinApp\Quatern.cpp(353) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+D:\Code\OGL\SkinApp\Quatern.cpp(393) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+D:\Code\OGL\SkinApp\Quatern.cpp(394) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+D:\Code\OGL\SkinApp\Quatern.cpp(395) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+D:\Code\OGL\SkinApp\Quatern.cpp(396) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+D:\Code\OGL\SkinApp\Quatern.cpp(406) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+D:\Code\OGL\SkinApp\Quatern.cpp(407) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+D:\Code\OGL\SkinApp\Quatern.cpp(408) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+D:\Code\OGL\SkinApp\Quatern.cpp(409) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+SetRot.cpp
+Skeleton.cpp
+SkinApp.cpp
+Weight.cpp
+Generating Code...
+Linking...
+
+
+
+DemBones.exe - 0 error(s), 12 warning(s)

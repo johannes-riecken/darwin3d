@@ -1,0 +1,65 @@
+# Microsoft Developer Studio Generated Dependency File, included by Morphy.mak
+
+.\Bitmap.cpp : \
+	".\Bitmap.h"\
+	
+
+.\LoadDlg.cpp : \
+	".\LoadDlg.h"\
+	".\Morphy.h"\
+	
+
+.\LoadOBJ.cpp : \
+	".\LoadOBJ.h"\
+	".\MathDefs.h"\
+	".\Skeleton.h"\
+	
+
+.\MainFrm.cpp : \
+	".\LoadDlg.h"\
+	".\MainFrm.h"\
+	".\MathDefs.h"\
+	".\Morphy.h"\
+	".\OGLView.h"\
+	".\Skeleton.h"\
+	".\Slider.h"\
+	
+
+.\Morphy.cpp : \
+	".\MainFrm.h"\
+	".\MathDefs.h"\
+	".\Morphy.h"\
+	".\OGLView.h"\
+	".\Skeleton.h"\
+	".\Slider.h"\
+	
+
+.\Morphy.rc : \
+	".\res\Morphy.ico"\
+	".\res\Morphy.rc2"\
+	
+
+.\OGLView.cpp : \
+	".\Bitmap.h"\
+	".\LoadOBJ.h"\
+	".\MathDefs.h"\
+	".\Morphy.h"\
+	".\OGLView.h"\
+	".\Skeleton.h"\
+	".\Slider.h"\
+	
+
+.\Skeleton.cpp : \
+	".\MathDefs.h"\
+	".\Skeleton.h"\
+	
+
+.\Slider.cpp : \
+	".\Morphy.h"\
+	".\Slider.h"\
+	
+
+.\StdAfx.cpp : \
+	"..\..\..\devstudio\vc98\include\basetsd.h"\
+	".\StdAfx.h"\
+	
