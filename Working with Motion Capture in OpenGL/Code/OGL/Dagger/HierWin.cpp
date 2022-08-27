@@ -20,6 +20,8 @@
 #endif
 #include "Dagger.h"
 #include "HierWin.h"
+#include <cstddef>
+#include <cstring>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

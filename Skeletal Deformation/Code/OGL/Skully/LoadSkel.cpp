@@ -20,6 +20,8 @@
 #include "stdafx.h"
 #endif
 #include "LoadSkel.h"
+#include <cstdlib>
+#include <cstring>
 
 
 #define MAX_CHILDREN 8

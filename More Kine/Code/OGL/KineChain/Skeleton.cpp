@@ -23,6 +23,8 @@
 #endif
 #include "mathdefs.h"
 #include "skeleton.h"
+#include <cstddef>
+#include <cstdlib>
 
 void DestroySkeleton(t_Bone *root)
 {
