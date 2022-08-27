@@ -21,7 +21,7 @@
  * Make this header file work with C and C++ source code...
  */
 #include <GL/gl.h>
-#include <GL/glu.h>
+#include <GL/glut.h>
 
 typedef struct
 {

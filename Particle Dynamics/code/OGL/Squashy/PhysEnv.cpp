@@ -23,7 +23,7 @@
 #include "stdafx.h"
 #endif
 #include <GL/gl.h>
-#include <GL/glu.h>
+#include <GL/glut.h>
 #include <assert.h>
 #include <math.h>
 

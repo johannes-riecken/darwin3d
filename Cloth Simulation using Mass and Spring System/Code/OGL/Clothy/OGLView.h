@@ -27,7 +27,7 @@
 //
 
 #include <GL/gl.h>
-#include <GL/glu.h>
+#include <GL/glut.h>
 
 #include "Skeleton.h"
 #include "PhysEnv.h"

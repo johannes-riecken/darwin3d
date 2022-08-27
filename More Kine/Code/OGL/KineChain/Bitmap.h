@@ -18,7 +18,7 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 #include <GL/gl.h>
-#include <GL/glu.h>
+#include <GL/glut.h>
 
 extern void	*LoadDIBitmap(char *filename, BITMAPINFO **info);
 GLubyte * ConvertBitsToGL(BITMAPINFO *info,void *bits);
