@@ -49,8 +49,8 @@ typedef struct s_TexPool
 // A Polygon can be Quad or Triangle
 typedef struct {
 	t2DCoord	t1[4],t2[4];
-	uint    TexNdx1;
-	uint    TexNdx2;
+	unsigned int    TexNdx1;
+	unsigned int    TexNdx2;
 	unsigned short index[4];
 	long	type;
 	long	color[4];		// RGB VERTEX COLOR
@@ -340,7 +340,7 @@ void RenderScene()
 
 		for (loop = 0; loop < visual->quadCnt; loop++)
 		{
-			if ((poly->type & POLY_TEXTURED) > 0 && poly->TexNdx1 == (uint)loop2)
+			if ((poly->type & POLY_TEXTURED) > 0 && poly->TexNdx1 == (unsigned int)loop2)
 			{
 				glBegin(GL_QUADS);
 				glTexCoord2fv((float *)&poly->t1[0]);
@@ -363,7 +363,7 @@ void RenderScene()
 		poly = visual->tri;
 		for (loop = 0; loop < visual->triCnt; loop++)
 		{
-			if ((poly->type & POLY_TEXTURED) > 0 && poly->TexNdx1 == (uint)loop2)
+			if ((poly->type & POLY_TEXTURED) > 0 && poly->TexNdx1 == (unsigned int)loop2)
 			{
 				glBegin(GL_TRIANGLES);
 				glTexCoord2fv((float *)&poly->t1[0]);

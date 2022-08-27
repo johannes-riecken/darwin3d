@@ -24,8 +24,6 @@
 
 #include "MathDefs.h"
 
-#define ushort unsigned short
-#define uint   unsigned int
 /// Bone Definitions /////////////////////////////////////////////////////////
 #define BONE_ID_ROOT				1		// ROOT BONE
 ///////////////////////////////////////////////////////////////////////////////
@@ -99,7 +97,7 @@ struct t_Visual
 	tColor  Ka,Kd,Ks;		// COLOR FOR OBJECT
 	float	Ns;				// SPECULAR COEFFICIENT
 	char    map[255];
-	uint    glTex;
+	unsigned int    glTex;
 	long	*texData;		//
 	tVector bbox[8];		// BBOX COORDS
 	tVector transBBox[8];

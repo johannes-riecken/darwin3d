@@ -103,7 +103,7 @@ typedef struct
 	tColor  Ka,Kd,Ks;		// COLOR FOR OBJECT
 	float	Ns;				// SPECULAR COEFFICIENT
 	char    map[255];
-	uint    glTex;
+	unsigned int    glTex;
 	float	*weightData;		//
 	long	normalCnt;		// NUMBER OF VERTICES IN VISUAL
 	long	uvCnt;		// NUMBER OF VERTICES IN VISUAL
