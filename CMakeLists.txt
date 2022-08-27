@@ -4,3 +4,4 @@ cmake_minimum_required(VERSION 3.10)
 project(darwin3d)
 
 add_subdirectory("Blob Modeling/Code/OGL/Blobby")
+add_subdirectory("2D Water Effects/Code/OGL/Agua")
