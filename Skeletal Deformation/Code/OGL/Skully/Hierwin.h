@@ -51,7 +51,7 @@ protected:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CHierWin)
 	protected:
-	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+	virtual bool PreCreateWindow(CREATESTRUCT& cs);
 	//}}AFX_VIRTUAL
 
 // Implementation
@@ -99,7 +99,7 @@ public:
 	float	m_MinX;
 	float	m_MinY;
 	float	m_MinZ;
-	BOOL	m_DOF_Active;
+	bool	m_DOF_Active;
 	float	m_Weight;
 	//}}AFX_DATA
 

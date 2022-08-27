@@ -19,7 +19,7 @@ static char THIS_FILE[] = __FILE__;
 CSlider::CSlider()
 {
 	// FLAG WHETHER I AM DRAGGING THE SLIDER
-	m_pressed = FALSE;
+	m_pressed = false;
 }
 
 CSlider::~CSlider()
@@ -45,7 +45,7 @@ int CSlider::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;
 
 	// SET UP THE SLIDER SO IT GOES FROM 0 - 1024
-	SetRange(0,1024,TRUE);
+	SetRange(0,1024,true);
 	SetPos(0);
 	return 0;
 }
@@ -64,7 +64,7 @@ float CSlider::GetSetting()
 void CSlider::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	// MARK THE DRAG
-	m_pressed = TRUE;
+	m_pressed = true;
 	CSliderCtrl::OnLButtonDown(nFlags, point);
 }
 
@@ -79,6 +79,6 @@ void CSlider::OnMouseMove(UINT nFlags, CPoint point)
 void CSlider::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	// NOT DRAGGING ANY MORE
-	m_pressed = FALSE;
+	m_pressed = false;
 	CSliderCtrl::OnLButtonUp(nFlags, point);
 }

@@ -85,7 +85,7 @@ CMainFrame::CMainFrame()
 	m_offY = 0;
 	m_scale = 0.4;
 	m_gridsize = 64;
-	m_snap = TRUE;
+	m_snap = true;
 	m_point = NULL;
 	// SET UP THE WORLD VARIABLES
 	m_cursector = NULL;
@@ -146,7 +146,7 @@ void CMainFrame::SetStatusText(short id,char *string )
 	m_wndStatusBar.SetPaneText(id,string);
 }
 
-BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
+bool CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
 	// TODO: Modify the Window class or styles here by modifying
 	//  the CREATESTRUCT cs
@@ -182,7 +182,7 @@ void CMainFrame::OnOptionsGridup()
 	if (m_gridsize <= 1024) m_gridsize *= 2;
 	sprintf(str,"Grid = %4d",m_gridsize);
 	SetStatusText(3,str);
-	Invalidate (TRUE);
+	Invalidate (true);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -201,7 +201,7 @@ void CMainFrame::OnOptionsGridDown()
 		sprintf(str,"Grid OFF");
 	}
 	SetStatusText(3,str);
-	Invalidate (TRUE);
+	Invalidate (true);
 }
 
 void CMainFrame::OnOptionsZoomin()
@@ -210,7 +210,7 @@ void CMainFrame::OnOptionsZoomin()
 	if (m_scale <= 10.0) m_scale += .1;
 	sprintf(str,"Zoom = %2.1f",m_scale);
 	SetStatusText(4,str);
-	Invalidate (TRUE);
+	Invalidate (true);
 }
 
 void CMainFrame::OnOptionsZoomout()
@@ -222,7 +222,7 @@ void CMainFrame::OnOptionsZoomout()
 	}
 	sprintf(str,"Zoom = %2.1f",m_scale);
 	SetStatusText(4,str);
-	Invalidate (TRUE);
+	Invalidate (true);
 }
 
 void CMainFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -238,15 +238,15 @@ void CMainFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{
 		case VK_INSERT:
 			InsertPoint();
-			Invalidate(TRUE);
+			Invalidate(true);
 			break;
 		case VK_DELETE:
 			DeleteSector();
-			Invalidate(TRUE);
+			Invalidate(true);
 			break;
 		case VK_RETURN:
 			CloseSector();
-			Invalidate(TRUE);
+			Invalidate(true);
 			break;
 		case VK_ADD:
 			OnOptionsGridup();
@@ -263,7 +263,7 @@ void CMainFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			OnOptionsZoomout();
 			break;
 		case 'S':
-			m_snap = TRUE - m_snap;
+			m_snap = true - m_snap;
 			if (m_snap)
 				SetStatusText(2,"Snap On");
 			else
@@ -288,7 +288,7 @@ void CMainFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 					m_cam_pos.z = temp.z;
 				}
 			}
-			Invalidate(TRUE);
+			Invalidate(true);
 			break;
 		case VK_DOWN:
 			temp.x = m_cam_pos.x - (m_sin[m_cam_yaw]>>13);
@@ -309,17 +309,17 @@ void CMainFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 					m_cam_pos.z = temp.z;
 				}
 			}
-			Invalidate(TRUE);
+			Invalidate(true);
 			break;
 		case VK_LEFT:
 			m_cam_yaw += (4096 - 128);
 			m_cam_yaw %= 4096;
-			Invalidate(TRUE);
+			Invalidate(true);
 			break;
 		case VK_RIGHT:
 			m_cam_yaw += 128;
 			m_cam_yaw %= 4096;
-			Invalidate(TRUE);
+			Invalidate(true);
 			break;
 	}
 
@@ -339,7 +339,7 @@ void CMainFrame::OnRButtonUp(UINT nFlags, CPoint point)
 	temp.x = m_cam_pos.x;
 	temp.y = m_cam_pos.z;
 	m_cam_sector = InsideSector(&temp);
-	Invalidate(TRUE);
+	Invalidate(true);
 	CFrameWnd::OnRButtonUp(nFlags, point);
 }
 
@@ -407,7 +407,7 @@ void CMainFrame::OnLButtonDown(UINT nFlags, CPoint point)
 			m_firstedge = m_curedge;
 			m_sectorcnt++;
 			m_edgecnt++;
-			Invalidate(TRUE);
+			Invalidate(true);
 		}
 		else
 		{
@@ -440,7 +440,7 @@ void CMainFrame::OnLButtonDown(UINT nFlags, CPoint point)
 				m_curedge->prevedge = m_edgecnt - 1;
 				m_edgecnt++;
 			}
-			Invalidate(TRUE);
+			Invalidate(true);
 		}
 		m_point = NULL;
 		sprintf(message,"Sectors = %d  Edges = %d",m_sectorcnt,m_edgecnt);
@@ -464,7 +464,7 @@ void CMainFrame::OnLButtonDown(UINT nFlags, CPoint point)
 				m_temppoint.x = m_edgelist[loop].pos.x;
 				m_temppoint.y = m_edgelist[loop].pos.y;
 				m_point = &m_edgelist[loop].pos;
-				Invalidate(TRUE);
+				Invalidate(true);
 				break;
 			}
 		}
@@ -507,7 +507,7 @@ void CMainFrame::OnLButtonUp(UINT nFlags, CPoint point)
 
 		sprintf(message,"Sectors = %d  Edges = %d",m_sectorcnt,m_edgecnt);
 		SetStatusText(1,message);
-		Invalidate(TRUE);
+		Invalidate(true);
 	}
 	CFrameWnd::OnLButtonUp(nFlags, point);
 }
@@ -547,7 +547,7 @@ void CMainFrame::OnMouseMove(UINT nFlags, CPoint point)
 		{
 			m_offY += m_clickpoint.y - point.y;
 			m_offX += m_clickpoint.x - point.x;
-			Invalidate(TRUE);
+			Invalidate(true);
 			m_clickpoint = point;
 		}
 		else if (m_point != NULL)
@@ -619,7 +619,7 @@ void CMainFrame::OnFileNew()
 	m_edgecnt = 0;
 	sprintf(message,"Sectors = %d  Edges = %d",m_sectorcnt,m_edgecnt);
 	SetStatusText(1,message);
-	Invalidate(TRUE);
+	Invalidate(true);
 }
 
 // LOAD A SET OF SECTORS FROM A FILE
@@ -633,7 +633,7 @@ void CMainFrame::OnFileOpen()
 ///////////////////////////////////////////////////////////////////////////////
 	// HAD TO ADD DIRECTORY STUFF SINCE DIALOG CHANGES DIRECTORY
 	_getcwd(directory,80);
-	dialog = new CFileDialog(TRUE,"FTE",NULL,OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,szFilter);
+	dialog = new CFileDialog(true,"FTE",NULL,OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,szFilter);
 	if (dialog->DoModal() == IDOK)
 	{
 		fp = fopen(dialog->GetPathName(),"rb");
@@ -649,7 +649,7 @@ void CMainFrame::OnFileOpen()
 	}
 	// RESET THE MAIN DIRECTORY
 	_chdir(directory);
-	Invalidate(TRUE);
+	Invalidate(true);
 }
 
 // SAVE THE CURRENT SETUP TO A FILE
@@ -663,7 +663,7 @@ void CMainFrame::OnFileSave()
 ///////////////////////////////////////////////////////////////////////////////
 	// HAD TO ADD DIRECTORY STUFF SINCE DIALOG CHANGES DIRECTORY
 	_getcwd(directory,80);
-	dialog = new CFileDialog(FALSE,"PFTE",NULL,OFN_OVERWRITEPROMPT,szFilter);
+	dialog = new CFileDialog(false,"PFTE",NULL,OFN_OVERWRITEPROMPT,szFilter);
 	if (dialog->DoModal() == IDOK)
 	{
 		fp = fopen(dialog->GetPathName(),"wb");
@@ -903,13 +903,13 @@ void CMainFrame::TransformPoint(long world_x, long world_z, long *camera_x, long
 
 }
 
-BOOL CMainFrame::OnSamePos(short pos1,short pos2)
+bool CMainFrame::OnSamePos(short pos1,short pos2)
 {
 	if (m_edgelist[pos1].pos.x == m_edgelist[pos2].pos.x &&
 		m_edgelist[pos1].pos.y == m_edgelist[pos2].pos.y)
-		return TRUE;
+		return true;
 	else
-		return FALSE;
+		return false;
 }
 
 // CHECK FOR DOUBLE SIDED EDGES
@@ -1184,9 +1184,9 @@ short CMainFrame::GetNearestEdge(CPoint point)
 //////////////////////////////////////////////////////////////////
 // Procedure:	CheckCollision
 // Purpose:		Make Sure view is not too close to wall
-// Returns:		TRUE if Valid Position, else FALSE
+// Returns:		true if Valid Position, else false
 //////////////////////////////////////////////////////////////////
-BOOL CMainFrame::CheckCollision(short sector, tPoint3D *test)
+bool CMainFrame::CheckCollision(short sector, tPoint3D *test)
 {
 	short loop,next,cur;
 	long tempdist,temp2;
@@ -1237,16 +1237,16 @@ BOOL CMainFrame::CheckCollision(short sector, tPoint3D *test)
 				}
 				if (tempdist < DISTANCE_THRESH)
 				{
-					return FALSE;		// TOO CLOSE
+					return false;		// TOO CLOSE
 				}
 			}
 			cur = next;
 		}
 
-		return TRUE;	// VALID POSITION
+		return true;	// VALID POSITION
 	}
 	else
-		return FALSE;	// OUTSIDE SECTOR
+		return false;	// OUTSIDE SECTOR
 
 }
 
@@ -1261,9 +1261,9 @@ BOOL CMainFrame::CheckCollision(short sector, tPoint3D *test)
 //////////////////////////////////////////////////////////////////
 // Procedure:	PointInPoly (SUM OF ANGLES CROSSING VERSION)
 // Purpose:		Check if a point is inside a polygon
-// Returns:		TRUE if Point is inside polygon, else FALSE
+// Returns:		true if Point is inside polygon, else false
 //////////////////////////////////////////////////////////////////
-BOOL CMainFrame::PointInPoly(tSector *sector, tPoint2D *hitPos)
+bool CMainFrame::PointInPoly(tSector *sector, tPoint2D *hitPos)
 {
 	short	edge, first, next;
 	short	quad, next_quad, delta, total;
@@ -1298,21 +1298,21 @@ BOOL CMainFrame::PointInPoly(tSector *sector, tPoint2D *hitPos)
 	} while (edge != first);
 
 	/* AFTER ALL IS DONE IF THE TOTAL IS 4 THEN WE ARE INSIDE */
-	if ((total == +4) || (total == -4)) return TRUE; else return FALSE;
+	if ((total == +4) || (total == -4)) return true; else return false;
 }
 
 #else
 //////////////////////////////////////////////////////////////////
 // Procedure:	PointInPoly (EDGE CROSSING VERSION)
 // Purpose:		Check if a point is inside a polygon
-// Returns:		TRUE if Point is inside polygon, else FALSE
+// Returns:		true if Point is inside polygon, else false
 //////////////////////////////////////////////////////////////////
-BOOL CMainFrame::PointInPoly(tSector *sector, tPoint2D *hitPos)
+bool CMainFrame::PointInPoly(tSector *sector, tPoint2D *hitPos)
 {
 	short  edge, first, next;
 	tPoint2D *pnt1,*pnt2;
-	BOOL	inside = FALSE;		// INITIAL TEST CONDITION
-	BOOL  flag1,flag2;
+	bool	inside = false;		// INITIAL TEST CONDITION
+	bool  flag1,flag2;
 
 	edge = first = sector->edge;		// SET UP INITIAL CONDITIONS
 	pnt1 = &m_edgelist[edge].pos;

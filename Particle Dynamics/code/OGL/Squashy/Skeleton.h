@@ -67,7 +67,7 @@ struct t_Visual
 	int		dataFormat;
 	float	*vertexData;	// INTERLEAVED VERTEX DATA IN DATAFORMAT
 	long	vertexCnt;		// NUMBER OF VERTICES IN VISUAL
-	BOOL	reuseVertices;	// DO I WANT TO USED INDEXED ARRAYS
+	bool	reuseVertices;	// DO I WANT TO USED INDEXED ARRAYS
 	ushort	*faceIndex;		// INDEXED VERTEX DATA IF VERTICES ARE REUSED
 	int		vSize;			// NUMBER OF FLOATS IN A VERTEX
 	long	faceCnt;		// NUMBER OF FACES IN VISUAL
@@ -147,7 +147,7 @@ struct t_Bone
 void DestroySkeleton(t_Bone *root);
 void ResetBone(t_Bone *bone,t_Bone *parent);
 void BoneSetFrame(t_Bone *bone,int frame);
-void BoneAdvanceFrame(t_Bone *bone,int direction,BOOL doChildren);
+void BoneAdvanceFrame(t_Bone *bone,int direction,bool doChildren);
 
 ///////////////////////////////////////////////////////////////////////////////
 

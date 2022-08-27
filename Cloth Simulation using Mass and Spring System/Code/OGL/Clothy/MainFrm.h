@@ -44,8 +44,8 @@ public:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CMainFrame)
 	public:
-	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
-	virtual BOOL DestroyWindow();
+	virtual bool PreCreateWindow(CREATESTRUCT& cs);
+	virtual bool DestroyWindow();
 	//}}AFX_VIRTUAL
 
 // Implementation

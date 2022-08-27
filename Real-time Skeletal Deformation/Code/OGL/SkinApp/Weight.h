@@ -29,7 +29,7 @@ public:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CWeight)
 	public:
-	virtual BOOL DestroyWindow();
+	virtual bool DestroyWindow();
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	//}}AFX_VIRTUAL
@@ -40,7 +40,7 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(CWeight)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	virtual BOOL OnInitDialog();
+	virtual bool OnInitDialog();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

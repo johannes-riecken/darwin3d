@@ -41,7 +41,7 @@ CAguaApp theApp;
 /////////////////////////////////////////////////////////////////////////////
 // CAguaApp initialization
 
-BOOL CAguaApp::InitInstance()
+bool CAguaApp::InitInstance()
 {
 
 #ifdef _AFXDLL
@@ -54,5 +54,5 @@ BOOL CAguaApp::InitInstance()
 	m_pMainWnd = &dlg;
 	int nResponse = dlg.DoModal();
 
-	return FALSE;
+	return false;
 }

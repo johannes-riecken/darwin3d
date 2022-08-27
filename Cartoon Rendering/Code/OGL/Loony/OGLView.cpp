@@ -50,9 +50,9 @@ COGLView::COGLView()
 {
 	// INITIALIZE THE MODE KEYS
 	m_StatusBar = NULL;	// CLEAR THIS.  IT IS SET BY MAINFRAME BUT UNTIL THEN MARK IT
-	m_AntiAlias	= FALSE;
-	m_Dragging = FALSE;
-	m_Silhouette = TRUE;
+	m_AntiAlias	= false;
+	m_Dragging = false;
+	m_Silhouette = true;
 
 	// INITIALIZE SOME OF THE CAMERA VARIABLES
 	ResetBone(&m_Camera, NULL);
@@ -85,7 +85,7 @@ COGLView::~COGLView()
 {
 }
 
-BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext)
+bool COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext)
 {
 	return CWnd::Create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, pContext);
 }
@@ -107,7 +107,7 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // COGLView message handlers
 
-BOOL COGLView::SetupPixelFormat(HDC hdc)
+bool COGLView::SetupPixelFormat(HDC hdc)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
     PIXELFORMATDESCRIPTOR pfd, *ppfd;
@@ -129,20 +129,20 @@ BOOL COGLView::SetupPixelFormat(HDC hdc)
 
     if ((pixelformat = ChoosePixelFormat(hdc, ppfd)) == 0) {
         MessageBox("ChoosePixelFormat failed", "Error", MB_OK);
-        return FALSE;
+        return false;
     }
 
     if (pfd.dwFlags & PFD_NEED_PALETTE) {
         MessageBox("Needs palette", "Error", MB_OK);
-        return FALSE;
+        return false;
     }
 
-    if (SetPixelFormat(hdc, pixelformat, ppfd) == FALSE) {
+    if (SetPixelFormat(hdc, pixelformat, ppfd) == false) {
         MessageBox("SetPixelFormat failed", "Error", MB_OK);
-        return FALSE;
+        return false;
     }
 
-    return TRUE;
+    return true;
 }
 
 
@@ -437,7 +437,7 @@ void COGLView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	// STORE OFF THE HIT POINT AND SETTINGS FOR THE MOVEMENT LATER
 	m_mousepos = point;
-	m_Dragging = TRUE;
+	m_Dragging = true;
 	m_Grab_Rot_X = 	m_Camera.rot.x;
 	m_Grab_Rot_Y = 	m_Camera.rot.y;
 	m_Grab_Rot_Z = 	m_Camera.rot.z;
@@ -451,7 +451,7 @@ void COGLView::OnRButtonDown(UINT nFlags, CPoint point)
 {
 	// STORE OFF THE HIT POINT AND SETTINGS FOR THE MOVEMENT LATER
 	m_mousepos = point;
-	m_Dragging = TRUE;
+	m_Dragging = true;
 	m_Grab_Rot_X = 	m_Camera.rot.x;
 	m_Grab_Rot_Y = 	m_Camera.rot.y;
 	m_Grab_Rot_Z = 	m_Camera.rot.z;
@@ -464,13 +464,13 @@ void COGLView::OnRButtonDown(UINT nFlags, CPoint point)
 
 void COGLView::OnLButtonUp(UINT nFlags, CPoint point)
 {
-	m_Dragging = FALSE;
+	m_Dragging = false;
 	CWnd::OnLButtonUp(nFlags, point);
 }
 
 void COGLView::OnRButtonUp(UINT nFlags, CPoint point)
 {
-	m_Dragging = FALSE;
+	m_Dragging = false;
 	CWnd::OnRButtonUp(nFlags, point);
 }
 
@@ -605,7 +605,7 @@ void COGLView::HandleKeyUp(UINT nChar)
 		break;
 	}
 
-	Invalidate(TRUE);
+	Invalidate(true);
 
 }
 
@@ -641,7 +641,7 @@ void COGLView::GetGLInfo()
 // Purpose:		Load an OBJ Model into the system
 // Arguments:	Name of the file to open
 ///////////////////////////////////////////////////////////////////////////////
-BOOL COGLView::LoadOBJModel(CString name)
+bool COGLView::LoadOBJModel(CString name)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -658,7 +658,7 @@ BOOL COGLView::LoadOBJModel(CString name)
 	m_Camera.b_trans.z = -50.0f;
 	m_Camera.trans.y = 0.0f;
 	m_Camera.trans.z = -50.0f;
-	return TRUE;
+	return true;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -748,5 +748,5 @@ void COGLView::CartoonSettings()
 		m_ShadeLight.z = dialog.m_Light_Z;
 		NormalizeVector(&m_ShadeLight);	// Normalize it since I know I didn't
 	}
-	Invalidate(TRUE);
+	Invalidate(true);
 }

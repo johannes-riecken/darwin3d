@@ -48,8 +48,8 @@ public:
 	CPoint	m_mousepos;
 	float	m_Grab_Rot_X,m_Grab_Rot_Y,m_Grab_Rot_Z;
 	float	m_Grab_Trans_X,m_Grab_Trans_Y,m_Grab_Trans_Z;
-	BOOL	m_DrawGeometry, m_DrawBoneSystem, m_DrawOutline;
-	BOOL	m_Defmode_TwoBone;
+	bool	m_DrawGeometry, m_DrawBoneSystem, m_DrawOutline;
+	bool	m_Defmode_TwoBone;
 	float	m_AnimBlend;
 	t_Bone	*m_SelectedBone;	// THE CURRENTLY PICKED BONE
 	t_Bone	m_Mesh;				// THE MESH TO DEFORM
@@ -59,8 +59,8 @@ public:
 	int		m_ScreenWidth, m_ScreenHeight;
 // Operations
 public:
-	BOOL	SetupPixelFormat(HDC hdc);
-	GLvoid	drawScene(BOOL drawSelectRect);
+	bool	SetupPixelFormat(HDC hdc);
+	GLvoid	drawScene(bool drawSelectRect);
 	GLvoid  drawSkeleton(t_Bone *rootBone);
 	GLvoid	drawModel(t_Bone *baseBone, tColoredVertex *deformedMesh);
 	GLvoid  DeformBone(t_Bone *rootBone, tColoredVertex *meshdata, tColoredVertex *defdata);
@@ -68,14 +68,14 @@ public:
 	void	ModifyWeights();
 	void	LoadObjectFile(char *filename,t_Bone *bonePtr);
 	void	ResetWeights();
-	BOOL	GetWeights(CString filename);
-	BOOL	SaveWeights(CString filename);
+	bool	GetWeights(CString filename);
+	bool	SaveWeights(CString filename);
 	void	CreateBoneDLists(t_Bone *bone);
 	GLvoid	initializeGL(GLsizei width, GLsizei height);
 	GLvoid	resize( GLsizei width, GLsizei height );
 	void	GetGLInfo(char *who,char *which, char *version);
-	void	SelectVertices(BOOL select);
-	void	CompareBuffer(GLint size, GLfloat *buffer,BOOL select);
+	void	SelectVertices(bool select);
+	void	CompareBuffer(GLint size, GLfloat *buffer,bool select);
 	void	UpdateStatus();
 	void	HandleKeyUp(UINT nChar);
 	void	HandleKeyDown(UINT nChar);
@@ -83,7 +83,7 @@ public:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(COGLView)
 	public:
-	virtual BOOL Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, t_Bone *skeleton, CCreateContext* pContext = NULL);
+	virtual bool Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, t_Bone *skeleton, CCreateContext* pContext = NULL);
 	//}}AFX_VIRTUAL
 
 // Implementation

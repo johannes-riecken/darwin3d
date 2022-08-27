@@ -54,7 +54,7 @@ static char THIS_FILE[] = __FILE__;
 COGLView::COGLView()
 {
 	// INITIALIZE THE MODE KEYS
-	m_DrawGeometry = TRUE;
+	m_DrawGeometry = true;
 
 	// INITIALIZE SOME OF THE SKELETON VARIABLES
 	ResetBone(&m_Link[0], NULL);
@@ -124,8 +124,8 @@ COGLView::COGLView()
 	m_Link[5].max_rz = 30;			// END EFFECTOR, NOT USED REALLY
 
 	// BY DEFAULT NO DAMPING OR DOF RESTRICTION
-	m_Damping = FALSE;
-	m_DOF_Restrict = FALSE;
+	m_Damping = false;
+	m_DOF_Restrict = false;
 }
 
 COGLView::~COGLView()
@@ -150,7 +150,7 @@ void COGLView::UpdateStatus()
 
 }
 
-BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext)
+bool COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext)
 {
 	UpdateStatus();	// DRAW INITIAL STATUS BAR
 	return CWnd::Create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, pContext);
@@ -174,7 +174,7 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // COGLView message handlers
 
-BOOL COGLView::SetupPixelFormat(HDC hdc)
+bool COGLView::SetupPixelFormat(HDC hdc)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
     PIXELFORMATDESCRIPTOR pfd, *ppfd;
@@ -196,20 +196,20 @@ BOOL COGLView::SetupPixelFormat(HDC hdc)
 
     if ((pixelformat = ChoosePixelFormat(hdc, ppfd)) == 0) {
         MessageBox("ChoosePixelFormat failed", "Error", MB_OK);
-        return FALSE;
+        return false;
     }
 
     if (pfd.dwFlags & PFD_NEED_PALETTE) {
         MessageBox("Needs palette", "Error", MB_OK);
-        return FALSE;
+        return false;
     }
 
-    if (SetPixelFormat(hdc, pixelformat, ppfd) == FALSE) {
+    if (SetPixelFormat(hdc, pixelformat, ppfd) == false) {
         MessageBox("SetPixelFormat failed", "Error", MB_OK);
-        return FALSE;
+        return false;
     }
 
-    return TRUE;
+    return true;
 }
 
 int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
@@ -268,7 +268,7 @@ int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_Link[3].visuals = m_Link[0].visuals;
 	LoadBoneTexture(&m_Link[4], "head.bmp");
 
-	drawScene(TRUE);
+	drawScene(true);
 	return 0;
 }
 
@@ -477,7 +477,7 @@ GLvoid COGLView::drawModel(t_Bone *curBone)
 // Purpose:		Actually draws the Skeleton it is recursive
 // Arguments:	None
 ///////////////////////////////////////////////////////////////////////////////
-GLvoid COGLView::drawSkeleton(t_Bone *rootBone,BOOL actuallyDraw)
+GLvoid COGLView::drawSkeleton(t_Bone *rootBone,bool actuallyDraw)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
     int loop;
@@ -543,7 +543,7 @@ GLvoid COGLView::drawSkeleton(t_Bone *rootBone,BOOL actuallyDraw)
 // Procedure:	drawScene
 // Purpose:		Draws the current OpenGL scene
 ///////////////////////////////////////////////////////////////////////////////
-GLvoid COGLView::drawScene(BOOL actuallyDraw)
+GLvoid COGLView::drawScene(bool actuallyDraw)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -614,7 +614,7 @@ void COGLView::OnDestroy()
 void COGLView::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
-	drawScene(TRUE);
+	drawScene(true);
 
 	// Do not call CWnd::OnPaint() for painting messages
 }
@@ -642,12 +642,12 @@ void COGLView::OnLButtonDown(UINT nFlags, CPoint point)
 	if ((nFlags & MK_CONTROL) == 0)
 	{
 		ComputeCCDLink(point);
-		drawScene(TRUE);
+		drawScene(true);
 	}
 	else
 	{
 		ComputeOneCCDLink(point,2);
-		drawScene(TRUE);
+		drawScene(true);
 	}
 	m_Grab_Rot_X = 	m_Link[2].rot.x;
 	m_Grab_Rot_Y = 	m_Link[2].rot.y;
@@ -671,12 +671,12 @@ void COGLView::OnRButtonDown(UINT nFlags, CPoint point)
 	if ((nFlags & MK_CONTROL) == 0)
 	{
 		ComputeCCDLink(point);
-		drawScene(TRUE);
+		drawScene(true);
 	}
 	else
 	{
 		ComputeOneCCDLink(point,4);
-		drawScene(TRUE);
+		drawScene(true);
 	}
 	m_Grab_Rot_X = 	m_Link[4].rot.x;
 	m_Grab_Rot_Y = 	m_Link[4].rot.y;
@@ -696,12 +696,12 @@ void COGLView::OnMButtonDown(UINT nFlags, CPoint point)
 	if ((nFlags & MK_CONTROL) == 0)
 	{
 		ComputeCCDLink(point);
-		drawScene(TRUE);
+		drawScene(true);
 	}
 	else
 	{
 		ComputeOneCCDLink(point,3);
-		drawScene(TRUE);
+		drawScene(true);
 	}
 	m_Grab_Rot_X = 	m_Link[3].rot.x;
 	m_Grab_Rot_Y = 	m_Link[3].rot.y;
@@ -739,14 +739,14 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 			if ((point.x - m_mousepos.x) != 0)
 			{
 //				m_Link[3].rot.z = m_Grab_Rot_Z + ((float)ROTATE_SPEED * (point.x - m_mousepos.x));
-				drawScene(TRUE);
+				drawScene(true);
 			}
 		}
 		else
 		{
 			point.y = m_Height - point.y - 1;
 			ComputeCCDLink(point);
-			drawScene(TRUE);
+			drawScene(true);
 		}
 
 	}
@@ -757,7 +757,7 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 			if ((point.x - m_mousepos.x) != 0)
 			{
 //				m_Link[4].rot.z = m_Grab_Rot_Z + ((float)ROTATE_SPEED * (point.x - m_mousepos.x));
-				drawScene(TRUE);
+				drawScene(true);
 			}
 		}
 	}
@@ -768,7 +768,7 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 			if ((point.x - m_mousepos.x) != 0)
 			{
 //				m_Link[2].rot.z = m_Grab_Rot_Z + ((float)ROTATE_SPEED * (point.x - m_mousepos.x));
-				drawScene(TRUE);
+				drawScene(true);
 			}
 		}
 	}
@@ -830,9 +830,9 @@ void COGLView::SetRestrictions()
 // Procedure:	ComputeOneCCDLink
 // Purpose:		Compute an IK Solution to an end effector position
 // Arguments:	End Target (x,y)
-// Returns:		TRUE if a solution exists, FALSE if the position isn't in reach
+// Returns:		true if a solution exists, false if the position isn't in reach
 ///////////////////////////////////////////////////////////////////////////////
-BOOL COGLView::ComputeOneCCDLink(CPoint endPos,int link)
+bool COGLView::ComputeOneCCDLink(CPoint endPos,int link)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	tVector		rootPos,curEnd,desiredEnd,targetVector,curVector,crossResult;
@@ -881,19 +881,19 @@ BOOL COGLView::ComputeOneCCDLink(CPoint endPos,int link)
 					turnDeg = RADTODEG(turnAngle);
 					m_Link[link].rot.z += (float)turnDeg;
 				}
-				drawScene(FALSE);		// CHANGE THIS TO TRUE IF YOU WANT TO SEE THE ITERATION
+				drawScene(false);		// CHANGE THIS TO true IF YOU WANT TO SEE THE ITERATION
 			}
 		}
-	return TRUE;
+	return true;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	ComputeCCDLink
 // Purpose:		Compute an IK Solution to an end effector position
 // Arguments:	End Target (x,y)
-// Returns:		TRUE if a solution exists, FALSE if the position isn't in reach
+// Returns:		true if a solution exists, false if the position isn't in reach
 ///////////////////////////////////////////////////////////////////////////////
-BOOL COGLView::ComputeCCDLink(CPoint endPos)
+bool COGLView::ComputeCCDLink(CPoint endPos)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	tVector		rootPos,curEnd,desiredEnd,targetVector,curVector,crossResult;
@@ -972,13 +972,13 @@ BOOL COGLView::ComputeCCDLink(CPoint endPos)
 						m_Link[link].rot.z = (float)m_Link[link].max_rz;
 				}
 				// RECALC ALL THE MATRICES WITHOUT DRAWING ANYTHING
-				drawScene(FALSE);		// CHANGE THIS TO TRUE IF YOU WANT TO SEE THE ITERATION
+				drawScene(false);		// CHANGE THIS TO true IF YOU WANT TO SEE THE ITERATION
 			}
 			if (--link < 0) link = EFFECTOR_POS - 1;	// START OF THE CHAIN, RESTART
 		}
 	// QUIT IF I AM CLOSE ENOUGH OR BEEN RUNNING LONG ENOUGH
 	} while (tries++ < MAX_IK_TRIES &&
 				VectorSquaredDistance(&curEnd, &desiredEnd) > IK_POS_THRESH);
-	return TRUE;
+	return true;
 }
 

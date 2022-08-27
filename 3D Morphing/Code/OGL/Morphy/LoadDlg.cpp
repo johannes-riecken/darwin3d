@@ -50,25 +50,25 @@ END_MESSAGE_MAP()
 void CLoadDlg::OnBrowse1()
 {
 	char szFilter[] = "OBJ files (*.obj)|*.obj||";  // WILL INCLUDE Biovision Hierarchy BVH (*.bvh)|*.bvh|
-	CFileDialog	dialog( TRUE, ".obj", NULL, NULL, szFilter, this);
+	CFileDialog	dialog( true, ".obj", NULL, NULL, szFilter, this);
 	CString name;
 	if (dialog.DoModal())
 	{
 		name = dialog.GetFileName( ) ;
 		m_File1 = name;
-		UpdateData(FALSE);		// UPDATE THE CONTROL
+		UpdateData(false);		// UPDATE THE CONTROL
 	}
 }
 
 void CLoadDlg::OnBrowse2()
 {
 	char szFilter[] = "OBJ files (*.obj)|*.obj||";  // WILL INCLUDE Biovision Hierarchy BVH (*.bvh)|*.bvh|
-	CFileDialog	dialog( TRUE, ".obj", NULL, NULL, szFilter, this);
+	CFileDialog	dialog( true, ".obj", NULL, NULL, szFilter, this);
 	CString name;
 	if (dialog.DoModal())
 	{
 		name = dialog.GetFileName( ) ;
 		m_File2 = name;
-		UpdateData(FALSE);		// UPDATE THE CONTROL
+		UpdateData(false);		// UPDATE THE CONTROL
 	}
 }

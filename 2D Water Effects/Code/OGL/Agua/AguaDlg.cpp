@@ -84,7 +84,7 @@ CAguaDlg::CAguaDlg(CWnd* pParent /*=NULL*/)
 	m_Green = 128;
 	m_Red = 128;
 	m_Blue = 128;
-	m_UseImage = TRUE;
+	m_UseImage = true;
 	//}}AFX_DATA_INIT
 	// Note that LoadIcon does not require a subsequent DestroyIcon in Win32
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
@@ -123,7 +123,7 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CAguaDlg message handlers
 
-BOOL CAguaDlg::OnInitDialog()
+bool CAguaDlg::OnInitDialog()
 {
 //// Local Variables ////////////////////////////////////////////////////////////////
     BITMAPINFO	bmi;
@@ -137,7 +137,7 @@ BOOL CAguaDlg::OnInitDialog()
 	ASSERT((IDM_ABOUTBOX & 0xFFF0) == IDM_ABOUTBOX);
 	ASSERT(IDM_ABOUTBOX < 0xF000);
 
-	CMenu* pSysMenu = GetSystemMenu(FALSE);
+	CMenu* pSysMenu = GetSystemMenu(false);
 	if (pSysMenu != NULL)
 	{
 		CString strAboutMenu;
@@ -151,8 +151,8 @@ BOOL CAguaDlg::OnInitDialog()
 
 	// Set the icon for this dialog.  The framework does this automatically
 	//  when the application's main window is not a dialog
-	SetIcon(m_hIcon, TRUE);			// Set big icon
-	SetIcon(m_hIcon, FALSE);		// Set small icon
+	SetIcon(m_hIcon, true);			// Set big icon
+	SetIcon(m_hIcon, false);		// Set small icon
 
     memset ( &bmi, 0, sizeof(BITMAPINFO) );
     bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
@@ -191,7 +191,7 @@ BOOL CAguaDlg::OnInitDialog()
 
 	m_Drip_Radius_Sqr = m_Drip_Radius * m_Drip_Radius;
 
-	return TRUE;  // return TRUE  unless you set the focus to a control
+	return true;  // return true  unless you set the focus to a control
 }
 
 void CAguaDlg::OnSysCommand(UINT nID, LPARAM lParam)
@@ -299,12 +299,12 @@ LRESULT CAguaDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 
 void CAguaDlg::OnUpdateDamping()
 {
-	UpdateData(TRUE);
+	UpdateData(true);
 }
 
 void CAguaDlg::OnUpdateDripRadius()
 {
-	UpdateData(TRUE);
+	UpdateData(true);
 }
 
 void CAguaDlg::OnImageBrowse()
@@ -312,18 +312,18 @@ void CAguaDlg::OnImageBrowse()
 	char BASED_CODE szFilter[] = "Targa Files (*.tga)|*.tga||";
 	CFileDialog	*dialog;
 ///////////////////////////////////////////////////////////////////////////////
-	dialog = new CFileDialog(TRUE,"TGA",NULL,OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,szFilter);
+	dialog = new CFileDialog(true,"TGA",NULL,OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,szFilter);
 	if (dialog->DoModal() == IDOK)
 	{
 		m_ImageFile = dialog->GetPathName();
 	}
-	UpdateData(FALSE);
+	UpdateData(false);
 	OnUpdateImagefile();
 }
 
 void CAguaDlg::OnUpdateImagefile()
 {
-	UpdateData(TRUE);
+	UpdateData(true);
 	LoadTGAFile((char *)(LPCSTR)m_ImageFile,&m_ReflectImage);
 }
 
@@ -453,7 +453,7 @@ void CAguaDlg::ProcessWater()
 	int i,j;
 	float value;
 /////////////////////////////////////////////////////////////////////////////////////
-	UpdateData(TRUE);						// Get Value from Dialog
+	UpdateData(true);						// Get Value from Dialog
 
 	for (j = 2; j < WATER_SIZE - 2; j++)
 	{

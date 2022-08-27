@@ -58,7 +58,7 @@ CSkullyApp theApp;
 /////////////////////////////////////////////////////////////////////////////
 // CSkullyApp initialization
 
-BOOL CSkullyApp::InitInstance()
+bool CSkullyApp::InitInstance()
 {
 	AfxEnableControlContainer();
 
@@ -87,7 +87,7 @@ BOOL CSkullyApp::InitInstance()
 
 	if (!pFrame->LoadFrame(IDR_MAINFRAME,
         WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN | WS_VISIBLE)) {
-		return FALSE;
+		return false;
 	}
 
 	m_pMainWnd = pFrame;
@@ -100,7 +100,7 @@ BOOL CSkullyApp::InitInstance()
 	// Enable drag/drop open
 	m_pMainWnd->DragAcceptFiles();
 
-	return TRUE;
+	return true;
 }
 
 /////////////////////////////////////////////////////////////////////////////

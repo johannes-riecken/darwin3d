@@ -47,7 +47,7 @@ public:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CClothyApp)
 	public:
-	virtual BOOL InitInstance();
+	virtual bool InitInstance();
 	//}}AFX_VIRTUAL
 
 // Implementation

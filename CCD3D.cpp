@@ -34,9 +34,9 @@ void COGLView::CheckDOFRestrictions(t_Bone *link)
 // Procedure:	ComputeCCDLink
 // Purpose:		Compute an IK Solution to an end effector position in 3D
 // Arguments:	End Target (x,y,z)
-// Returns:		TRUE if a solution exists, FALSE if the position isn't in reach
+// Returns:		true if a solution exists, false if the position isn't in reach
 ///////////////////////////////////////////////////////////////////////////////
-BOOL COGLView::ComputeCCDLink(tVector endPos)
+bool COGLView::ComputeCCDLink(tVector endPos)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	tVector		rootPos,curEnd,desiredEnd,targetVector,curVector,crossResult;
@@ -101,7 +101,7 @@ BOOL COGLView::ComputeCCDLink(tVector endPos)
 				if (m_DOF_Restrict)
 					CheckDOFRestrictions(&m_Link[link]);
 				// RECALC ALL THE MATRICES WITHOUT DRAWING ANYTHING
-				drawScene(FALSE);		// CHANGE THIS TO TRUE IF YOU WANT TO SEE THE ITERATION
+				drawScene(false);		// CHANGE THIS TO true IF YOU WANT TO SEE THE ITERATION
 			}
 			if (--link < 0) link = EFFECTOR_POS - 1;	// START OF THE CHAIN, RESTART
 		}
@@ -109,8 +109,8 @@ BOOL COGLView::ComputeCCDLink(tVector endPos)
 	} while (tries++ < MAX_IK_TRIES &&
 				VectorSquaredDistance(&curEnd, &desiredEnd) > IK_POS_THRESH);
 	if (tries == MAX_IK_TRIES)
-		return FALSE;
+		return false;
 	else
-		return TRUE;
+		return true;
 }
 

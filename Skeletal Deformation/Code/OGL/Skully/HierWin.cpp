@@ -40,7 +40,7 @@ CHierWin::~CHierWin()
 }
 
 
-BOOL CHierWin::PreCreateWindow(CREATESTRUCT& cs)
+bool CHierWin::PreCreateWindow(CREATESTRUCT& cs)
 {
 	CString className;
 	HCURSOR arrow;
@@ -150,7 +150,7 @@ void CHierWin::OnSelchanged(NMHDR* pNMHDR, LRESULT* pResult)
 	NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
 	if (m_Skeleton > NULL)
 		m_Skeleton->id = GetItemData(GetSelectedItem());
-	GetParent()->Invalidate(TRUE );
+	GetParent()->Invalidate(true );
 	*pResult = 0;
 }
 
@@ -263,7 +263,7 @@ CBoneInfo::CBoneInfo(CWnd* pParent /*=NULL*/)
 	m_MinX = 0.0f;
 	m_MinY = 0.0f;
 	m_MinZ = 0.0f;
-	m_DOF_Active = FALSE;
+	m_DOF_Active = false;
 	m_Weight = 0.0f;
 	//}}AFX_DATA_INIT
 }

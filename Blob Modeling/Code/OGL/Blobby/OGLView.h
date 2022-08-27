@@ -50,7 +50,7 @@ public:
 	CPoint m_mousepos;
 	float m_Base_Rot_X,m_Base_Rot_Y,m_Base_Rot_Z;
 	float m_Grab_Trans_X,m_Grab_Trans_Y,m_Grab_Trans_Z;
-	BOOL m_DrawGeometry,m_DrawBlobs,m_DrawField;
+	bool m_DrawGeometry,m_DrawBlobs,m_DrawField;
 	tVector	m_CameraRot,m_CameraTrans;
 	float	m_Aspect;		// Aspect Ration
 
@@ -63,11 +63,11 @@ public:
 
 // Operations
 public:
-	BOOL	SetupPixelFormat(HDC hdc);
+	bool	SetupPixelFormat(HDC hdc);
 	GLvoid	DrawScene(GLvoid);
 	GLvoid  DrawSurface();
 	GLvoid	DrawField();
-	GLvoid	DrawBlobs(BOOL selecting);
+	GLvoid	DrawBlobs(bool selecting);
 	GLvoid	initializeGL(GLsizei width, GLsizei height);
 	GLvoid	resize( GLsizei width, GLsizei height );
 	void	GetGLInfo();
@@ -84,7 +84,7 @@ public:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(COGLView)
 	public:
-	virtual BOOL Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext = NULL);
+	virtual bool Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext = NULL);
 	//}}AFX_VIRTUAL
 
 // Implementation

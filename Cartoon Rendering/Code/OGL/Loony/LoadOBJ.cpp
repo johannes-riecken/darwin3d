@@ -169,7 +169,7 @@ void HandleFace(CStringArray *words,t_faceIndex *face)
 // Notes:		Not an Official OBJ loader as it doesn't handle more then
 //				3 vertex polygons or multiple objects per file.
 ///////////////////////////////////////////////////////////////////////////////
-BOOL LoadOBJ(const char *filename,t_Visual *visual)
+bool LoadOBJ(const char *filename,t_Visual *visual)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	int loop,loop2,cnt;
@@ -350,6 +350,6 @@ BOOL LoadOBJ(const char *filename,t_Visual *visual)
 		fclose(fp);
 	}
 	else
-		return FALSE;
-	return TRUE;
+		return false;
+	return true;
 }

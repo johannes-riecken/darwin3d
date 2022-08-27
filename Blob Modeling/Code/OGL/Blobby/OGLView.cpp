@@ -56,9 +56,9 @@ COGLView::COGLView()
 	m_pGoopSys = Goop_InitSys();	// Initialize the Blob system
 	m_pCurBlob = NULL;
 
-	m_DrawGeometry = TRUE;
-	m_DrawBlobs = TRUE;
-	m_DrawField = FALSE;
+	m_DrawGeometry = true;
+	m_DrawBlobs = true;
+	m_DrawField = false;
 
 	m_Subdivisions = 25;		// How fine to divide the goop field
 	m_Threshold = 0.7f;			// Surface Threshold
@@ -70,7 +70,7 @@ COGLView::~COGLView()
 }
 
 
-BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext)
+bool COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -94,7 +94,7 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // COGLView message handlers
 
-BOOL COGLView::SetupPixelFormat(HDC hdc)
+bool COGLView::SetupPixelFormat(HDC hdc)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
     PIXELFORMATDESCRIPTOR pfd, *ppfd;
@@ -116,20 +116,20 @@ BOOL COGLView::SetupPixelFormat(HDC hdc)
 
     if ((pixelformat = ChoosePixelFormat(hdc, ppfd)) == 0) {
         MessageBox("ChoosePixelFormat failed", "Error", MB_OK);
-        return FALSE;
+        return false;
     }
 
     if (pfd.dwFlags & PFD_NEED_PALETTE) {
         MessageBox("Needs palette", "Error", MB_OK);
-        return FALSE;
+        return false;
     }
 
-    if (SetPixelFormat(hdc, pixelformat, ppfd) == FALSE) {
+    if (SetPixelFormat(hdc, pixelformat, ppfd) == false) {
         MessageBox("SetPixelFormat failed", "Error", MB_OK);
-        return FALSE;
+        return false;
     }
 
-    return TRUE;
+    return true;
 }
 
 int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
@@ -364,7 +364,7 @@ GLvoid COGLView::DrawSurface()
 // Procedure:	DrawBlobs
 // Purpose:		Draws the elements of the blob system
 ///////////////////////////////////////////////////////////////////////////////
-GLvoid COGLView::DrawBlobs(BOOL selecting)
+GLvoid COGLView::DrawBlobs(bool selecting)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	tMetaGoop	*pGoop;
@@ -419,7 +419,7 @@ GLvoid COGLView::DrawScene(GLvoid)
  	glRotatef(m_CameraRot.x, 0.0f, 0.0f, 1.0f);
 
 	if (m_DrawBlobs)
-		DrawBlobs(FALSE);
+		DrawBlobs(false);
 
 	if (m_DrawField)
 		DrawField();
@@ -468,7 +468,7 @@ GLvoid COGLView::SelectScene(int x, int y)
     glRotatef(m_CameraRot.y, 0.0f, 1.0f, 0.0f);
  	glRotatef(m_CameraRot.x, 0.0f, 0.0f, 1.0f);
 
-	DrawBlobs(TRUE);
+	DrawBlobs(true);
 
     glPopMatrix();
 

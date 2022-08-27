@@ -58,7 +58,7 @@ CSlashApp theApp;
 /////////////////////////////////////////////////////////////////////////////
 // CSlashApp initialization
 
-BOOL CSlashApp::InitInstance()
+bool CSlashApp::InitInstance()
 {
 	AfxEnableControlContainer();
 
@@ -87,7 +87,7 @@ BOOL CSlashApp::InitInstance()
 
 	if (!pFrame->LoadFrame(IDR_MAINFRAME,
         WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN | WS_VISIBLE)) {
-		return FALSE;
+		return false;
 	}
 
 	m_pMainWnd = pFrame;
@@ -96,7 +96,7 @@ BOOL CSlashApp::InitInstance()
 //	m_pMainWnd->ShowWindow(SW_SHOW);
 //	m_pMainWnd->UpdateWindow();
 
-	return TRUE;
+	return true;
 }
 
 /////////////////////////////////////////////////////////////////////////////

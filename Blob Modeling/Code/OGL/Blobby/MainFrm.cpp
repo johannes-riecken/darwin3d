@@ -96,14 +96,14 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_OGLView.m_ptrStatusBar = &m_wndStatusBar;
 	m_OGLView.Create(NULL,"Render Window",WS_CHILD | WS_VISIBLE, CRect(1, 1,rect.right - 3,rect.bottom),this,104); // - 60 bottom
-	m_OGLView.ShowWindow(TRUE);
+	m_OGLView.ShowWindow(true);
 
-	m_OGLView.Invalidate(TRUE);
+	m_OGLView.Invalidate(true);
 
 	return 0;
 }
 
-BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
+bool CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	HICON hicon;
@@ -220,7 +220,7 @@ void CMainFrame::OnUpdateViewDrawfield(CCmdUI* pCmdUI)
 void CMainFrame::OnFileOpen()
 {
 	char szFilter[] = "Blob files (*.blb)|*.blb||";  // WILL INCLUDE Biovision Hierarchy BVH (*.bvh)|*.bvh|
-	CFileDialog	dialog( TRUE, ".obj", NULL, NULL, szFilter, this);
+	CFileDialog	dialog( true, ".obj", NULL, NULL, szFilter, this);
 	CString name;
 	if (dialog.DoModal())
 	{
@@ -231,7 +231,7 @@ void CMainFrame::OnFileOpen()
 void CMainFrame::OnFileSave()
 {
 	char szFilter[] = "Blob files (*.blb)|*.blb||";  // WILL INCLUDE Biovision Hierarchy BVH (*.bvh)|*.bvh|
-	CFileDialog	dialog( FALSE, ".obj", NULL, NULL, szFilter, this);
+	CFileDialog	dialog( false, ".obj", NULL, NULL, szFilter, this);
 	CString name;
 	if (dialog.DoModal())
 	{

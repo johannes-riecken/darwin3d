@@ -58,7 +58,7 @@ CBlobbyApp theApp;
 /////////////////////////////////////////////////////////////////////////////
 // CBlobbyApp initialization
 
-BOOL CBlobbyApp::InitInstance()
+bool CBlobbyApp::InitInstance()
 {
 	AfxEnableControlContainer();
 
@@ -87,7 +87,7 @@ BOOL CBlobbyApp::InitInstance()
 
 	if (!pFrame->LoadFrame(IDR_MAINFRAME,
         WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN | WS_VISIBLE)) {
-		return FALSE;
+		return false;
 	}
 
 	m_pMainWnd = pFrame;
@@ -96,7 +96,7 @@ BOOL CBlobbyApp::InitInstance()
 //	m_pMainWnd->ShowWindow(SW_SHOW);
 //	m_pMainWnd->UpdateWindow();
 
-	return TRUE;
+	return true;
 }
 
 /////////////////////////////////////////////////////////////////////////////

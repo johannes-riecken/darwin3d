@@ -29,10 +29,10 @@ NewCloth::NewCloth(CWnd* pParent /*=NULL*/)
 	m_StructDamp = 0.0f;
 	m_USize = 0;
 	m_VSize = 0;
-	m_Vertical = FALSE;
-	m_UseBend = FALSE;
-	m_UseShear = FALSE;
-	m_UseStruct = FALSE;
+	m_Vertical = false;
+	m_UseBend = false;
+	m_UseShear = false;
+	m_UseStruct = false;
 	//}}AFX_DATA_INIT
 }
 

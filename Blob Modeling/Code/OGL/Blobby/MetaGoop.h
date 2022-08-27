@@ -43,7 +43,7 @@ typedef struct
 {
 	float		value;		// Evaluated field value
 	tVector		pos;		// Position in the Field
-	BOOL		inside;		// Is it in or out of the threshold
+	bool		inside;		// Is it in or out of the threshold
 } tMetaGoopEval;
 
 tMetaGoopSys	*Goop_InitSys();

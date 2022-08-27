@@ -58,7 +58,7 @@ CKineChainApp theApp;
 /////////////////////////////////////////////////////////////////////////////
 // CKineChainApp initialization
 
-BOOL CKineChainApp::InitInstance()
+bool CKineChainApp::InitInstance()
 {
 	AfxEnableControlContainer();
 
@@ -87,7 +87,7 @@ BOOL CKineChainApp::InitInstance()
 
 	if (!pFrame->LoadFrame(IDR_MAINFRAME,
         WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN | WS_VISIBLE)) {
-		return FALSE;
+		return false;
 	}
 
 	m_pMainWnd = pFrame;
@@ -96,7 +96,7 @@ BOOL CKineChainApp::InitInstance()
 //	m_pMainWnd->ShowWindow(SW_SHOW);
 //	m_pMainWnd->UpdateWindow();
 
-	return TRUE;
+	return true;
 }
 
 /////////////////////////////////////////////////////////////////////////////

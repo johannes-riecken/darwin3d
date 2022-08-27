@@ -36,7 +36,7 @@ public:
 	CString m_ClassName;
 	HCURSOR m_HArrow;
 	COGLView  m_OGLView;
-	BOOL m_Wireframe;
+	bool m_Wireframe;
 // Operations
 public:
 	CMainFrame();
@@ -45,9 +45,9 @@ public:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CMainFrame)
 	public:
-	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+	virtual bool PreCreateWindow(CREATESTRUCT& cs);
 	protected:
-	virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
+	virtual bool OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
 	//}}AFX_VIRTUAL
 
 // Implementation

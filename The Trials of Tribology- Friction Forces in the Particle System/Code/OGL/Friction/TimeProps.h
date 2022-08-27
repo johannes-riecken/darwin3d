@@ -19,7 +19,7 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CTimeProps)
 	enum { IDD = IDD_SIMTIMING };
-	BOOL	m_FixedTimeSteps;
+	bool	m_FixedTimeSteps;
 	int		m_Iterations;
 	float	m_MaxTimeStep;
 	//}}AFX_DATA

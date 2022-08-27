@@ -103,7 +103,7 @@ typedef struct
 void	MultVectorByMatrix(tMatrix *mat, tVector *v,tVector *result);
 void	MultVectorByRotMatrix(tMatrix *mat, tVector *v,tVector *result);
 void	MultMatrix(tMatrix *product, tMatrix *a, tMatrix *b);
-BOOL	InvertMatrix(float  *m, float *out );
+bool	InvertMatrix(float  *m, float *out );
 double	VectorSquaredLength(tVector *v);
 double	VectorLength(tVector *v);
 void	NormalizeVector(tVector *v);

@@ -75,7 +75,7 @@ void AddDarwinBranch(t_Bone *root, tSkeletonNode *curNode,tSkeletonNode *baseNod
 // Purpose:		Load a Darwin Format Skeleton
 // Arguments:	Name of the file to open and root skeleton to put it in
 ///////////////////////////////////////////////////////////////////////////////
-BOOL LoadSkeleton(CString name,t_Bone *root)
+bool LoadSkeleton(CString name,t_Bone *root)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	int i,j,boneCnt,parent;
@@ -166,6 +166,6 @@ BOOL LoadSkeleton(CString name,t_Bone *root)
 		root->trans.z = -40.0f;
 
 	}
-	return TRUE;
+	return true;
 }
 

@@ -86,7 +86,7 @@ static UINT indicators[] =
 
 CMainFrame::CMainFrame()
 {
-	m_Animating = FALSE;
+	m_Animating = false;
 	m_ElapsedTime = ~(DWORD)0; // initialize to a big number
 	m_Animation_Direction = 1;
 	m_AnimSpeed = 30;			// DEFAULT PLAYBACK SPEED AS FRAME DELAY
@@ -137,15 +137,15 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 */
 	m_HierWin.Create( TVS_HASBUTTONS | TVS_LINESATROOT | TVS_HASLINES | TVS_SHOWSELALWAYS,
 		CRect(HIERWIN_START_X, HIERWIN_START_Y,HIERWIN_WIDTH,rect.bottom - HIERWIN_BOTTOM), this, 1001);
-	m_HierWin.ShowWindow(TRUE);
+	m_HierWin.ShowWindow(true);
 
 	m_OGLView.Create(NULL,"Render Window",WS_CHILD | WS_VISIBLE,
 		CRect(OGLWIN_START_X, OGLWIN_START_Y,rect.right - OGLWIN_WIDTH,rect.bottom - OGLWIN_BOTTOM),this,104,&m_Skeleton);
-	m_OGLView.ShowWindow(TRUE);
+	m_OGLView.ShowWindow(true);
 
 	m_OGLView.m_StatusBar = &m_wndStatusBar;
 
-	m_OGLView.Invalidate(TRUE);
+	m_OGLView.Invalidate(true);
 
 
 	// Now we initialize the animation code
@@ -160,7 +160,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	return 0;
 }
 
-BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
+bool CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
 	HICON hicon;
 
@@ -205,7 +205,7 @@ void CMainFrame::OnWhichogl()
 }
 // OnWhichogl
 
-BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
+bool CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
 {
 
 	return CFrameWnd::OnCreateClient(lpcs, pContext);
@@ -225,13 +225,13 @@ void CMainFrame::OnPaint()
 	CPaintDC dc(this); // device context for painting
 
 	// IF I AM IN ANIMATING MODE
-	while ( m_Animating == TRUE)
+	while ( m_Animating == true)
 	{
 		while (::PeekMessage(&msg,0,0,0,PM_REMOVE))
 		{
 			if (msg.message == WM_QUIT)
 			{
-				m_Animating = FALSE;
+				m_Animating = false;
 				::PostQuitMessage(0);
 			}
 
@@ -253,7 +253,7 @@ void CMainFrame::OnPaint()
 		if (ElapsedTimeRender() > (unsigned int)(1000/m_AnimSpeed) )
 		{
 			// ADVANCE THE ANIMATION
-			BoneAdvanceFrame(&m_Skeleton,m_Animation_Direction,TRUE);
+			BoneAdvanceFrame(&m_Skeleton,m_Animation_Direction,true);
 			// REDRAW THE OGL WINDOW
 			m_OGLView.drawScene();
 			// RESET THE TIME COUNTER
@@ -328,35 +328,35 @@ void CMainFrame::OnViewResetskeleton()
 
 void CMainFrame::OnPlayBack()
 {
-	m_Animating = TRUE;
+	m_Animating = true;
 	m_Animation_Direction = -1;
-	Invalidate(TRUE);
+	Invalidate(true);
 }
 
 void CMainFrame::OnBackFrame()
 {
-	m_Animating = FALSE;
-	BoneAdvanceFrame(&m_Skeleton,-1,TRUE);
+	m_Animating = false;
+	BoneAdvanceFrame(&m_Skeleton,-1,true);
 	m_OGLView.drawScene();
 }
 
 void CMainFrame::OnStop()
 {
-	m_Animating = FALSE;
+	m_Animating = false;
 }
 
 void CMainFrame::OnForwardFrame()
 {
-	m_Animating = FALSE;
-	BoneAdvanceFrame(&m_Skeleton,1,TRUE);
+	m_Animating = false;
+	BoneAdvanceFrame(&m_Skeleton,1,true);
 	m_OGLView.drawScene();
 }
 
 void CMainFrame::OnPlayForward()
 {
 	m_Animation_Direction = 1;
-	m_Animating = TRUE;
-	Invalidate(TRUE);
+	m_Animating = true;
+	Invalidate(true);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -373,7 +373,7 @@ void CMainFrame::OnAnimationPlaybackspeed()
 	if (dialog.DoModal())
 	{
 		m_AnimSpeed = dialog.m_Playback_Speed;
-		Invalidate(TRUE);
+		Invalidate(true);
 	}
 }
 /// OnAnimationPlaybackspeed ///////////////////////////////////////////////////////////
@@ -394,7 +394,7 @@ void CMainFrame::OnFileLoadanim()
 	CString exten;
 ///////////////////////////////////////////////////////////////////////////////
 
-	dialog = new CFileDialog(TRUE,"bva",NULL, NULL,szFilter);
+	dialog = new CFileDialog(true,"bva",NULL, NULL,szFilter);
 	if (dialog->DoModal() == IDOK)
 	{
 		exten = dialog->GetFileExt();

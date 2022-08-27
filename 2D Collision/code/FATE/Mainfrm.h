@@ -19,7 +19,7 @@ public:
 // Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CMainFrame)
-	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+	virtual bool PreCreateWindow(CREATESTRUCT& cs);
 	//}}AFX_VIRTUAL
 
 // Implementation
@@ -62,7 +62,7 @@ protected:  // control bar embedded members
 	void CloseSector();
 	void DeleteEdge(short which);
 	void DeleteSector();
-	BOOL OnSamePos(short pos1,short pos2);
+	bool OnSamePos(short pos1,short pos2);
 	void CheckDoubleSided();
 	void CheckDeleteEdges(tPoint2D *a,tPoint2D *b);
 	void LoadTextures();
@@ -79,8 +79,8 @@ protected:  // control bar embedded members
 		return (retval);
 	}
 
-	BOOL PointInPoly(tSector *sector, tPoint2D *hitPos);
-	BOOL CheckCollision(short sector, tPoint3D *test);
+	bool PointInPoly(tSector *sector, tPoint2D *hitPos);
+	bool CheckCollision(short sector, tPoint3D *test);
 	void InitTrig();
 	void DrawCurPos(CDC* pDC);
 

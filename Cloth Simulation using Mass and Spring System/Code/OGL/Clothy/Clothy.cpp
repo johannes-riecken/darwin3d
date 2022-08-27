@@ -58,7 +58,7 @@ CClothyApp theApp;
 /////////////////////////////////////////////////////////////////////////////
 // CClothyApp initialization
 
-BOOL CClothyApp::InitInstance()
+bool CClothyApp::InitInstance()
 {
 	AfxEnableControlContainer();
 
@@ -87,7 +87,7 @@ BOOL CClothyApp::InitInstance()
 
 	if (!pFrame->LoadFrame(IDR_MAINFRAME,
         WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN | WS_VISIBLE)) {
-		return FALSE;
+		return false;
 	}
 
 	m_pMainWnd = pFrame;
@@ -96,7 +96,7 @@ BOOL CClothyApp::InitInstance()
 //	m_pMainWnd->ShowWindow(SW_SHOW);
 //	m_pMainWnd->UpdateWindow();
 
-	return TRUE;
+	return true;
 }
 
 /////////////////////////////////////////////////////////////////////////////

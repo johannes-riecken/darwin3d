@@ -69,15 +69,15 @@ CPhysEnv::CPhysEnv()
 	m_Spring = NULL;
 	m_SpringCnt = 0;
 
-	m_UseGravity = TRUE;
-	m_UseFriction = TRUE;
-	m_DrawSprings = TRUE;
-	m_DrawVertices	= TRUE;
-	m_MouseForceActive = FALSE;
+	m_UseGravity = true;
+	m_UseFriction = true;
+	m_DrawSprings = true;
+	m_DrawVertices	= true;
+	m_MouseForceActive = false;
 
 	MAKEVECTOR(m_Gravity, 0.0f, -0.2f, 0.0f)
 	m_UserForceMag = 100.0;
-	m_UserForceActive = FALSE;
+	m_UserForceActive = false;
 	m_Kd	= 0.02f;	// DAMPING FACTOR
 	m_Kr	= 0.8f;		// 1.0 = SUPERBALL BOUNCE 0.0 = DEAD WEIGHT
 	m_Ksh	= 5.0f;		// HOOK'S SPRING CONSTANT
@@ -121,7 +121,7 @@ CPhysEnv::CPhysEnv()
 	MAKEVECTOR(m_CollisionPlane[5].normal,0.0f, 0.0f, 1.0f)
 	m_CollisionPlane[5].d = m_WorldSizeZ / 2.0f;
 
-	m_CollisionRootFinding = FALSE;		// ONLY SET WHEN FINDING A COLLISION
+	m_CollisionRootFinding = false;		// ONLY SET WHEN FINDING A COLLISION
 }
 
 CPhysEnv::~CPhysEnv()
@@ -380,7 +380,7 @@ void CPhysEnv::SetWorldParticles(tVector *coords,int particleCnt)
 		MAKEVECTOR(tempParticle->v, 0.0f, 0.0f, 0.0f)
 		MAKEVECTOR(tempParticle->f, 0.0f, 0.0f, 0.0f)
 		tempParticle->oneOverM = 1.0f;							// MASS OF 1
-		tempParticle->contacting = FALSE;
+		tempParticle->contacting = false;
 		tempParticle++;
 		coords++;
 	}
@@ -448,9 +448,9 @@ void CPhysEnv::FreeSystem()
 ///////////////////////////////////////////////////////////////////////////////
 void CPhysEnv::LoadData(FILE *fp)
 {
-	fread(&m_UseGravity,sizeof(BOOL),1,fp);
-	fread(&m_UseDamping,sizeof(BOOL),1,fp);
-	fread(&m_UserForceActive,sizeof(BOOL),1,fp);
+	fread(&m_UseGravity,sizeof(bool),1,fp);
+	fread(&m_UseDamping,sizeof(bool),1,fp);
+	fread(&m_UserForceActive,sizeof(bool),1,fp);
 	fread(&m_Gravity,sizeof(tVector),1,fp);
 	fread(&m_UserForce,sizeof(tVector),1,fp);
 	fread(&m_UserForceMag,sizeof(float),1,fp);
@@ -486,9 +486,9 @@ void CPhysEnv::LoadData(FILE *fp)
 ///////////////////////////////////////////////////////////////////////////////
 void CPhysEnv::SaveData(FILE *fp)
 {
-	fwrite(&m_UseGravity,sizeof(BOOL),1,fp);
-	fwrite(&m_UseDamping,sizeof(BOOL),1,fp);
-	fwrite(&m_UserForceActive,sizeof(BOOL),1,fp);
+	fwrite(&m_UseGravity,sizeof(bool),1,fp);
+	fwrite(&m_UseDamping,sizeof(bool),1,fp);
+	fwrite(&m_UserForceActive,sizeof(bool),1,fp);
 	fwrite(&m_Gravity,sizeof(tVector),1,fp);
 	fwrite(&m_UserForce,sizeof(tVector),1,fp);
 	fwrite(&m_UserForceMag,sizeof(float),1,fp);
@@ -571,7 +571,7 @@ void CPhysEnv::SetVertexMass()
 void CPhysEnv::ApplyUserForce(tVector *force)
 {
 	ScaleVector(force,  m_UserForceMag, &m_UserForce);
-	m_UserForceActive = TRUE;
+	m_UserForceActive = true;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -623,7 +623,7 @@ void CPhysEnv::AddSpring()
 // Velocity Threshold that decides between Static and Kinetic Friction
 #define STATIC_THRESHOLD	0.03f
 
-void CPhysEnv::ComputeForces( tParticle	*system, BOOL duringIntegration )
+void CPhysEnv::ComputeForces( tParticle	*system, bool duringIntegration )
 {
 	int loop;
 	tParticle	*curParticle,*p1, *p2;
@@ -683,7 +683,7 @@ void CPhysEnv::ComputeForces( tParticle	*system, BOOL duringIntegration )
 				ScaleVector(&Vt, (FdotN * m_Csf * Vmag), &Vt);  // Scale Friction by Velocity
 				VectorSum(&curParticle->f,&Vt,&curParticle->f);
 			}
-			curParticle->contacting = FALSE;
+			curParticle->contacting = false;
 		}
 		curParticle++;
 	}
@@ -825,7 +825,7 @@ void CPhysEnv::MidPointIntegrate( float DeltaTime)
 	IntegrateSysOverTime(m_CurrentSys,m_CurrentSys,m_TempSys[0],halfDeltaT);
 
 	// COMPUTE FORCES USING THESE NEW POSITIONS AND VELOCITIES
-	ComputeForces(m_TempSys[0],TRUE);
+	ComputeForces(m_TempSys[0],true);
 
 	// TAKE THE FULL STEP WITH THIS NEW INFORMATION
 	IntegrateSysOverTime(m_CurrentSys,m_TempSys[0],m_TargetSys,DeltaTime);
@@ -879,7 +879,7 @@ void CPhysEnv::RK4Integrate( float DeltaTime)
 		accum1++;
 	}
 
-	ComputeForces(m_TempSys[0],TRUE);  // COMPUTE THE NEW FORCES
+	ComputeForces(m_TempSys[0],true);  // COMPUTE THE NEW FORCES
 
 	// SECOND STEP
 	source = m_CurrentSys;	// CURRENT STATE OF PARTICLE
@@ -911,7 +911,7 @@ void CPhysEnv::RK4Integrate( float DeltaTime)
 		accum1++;
 	}
 
-	ComputeForces(m_TempSys[0],TRUE);  // COMPUTE THE NEW FORCES
+	ComputeForces(m_TempSys[0],true);  // COMPUTE THE NEW FORCES
 
 	// THIRD STEP
 	source = m_CurrentSys;	// CURRENT STATE OF PARTICLE
@@ -944,7 +944,7 @@ void CPhysEnv::RK4Integrate( float DeltaTime)
 		accum1++;
 	}
 
-	ComputeForces(m_TempSys[0],TRUE);  // COMPUTE THE NEW FORCES
+	ComputeForces(m_TempSys[0],true);  // COMPUTE THE NEW FORCES
 
 	// FOURTH STEP
 	source = m_CurrentSys;	// CURRENT STATE OF PARTICLE
@@ -1038,7 +1038,7 @@ int CPhysEnv::CheckForCollisions( tParticle	*system )
 			// Check if the Particles are in contact and need friction applied
 			if (axbyczd < contactEpsilon)
 			{
-				curParticle->contacting = TRUE;
+				curParticle->contacting = true;
 				// Save the contact normal for later
 				memcpy(&curParticle->contactN,&plane->normal,sizeof(tVector));
 			}
@@ -1070,7 +1070,7 @@ void CPhysEnv::ResolveCollisions( tParticle	*system )
 	}
 }
 
-void CPhysEnv::Simulate(float DeltaTime, BOOL running)
+void CPhysEnv::Simulate(float DeltaTime, bool running)
 {
     float		CurrentTime = 0.0f;
     float		TargetTime = DeltaTime;
@@ -1081,7 +1081,7 @@ void CPhysEnv::Simulate(float DeltaTime, BOOL running)
     {
 		if (running)
 		{
-			ComputeForces(m_CurrentSys, FALSE);
+			ComputeForces(m_CurrentSys, false);
 
 			// IN ORDER TO MAKE THINGS RUN FASTER, I HAVE THIS LITTLE TRICK
 			// IF THE SYSTEM IS DOING A BINARY SEARCH FOR THE COLLISION POINT,
@@ -1113,7 +1113,7 @@ void CPhysEnv::Simulate(float DeltaTime, BOOL running)
         if(collisionState == PENETRATING)
         {
 			// TELL THE SYSTEM I AM LOOKING FOR A COLLISION SO IT WILL USE EULER
-			m_CollisionRootFinding = TRUE;
+			m_CollisionRootFinding = true;
             // we simulated too far, so subdivide time and try again
             TargetTime = (CurrentTime + TargetTime) / 2.0f;
 
@@ -1135,7 +1135,7 @@ void CPhysEnv::Simulate(float DeltaTime, BOOL running)
                             COLLIDING) && (Counter < 100));
 
                 assert(Counter < 100);
-				m_CollisionRootFinding = FALSE;	// FOUND THE COLLISION POINT BACK TO NORMAL
+				m_CollisionRootFinding = false;	// FOUND THE COLLISION POINT BACK TO NORMAL
             }
 
             // we made a successful step, so swap configurations

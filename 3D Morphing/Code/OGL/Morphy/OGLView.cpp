@@ -48,7 +48,7 @@ static char THIS_FILE[] = __FILE__;
 COGLView::COGLView()
 {
 	// INITIALIZE THE MODE KEYS
-	m_DrawGeometry = TRUE;
+	m_DrawGeometry = true;
 
 	ResetBone(&m_Skeleton, NULL);
 	m_Skeleton.id = -1;
@@ -64,7 +64,7 @@ COGLView::~COGLView()
 }
 
 
-BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CSlider *slider, CCreateContext* pContext)
+bool COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CSlider *slider, CCreateContext* pContext)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	t_Visual	*visual = NULL;
@@ -108,7 +108,7 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // COGLView message handlers
 
-BOOL COGLView::SetupPixelFormat(HDC hdc)
+bool COGLView::SetupPixelFormat(HDC hdc)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
     PIXELFORMATDESCRIPTOR pfd, *ppfd;
@@ -130,20 +130,20 @@ BOOL COGLView::SetupPixelFormat(HDC hdc)
 
     if ((pixelformat = ChoosePixelFormat(hdc, ppfd)) == 0) {
         MessageBox("ChoosePixelFormat failed", "Error", MB_OK);
-        return FALSE;
+        return false;
     }
 
     if (pfd.dwFlags & PFD_NEED_PALETTE) {
         MessageBox("Needs palette", "Error", MB_OK);
-        return FALSE;
+        return false;
     }
 
-    if (SetPixelFormat(hdc, pixelformat, ppfd) == FALSE) {
+    if (SetPixelFormat(hdc, pixelformat, ppfd) == false) {
         MessageBox("SetPixelFormat failed", "Error", MB_OK);
-        return FALSE;
+        return false;
     }
 
-    return TRUE;
+    return true;
 }
 
 int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)

@@ -46,16 +46,16 @@ public:
 	CPoint m_mousepos;
 	float m_Grab_Rot_X,m_Grab_Rot_Y,m_Grab_Rot_Z;
 	float m_Grab_Trans_X,m_Grab_Trans_Y,m_Grab_Trans_Z;
-	BOOL m_DrawGeometry;
-	BOOL m_UseQuat;
+	bool m_DrawGeometry;
+	bool m_UseQuat;
 // Operations
 public:
-	BOOL	SetupPixelFormat(HDC hdc);
+	bool	SetupPixelFormat(HDC hdc);
 	GLvoid	drawScene(GLvoid);
 	GLvoid  drawModel(t_Bone *curBone);
 	GLvoid	initializeGL(GLsizei width, GLsizei height);
 	GLvoid	resize( GLsizei width, GLsizei height );
-	BOOL	ComputeIK(CPoint endPos);
+	bool	ComputeIK(CPoint endPos);
 	void	GetGLInfo();
 	void	UpdateStatus();
 	void	HandleKeyUp(UINT nChar);
@@ -64,7 +64,7 @@ public:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(COGLView)
 	public:
-	virtual BOOL Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext = NULL);
+	virtual bool Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext = NULL);
 	//}}AFX_VIRTUAL
 
 // Implementation

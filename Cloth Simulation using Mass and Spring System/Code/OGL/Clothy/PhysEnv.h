@@ -83,7 +83,7 @@ public:
 	void RenderWorld();
 	void SetWorldParticles(tTexturedVertex *coords,int particleCnt);
 	void ResetWorld();
-	void Simulate(float DeltaTime,BOOL running);
+	void Simulate(float DeltaTime,bool running);
 	void ApplyUserForce(tVector *force);
 	void SetMouseForce(int deltaX,int deltaY, tVector *localX, tVector *localY);
 	void GetNearestPoint(int x, int y);
@@ -95,17 +95,17 @@ public:
 	void LoadData(FILE *fp);
 	void SaveData(FILE *fp);
 	void	AddCollisionSphere();
-	BOOL				m_UseGravity;			// SHOULD GRAVITY BE ADDED IN
-	BOOL				m_UseDamping;			// SHOULD DAMPING BE ON
-	BOOL				m_UserForceActive;		// WHEN USER FORCE IS APPLIED
-	BOOL				m_DrawSprings;			// DRAW THE SPRING LINES
-	BOOL				m_DrawVertices;			// DRAW VERTICES
-	BOOL				m_MouseForceActive;		// MOUSE DRAG FORCE
-	BOOL				m_CollisionActive;		// COLLISION SPHERES ACTIVE
-	BOOL				m_CollisionRootFinding;	// AM I SEARCHING FOR A COLLISION
-	BOOL				m_DrawStructural;		// DRAW STRUCTURAL CLOTH SPRINGS
-	BOOL				m_DrawShear;			// DRAW SHEAR CLOTH SPRINGS
-	BOOL				m_DrawBend;				// DRAW BEND CLOTH SPRINGS
+	bool				m_UseGravity;			// SHOULD GRAVITY BE ADDED IN
+	bool				m_UseDamping;			// SHOULD DAMPING BE ON
+	bool				m_UserForceActive;		// WHEN USER FORCE IS APPLIED
+	bool				m_DrawSprings;			// DRAW THE SPRING LINES
+	bool				m_DrawVertices;			// DRAW VERTICES
+	bool				m_MouseForceActive;		// MOUSE DRAG FORCE
+	bool				m_CollisionActive;		// COLLISION SPHERES ACTIVE
+	bool				m_CollisionRootFinding;	// AM I SEARCHING FOR A COLLISION
+	bool				m_DrawStructural;		// DRAW STRUCTURAL CLOTH SPRINGS
+	bool				m_DrawShear;			// DRAW SHEAR CLOTH SPRINGS
+	bool				m_DrawBend;				// DRAW BEND CLOTH SPRINGS
 	int					m_IntegratorType;
 
 // Attributes

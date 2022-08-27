@@ -65,14 +65,14 @@ CPhysEnv::CPhysEnv()
 	m_Spring = NULL;
 	m_SpringCnt = 0;
 
-	m_UseGravity = TRUE;
-	m_DrawSprings = TRUE;
-	m_DrawVertices	= TRUE;
-	m_MouseForceActive = FALSE;
+	m_UseGravity = true;
+	m_DrawSprings = true;
+	m_DrawVertices	= true;
+	m_MouseForceActive = false;
 
 	MAKEVECTOR(m_Gravity, 0.0f, -0.2f, 0.0f)
 	m_UserForceMag = 100.0;
-	m_UserForceActive = FALSE;
+	m_UserForceActive = false;
 	m_Kd	= 0.04f;	// DAMPING FACTOR
 	m_Kr	= 0.8f;		// 1.0 = SUPERBALL BOUNCE 0.0 = DEAD WEIGHT
 	m_Ksh	= 5.0f;		// HOOK'S SPRING CONSTANT
@@ -116,7 +116,7 @@ CPhysEnv::CPhysEnv()
 	MAKEVECTOR(m_CollisionPlane[5].normal,0.0f, 0.0f, 1.0f)
 	m_CollisionPlane[5].d = m_WorldSizeZ / 2.0f;
 
-	m_CollisionRootFinding = FALSE;		// ONLY SET WHEN FINDING A COLLISION
+	m_CollisionRootFinding = false;		// ONLY SET WHEN FINDING A COLLISION
 }
 
 CPhysEnv::~CPhysEnv()
@@ -437,9 +437,9 @@ void CPhysEnv::FreeSystem()
 ///////////////////////////////////////////////////////////////////////////////
 void CPhysEnv::LoadData(FILE *fp)
 {
-	fread(&m_UseGravity,sizeof(BOOL),1,fp);
-	fread(&m_UseDamping,sizeof(BOOL),1,fp);
-	fread(&m_UserForceActive,sizeof(BOOL),1,fp);
+	fread(&m_UseGravity,sizeof(bool),1,fp);
+	fread(&m_UseDamping,sizeof(bool),1,fp);
+	fread(&m_UserForceActive,sizeof(bool),1,fp);
 	fread(&m_Gravity,sizeof(tVector),1,fp);
 	fread(&m_UserForce,sizeof(tVector),1,fp);
 	fread(&m_UserForceMag,sizeof(float),1,fp);
@@ -475,9 +475,9 @@ void CPhysEnv::LoadData(FILE *fp)
 ///////////////////////////////////////////////////////////////////////////////
 void CPhysEnv::SaveData(FILE *fp)
 {
-	fwrite(&m_UseGravity,sizeof(BOOL),1,fp);
-	fwrite(&m_UseDamping,sizeof(BOOL),1,fp);
-	fwrite(&m_UserForceActive,sizeof(BOOL),1,fp);
+	fwrite(&m_UseGravity,sizeof(bool),1,fp);
+	fwrite(&m_UseDamping,sizeof(bool),1,fp);
+	fwrite(&m_UserForceActive,sizeof(bool),1,fp);
 	fwrite(&m_Gravity,sizeof(tVector),1,fp);
 	fwrite(&m_UserForce,sizeof(tVector),1,fp);
 	fwrite(&m_UserForceMag,sizeof(float),1,fp);
@@ -554,7 +554,7 @@ void CPhysEnv::SetVertexMass()
 void CPhysEnv::ApplyUserForce(tVector *force)
 {
 	ScaleVector(force,  m_UserForceMag, &m_UserForce);
-	m_UserForceActive = TRUE;
+	m_UserForceActive = true;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -617,7 +617,7 @@ void CPhysEnv::ComputeForces( tParticle	*system )
 		MAKEVECTOR(curParticle->f,0.0f,0.0f,0.0f)		// CLEAR FORCE VECTOR
 
 		// BUG (3/8/99): THERE WAS A BUG HERE, I FORGOT YOU NEED TO DIVIDE
-		//		BY 1/M TO GET THE TRUE FORCE ACTING ON THE PARTICLE INSTEAD OF A MULTIPLY
+		//		BY 1/M TO GET THE true FORCE ACTING ON THE PARTICLE INSTEAD OF A MULTIPLY
 		//		THANKS TO ED POVAZ FOR THE SPOT...
 		if (m_UseGravity && curParticle->oneOverM != 0) // && curParticle->type != CONTACTING)
 		{
@@ -1024,7 +1024,7 @@ void CPhysEnv::ResolveCollisions( tParticle	*system )
 	}
 }
 
-void CPhysEnv::Simulate(float DeltaTime, BOOL running)
+void CPhysEnv::Simulate(float DeltaTime, bool running)
 {
     float		CurrentTime = 0.0f;
     float		TargetTime = DeltaTime;
@@ -1067,7 +1067,7 @@ void CPhysEnv::Simulate(float DeltaTime, BOOL running)
         if(collisionState == PENETRATING)
         {
 			// TELL THE SYSTEM I AM LOOKING FOR A COLLISION SO IT WILL USE EULER
-			m_CollisionRootFinding = TRUE;
+			m_CollisionRootFinding = true;
             // we simulated too far, so subdivide time and try again
             TargetTime = (CurrentTime + TargetTime) / 2.0f;
 
@@ -1089,7 +1089,7 @@ void CPhysEnv::Simulate(float DeltaTime, BOOL running)
                             COLLIDING) && (Counter < 100));
 
                 assert(Counter < 100);
-				m_CollisionRootFinding = FALSE;	// FOUND THE COLLISION POINT BACK TO NORMAL
+				m_CollisionRootFinding = false;	// FOUND THE COLLISION POINT BACK TO NORMAL
             }
 
             // we made a successful step, so swap configurations

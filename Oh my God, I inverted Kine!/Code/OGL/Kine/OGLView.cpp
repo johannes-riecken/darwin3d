@@ -54,7 +54,7 @@ static char THIS_FILE[] = __FILE__;
 COGLView::COGLView()
 {
 	// INITIALIZE THE MODE KEYS
-	m_DrawGeometry = TRUE;
+	m_DrawGeometry = true;
 
 	// INITIALIZE SOME OF THE SKELETON VARIABLES
 	ResetBone(&m_Body, NULL);
@@ -104,7 +104,7 @@ void COGLView::UpdateStatus()
 	m_ptrStatusBar->SetPaneText(2,message);
 }
 
-BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext)
+bool COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext)
 {
 	UpdateStatus();	// DRAW INITIAL STATUS BAR
 	return CWnd::Create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, pContext);
@@ -127,7 +127,7 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // COGLView message handlers
 
-BOOL COGLView::SetupPixelFormat(HDC hdc)
+bool COGLView::SetupPixelFormat(HDC hdc)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
     PIXELFORMATDESCRIPTOR pfd, *ppfd;
@@ -149,20 +149,20 @@ BOOL COGLView::SetupPixelFormat(HDC hdc)
 
     if ((pixelformat = ChoosePixelFormat(hdc, ppfd)) == 0) {
         MessageBox("ChoosePixelFormat failed", "Error", MB_OK);
-        return FALSE;
+        return false;
     }
 
     if (pfd.dwFlags & PFD_NEED_PALETTE) {
         MessageBox("Needs palette", "Error", MB_OK);
-        return FALSE;
+        return false;
     }
 
-    if (SetPixelFormat(hdc, pixelformat, ppfd) == FALSE) {
+    if (SetPixelFormat(hdc, pixelformat, ppfd) == false) {
         MessageBox("SetPixelFormat failed", "Error", MB_OK);
-        return FALSE;
+        return false;
     }
 
-    return TRUE;
+    return true;
 }
 
 int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
@@ -599,11 +599,11 @@ double FASTATAN (double z)
 // Procedure:	ComputeIK
 // Purpose:		Compute an IK Solution to an end effector position
 // Arguments:	End Target (x,y)
-// Returns:		TRUE if a solution exists, FALSE if the position isn't in reach
+// Returns:		true if a solution exists, false if the position isn't in reach
 // Notes:		There was a bug in this in the Sept Game Developer source
 //				for this in the final angle calculation
 ///////////////////////////////////////////////////////////////////////////////
-BOOL COGLView::ComputeIK(CPoint endPos)
+bool COGLView::ComputeIK(CPoint endPos)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	float l1,l2;		// BONE LENGTH FOR BONE 1 AND 2
@@ -641,9 +641,9 @@ BOOL COGLView::ComputeIK(CPoint endPos)
 		angle1 = FASTATAN(tan1);
 //		angle1 = atan(tan1);
 		m_UpArm.rot.z = RADTODEG(angle1);	// CONVERT IT TO DEGREES
-		return TRUE;
+		return true;
 	}
 	else
-		return FALSE;
+		return false;
 }
 

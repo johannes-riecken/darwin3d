@@ -72,7 +72,7 @@ static UINT indicators[] =
 
 CMainFrame::CMainFrame()
 {
-	m_Wireframe = TRUE;
+	m_Wireframe = true;
 	m_HArrow = AfxGetApp()->LoadStandardCursor(IDC_ARROW);
 
 }
@@ -101,16 +101,16 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_OGLView.Create(NULL,"Render Window",WS_CHILD | WS_VISIBLE,
 		CRect(OGLWIN_START_X, OGLWIN_START_Y,rect.right - OGLWIN_WIDTH,rect.bottom - OGLWIN_BOTTOM),this,104);
-	m_OGLView.ShowWindow(TRUE);
+	m_OGLView.ShowWindow(true);
 
 	m_OGLView.m_StatusBar = &m_wndStatusBar;
 
-	m_OGLView.Invalidate(TRUE);
+	m_OGLView.Invalidate(true);
 
 	return 0;
 }
 
-BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
+bool CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
 	HICON hicon;
 
@@ -155,7 +155,7 @@ void CMainFrame::OnWhichogl()
 }
 // OnWhichogl
 
-BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
+bool CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
 {
 
 	return CFrameWnd::OnCreateClient(lpcs, pContext);
@@ -222,7 +222,7 @@ void CMainFrame::OnFileOpen()
 	CFileDialog	*dialog;
 	CString exten;
 ///////////////////////////////////////////////////////////////////////////////
-	dialog = new CFileDialog(TRUE,"shd",NULL, NULL,szFilter);
+	dialog = new CFileDialog(true,"shd",NULL, NULL,szFilter);
 	if (dialog->DoModal() == IDOK)
 	{
 		exten = dialog->GetFileExt();
@@ -241,7 +241,7 @@ void CMainFrame::OnFileOpenObjectMesh()
 	CFileDialog	*dialog;
 	CString exten;
 ///////////////////////////////////////////////////////////////////////////////
-	dialog = new CFileDialog(TRUE,"dcm",NULL, NULL,szFilter);
+	dialog = new CFileDialog(true,"dcm",NULL, NULL,szFilter);
 	if (dialog->DoModal() == IDOK)
 	{
 		exten = dialog->GetFileExt();

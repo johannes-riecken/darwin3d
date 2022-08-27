@@ -77,11 +77,11 @@ struct tEmitter
 ///////////////////////////////////////////////////////////////////////////////
 
 /// Support Function Definitions //////////////////////////////////////////////
-BOOL initParticleSystem();
-BOOL setDefaultEmitter(tEmitter *emitter);
-BOOL initEmitter(tEmitter *emitter);
-BOOL updateEmitter(tEmitter *emitter);		// DRAW THE SYSTEM FOR A FRAME
-BOOL renderEmitter(tEmitter *emitter, BOOL antiAlias);
+bool initParticleSystem();
+bool setDefaultEmitter(tEmitter *emitter);
+bool initEmitter(tEmitter *emitter);
+bool updateEmitter(tEmitter *emitter);		// DRAW THE SYSTEM FOR A FRAME
+bool renderEmitter(tEmitter *emitter, bool antiAlias);
 ///////////////////////////////////////////////////////////////////////////////
 
 #endif // !defined(PARTICLE_H__INCLUDED_)

@@ -40,7 +40,7 @@ public:
 	COGLView  m_OGLView;
 	int m_Animation_Direction;		// USED FOR FORWARD/BACK PLAYBACK
 	int m_AnimSpeed;				// SPEED OF PLAYBACK IN FPS
-	BOOL m_Animating;
+	bool m_Animating;
 	// for elapsed timing calculations
 	DWORD		m_StartTime,m_ElapsedTime,m_previousElapsedTime;
 
@@ -59,9 +59,9 @@ public:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CMainFrame)
 	public:
-	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+	virtual bool PreCreateWindow(CREATESTRUCT& cs);
 	protected:
-	virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
+	virtual bool OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
 	//}}AFX_VIRTUAL
 
 // Implementation

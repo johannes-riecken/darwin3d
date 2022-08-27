@@ -14,9 +14,9 @@
 /////////////////////////////////////////////////////////////////////////////////////
 
 int		g_MouseHitX, g_MouseHitY;			// Needed for Mouse Interaction
-int		g_Dragging = FALSE;
+int		g_Dragging = false;
 float	g_LastYaw, g_LastPitch;
-int		g_DrawingStick = FALSE;
+int		g_DrawingStick = false;
 float	g_LastDraw;
 HDC		g_hDC;	// Keep the Device Context
 
@@ -198,7 +198,7 @@ LRESULT CALLBACK WndProcView(HWND    hWnd,
 				int nRet;
 
 				// Selects the palette into the current device context
-				SelectPalette(hDC, hPalette, FALSE);
+				SelectPalette(hDC, hPalette, false);
 
 				// Map entries from the currently selected palette to
 				// the system palette.  The return value is the number
@@ -206,7 +206,7 @@ LRESULT CALLBACK WndProcView(HWND    hWnd,
 				nRet = RealizePalette(hDC);
 
 				// Repaint, forces remap of palette in current window
-				InvalidateRect(hWnd,NULL,FALSE);
+				InvalidateRect(hWnd,NULL,false);
 
 				return nRet;
 				}
@@ -221,7 +221,7 @@ LRESULT CALLBACK WndProcView(HWND    hWnd,
 			if((hPalette != NULL) && ((HWND)wParam != hWnd))
 				{
 				// Select the palette into the device context
-				SelectPalette(hDC,hPalette,FALSE);
+				SelectPalette(hDC,hPalette,false);
 
 				// Map entries to system palette
 				RealizePalette(hDC);
@@ -234,7 +234,7 @@ LRESULT CALLBACK WndProcView(HWND    hWnd,
 
 		// Handle Left Mouse Button Press
 		case WM_LBUTTONDOWN:
-			g_Dragging = TRUE;
+			g_Dragging = true;
 			g_LastYaw = g_POV.rot.y;		// Save the old Yaw
 			g_LastPitch = g_POV.rot.x;		// Save the old Pitch
 			g_MouseHitX = LOWORD(lParam);  // horizontal position of cursor
@@ -254,14 +254,14 @@ LRESULT CALLBACK WndProcView(HWND    hWnd,
 				if (tx != g_MouseHitX)
 				{
 					g_POV.rot.y = g_LastYaw + (float)(tx - g_MouseHitX);
-					InvalidateRect(hWnd,NULL,FALSE);
+					InvalidateRect(hWnd,NULL,false);
 				}
 				if (ty != g_MouseHitY)
 				{
 					g_POV.rot.x = g_LastPitch + (float)(ty - g_MouseHitY);
 					if (g_POV.rot.x < 0.0f) g_POV.rot.x = 0.0f;
 					if (g_POV.rot.x > 90.0f) g_POV.rot.x = 90.0f;
-					InvalidateRect(hWnd,NULL,FALSE);
+					InvalidateRect(hWnd,NULL,false);
 				}
 
 			}
@@ -281,15 +281,15 @@ LRESULT CALLBACK WndProcView(HWND    hWnd,
 					else if (g_CueStick.draw < 0.0f)
 					{
 						// TODO: Add a Cue Stick hits ball sound here
-						g_CueHitBall = TRUE;				// Set when a Cue hits the ball
+						g_CueHitBall = true;				// Set when a Cue hits the ball
 						magnitude = -CUE_STICK_FORCE * ((g_CueStick.old_draw - g_CueStick.draw) / (GetTime() - g_CueStick.drawtime));
 						g_CueForce.x = magnitude * sin(DEGTORAD(g_CueStick.yaw));
 						g_CueForce.z = magnitude * cos(DEGTORAD(g_CueStick.yaw));
 						g_CueStick.draw = 0.2f;
-						g_BallInPlay = TRUE;
-						g_DrawingStick = FALSE;
+						g_BallInPlay = true;
+						g_DrawingStick = false;
 					}
-					InvalidateRect(hWnd,NULL,FALSE);
+					InvalidateRect(hWnd,NULL,false);
 				}
 
 			}
@@ -297,13 +297,13 @@ LRESULT CALLBACK WndProcView(HWND    hWnd,
 
 		// Handle Left Mouse Button Release
 		case WM_LBUTTONUP:
-			g_Dragging = FALSE;
+			g_Dragging = false;
 			ReleaseCapture();
 			break;
 
 		// Handle Right Mouse Button Press
 		case WM_RBUTTONDOWN:
-			g_DrawingStick = TRUE;
+			g_DrawingStick = true;
 			g_LastDraw = g_CueStick.draw;		// Save the old Yaw
 			g_CueStick.old_draw = g_CueStick.draw;		// Save the old Yaw
 			g_MouseHitX = LOWORD(lParam);  // horizontal position of cursor
@@ -316,7 +316,7 @@ LRESULT CALLBACK WndProcView(HWND    hWnd,
 
 		// Handle Right Mouse Button Release
 		case WM_RBUTTONUP:
-			g_DrawingStick = FALSE;
+			g_DrawingStick = false;
 			ReleaseCapture();
 			break;
 

@@ -168,7 +168,7 @@ void HandleFace(CStringArray *words,t_faceIndex *face)
 // Notes:		Not an Official OBJ loader as it doesn't handle more then
 //				3 vertex polygons or multiple objects per file.
 ///////////////////////////////////////////////////////////////////////////////
-BOOL LoadOBJ(const char *filename,t_Visual *visual)
+bool LoadOBJ(const char *filename,t_Visual *visual)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	int loop,loop2,cnt;
@@ -290,7 +290,7 @@ BOOL LoadOBJ(const char *filename,t_Visual *visual)
 					visual->vSize = 8;					// 2 texture, 3 normal, 3 vertex
 					visual->vertexData = (float *)malloc(sizeof(float) * visual->vSize * fPos * visual->vPerFace);
 					visual->deformData = (float *)malloc(sizeof(float) * visual->vSize * fPos * visual->vPerFace);
-					visual->CV_select = (BOOL *)malloc(sizeof(BOOL) * visual->vSize * fPos * visual->vPerFace);
+					visual->CV_select = (bool *)malloc(sizeof(bool) * visual->vSize * fPos * visual->vPerFace);
 					visual->faceCnt = fPos;
 				}
 				else
@@ -299,7 +299,7 @@ BOOL LoadOBJ(const char *filename,t_Visual *visual)
 					visual->vSize = 6;					// 3 floats for normal, 3 for vertex
 					visual->vertexData = (float *)malloc(sizeof(float) * visual->vSize * fPos * visual->vPerFace);
 					visual->deformData = (float *)malloc(sizeof(float) * visual->vSize * fPos * visual->vPerFace);
-					visual->CV_select = (BOOL *)malloc(sizeof(BOOL) * visual->vSize * fPos * visual->vPerFace);
+					visual->CV_select = (bool *)malloc(sizeof(bool) * visual->vSize * fPos * visual->vPerFace);
 					visual->faceCnt = fPos;
 				}
 			}
@@ -309,7 +309,7 @@ BOOL LoadOBJ(const char *filename,t_Visual *visual)
 				visual->vSize = 3;					// 3 floats for vertex
 				visual->vertexData = (float *)malloc(sizeof(float) * visual->vSize * fPos * visual->vPerFace);
 				visual->deformData = (float *)malloc(sizeof(float) * visual->vSize * fPos * visual->vPerFace);
-				visual->CV_select = (BOOL *)malloc(sizeof(BOOL) * visual->vSize * fPos * visual->vPerFace);
+				visual->CV_select = (bool *)malloc(sizeof(bool) * visual->vSize * fPos * visual->vPerFace);
 				visual->faceCnt = fPos;
 			}
 
@@ -342,7 +342,7 @@ BOOL LoadOBJ(const char *filename,t_Visual *visual)
 					*data++ = vertex[face[loop].v[loop2] - 1].y;
 					*data++ = vertex[face[loop].v[loop2] - 1].z;
 
-					visual->CV_select[(loop * visual->vPerFace) + loop2] = FALSE;
+					visual->CV_select[(loop * visual->vPerFace) + loop2] = false;
 				}
 			}
 
@@ -355,6 +355,6 @@ BOOL LoadOBJ(const char *filename,t_Visual *visual)
 		fclose(fp);
 	}
 	else
-		return FALSE;
-	return TRUE;
+		return false;
+	return true;
 }

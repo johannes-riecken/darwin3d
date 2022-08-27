@@ -68,7 +68,7 @@ public:
 	void RenderWorld();
 	void SetWorldParticles(tVector *coords,int particleCnt);
 	void ResetWorld();
-	void Simulate(float DeltaTime,BOOL running);
+	void Simulate(float DeltaTime,bool running);
 	void ApplyUserForce(tVector *force);
 	void SetMouseForce(int deltaX,int deltaY, tVector *localX, tVector *localY);
 	void GetNearestPoint(int x, int y);
@@ -78,13 +78,13 @@ public:
 	void FreeSystem();
 	void LoadData(FILE *fp);
 	void SaveData(FILE *fp);
-	BOOL				m_UseGravity;			// SHOULD GRAVITY BE ADDED IN
-	BOOL				m_UseDamping;			// SHOULD DAMPING BE ON
-	BOOL				m_UserForceActive;		// WHEN USER FORCE IS APPLIED
-	BOOL				m_DrawSprings;			// DRAW THE SPRING LINES
-	BOOL				m_DrawVertices;			// DRAW VERTICES
-	BOOL				m_MouseForceActive;		// MOUSE DRAG FORCE
-	BOOL				m_CollisionRootFinding;	// TRYING TO FIND A COLLISION
+	bool				m_UseGravity;			// SHOULD GRAVITY BE ADDED IN
+	bool				m_UseDamping;			// SHOULD DAMPING BE ON
+	bool				m_UserForceActive;		// WHEN USER FORCE IS APPLIED
+	bool				m_DrawSprings;			// DRAW THE SPRING LINES
+	bool				m_DrawVertices;			// DRAW VERTICES
+	bool				m_MouseForceActive;		// MOUSE DRAG FORCE
+	bool				m_CollisionRootFinding;	// TRYING TO FIND A COLLISION
 	int					m_IntegratorType;
 
 // Attributes

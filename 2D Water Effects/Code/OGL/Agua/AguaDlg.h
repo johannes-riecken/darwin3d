@@ -29,7 +29,7 @@ public:
 	UINT	m_Green;
 	UINT	m_Red;
 	UINT	m_Blue;
-	BOOL	m_UseImage;
+	bool	m_UseImage;
 	//}}AFX_DATA
 
 	// ClassWizard generated virtual function overrides
@@ -55,7 +55,7 @@ protected:
 
 	// Generated message map functions
 	//{{AFX_MSG(CAguaDlg)
-	virtual BOOL OnInitDialog();
+	virtual bool OnInitDialog();
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();

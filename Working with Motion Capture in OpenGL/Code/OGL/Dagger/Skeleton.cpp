@@ -158,7 +158,7 @@ void BoneSetFrame(t_Bone *bone,int frame)
 //				children attached to that bone1
 // Arguments:	Pointer to bone system, Delta frame value to move, if it is recursive
 ///////////////////////////////////////////////////////////////////////////////
-void BoneAdvanceFrame(t_Bone *bone,int direction,BOOL doChildren)
+void BoneAdvanceFrame(t_Bone *bone,int direction,bool doChildren)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	int loop;

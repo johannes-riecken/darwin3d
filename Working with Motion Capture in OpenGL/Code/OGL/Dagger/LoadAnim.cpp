@@ -99,7 +99,7 @@ t_Bone *FindBoneParent(t_Bone *bone, char *name)
 // Purpose:		Actually load a BVA file into the system
 // Arguments:	Name of the file to open and root skeleton to put it in
 ///////////////////////////////////////////////////////////////////////////////
-BOOL LoadBVA(CString name,t_Bone *root)
+bool LoadBVA(CString name,t_Bone *root)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	FILE *fp;		// I PREFER THIS STYLE OF FILE ACCESS
@@ -182,7 +182,7 @@ BOOL LoadBVA(CString name,t_Bone *root)
 								sprintf(buffer,"Not Enough Entries in channel %s frame %d\nExpected %d Got %d",curBone->name,loop,s_Channel_Type_Size[CHANNEL_TYPE_SRT],cnt);
 								::MessageBox(NULL,buffer,"BVA Load ERROR!!",MB_OK);
 								free(tempChannel);
-								return FALSE;
+								return false;
 							}
 							words.RemoveAll();		// CLEAR WORD BUFFER
 						}
@@ -203,14 +203,14 @@ BOOL LoadBVA(CString name,t_Bone *root)
 					free(tempBones);
 					root->childCnt = 0;
 					root->children = NULL;
-					return FALSE;
+					return false;
 				}
 			}
 		}
 		fclose(fp);
-		return TRUE;
+		return true;
 	}
-	return FALSE;
+	return false;
 }
 //// LoadBVA //////////////////////////////////////////////////////////////
 
@@ -219,7 +219,7 @@ BOOL LoadBVA(CString name,t_Bone *root)
 // Purpose:		Actually load a BVH file into the system
 // Arguments:	Name of the file to open and root skeleton to put it in
 ///////////////////////////////////////////////////////////////////////////////
-BOOL LoadBVH(CString name,t_Bone *root)
+bool LoadBVH(CString name,t_Bone *root)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	FILE *fp;		// I PREFER THIS STYLE OF FILE ACCESS
@@ -388,9 +388,9 @@ BOOL LoadBVH(CString name,t_Bone *root)
 		root->secFrameCount = (float)channelCnt;
 
 		fclose(fp);
-		return TRUE;
+		return true;
 	}
-	return FALSE;
+	return false;
 }
 //// LoadBVH //////////////////////////////////////////////////////////////
 
@@ -598,14 +598,14 @@ void HandleAcclaimHierarchy(FILE *fp,t_Bone *root)
 // Purpose:		Actually load a Acclaim file into the system
 // Arguments:	Name of the file to open and root skeleton to put it in
 ///////////////////////////////////////////////////////////////////////////////
-BOOL LoadAcclaim(CString name,t_Bone *root)
+bool LoadAcclaim(CString name,t_Bone *root)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	int cnt;
 	FILE *fp;		// I PREFER THIS STYLE OF FILE ACCESS
 	char buffer[MAX_STRINGLENGTH];
 	CStringArray words;
-	BOOL grabNew = TRUE;		// DO I NEED A NEW LINE?
+	bool grabNew = true;		// DO I NEED A NEW LINE?
 ///////////////////////////////////////////////////////////////////////////////
 	// OPEN THE ACCLAIM ASF PORTION OF THE FILE
 	// THIS PART HOLDS THE DEFINITIONS FOR ALL THE BONES AS WELL AS THE
@@ -619,7 +619,7 @@ BOOL LoadAcclaim(CString name,t_Bone *root)
 				fgets(buffer,MAX_STRINGLENGTH,fp);
 				ParseString(buffer,&words,&cnt);
 			}
-			grabNew = TRUE;	// MAKE SURE I DO THIS TIME
+			grabNew = true;	// MAKE SURE I DO THIS TIME
 			// SEE IF WE CAN FIND THE NAME KEYWORD
 			if (words.GetAt(0) == ":name")
 			{
@@ -637,7 +637,7 @@ BOOL LoadAcclaim(CString name,t_Bone *root)
 					ParseString(buffer,&words,&cnt);
 				}
 				while ((words.GetAt(0).GetAt(0) != ':') && !feof(fp));
-				grabNew = FALSE;	// DON'T REGRAB A MESSAGE
+				grabNew = false;	// DON'T REGRAB A MESSAGE
 			}
 			// I AM IGNORING DOCUMENTATION BLOCK
 			else if (words.GetAt(0) == ":documentation")
@@ -650,7 +650,7 @@ BOOL LoadAcclaim(CString name,t_Bone *root)
 					ParseString(buffer,&words,&cnt);
 				}
 				while ((words.GetAt(0).GetAt(0) != ':') && !feof(fp));
-				grabNew = FALSE;	// DON'T REGRAB A MESSAGE
+				grabNew = false;	// DON'T REGRAB A MESSAGE
 			}
 			// HANDLE THE ROOT BLOCK
 			// SINCE I WANT IT IN THE MIDDLE OF THE DISPLAY AND
@@ -665,7 +665,7 @@ BOOL LoadAcclaim(CString name,t_Bone *root)
 					ParseString(buffer,&words,&cnt);
 				}
 				while ((words.GetAt(0).GetAt(0) != ':') && !feof(fp));
-				grabNew = FALSE;	// DON'T REGRAB A MESSAGE
+				grabNew = false;	// DON'T REGRAB A MESSAGE
 			}
 			// HANDLE THE BONEDATA BLOCK
 			// THIS IS THE MEAT OF THE SKELETAL LOAD
@@ -683,7 +683,7 @@ BOOL LoadAcclaim(CString name,t_Bone *root)
 					}
 				}
 				while ((words.GetAt(0).GetAt(0) != ':') && !feof(fp));
-				grabNew = FALSE;	// DON'T REGRAB A MESSAGE
+				grabNew = false;	// DON'T REGRAB A MESSAGE
 			}
 			// HANDLE THE HIERARCHY BLOCK
 			// CONTROLS THE PARENT STRUCTURE OF THE SKELETON
@@ -701,12 +701,12 @@ BOOL LoadAcclaim(CString name,t_Bone *root)
 					}
 				}
 				while ((words.GetAt(0).GetAt(0) != ':') && !feof(fp));
-				grabNew = FALSE;	// DON'T REGRAB A MESSAGE
+				grabNew = false;	// DON'T REGRAB A MESSAGE
 			}
 		}
 		fclose(fp);
-		return TRUE;
+		return true;
 	}
-	return FALSE;
+	return false;
 }
 //// LoadAcclaim //////////////////////////////////////////////////////////////

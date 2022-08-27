@@ -105,7 +105,7 @@ void MultMatrix(tMatrix *product, tMatrix *a, tMatrix *b)
 }
 
 // Invert an OpenGL 4x4 matrix
-BOOL InvertMatrix(float  *m, float *out )
+bool InvertMatrix(float  *m, float *out )
 {
 /* NB. OpenGL Matrices are COLUMN major. */
 #define SWAP_ROWS(a, b) { float *_tmp = a; (a)=(b); (b)=_tmp; }
@@ -137,7 +137,7 @@ BOOL InvertMatrix(float  *m, float *out )
  if (fabs(r3[0])>fabs(r2[0])) SWAP_ROWS(r3, r2);
  if (fabs(r2[0])>fabs(r1[0])) SWAP_ROWS(r2, r1);
  if (fabs(r1[0])>fabs(r0[0])) SWAP_ROWS(r1, r0);
- if (0.0 == r0[0])  return FALSE;
+ if (0.0 == r0[0])  return false;
 
  /* eliminate first variable     */
  m1 = r1[0]/r0[0]; m2 = r2[0]/r0[0]; m3 = r3[0]/r0[0];
@@ -156,7 +156,7 @@ BOOL InvertMatrix(float  *m, float *out )
  /* choose pivot - or die */
  if (fabs(r3[1])>fabs(r2[1])) SWAP_ROWS(r3, r2);
  if (fabs(r2[1])>fabs(r1[1])) SWAP_ROWS(r2, r1);
- if (0.0 == r1[1])  return FALSE;
+ if (0.0 == r1[1])  return false;
 
  /* eliminate second variable */
  m2 = r2[1]/r1[1]; m3 = r3[1]/r1[1];
@@ -169,7 +169,7 @@ BOOL InvertMatrix(float  *m, float *out )
 
  /* choose pivot - or die */
  if (fabs(r3[2])>fabs(r2[2])) SWAP_ROWS(r3, r2);
- if (0.0 == r2[2])  return FALSE;
+ if (0.0 == r2[2])  return false;
 
  /* eliminate third variable */
  m3 = r3[2]/r2[2];
@@ -178,7 +178,7 @@ BOOL InvertMatrix(float  *m, float *out )
  r3[7] -= m3 * r2[7];
 
  /* last check */
- if (0.0 == r3[3]) return FALSE;
+ if (0.0 == r3[3]) return false;
 
  s = 1.0/r3[3];              /* now back substitute row 3 */
  r3[4] *= s; r3[5] *= s; r3[6] *= s; r3[7] *= s;
@@ -216,7 +216,7 @@ BOOL InvertMatrix(float  *m, float *out )
  MAT(out,3,0) = r3[4]; MAT(out,3,1) = r3[5],
  MAT(out,3,2) = r3[6]; MAT(out,3,3) = r3[7];
 
- return TRUE;
+ return true;
 
 #undef MAT
 #undef SWAP_ROWS

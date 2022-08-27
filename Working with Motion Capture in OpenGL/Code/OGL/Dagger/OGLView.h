@@ -49,7 +49,7 @@ public:
 
 // Operations
 public:
-	BOOL	SetupPixelFormat(HDC hdc);
+	bool	SetupPixelFormat(HDC hdc);
 	GLvoid  drawSkeleton(t_Bone *rootBone);
 	GLvoid	drawScene(GLvoid);
 	GLvoid	initializeGL(GLsizei width, GLsizei height);
@@ -62,7 +62,7 @@ public:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(COGLView)
 	public:
-	virtual BOOL Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, t_Bone *skeleton, CCreateContext* pContext = NULL);
+	virtual bool Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, t_Bone *skeleton, CCreateContext* pContext = NULL);
 	//}}AFX_VIRTUAL
 
 // Implementation

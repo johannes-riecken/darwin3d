@@ -105,14 +105,14 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_OGLView.m_ptrStatusBar = &m_wndStatusBar;
 	m_OGLView.Create(NULL,"Render Window",WS_CHILD | WS_VISIBLE, CRect(1, 1,rect.right - 3,rect.bottom),this,104,&m_Skeleton); // - 60 bottom
-	m_OGLView.ShowWindow(TRUE);
+	m_OGLView.ShowWindow(true);
 
-	m_OGLView.Invalidate(TRUE);
+	m_OGLView.Invalidate(true);
 
 	return 0;
 }
 
-BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
+bool CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	HICON hicon;
@@ -166,7 +166,7 @@ void CMainFrame::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
 
-	m_OGLView.drawScene(FALSE);
+	m_OGLView.drawScene(false);
 }
 
 void CMainFrame::OnSize(UINT nType, int cx, int cy)
@@ -198,7 +198,7 @@ void CMainFrame::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 void CMainFrame::OnControlLowerarm()
 {
 	m_OGLView.m_SelectedBone = &m_Skeleton.children[1];
-	m_OGLView.drawScene(FALSE);
+	m_OGLView.drawScene(false);
 }
 
 void CMainFrame::OnUpdateControlLowerarm(CCmdUI* pCmdUI)
@@ -209,7 +209,7 @@ void CMainFrame::OnUpdateControlLowerarm(CCmdUI* pCmdUI)
 void CMainFrame::OnControlUpperarm()
 {
 	m_OGLView.m_SelectedBone = &m_Skeleton.children[0];
-	m_OGLView.drawScene(FALSE);
+	m_OGLView.drawScene(false);
 }
 
 void CMainFrame::OnUpdateControlUpperarm(CCmdUI* pCmdUI)
@@ -221,7 +221,7 @@ void CMainFrame::OnUpdateControlUpperarm(CCmdUI* pCmdUI)
 void CMainFrame::OnViewGeometry()
 {
 	m_OGLView.m_DrawGeometry = !m_OGLView.m_DrawGeometry;
-	m_OGLView.drawScene(FALSE);
+	m_OGLView.drawScene(false);
 }
 
 // SET THE CHECKED STATUS OF THE VIEW GEOMETRY MENU BASED ON STATUS
@@ -234,7 +234,7 @@ void CMainFrame::OnUpdateViewGeometry(CCmdUI* pCmdUI)
 void CMainFrame::OnViewBonesystem()
 {
 	m_OGLView.m_DrawBoneSystem = !m_OGLView.m_DrawBoneSystem;
-	m_OGLView.drawScene(FALSE);
+	m_OGLView.drawScene(false);
 }
 
 // SET THE CHECKED STATUS OF THE VIEW BONESYSTEM MENU BASED ON STATUS
@@ -250,7 +250,7 @@ void CMainFrame::OnViewOutline()
 		glPolygonMode(GL_FRONT,GL_LINE);
 	else
 		glPolygonMode(GL_FRONT,GL_FILL);
-	m_OGLView.drawScene(FALSE);
+	m_OGLView.drawScene(false);
 }
 
 void CMainFrame::OnUpdateViewOutline(CCmdUI* pCmdUI)
@@ -345,7 +345,7 @@ void CMainFrame::OnFileOpen()
 ///////////////////////////////////////////////////////////////////////////////
 	// HAD TO ADD DIRECTORY STUFF SINCE DIALOG CHANGES DIRECTORY
 	_getcwd(directory,80);
-	dialog = new CFileDialog(TRUE,"WGT",NULL,OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,szFilter);
+	dialog = new CFileDialog(true,"WGT",NULL,OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,szFilter);
 	if (dialog->DoModal() == IDOK)
 	{
 		if (!m_OGLView.GetWeights(dialog->GetPathName()))
@@ -370,7 +370,7 @@ void CMainFrame::OnFileSave()
 ///////////////////////////////////////////////////////////////////////////////
 	// HAD TO ADD DIRECTORY STUFF SINCE DIALOG CHANGES DIRECTORY
 	_getcwd(directory,80);
-	dialog = new CFileDialog(FALSE,"WGT",NULL,OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,szFilter);
+	dialog = new CFileDialog(false,"WGT",NULL,OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,szFilter);
 	if (dialog->DoModal() == IDOK)
 	{
 		if (!m_OGLView.SaveWeights(dialog->GetPathName()))

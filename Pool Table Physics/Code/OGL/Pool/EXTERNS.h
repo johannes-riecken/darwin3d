@@ -103,8 +103,8 @@ extern double	PI;
 
 /////////////////////////
 // Functions declared in other source files
-BOOL InitGame(void);	// Defined in GameSim.c
+bool InitGame(void);	// Defined in GameSim.c
 void InitRender(void);	// Defined in RenderWorld.c
 void RenderWorld(void);	// Defined in RenderWorld.c
-void Simulate(float DeltaTime, BOOL running);	// In GameSim.c
+void Simulate(float DeltaTime, bool running);	// In GameSim.c
 float GetTime( void );

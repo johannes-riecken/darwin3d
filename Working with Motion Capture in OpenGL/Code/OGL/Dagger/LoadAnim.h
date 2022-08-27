@@ -23,8 +23,8 @@
 
 #include "Skeleton.h"
 
-BOOL LoadBVA(CString name,t_Bone *root);
-BOOL LoadBVH(CString name,t_Bone *root);
-BOOL LoadAcclaim(CString name,t_Bone *root);
+bool LoadBVA(CString name,t_Bone *root);
+bool LoadBVH(CString name,t_Bone *root);
+bool LoadAcclaim(CString name,t_Bone *root);
 
 #endif // !defined(LoadAnim_H__INCLUDED_)

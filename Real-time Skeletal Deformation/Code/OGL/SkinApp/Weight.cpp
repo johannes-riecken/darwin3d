@@ -52,19 +52,19 @@ int CWeight::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	return 0;
 }
 
-BOOL CWeight::DestroyWindow()
+bool CWeight::DestroyWindow()
 {
 	m_pos = m_Slider.GetPos();
 	return CDialog::DestroyWindow();
 }
 
-BOOL CWeight::OnInitDialog()
+bool CWeight::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	m_Slider.SetRange( 0, 256, TRUE);
+	m_Slider.SetRange( 0, 256, true);
 //	m_Slider.SetSelection(  0, 256 );
 
-	return TRUE;  // return TRUE unless you set the focus to a control
-	              // EXCEPTION: OCX Property Pages should return FALSE
+	return true;  // return true unless you set the focus to a control
+	              // EXCEPTION: OCX Property Pages should return false
 }

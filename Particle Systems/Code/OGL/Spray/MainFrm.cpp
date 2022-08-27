@@ -96,14 +96,14 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_OGLView.m_ptrStatusBar = &m_wndStatusBar;
 	m_OGLView.Create(NULL,"Render Window",WS_CHILD | WS_VISIBLE, CRect(1, 1,rect.right - 3,rect.bottom),this,104); // - 60 bottom
-	m_OGLView.ShowWindow(TRUE);
+	m_OGLView.ShowWindow(true);
 
-	m_OGLView.Invalidate(TRUE);
+	m_OGLView.Invalidate(true);
 
 	return 0;
 }
 
-BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
+bool CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	HICON hicon;
@@ -150,7 +150,7 @@ void CMainFrame::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
 
-	m_OGLView.drawScene(FALSE);
+	m_OGLView.drawScene(false);
 }
 
 void CMainFrame::OnSize(UINT nType, int cx, int cy)
@@ -213,7 +213,7 @@ void CMainFrame::OnFileOpen()
 ///////////////////////////////////////////////////////////////////////////////
 	// HAD TO ADD DIRECTORY STUFF SINCE DIALOG CHANGES DIRECTORY
 	_getcwd(directory,80);
-	dialog = new CFileDialog(TRUE,"PEF",NULL,OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,szFilter);
+	dialog = new CFileDialog(true,"PEF",NULL,OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,szFilter);
 	if (dialog->DoModal() == IDOK)
 	{
 		if (!m_OGLView.GetEmitter(dialog->GetPathName()))
@@ -238,7 +238,7 @@ void CMainFrame::OnFileSave()
 ///////////////////////////////////////////////////////////////////////////////
 	// HAD TO ADD DIRECTORY STUFF SINCE DIALOG CHANGES DIRECTORY
 	_getcwd(directory,80);
-	dialog = new CFileDialog(FALSE,"PEF",NULL,OFN_OVERWRITEPROMPT,szFilter);
+	dialog = new CFileDialog(false,"PEF",NULL,OFN_OVERWRITEPROMPT,szFilter);
 	if (dialog->DoModal() == IDOK)
 	{
 		if (!m_OGLView.SaveEmitter(dialog->GetPathName()))

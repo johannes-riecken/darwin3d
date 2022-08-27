@@ -58,7 +58,7 @@ CFateApp theApp;
 /////////////////////////////////////////////////////////////////////////////
 // CFateApp initialization
 
-BOOL CFateApp::InitInstance()
+bool CFateApp::InitInstance()
 {
 	// Standard initialization
 	// If you are not using these features and wish to reduce the size
@@ -77,12 +77,12 @@ BOOL CFateApp::InitInstance()
 
 	if (!pFrame->LoadFrame(IDR_MAINFRAME,
         WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN | WS_VISIBLE)) {
-		return FALSE;
+		return false;
 	}
 
 	m_pMainWnd = pFrame;
 
-	return TRUE;
+	return true;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -101,7 +101,7 @@ public:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CAboutDlg)
 	public:
-	virtual BOOL DestroyWindow();
+	virtual bool DestroyWindow();
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	//}}AFX_VIRTUAL
@@ -143,7 +143,7 @@ void CFateApp::OnAppAbout()
 /////////////////////////////////////////////////////////////////////////////
 // CFateApp commands
 
-BOOL CAboutDlg::DestroyWindow()
+bool CAboutDlg::DestroyWindow()
 {
 	// TODO: Add your specialized code here and/or call the base class
 

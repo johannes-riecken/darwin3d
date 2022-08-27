@@ -113,14 +113,14 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_OGLView.m_ptrStatusBar = &m_wndStatusBar;
 	m_OGLView.Create(NULL,"Render Window",WS_CHILD | WS_VISIBLE, CRect(1, 1,rect.right - 3,rect.bottom),this,104); // - 60 bottom
-	m_OGLView.ShowWindow(TRUE);
+	m_OGLView.ShowWindow(true);
 
-	m_OGLView.Invalidate(TRUE);
+	m_OGLView.Invalidate(true);
 
 	return 0;
 }
 
-BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
+bool CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	HICON hicon;
@@ -229,24 +229,24 @@ void CMainFrame::OnFileNewsystem()
 void CMainFrame::OnFileOpen()
 {
 	char szFilter[] = "DPS files (*.dps)|*.dps|OBJ files (*.obj)|*.obj||";  // WILL INCLUDE Biovision Hierarchy BVH (*.bvh)|*.bvh|
-	CFileDialog	dialog( TRUE, ".obj", NULL, OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, szFilter, this);
+	CFileDialog	dialog( true, ".obj", NULL, OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, szFilter, this);
 	CString name;
 	if (dialog.DoModal())
 	{
 		m_OGLView.LoadFile(dialog.GetFileName( ),dialog.GetFileTitle( ),dialog.GetFileExt()  );
-		m_OGLView.Invalidate(TRUE);
+		m_OGLView.Invalidate(true);
 	}
 }
 
 void CMainFrame::OnFileSave()
 {
 	char szFilter[] = "DPS files (*.dps)|*.dps||";  // WILL INCLUDE Biovision Hierarchy BVH (*.bvh)|*.bvh|
-	CFileDialog	dialog( FALSE, ".dps", NULL, OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, szFilter, this);
+	CFileDialog	dialog( false, ".dps", NULL, OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, szFilter, this);
 	CString name;
 	if (dialog.DoModal())
 	{
 		m_OGLView.SaveFile(dialog.GetFileName( ),dialog.GetFileTitle( ));
-		m_OGLView.Invalidate(TRUE);
+		m_OGLView.Invalidate(true);
 	}
 }
 
@@ -263,7 +263,7 @@ void CMainFrame::OnUpdateSimulationRunning(CCmdUI* pCmdUI)
 void CMainFrame::OnSimulationReset()
 {
 	m_OGLView.m_PhysEnv.ResetWorld();
-	m_OGLView.Invalidate(TRUE);
+	m_OGLView.Invalidate(true);
 }
 
 void CMainFrame::OnSimulationSetsimproperties()
@@ -284,7 +284,7 @@ void CMainFrame::OnSimulationSetvertexmass()
 void CMainFrame::OnSimulationUsegravity()
 {
 	m_OGLView.m_PhysEnv.m_UseGravity = !m_OGLView.m_PhysEnv.m_UseGravity;
-	m_OGLView.Invalidate(TRUE);
+	m_OGLView.Invalidate(true);
 }
 
 void CMainFrame::OnUpdateSimulationUsegravity(CCmdUI* pCmdUI)
@@ -295,7 +295,7 @@ void CMainFrame::OnUpdateSimulationUsegravity(CCmdUI* pCmdUI)
 void CMainFrame::OnSimulationUsefriction()
 {
 	m_OGLView.m_PhysEnv.m_UseFriction = !m_OGLView.m_PhysEnv.m_UseFriction;
-	m_OGLView.Invalidate(TRUE);
+	m_OGLView.Invalidate(true);
 }
 
 void CMainFrame::OnUpdateSimulationUsefriction(CCmdUI* pCmdUI)
@@ -306,7 +306,7 @@ void CMainFrame::OnUpdateSimulationUsefriction(CCmdUI* pCmdUI)
 void CMainFrame::OnViewShowgeometry()
 {
 	m_OGLView.m_DrawGeometry = !m_OGLView.m_DrawGeometry;
-	m_OGLView.Invalidate(TRUE);
+	m_OGLView.Invalidate(true);
 }
 
 void CMainFrame::OnUpdateViewShowgeometry(CCmdUI* pCmdUI)
@@ -317,7 +317,7 @@ void CMainFrame::OnUpdateViewShowgeometry(CCmdUI* pCmdUI)
 void CMainFrame::OnViewShowsprings()
 {
 	m_OGLView.m_PhysEnv.m_DrawSprings = !m_OGLView.m_PhysEnv.m_DrawSprings;
-	m_OGLView.Invalidate(TRUE);
+	m_OGLView.Invalidate(true);
 }
 
 void CMainFrame::OnUpdateViewShowsprings(CCmdUI* pCmdUI)
@@ -328,7 +328,7 @@ void CMainFrame::OnUpdateViewShowsprings(CCmdUI* pCmdUI)
 void CMainFrame::OnViewShowvertices()
 {
 	m_OGLView.m_PhysEnv.m_DrawVertices = !m_OGLView.m_PhysEnv.m_DrawVertices;
-	m_OGLView.Invalidate(TRUE);
+	m_OGLView.Invalidate(true);
 }
 
 void CMainFrame::OnUpdateViewShowvertices(CCmdUI* pCmdUI)
@@ -338,12 +338,12 @@ void CMainFrame::OnUpdateViewShowvertices(CCmdUI* pCmdUI)
 
 void CMainFrame::OnClose()
 {
-	m_OGLView.m_SimRunning = FALSE;
+	m_OGLView.m_SimRunning = false;
 
 	CFrameWnd::OnClose();
 }
 
-BOOL CMainFrame::DestroyWindow()
+bool CMainFrame::DestroyWindow()
 {
 
 	return CFrameWnd::DestroyWindow();
@@ -352,7 +352,7 @@ BOOL CMainFrame::DestroyWindow()
 void CMainFrame::OnIntegratorEuler()
 {
 	m_OGLView.m_PhysEnv.m_IntegratorType = EULER_INTEGRATOR;
-	m_OGLView.Invalidate(TRUE);
+	m_OGLView.Invalidate(true);
 }
 
 void CMainFrame::OnUpdateIntegratorEuler(CCmdUI* pCmdUI)
@@ -363,7 +363,7 @@ void CMainFrame::OnUpdateIntegratorEuler(CCmdUI* pCmdUI)
 void CMainFrame::OnIntegratorMidpoint()
 {
 	m_OGLView.m_PhysEnv.m_IntegratorType = MIDPOINT_INTEGRATOR;
-	m_OGLView.Invalidate(TRUE);
+	m_OGLView.Invalidate(true);
 }
 
 void CMainFrame::OnUpdateIntegratorMidpoint(CCmdUI* pCmdUI)
@@ -374,7 +374,7 @@ void CMainFrame::OnUpdateIntegratorMidpoint(CCmdUI* pCmdUI)
 void CMainFrame::OnIntegratorRungekutta4()
 {
 	m_OGLView.m_PhysEnv.m_IntegratorType = RK4_INTEGRATOR;
-	m_OGLView.Invalidate(TRUE);
+	m_OGLView.Invalidate(true);
 }
 
 void CMainFrame::OnUpdateIntegratorRungekutta4(CCmdUI* pCmdUI)

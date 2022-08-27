@@ -96,14 +96,14 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_OGLView.m_ptrStatusBar = &m_wndStatusBar;
 	m_OGLView.Create(NULL,"Render Window",WS_CHILD | WS_VISIBLE, CRect(1, 1,rect.right - 3,rect.bottom),this,104,&m_Skeleton); // - 60 bottom
-	m_OGLView.ShowWindow(TRUE);
+	m_OGLView.ShowWindow(true);
 
-	m_OGLView.Invalidate(TRUE);
+	m_OGLView.Invalidate(true);
 
 	return 0;
 }
 
-BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
+bool CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	HICON hicon;

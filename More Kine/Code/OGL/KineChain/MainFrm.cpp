@@ -95,14 +95,14 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_OGLView.m_ptrStatusBar = &m_wndStatusBar;
 	m_OGLView.Create(NULL,"Render Window",WS_CHILD | WS_VISIBLE, CRect(1, 1,rect.right - 3,rect.bottom),this,104); // - 60 bottom
-	m_OGLView.ShowWindow(TRUE);
+	m_OGLView.ShowWindow(true);
 
-	m_OGLView.Invalidate(TRUE);
+	m_OGLView.Invalidate(true);
 
 	return 0;
 }
 
-BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
+bool CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	HICON hicon;
@@ -151,7 +151,7 @@ void CMainFrame::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
 
-	m_OGLView.drawScene(TRUE);
+	m_OGLView.drawScene(true);
 }
 
 void CMainFrame::OnSize(UINT nType, int cx, int cy)
@@ -187,7 +187,7 @@ void CMainFrame::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 void CMainFrame::OnViewGeometry()
 {
 	m_OGLView.m_DrawGeometry = !m_OGLView.m_DrawGeometry;
-	m_OGLView.drawScene(TRUE);
+	m_OGLView.drawScene(true);
 }
 
 // SET THE CHECKED STATUS OF THE VIEW GEOMETRY MENU BASED ON STATUS
@@ -199,7 +199,7 @@ void CMainFrame::OnUpdateViewGeometry(CCmdUI* pCmdUI)
 void CMainFrame::OnOptionsDamping()
 {
 	m_OGLView.m_Damping = !m_OGLView.m_Damping;
-	m_OGLView.drawScene(TRUE);
+	m_OGLView.drawScene(true);
 }
 
 void CMainFrame::OnUpdateOptionsDamping(CCmdUI* pCmdUI)
@@ -210,7 +210,7 @@ void CMainFrame::OnUpdateOptionsDamping(CCmdUI* pCmdUI)
 void CMainFrame::OnOptionsDof()
 {
 	m_OGLView.m_DOF_Restrict = !m_OGLView.m_DOF_Restrict;
-	m_OGLView.drawScene(TRUE);
+	m_OGLView.drawScene(true);
 }
 
 void CMainFrame::OnUpdateOptionsDof(CCmdUI* pCmdUI)

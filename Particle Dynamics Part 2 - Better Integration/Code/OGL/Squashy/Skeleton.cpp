@@ -144,7 +144,7 @@ void BoneSetFrame(t_Bone *bone,int frame)
 	}
 }
 
-void BoneAdvanceFrame(t_Bone *bone,int direction,BOOL doChildren)
+void BoneAdvanceFrame(t_Bone *bone,int direction,bool doChildren)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	int loop;

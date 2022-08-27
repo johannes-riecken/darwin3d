@@ -40,7 +40,7 @@ CHierWin::~CHierWin()
 }
 
 
-BOOL CHierWin::PreCreateWindow(CREATESTRUCT& cs)
+bool CHierWin::PreCreateWindow(CREATESTRUCT& cs)
 {
 	CString className;
 	HCURSOR arrow;
@@ -150,7 +150,7 @@ void CHierWin::OnSelchanged(NMHDR* pNMHDR, LRESULT* pResult)
 	NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
 	if (m_Skeleton > NULL)
 		m_Skeleton->id = GetItemData(GetSelectedItem());
-	GetParent()->Invalidate(TRUE );
+	GetParent()->Invalidate(true );
 	*pResult = 0;
 }
 

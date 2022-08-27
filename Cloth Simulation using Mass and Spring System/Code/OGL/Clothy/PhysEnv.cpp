@@ -66,20 +66,20 @@ CPhysEnv::CPhysEnv()
 	m_Contact = NULL;
 	m_Spring = NULL;
 	m_SpringCnt = 0;
-	m_MouseForceActive = FALSE;
+	m_MouseForceActive = false;
 
-	m_UseGravity = TRUE;
-	m_DrawSprings = TRUE;
-	m_DrawStructural = TRUE;	// By default only draw structural springs
-	m_DrawBend = FALSE;
-	m_DrawShear = FALSE;
-	m_DrawVertices	= TRUE;
-	m_CollisionActive = TRUE;
-	m_CollisionRootFinding = FALSE;		// I AM NOT LOOKING FOR A COLLISION RIGHT AWAY
+	m_UseGravity = true;
+	m_DrawSprings = true;
+	m_DrawStructural = true;	// By default only draw structural springs
+	m_DrawBend = false;
+	m_DrawShear = false;
+	m_DrawVertices	= true;
+	m_CollisionActive = true;
+	m_CollisionRootFinding = false;		// I AM NOT LOOKING FOR A COLLISION RIGHT AWAY
 
 	MAKEVECTOR(m_Gravity, 0.0f, -0.2f, 0.0f)
 	m_UserForceMag = 100.0;
-	m_UserForceActive = FALSE;
+	m_UserForceActive = false;
 	m_MouseForceKs = 2.0f;	// MOUSE SPRING CONSTANT
 	m_Kd	= 0.04f;	// DAMPING FACTOR
 	m_Kr	= 0.1f;		// 1.0 = SUPERBALL BOUNCE 0.0 = DEAD WEIGHT
@@ -437,9 +437,9 @@ void CPhysEnv::FreeSystem()
 
 void CPhysEnv::LoadData(FILE *fp)
 {
-	fread(&m_UseGravity,sizeof(BOOL),1,fp);
-	fread(&m_UseDamping,sizeof(BOOL),1,fp);
-	fread(&m_UserForceActive,sizeof(BOOL),1,fp);
+	fread(&m_UseGravity,sizeof(bool),1,fp);
+	fread(&m_UseDamping,sizeof(bool),1,fp);
+	fread(&m_UserForceActive,sizeof(bool),1,fp);
 	fread(&m_Gravity,sizeof(tVector),1,fp);
 	fread(&m_UserForce,sizeof(tVector),1,fp);
 	fread(&m_UserForceMag,sizeof(float),1,fp);
@@ -472,9 +472,9 @@ void CPhysEnv::LoadData(FILE *fp)
 
 void CPhysEnv::SaveData(FILE *fp)
 {
-	fwrite(&m_UseGravity,sizeof(BOOL),1,fp);
-	fwrite(&m_UseDamping,sizeof(BOOL),1,fp);
-	fwrite(&m_UserForceActive,sizeof(BOOL),1,fp);
+	fwrite(&m_UseGravity,sizeof(bool),1,fp);
+	fwrite(&m_UseDamping,sizeof(bool),1,fp);
+	fwrite(&m_UserForceActive,sizeof(bool),1,fp);
 	fwrite(&m_Gravity,sizeof(tVector),1,fp);
 	fwrite(&m_UserForce,sizeof(tVector),1,fp);
 	fwrite(&m_UserForceMag,sizeof(float),1,fp);
@@ -547,7 +547,7 @@ void CPhysEnv::SetVertexProperties()
 void CPhysEnv::ApplyUserForce(tVector *force)
 {
 	ScaleVector(force,  m_UserForceMag, &m_UserForce);
-	m_UserForceActive = TRUE;
+	m_UserForceActive = true;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -1071,7 +1071,7 @@ void CPhysEnv::ResolveCollisions( tParticle	*system )
 	}
 }
 
-void CPhysEnv::Simulate(float DeltaTime, BOOL running)
+void CPhysEnv::Simulate(float DeltaTime, bool running)
 {
     float		CurrentTime = 0.0f;
     float		TargetTime = DeltaTime;
@@ -1114,7 +1114,7 @@ void CPhysEnv::Simulate(float DeltaTime, BOOL running)
         if(collisionState == PENETRATING)
         {
 			// TELL THE SYSTEM I AM LOOKING FOR A COLLISION SO IT WILL USE EULER
-			m_CollisionRootFinding = TRUE;
+			m_CollisionRootFinding = true;
             // we simulated too far, so subdivide time and try again
             TargetTime = (CurrentTime + TargetTime) / 2.0f;
 
@@ -1136,7 +1136,7 @@ void CPhysEnv::Simulate(float DeltaTime, BOOL running)
                             COLLIDING) && (Counter < 100));
 
                 assert(Counter < 100);
-				m_CollisionRootFinding = FALSE;  // FOUND THE COLLISION POINT
+				m_CollisionRootFinding = false;  // FOUND THE COLLISION POINT
             }
 
             // we made a successful step, so swap configurations

@@ -91,7 +91,7 @@ struct t_Visual
 	float	*vertexData;	// INTERLEAVED VERTEX DATA IN DATAFORMAT
 	tVector *vertexCol;
 	long	vertexCnt;		// NUMBER OF VERTICES IN VISUAL
-	BOOL	*CV_select;		// Vertex is selected
+	bool	*CV_select;		// Vertex is selected
 	float	*deformData;	// DEFORMED VERTEX DATA
 	int		vSize;			// NUMBER OF FLOATS IN A VERTEX
 	long	faceCnt;		// NUMBER OF FACES IN VISUAL
@@ -201,7 +201,7 @@ void ResetSkeleton(t_Bone *root);
 void FreezeSkeleton(t_Bone *bone);
 void ResetBone(t_Bone *bone,t_Bone *parent);
 void BoneSetFrame(t_Bone *bone,int frame);
-void BoneAdvanceFrame(t_Bone *bone,int direction,BOOL doChildren);
+void BoneAdvanceFrame(t_Bone *bone,int direction,bool doChildren);
 
 ///////////////////////////////////////////////////////////////////////////////
 

@@ -19,7 +19,7 @@ public:
 
 // Attributes
 private:
-	BOOL m_pressed;
+	bool m_pressed;
 // Operations
 public:
 

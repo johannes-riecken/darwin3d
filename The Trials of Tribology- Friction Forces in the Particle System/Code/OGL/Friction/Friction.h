@@ -44,7 +44,7 @@ public:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CFrictionApp)
 	public:
-	virtual BOOL InitInstance();
+	virtual bool InitInstance();
 	//}}AFX_VIRTUAL
 
 // Implementation

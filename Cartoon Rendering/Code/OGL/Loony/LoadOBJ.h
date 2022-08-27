@@ -34,6 +34,6 @@ typedef struct
 
 #include "Skeleton.h"
 
-BOOL LoadOBJ(const char *filename,t_Visual *visual);
+bool LoadOBJ(const char *filename,t_Visual *visual);
 
 #endif // !defined(LoadOBJ_H__INCLUDED_)

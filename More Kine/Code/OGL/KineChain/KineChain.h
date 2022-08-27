@@ -45,7 +45,7 @@ public:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CKineChainApp)
 	public:
-	virtual BOOL InitInstance();
+	virtual bool InitInstance();
 	//}}AFX_VIRTUAL
 
 // Implementation

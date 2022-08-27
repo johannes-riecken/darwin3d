@@ -70,9 +70,9 @@ COGLView::COGLView()
 	initParticleSystem();
 	initEmitter(&m_Emitter);
 	m_CurrentEmitter = &m_Emitter;
-	m_DrawAxis = TRUE;				// DRAW ORIGIN AXIS
-	m_DrawSystem = TRUE;			// ANIMATE THE PARTICLES
-	m_AntiAlias = TRUE;				// ANTIALIAS THE PARTICLES
+	m_DrawAxis = true;				// DRAW ORIGIN AXIS
+	m_DrawSystem = true;			// ANIMATE THE PARTICLES
+	m_AntiAlias = true;				// ANTIALIAS THE PARTICLES
 
 	m_ViewRot.x = 0.0;
 	m_ViewRot.y = 0.0;
@@ -83,7 +83,7 @@ COGLView::~COGLView()
 {
 }
 
-BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext)
+bool COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -105,7 +105,7 @@ void COGLView::UpdateStatus()
 /////////////////////////////////////////////////////////////////////////////
 // COGLView message handlers
 
-BOOL COGLView::SetupPixelFormat(HDC hdc)
+bool COGLView::SetupPixelFormat(HDC hdc)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
     PIXELFORMATDESCRIPTOR pfd, *ppfd;
@@ -127,20 +127,20 @@ BOOL COGLView::SetupPixelFormat(HDC hdc)
 
     if ((pixelformat = ChoosePixelFormat(hdc, ppfd)) == 0) {
         MessageBox("ChoosePixelFormat failed", "Error", MB_OK);
-        return FALSE;
+        return false;
     }
 
     if (pfd.dwFlags & PFD_NEED_PALETTE) {
         MessageBox("Needs palette", "Error", MB_OK);
-        return FALSE;
+        return false;
     }
 
-    if (SetPixelFormat(hdc, pixelformat, ppfd) == FALSE) {
+    if (SetPixelFormat(hdc, pixelformat, ppfd) == false) {
         MessageBox("SetPixelFormat failed", "Error", MB_OK);
-        return FALSE;
+        return false;
     }
 
-    return TRUE;
+    return true;
 }
 
 
@@ -191,7 +191,7 @@ int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		glPopMatrix();
 	glEndList();
 
-	drawScene(FALSE);
+	drawScene(false);
 	return 0;
 }
 
@@ -261,7 +261,7 @@ void COGLView::GetGLInfo()
 	free(message);
 }
 
-GLvoid COGLView::drawScene(BOOL drawSelectRect)
+GLvoid COGLView::drawScene(bool drawSelectRect)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -315,7 +315,7 @@ void COGLView::OnDestroy()
 void COGLView::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
-	drawScene(FALSE);
+	drawScene(false);
 
 	// Do not call CWnd::OnPaint() for painting messages
 }
@@ -337,7 +337,7 @@ void COGLView::IdleFunc()
 	if (m_DrawSystem)
 	{
 		updateEmitter(&m_Emitter);
-		drawScene(FALSE);
+		drawScene(false);
 	}
 }
 
@@ -366,7 +366,7 @@ void COGLView::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	if ((nFlags & MK_SHIFT) > 0)
 	{
-		drawScene(FALSE);
+		drawScene(false);
 	}
 
 	CWnd::OnLButtonUp(nFlags, point);
@@ -393,7 +393,7 @@ void COGLView::OnRButtonUp(UINT nFlags, CPoint point)
 {
 	if ((nFlags & MK_SHIFT) > 0)
 	{
-		drawScene(FALSE);
+		drawScene(false);
 	}
 
 
@@ -409,7 +409,7 @@ void COGLView::HandleKeyUp(UINT nChar)
 	switch (nChar)
 	{
 	case ' ':			// MANUALLY STEP THE SYSTEM
-		m_DrawSystem = FALSE;
+		m_DrawSystem = false;
 		updateEmitter(&m_Emitter);
 		break;
 	case 13:
@@ -431,7 +431,7 @@ void COGLView::HandleKeyUp(UINT nChar)
 		m_AntiAlias = !m_AntiAlias;
 		break;
 	}
-	drawScene(FALSE);
+	drawScene(false);
 }
 
 void COGLView::OnMouseMove(UINT nFlags, CPoint point)
@@ -446,12 +446,12 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 				if ((point.x - m_mousepos.x) != 0)
 				{
 					m_CurrentEmitter->pos.x = m_Grab_Trans_X + (.1f * (point.x - m_mousepos.x));
-					drawScene(FALSE);
+					drawScene(false);
 				}
 				if ((point.y - m_mousepos.y) != 0)
 				{
 					m_CurrentEmitter->pos.y = m_Grab_Trans_Y - (.1f * (point.y - m_mousepos.y));
-					drawScene(FALSE);
+					drawScene(false);
 				}
 			}
 			// ELSE ROTATE THE ROOT
@@ -460,7 +460,7 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 				if ((point.x - m_mousepos.x) != 0)
 				{
 					m_ViewRot.y = m_Grab_Rot_X + ((float)ROTATE_SPEED * (point.x - m_mousepos.x));
-					drawScene(FALSE);
+					drawScene(false);
 				}
 			}
 		}
@@ -471,7 +471,7 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 				if ((point.x - m_mousepos.x) != 0)
 				{
 					m_CurrentEmitter->pos.z = m_Grab_Trans_Z + (.1f * (point.x - m_mousepos.x));
-					drawScene(FALSE);
+					drawScene(false);
 				}
 			}
 		}
@@ -571,7 +571,7 @@ void COGLView::resetEmitter()
 // Arguments:	Filename to get it from
 // Returns:		Success
 ///////////////////////////////////////////////////////////////////////////////
-BOOL COGLView::GetEmitter(CString filename)
+bool COGLView::GetEmitter(CString filename)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	tParticle	*particle;					// NULL TERMINATED LINKED LIST
@@ -588,10 +588,10 @@ BOOL COGLView::GetEmitter(CString filename)
 		fread(&m_ViewRot.x,sizeof(float),1,fp);
 		fclose(fp);
 		m_Emitter.particle = particle;	// RESTORE THE ACTIVE LIST
-		drawScene(FALSE);
-		return TRUE;
+		drawScene(false);
+		return true;
 	}
-	return FALSE;
+	return false;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -600,7 +600,7 @@ BOOL COGLView::GetEmitter(CString filename)
 // Arguments:	Filename to put it in
 // Returns:		Success
 ///////////////////////////////////////////////////////////////////////////////
-BOOL COGLView::SaveEmitter(CString filename)
+bool COGLView::SaveEmitter(CString filename)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	FILE *fp;
@@ -614,8 +614,8 @@ BOOL COGLView::SaveEmitter(CString filename)
 		fwrite(&m_ViewRot.y,sizeof(float),1,fp);
 		fwrite(&m_ViewRot.x,sizeof(float),1,fp);
 		fclose(fp);
-		return TRUE;
+		return true;
 	}
-	return FALSE;
+	return false;
 }
 

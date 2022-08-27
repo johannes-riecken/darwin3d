@@ -48,8 +48,8 @@ public:
 	CStatusBar  *m_StatusBar;
 	CRect   m_SelectRect;
 	int		m_ScreenWidth, m_ScreenHeight;
-	BOOL	m_DrawSkeleton;
-	BOOL	m_DrawDeformed;
+	bool	m_DrawSkeleton;
+	bool	m_DrawDeformed;
 	int		m_PickX, m_PickY;
 	int		m_BoneCnt;
 	t_Bone		m_Camera,*m_SelectedBone;	// For the Camera and Pointer to Current Bone
@@ -57,15 +57,15 @@ public:
 	t_Visual	m_Model;					// Actual Model to be deformed
 // Operations
 public:
-	BOOL	SetupPixelFormat(HDC hdc);
+	bool	SetupPixelFormat(HDC hdc);
 	void	LoadActor(CString filename);
 	GLvoid	drawModel(t_Visual *model);
 	GLvoid  drawSkeleton(t_Bone *rootBone);
-	GLvoid	drawScene(BOOL drawSelectRect);
+	GLvoid	drawScene(bool drawSelectRect);
 	GLvoid	initializeGL(GLsizei width, GLsizei height);
 	GLvoid	resize( GLsizei width, GLsizei height );
-	void	CompareBuffer(GLint size, GLfloat *buffer,BOOL select);
-	void	SelectVertices(BOOL select);
+	void	CompareBuffer(GLint size, GLfloat *buffer,bool select);
+	void	SelectVertices(bool select);
 	void	GetGLInfo();
 	void	HandleKeyUp(UINT nChar);
 	void	HandleKeyDown(UINT nChar);
@@ -75,18 +75,18 @@ public:
 	GLvoid  GetBaseSkeletonMat(t_Bone *rootBone);
 	GLvoid	WeightBones();
 	GLvoid	DeformVertices(t_Bone *rootBone,t_Visual *visual);
-	void	IterateBoneWeights(t_Bone *skeleton, BOOL read, FILE *fp) ;
+	void	IterateBoneWeights(t_Bone *skeleton, bool read, FILE *fp) ;
 	void	ClearBoneWeights(t_Bone *skeleton);
-	BOOL	LoadWeights(CString name);
-	BOOL	SaveWeights(CString name);
-	BOOL	LoadOBJModel(CString name);
-	BOOL	LoadSkeletonFile(CString name);
+	bool	LoadWeights(CString name);
+	bool	SaveWeights(CString name);
+	bool	LoadOBJModel(CString name);
+	bool	LoadSkeletonFile(CString name);
 	void	SetBasePose();
 // Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(COGLView)
 	public:
-	virtual BOOL Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext = NULL);
+	virtual bool Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext = NULL);
 	//}}AFX_VIRTUAL
 
 // Implementation

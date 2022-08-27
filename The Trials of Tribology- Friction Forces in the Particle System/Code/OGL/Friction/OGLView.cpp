@@ -47,8 +47,8 @@ static char THIS_FILE[] = __FILE__;
 COGLView::COGLView()
 {
 	// INITIALIZE THE MODE KEYS
-	m_DrawGeometry = TRUE;
-	m_SimRunning = FALSE;
+	m_DrawGeometry = true;
+	m_SimRunning = false;
 	m_CurBone = NULL;
 	ResetBone(&m_Skeleton, NULL);
 	m_Skeleton.id = -1;
@@ -59,7 +59,7 @@ COGLView::COGLView()
 	m_FrameCnt = 0;
 
 	m_TimeIterations = 10;
-	m_UseFixedTimeStep = FALSE;
+	m_UseFixedTimeStep = false;
 	m_MaxTimeStep = 0.01f;
 
 	m_hDC = NULL;
@@ -74,7 +74,7 @@ COGLView::~COGLView()
 }
 
 
-BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext)
+bool COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	t_Visual	*visual = NULL;
@@ -115,7 +115,7 @@ float COGLView::GetTime( void )
 /////////////////////////////////////////////////////////////////////////////
 // COGLView message handlers
 
-BOOL COGLView::SetupPixelFormat(HDC hdc)
+bool COGLView::SetupPixelFormat(HDC hdc)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
     PIXELFORMATDESCRIPTOR pfd, *ppfd;
@@ -137,20 +137,20 @@ BOOL COGLView::SetupPixelFormat(HDC hdc)
 
     if ((pixelformat = ChoosePixelFormat(hdc, ppfd)) == 0) {
         MessageBox("ChoosePixelFormat failed", "Error", MB_OK);
-        return FALSE;
+        return false;
     }
 
     if (pfd.dwFlags & PFD_NEED_PALETTE) {
         MessageBox("Needs palette", "Error", MB_OK);
-        return FALSE;
+        return false;
     }
 
-    if (SetPixelFormat(hdc, pixelformat, ppfd) == FALSE) {
+    if (SetPixelFormat(hdc, pixelformat, ppfd) == false) {
         MessageBox("SetPixelFormat failed", "Error", MB_OK);
-        return FALSE;
+        return false;
     }
 
-    return TRUE;
+    return true;
 }
 
 int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
@@ -476,7 +476,7 @@ void COGLView::OnLButtonDown(UINT nFlags, CPoint point)
 
 void COGLView::OnLButtonUp(UINT nFlags, CPoint point)
 {
-	m_PhysEnv.m_MouseForceActive = FALSE;		// STOP APPLYING MOUSE FORCE
+	m_PhysEnv.m_MouseForceActive = false;		// STOP APPLYING MOUSE FORCE
 	ReleaseCapture();
 	CWnd::OnLButtonUp(nFlags, point);
 }
@@ -572,20 +572,20 @@ void COGLView::HandleKeyUp(UINT nChar)
 
 	if (m_SimRunning)
 	{
-		while (m_SimRunning == TRUE)
+		while (m_SimRunning == true)
 		{
 			while (::PeekMessage(&msg,0,0,0,PM_REMOVE))
 			{
 				if (msg.message == WM_QUIT)
 				{
-					m_SimRunning = FALSE;
+					m_SimRunning = false;
 					m_hDC = NULL;
 					PostQuitMessage(0);
 					break;
 				}
 				if (msg.message == WM_CLOSE)
 				{
-					m_SimRunning = FALSE;
+					m_SimRunning = false;
 				}
 
 				// Dispatch any messages as needed
@@ -604,7 +604,7 @@ void COGLView::HandleKeyUp(UINT nChar)
 		}
 	}
 	else
-		Invalidate(TRUE);
+		Invalidate(true);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -647,7 +647,7 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 			localX.z = m_Skeleton.matrix.m[8];
 
 			m_PhysEnv.SetMouseForce(point.x - m_mousepos.x,point.y - m_mousepos.y,&localX,&localY);
-			m_PhysEnv.m_MouseForceActive = TRUE;
+			m_PhysEnv.m_MouseForceActive = true;
 		}
 	}
 	else if ((nFlags & MK_RBUTTON) == MK_RBUTTON)
@@ -695,7 +695,7 @@ void COGLView::OnLButtonDblClk(UINT nFlags, CPoint point)
 void COGLView::NewSystem()
 {
 	m_PhysEnv.FreeSystem();
-	m_SimRunning = FALSE;
+	m_SimRunning = false;
 	if (m_Skeleton.childCnt > 0)
 	{
 		if (m_Skeleton.children->visuals->vertexData)

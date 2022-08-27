@@ -169,7 +169,7 @@ void HandleFace(CStringArray *words,t_faceIndex *face)
 //				3 vertex polygons or multiple objects per file.
 //				Current flags are only (NULL, LOADOBJ_VERTEXONLY,LOADOBJ_REUSEVERTICES)
 ///////////////////////////////////////////////////////////////////////////////
-BOOL LoadOBJ(char *filename,t_Visual *visual, int flags)
+bool LoadOBJ(char *filename,t_Visual *visual, int flags)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	int loop,loop2,cnt;
@@ -305,7 +305,7 @@ BOOL LoadOBJ(char *filename,t_Visual *visual, int flags)
 			visual->faceCnt = fPos;
 			if ((flags & LOADOBJ_REUSEVERTICES) > 0)
 			{
-				visual->reuseVertices = TRUE;
+				visual->reuseVertices = true;
 				visual->vertexData = (float *)malloc(sizeof(float) * visual->vSize * vPos);
 				visual->vertexCnt = vPos;
 				visual->faceIndex = (unsigned short *)malloc(sizeof(unsigned short) * fPos * visual->vPerFace);
@@ -320,7 +320,7 @@ BOOL LoadOBJ(char *filename,t_Visual *visual, int flags)
 			}
 			else
 			{
-				visual->reuseVertices = FALSE;
+				visual->reuseVertices = false;
 				visual->vertexData = (float *)malloc(sizeof(float) * visual->vSize * fPos * visual->vPerFace);
 				visual->vertexCnt = fPos * visual->vPerFace;
 				visual->faceIndex = NULL;
@@ -373,6 +373,6 @@ BOOL LoadOBJ(char *filename,t_Visual *visual, int flags)
 		fclose(fp);
 	}
 	else
-		return FALSE;
-	return TRUE;
+		return false;
+	return true;
 }

@@ -136,7 +136,7 @@ struct t_Bone
 void DestroySkeleton(t_Bone *root);
 void ResetBone(t_Bone *bone,t_Bone *parent);
 void BoneSetFrame(t_Bone *bone,int frame);
-void BoneAdvanceFrame(t_Bone *bone,int direction,BOOL doChildren);
+void BoneAdvanceFrame(t_Bone *bone,int direction,bool doChildren);
 
 ///////////////////////////////////////////////////////////////////////////////
 

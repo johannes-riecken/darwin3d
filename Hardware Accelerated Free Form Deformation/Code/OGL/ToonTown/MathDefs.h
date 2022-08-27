@@ -33,7 +33,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 typedef unsigned char uchar;
 
-typedef int		BOOL;
+typedef int		bool;
 typedef unsigned int	uint;
 typedef unsigned short  ushort;
 typedef unsigned char	byte;

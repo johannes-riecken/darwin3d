@@ -87,7 +87,7 @@ void RotationToDirection(float pitch,float yaw,tVector *direction)
 // Notes:		This is really the CREATOR for the particle class
 //				Since I am doing it C, I need to call it
 ///////////////////////////////////////////////////////////////////////////////
-BOOL initParticleSystem()
+bool initParticleSystem()
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	int loop;
@@ -105,7 +105,7 @@ BOOL initParticleSystem()
 	// SET THE LAST PARTICLE TO POINT TO NULL
 	m_ParticlePool[MAX_PARTICLES - 1].next = NULL;
 
-	return TRUE;
+	return true;
 }
 /// initParticleSystem ////////////////////////////////////////////////////////
 
@@ -114,7 +114,7 @@ BOOL initParticleSystem()
 // Purpose:		Set up some default settings
 // Arguments:	The emitter to setup
 ///////////////////////////////////////////////////////////////////////////////
-BOOL setDefaultEmitter(tEmitter *emitter)
+bool setDefaultEmitter(tEmitter *emitter)
 {
 	emitter->id = 0;		// UNUSED
 	strcpy(emitter->name, "Emitter");
@@ -154,7 +154,7 @@ BOOL setDefaultEmitter(tEmitter *emitter)
 	emitter->force.x = 0.000f;
 	emitter->force.y = -0.001f;
 	emitter->force.z = 0.0f;
-	return TRUE;
+	return true;
 }
 /// setDefaultEmitter /////////////////////////////////////////////////////////
 
@@ -164,11 +164,11 @@ BOOL setDefaultEmitter(tEmitter *emitter)
 // Purpose:		Initialize an emitter in the system
 // Arguments:	The emitter to initialize
 ///////////////////////////////////////////////////////////////////////////////
-BOOL initEmitter(tEmitter *emitter)
+bool initEmitter(tEmitter *emitter)
 {
 	setDefaultEmitter(emitter);
 	emitter->particle	= NULL;					// NULL TERMINATED LINKED LIST
-	return TRUE;
+	return true;
 }
 /// initEmitter ///////////////////////////////////////////////////////////////
 
@@ -177,7 +177,7 @@ BOOL initEmitter(tEmitter *emitter)
 // Purpose:		add a particle to an emitter
 // Arguments:	The emitter to add to
 ///////////////////////////////////////////////////////////////////////////////
-BOOL addParticle(tEmitter *emitter)
+bool addParticle(tEmitter *emitter)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	tParticle *particle;
@@ -240,9 +240,9 @@ BOOL addParticle(tEmitter *emitter)
 		particle->deltaColor.b = (end.b - start.b) / particle->life;
 
 		emitter->particleCount++;	// A NEW PARTICLE IS BORN
-		return TRUE;
+		return true;
 	}
-	return FALSE;
+	return false;
 }
 /// addParticle ///////////////////////////////////////////////////////////////
 
@@ -251,7 +251,7 @@ BOOL addParticle(tEmitter *emitter)
 // Purpose:		updateParticle settings
 // Arguments:	The particle to update and the emitter it came from
 ///////////////////////////////////////////////////////////////////////////////
-BOOL updateParticle(tParticle *particle,tEmitter *emitter)
+bool updateParticle(tParticle *particle,tEmitter *emitter)
 {
 	// IF THIS IS AN VALID PARTICLE
 	if (particle != NULL && particle->life > 0)
@@ -282,7 +282,7 @@ BOOL updateParticle(tParticle *particle,tEmitter *emitter)
 		particle->color.b += particle->deltaColor.b;
 
 		particle->life--;	// IT IS A CYCLE OLDER
-		return TRUE;
+		return true;
 	}
 	else if (particle != NULL && particle->life == 0)
 	{
@@ -298,7 +298,7 @@ BOOL updateParticle(tParticle *particle,tEmitter *emitter)
 		m_ParticlePool = particle;	// NEW POOL POINTER
 		emitter->particleCount--;	// ADD ONE TO POOL
 	}
-	return FALSE;
+	return false;
 }
 /// updateParticle ///////////////////////////////////////////////////////////////
 
@@ -308,7 +308,7 @@ BOOL updateParticle(tParticle *particle,tEmitter *emitter)
 // Arguments:	The Emitter to update
 // Notes:		This is called once per frame to update the emitter
 ///////////////////////////////////////////////////////////////////////////////
-BOOL updateEmitter(tEmitter *emitter)
+bool updateEmitter(tEmitter *emitter)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	int loop,emits;
@@ -334,9 +334,9 @@ BOOL updateEmitter(tEmitter *emitter)
 		for (loop = 0; loop < emits; loop++)
 			addParticle(emitter);
 
-		return TRUE;
+		return true;
 	}
-	return FALSE;
+	return false;
 }
 /// updateEmitter ///////////////////////////////////////////////////////////////
 
@@ -346,7 +346,7 @@ BOOL updateEmitter(tEmitter *emitter)
 // Arguments:	The Emitter to render
 // Notes:		This is called once per frame to render the emitter
 ///////////////////////////////////////////////////////////////////////////////
-BOOL renderEmitter(tEmitter *emitter, BOOL antiAlias)
+bool renderEmitter(tEmitter *emitter, bool antiAlias)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	tParticle *particle;
@@ -376,9 +376,9 @@ BOOL renderEmitter(tEmitter *emitter, BOOL antiAlias)
 			glEnd();
 		}
 
-		return TRUE;
+		return true;
 	}
-	return FALSE;
+	return false;
 }
 /// renderEmitter ///////////////////////////////////////////////////////////////
 

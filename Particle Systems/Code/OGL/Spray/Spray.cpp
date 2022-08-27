@@ -62,7 +62,7 @@ CSprayApp theApp;
 /////////////////////////////////////////////////////////////////////////////
 // CSprayApp initialization
 
-BOOL CSprayApp::InitInstance()
+bool CSprayApp::InitInstance()
 {
 	// Standard initialization
 	// If you are not using these features and wish to reduce the size
@@ -86,12 +86,12 @@ BOOL CSprayApp::InitInstance()
 
 	if (!pFrame->LoadFrame(IDR_MAINFRAME,
         WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN | WS_VISIBLE)) {
-		return FALSE;
+		return false;
 	}
 
 	m_pMainWnd = pFrame;
 
-	return TRUE;
+	return true;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -150,12 +150,12 @@ void CSprayApp::OnAppAbout()
 /////////////////////////////////////////////////////////////////////////////
 // CSprayApp commands
 
-BOOL CSprayApp::OnIdle(LONG lCount)
+bool CSprayApp::OnIdle(LONG lCount)
 {
 	// Force the main window to redraw itself
 	if (IsWindow(m_pMainWnd->GetSafeHwnd()))
 		((CMainFrame *)m_pMainWnd)->IdleFunc();
 
 	// Want more OnIdle calls
-	return TRUE;
+	return true;
 }

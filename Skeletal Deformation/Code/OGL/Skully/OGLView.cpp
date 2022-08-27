@@ -53,8 +53,8 @@ COGLView::COGLView()
 {
 	// INITIALIZE THE MODE KEYS
 	m_StatusBar = NULL;	// CLEAR THIS.  IT IS SET BY MAINFRAME BUT UNTIL THEN MARK IT
-	m_DrawSkeleton = TRUE;
-	m_DrawDeformed = FALSE;
+	m_DrawSkeleton = true;
+	m_DrawDeformed = false;
 	m_PickX = -1;
 	m_PickY = -1;
 	ResetBone(&m_Skeleton,NULL);
@@ -79,7 +79,7 @@ COGLView::~COGLView()
 {
 }
 
-BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext)
+bool COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext)
 {
 	return CWnd::Create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, pContext);
 }
@@ -100,7 +100,7 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // COGLView message handlers
 
-BOOL COGLView::SetupPixelFormat(HDC hdc)
+bool COGLView::SetupPixelFormat(HDC hdc)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
     PIXELFORMATDESCRIPTOR pfd, *ppfd;
@@ -122,20 +122,20 @@ BOOL COGLView::SetupPixelFormat(HDC hdc)
 
     if ((pixelformat = ChoosePixelFormat(hdc, ppfd)) == 0) {
         MessageBox("ChoosePixelFormat failed", "Error", MB_OK);
-        return FALSE;
+        return false;
     }
 
     if (pfd.dwFlags & PFD_NEED_PALETTE) {
         MessageBox("Needs palette", "Error", MB_OK);
-        return FALSE;
+        return false;
     }
 
-    if (SetPixelFormat(hdc, pixelformat, ppfd) == FALSE) {
+    if (SetPixelFormat(hdc, pixelformat, ppfd) == false) {
         MessageBox("SetPixelFormat failed", "Error", MB_OK);
-        return FALSE;
+        return false;
     }
 
-    return TRUE;
+    return true;
 }
 
 
@@ -219,7 +219,7 @@ int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 			glVertex3f(-0.05f, 0.05f, -0.05f);
 		glEnd();
 	glEndList();
-	drawScene(FALSE);
+	drawScene(false);
 	return 0;
 }
 
@@ -592,7 +592,7 @@ GLvoid COGLView::drawSkeleton(t_Bone *rootBone)
 // Purpose:		Actually draw the OpenGL Scene
 // Arguments:	None
 ///////////////////////////////////////////////////////////////////////////////
-GLvoid COGLView::drawScene(BOOL drawSelectRect)
+GLvoid COGLView::drawScene(bool drawSelectRect)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -668,7 +668,7 @@ GLvoid COGLView::drawScene(BOOL drawSelectRect)
 // Purpose:		Use Feedback to get all the vertices in the view
 // Arguments:	Should I select or de-select?
 ///////////////////////////////////////////////////////////////////////////////
-void COGLView::SelectVertices(BOOL select)
+void COGLView::SelectVertices(bool select)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	GLfloat *feedBuffer;
@@ -719,7 +719,7 @@ void COGLView::SelectVertices(BOOL select)
 // Purpose:		Check the feedback buffer to see if anything is tagged
 // Arguments:	Number of hits, pointer to buffer, Should I select or de-select
 ///////////////////////////////////////////////////////////////////////////////
-void COGLView::CompareBuffer(GLint size, GLfloat *buffer,BOOL select)
+void COGLView::CompareBuffer(GLint size, GLfloat *buffer,bool select)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	GLint count;
@@ -745,7 +745,7 @@ void COGLView::CompareBuffer(GLint size, GLfloat *buffer,BOOL select)
 				point[loop] = buffer[size - count];
 				count--;
 			}
-			data = (BOOL *)m_Model.CV_select;
+			data = (bool *)m_Model.CV_select;
 			// CHECK IF THE POINT WAS IN MY SELECTION RECTANGLE
 			// FLOATS 0 AND 1 ARE SCREEN X AND Y
 			// NOTE: OPENGL SETS THE BOTTOM Y=0
@@ -777,7 +777,7 @@ void COGLView::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
 
-	drawScene(FALSE);
+	drawScene(false);
 	// Do not call CWnd::OnPaint() for painting messages
 }
 
@@ -825,8 +825,8 @@ void COGLView::OnLButtonUp(UINT nFlags, CPoint point)
 	{
 		m_SelectRect.right = point.x;
 		m_SelectRect.bottom = m_ScreenHeight - point.y;
-		SelectVertices(TRUE);
-		drawScene(FALSE);
+		SelectVertices(true);
+		drawScene(false);
 	}
 	ReleaseCapture( );
 	CWnd::OnLButtonUp(nFlags, point);
@@ -850,7 +850,7 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 			if ((point.x - m_mousepos.x) != 0)
 			{
 				m_SelectedBone->rot.z = m_Grab_Rot_Z + ((float)ROTATE_SPEED * (point.x - m_mousepos.x));
-				drawScene(FALSE);
+				drawScene(false);
 			}
 		}
 		// ELSE "SHIFT" ROTATE THE BONE IN XY
@@ -860,12 +860,12 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 			if ((point.x - m_mousepos.x) != 0)
 			{
 				m_SelectedBone->rot.y = m_Grab_Rot_Y + ((float)ROTATE_SPEED * (point.x - m_mousepos.x));
-				drawScene(FALSE);
+				drawScene(false);
 			}
 			if ((point.y - m_mousepos.y) != 0)
 			{
 				m_SelectedBone->rot.x = m_Grab_Rot_X + ((float)ROTATE_SPEED * (point.y - m_mousepos.y));
-				drawScene(FALSE);
+				drawScene(false);
 			}
 		}
 		// ELSE MY SELECTION BOX
@@ -873,7 +873,7 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 		{
 			m_SelectRect.right = point.x;
 			m_SelectRect.bottom = m_ScreenHeight - point.y;
-			drawScene(TRUE);
+			drawScene(true);
 		}
 	}
 	else if ((nFlags & MK_RBUTTON) == MK_RBUTTON)		// Handle the Camera
@@ -884,7 +884,7 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 			if ((point.x - m_mousepos.x) != 0)
 			{
 				m_Camera.trans.z = m_Grab_Trans_Z + (.1f * (point.x - m_mousepos.x));
-				drawScene(FALSE);
+				drawScene(false);
 			}
 		}
 		else if ((nFlags & MK_SHIFT) > 0)
@@ -893,12 +893,12 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 			if ((point.x - m_mousepos.x) != 0)	// Move Camera in X
 			{
 				m_Camera.trans.x = m_Grab_Trans_X + (.1f * (point.x - m_mousepos.x));
-				drawScene(FALSE);
+				drawScene(false);
 			}
 			if ((point.y - m_mousepos.y) != 0)	// Move Camera in Y
 			{
 				m_Camera.trans.y = m_Grab_Trans_Y - (.1f * (point.y - m_mousepos.y));
-				drawScene(FALSE);
+				drawScene(false);
 			}
 		}
 		else
@@ -907,12 +907,12 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 			if ((point.x - m_mousepos.x) != 0)	// Rotate Camera in Y
 			{
 				m_Camera.rot.y = m_Grab_Rot_Y + ((float)ROTATE_SPEED * (point.x - m_mousepos.x));
-				drawScene(FALSE);
+				drawScene(false);
 			}
 			if ((point.y - m_mousepos.y) != 0)	// Rotate Camera in X
 			{
 				m_Camera.rot.x = m_Grab_Rot_X + ((float)ROTATE_SPEED * (point.y - m_mousepos.y));
-				drawScene(FALSE);
+				drawScene(false);
 			}
 		}
 	}
@@ -984,7 +984,7 @@ void COGLView::HandleKeyUp(UINT nChar)
 		if (m_Model.vertexData != NULL)
 		{
 			for (loop2 = 0; loop2 < m_Model.vertexCnt; loop2++)
-				m_Model.CV_select[loop2] = FALSE;
+				m_Model.CV_select[loop2] = false;
 		}
 		m_Skeleton.id = (long)&m_Skeleton;
 		break;
@@ -1005,7 +1005,7 @@ void COGLView::HandleKeyUp(UINT nChar)
 		break;
 	}
 
-	Invalidate(TRUE);
+	Invalidate(true);
 
 }
 
@@ -1017,8 +1017,8 @@ void COGLView::HandleKeyUp(UINT nChar)
 void COGLView::OnViewResetskeleton()
 {
 	ResetSkeleton(&m_Skeleton);
-	drawScene(FALSE);
-	Invalidate(TRUE);
+	drawScene(false);
+	Invalidate(true);
 }
 //// OnViewResetskeleton //////////////////////////////////////////////////////
 
@@ -1153,9 +1153,9 @@ void COGLView::ClearBoneWeights(t_Bone *skeleton)
 ///////////////////////////////////////////////////////////////////////////////
 // Function:	IterateBoneWeights
 // Purpose:		Go through bones and either read or write weight values
-// Arguments:	Bone pointer, read or write BOOL, and file pointer
+// Arguments:	Bone pointer, read or write bool, and file pointer
 ///////////////////////////////////////////////////////////////////////////////
-void COGLView::IterateBoneWeights(t_Bone *skeleton, BOOL read, FILE *fp)
+void COGLView::IterateBoneWeights(t_Bone *skeleton, bool read, FILE *fp)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	int loop;
@@ -1184,7 +1184,7 @@ void COGLView::IterateBoneWeights(t_Bone *skeleton, BOOL read, FILE *fp)
 // Purpose:		Load a Weight File
 // Arguments:	Name of the file to open
 ///////////////////////////////////////////////////////////////////////////////
-BOOL COGLView::LoadWeights(CString name)
+bool COGLView::LoadWeights(CString name)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	FILE *fp;		// I PREFER THIS STYLE OF FILE ACCESS
@@ -1194,7 +1194,7 @@ BOOL COGLView::LoadWeights(CString name)
 		fread(&count,sizeof(int),1,fp);
 		if (m_Model.vertexCnt == count)
 		{
-			IterateBoneWeights(&m_Skeleton, TRUE, fp);
+			IterateBoneWeights(&m_Skeleton, true, fp);
 		}
 		else
 		{
@@ -1202,12 +1202,12 @@ BOOL COGLView::LoadWeights(CString name)
 		}
 
 		// Assume if a Weight File is loaded it should be deformed
-		m_DrawDeformed = TRUE;
+		m_DrawDeformed = true;
 
 		fclose(fp);
 	}
 
-	return TRUE;
+	return true;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -1215,18 +1215,18 @@ BOOL COGLView::LoadWeights(CString name)
 // Purpose:		Save a Set of Weight Files
 // Arguments:	Name of the file to save
 ///////////////////////////////////////////////////////////////////////////////
-BOOL COGLView::SaveWeights(CString name)
+bool COGLView::SaveWeights(CString name)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	FILE *fp;		// I PREFER THIS STYLE OF FILE ACCESS
 ///////////////////////////////////////////////////////////////////////////////
 	if (fp = fopen((LPCTSTR)name,"wb")) {
 		fwrite(&m_Model.vertexCnt,sizeof(int),1,fp);
-		IterateBoneWeights(&m_Skeleton, FALSE, fp);
+		IterateBoneWeights(&m_Skeleton, false, fp);
 		fclose(fp);
 	}
 
-	return TRUE;
+	return true;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -1234,7 +1234,7 @@ BOOL COGLView::SaveWeights(CString name)
 // Purpose:		Load an OBJ Model into the system
 // Arguments:	Name of the file to open
 ///////////////////////////////////////////////////////////////////////////////
-BOOL COGLView::LoadOBJModel(CString name)
+bool COGLView::LoadOBJModel(CString name)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -1250,7 +1250,7 @@ BOOL COGLView::LoadOBJModel(CString name)
 	LoadOBJ((LPCSTR)name,&m_Model);
 	SetSkeletonList(&m_Skeleton);		// Set up Weights
 	SetBasePose();						// Lock in the Rest State
-	return TRUE;
+	return true;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -1258,13 +1258,13 @@ BOOL COGLView::LoadOBJModel(CString name)
 // Purpose:		Load a Skeleton into the system
 // Arguments:	Name of the file to open
 ///////////////////////////////////////////////////////////////////////////////
-BOOL COGLView::LoadSkeletonFile(CString name)
+bool COGLView::LoadSkeletonFile(CString name)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 	DestroySkeleton(&m_Skeleton);
 	LoadSkeleton(name,&m_Skeleton);
 	SetSkeletonList(&m_Skeleton);		// Set up Weights
-	return TRUE;
+	return true;
 }
 

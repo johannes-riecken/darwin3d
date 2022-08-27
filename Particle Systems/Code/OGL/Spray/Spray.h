@@ -45,8 +45,8 @@ public:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CSprayApp)
 	public:
-	virtual BOOL InitInstance();
-	virtual BOOL OnIdle(LONG lCount);
+	virtual bool InitInstance();
+	virtual bool OnIdle(LONG lCount);
 	//}}AFX_VIRTUAL
 
 // Implementation

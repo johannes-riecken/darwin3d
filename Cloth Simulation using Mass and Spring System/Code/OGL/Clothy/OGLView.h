@@ -49,20 +49,20 @@ public:
 	float m_Base_Rot_X,m_Base_Rot_Y,m_Base_Rot_Z;
 	float m_Grab_Rot_X,m_Grab_Rot_Y,m_Grab_Rot_Z;
 	float m_Grab_Trans_X,m_Grab_Trans_Y,m_Grab_Trans_Z;
-	BOOL m_DrawGeometry,m_SimRunning;
+	bool m_DrawGeometry,m_SimRunning;
 	int m_curVisual;
 	float m_MorphPos;
 	DWORD m_StartTime;
 	DWORD m_FrameCnt;
 	int		m_TimeIterations;
-	BOOL	m_UseFixedTimeStep;
+	bool	m_UseFixedTimeStep;
 	float	m_MaxTimeStep;
 	float	m_LastTime;
 
 	CPhysEnv		m_PhysEnv;
 // Operations
 public:
-	BOOL	SetupPixelFormat(HDC hdc);
+	bool	SetupPixelFormat(HDC hdc);
 	GLvoid	drawScene(GLvoid);
 	GLvoid  drawModel(t_Bone *curBone);
 	GLvoid	initializeGL(GLsizei width, GLsizei height);
@@ -86,7 +86,7 @@ public:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(COGLView)
 	public:
-	virtual BOOL Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext = NULL);
+	virtual bool Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext = NULL);
 	//}}AFX_VIRTUAL
 
 // Implementation

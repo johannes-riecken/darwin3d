@@ -58,7 +58,7 @@ CLoonyApp theApp;
 /////////////////////////////////////////////////////////////////////////////
 // CLoonyApp initialization
 
-BOOL CLoonyApp::InitInstance()
+bool CLoonyApp::InitInstance()
 {
 	AfxEnableControlContainer();
 
@@ -87,7 +87,7 @@ BOOL CLoonyApp::InitInstance()
 
 	if (!pFrame->LoadFrame(IDR_MAINFRAME,
         WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN | WS_VISIBLE)) {
-		return FALSE;
+		return false;
 	}
 
 	m_pMainWnd = pFrame;
@@ -100,7 +100,7 @@ BOOL CLoonyApp::InitInstance()
 	// Enable drag/drop open
 	m_pMainWnd->DragAcceptFiles();
 
-	return TRUE;
+	return true;
 }
 
 /////////////////////////////////////////////////////////////////////////////

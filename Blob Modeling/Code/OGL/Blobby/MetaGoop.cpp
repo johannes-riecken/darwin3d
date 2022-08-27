@@ -289,12 +289,12 @@ void Goop_CheckCubeSurf(float threshold,tMetaGoopEval **cube)
 		// Is it inside or outside
 		if (cube[loop]->value > threshold)
 		{
-			cube[loop]->inside = TRUE;
+			cube[loop]->inside = true;
 			inside++;
 		}
 		else
 		{
-			cube[loop]->inside = FALSE;
+			cube[loop]->inside = false;
 			outside++;
 		}
 	}

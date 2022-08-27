@@ -87,7 +87,7 @@ static UINT indicators[] =
 
 CMainFrame::CMainFrame()
 {
-	m_Wireframe = TRUE;
+	m_Wireframe = true;
 	m_HArrow = AfxGetApp()->LoadStandardCursor(IDC_ARROW);
 
 }
@@ -117,20 +117,20 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_HierWin.Create( WS_BORDER | TVS_HASBUTTONS | TVS_LINESATROOT | TVS_HASLINES | TVS_SHOWSELALWAYS,
 		CRect(HIERWIN_START_X, HIERWIN_START_Y,HIERWIN_WIDTH,rect.bottom - HIERWIN_BOTTOM), this, 1001);
-	m_HierWin.ShowWindow(TRUE);
+	m_HierWin.ShowWindow(true);
 
 	m_OGLView.Create(NULL,"Render Window",WS_CHILD | WS_VISIBLE,
 		CRect(OGLWIN_START_X, OGLWIN_START_Y,rect.right - OGLWIN_WIDTH,rect.bottom - OGLWIN_BOTTOM),this,104);
-	m_OGLView.ShowWindow(TRUE);
+	m_OGLView.ShowWindow(true);
 
 	m_OGLView.m_StatusBar = &m_wndStatusBar;
 
-	m_OGLView.Invalidate(TRUE);
+	m_OGLView.Invalidate(true);
 
 	return 0;
 }
 
-BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
+bool CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
 	HICON hicon;
 
@@ -175,7 +175,7 @@ void CMainFrame::OnWhichogl()
 }
 // OnWhichogl
 
-BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
+bool CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
 {
 
 	return CFrameWnd::OnCreateClient(lpcs, pContext);
@@ -193,7 +193,7 @@ void CMainFrame::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
 
-	m_OGLView.drawScene(FALSE);
+	m_OGLView.drawScene(false);
 }
 /// OnPaint ////////////////////////////////////////////////////////////
 
@@ -244,7 +244,7 @@ void CMainFrame::OnFileOpen()
 	CFileDialog	*dialog;
 	CString exten;
 ///////////////////////////////////////////////////////////////////////////////
-	dialog = new CFileDialog(TRUE,"dar",NULL, NULL,szFilter);
+	dialog = new CFileDialog(true,"dar",NULL, NULL,szFilter);
 	if (dialog->DoModal() == IDOK)
 	{
 		exten = dialog->GetFileExt();
@@ -252,7 +252,7 @@ void CMainFrame::OnFileOpen()
 		m_OGLView.LoadSkeletonFile(dialog->GetPathName());
 		m_HierWin.ResetSkeleton();
 		m_HierWin.SetSkeleton(&m_OGLView.m_Skeleton, NULL);
-		m_OGLView.drawScene(FALSE);
+		m_OGLView.drawScene(false);
 		m_OGLView.OnViewResetskeleton();
 	}
 	delete dialog;
@@ -266,13 +266,13 @@ void CMainFrame::OnFileOpencharactermesh()
 	CFileDialog	*dialog;
 	CString exten;
 ///////////////////////////////////////////////////////////////////////////////
-	dialog = new CFileDialog(TRUE,"dcm",NULL, NULL,szFilter);
+	dialog = new CFileDialog(true,"dcm",NULL, NULL,szFilter);
 	if (dialog->DoModal() == IDOK)
 	{
 		exten = dialog->GetFileExt();
 		exten.MakeUpper();
 		m_OGLView.LoadOBJModel(dialog->GetPathName());
-		m_OGLView.drawScene(FALSE);
+		m_OGLView.drawScene(false);
 		m_OGLView.OnViewResetskeleton();
 	}
 	delete dialog;
@@ -285,7 +285,7 @@ void CMainFrame::OnFileOpenweight()
 	CFileDialog	*dialog;
 	CString exten;
 ///////////////////////////////////////////////////////////////////////////////
-	dialog = new CFileDialog(TRUE,"wgt",NULL, NULL,szFilter);
+	dialog = new CFileDialog(true,"wgt",NULL, NULL,szFilter);
 	if (dialog->DoModal() == IDOK)
 	{
 		exten = dialog->GetFileExt();
@@ -302,7 +302,7 @@ void CMainFrame::OnFileSave()
 	CFileDialog	*dialog;
 	CString exten;
 ///////////////////////////////////////////////////////////////////////////////
-	dialog = new CFileDialog(FALSE,"wgt",NULL, NULL,szFilter);
+	dialog = new CFileDialog(false,"wgt",NULL, NULL,szFilter);
 	if (dialog->DoModal() == IDOK)
 	{
 		exten = dialog->GetFileExt();
@@ -325,7 +325,7 @@ void CMainFrame::OnViewOutline()
 		glPolygonMode(GL_FRONT,GL_LINE);
 	else
 		glPolygonMode(GL_FRONT,GL_FILL);
-	Invalidate(TRUE );
+	Invalidate(true );
 }
 
 void CMainFrame::OnUpdateViewOutline(CCmdUI* pCmdUI)
@@ -336,7 +336,7 @@ void CMainFrame::OnUpdateViewOutline(CCmdUI* pCmdUI)
 void CMainFrame::OnViewViewskeleton()
 {
 	m_OGLView.m_DrawSkeleton = !m_OGLView.m_DrawSkeleton;
-	m_OGLView.drawScene(FALSE);
+	m_OGLView.drawScene(false);
 }
 
 void CMainFrame::OnUpdateViewViewskeleton(CCmdUI* pCmdUI)
@@ -348,7 +348,7 @@ void CMainFrame::OnUpdateViewViewskeleton(CCmdUI* pCmdUI)
 void CMainFrame::OnViewDrawdeformed()
 {
 	m_OGLView.m_DrawDeformed = !m_OGLView.m_DrawDeformed;
-	m_OGLView.drawScene(FALSE);
+	m_OGLView.drawScene(false);
 }
 
 void CMainFrame::OnUpdateViewDrawdeformed(CCmdUI* pCmdUI)

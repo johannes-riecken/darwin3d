@@ -47,7 +47,7 @@ public:
 	float m_Grab_Trans_X,m_Grab_Trans_Y,m_Grab_Trans_Z;
 	CStatusBar  *m_StatusBar;
 	int		m_ScreenWidth, m_ScreenHeight;
-	BOOL	m_AntiAlias, m_Dragging,m_Silhouette;
+	bool	m_AntiAlias, m_Dragging,m_Silhouette;
 	t_Bone		m_Camera;					// For the Camera
 	t_Visual	m_Model;					// Actual Model to be Drawn
 	tVector		m_ShadeSrc[32];				// Shade Texture
@@ -60,7 +60,7 @@ public:
 public:
 	float	CalculateShadow(tVector *normal,tVector *light, tMatrix *mat);
 	void	LoadShadeTexture(const char *texfile);
-	BOOL	SetupPixelFormat(HDC hdc);
+	bool	SetupPixelFormat(HDC hdc);
 	GLvoid	drawModel(t_Visual *model);
 	GLvoid	drawScene();
 	GLvoid	initializeGL(GLsizei width, GLsizei height);
@@ -68,13 +68,13 @@ public:
 	void	GetGLInfo();
 	void	HandleKeyUp(UINT nChar);
 	void	HandleKeyDown(UINT nChar);
-	BOOL	LoadOBJModel(CString name);
+	bool	LoadOBJModel(CString name);
 	void	CartoonSettings();
 // Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(COGLView)
 	public:
-	virtual BOOL Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext = NULL);
+	virtual bool Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext = NULL);
 	//}}AFX_VIRTUAL
 
 // Implementation

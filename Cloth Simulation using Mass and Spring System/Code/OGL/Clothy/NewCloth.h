@@ -27,10 +27,10 @@ public:
 	float	m_StructDamp;
 	int		m_USize;
 	int		m_VSize;
-	BOOL	m_Vertical;
-	BOOL	m_UseBend;
-	BOOL	m_UseShear;
-	BOOL	m_UseStruct;
+	bool	m_Vertical;
+	bool	m_UseBend;
+	bool	m_UseShear;
+	bool	m_UseStruct;
 	//}}AFX_DATA
 
 

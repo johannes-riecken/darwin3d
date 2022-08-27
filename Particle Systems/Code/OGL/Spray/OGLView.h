@@ -52,8 +52,8 @@ public:
 	int		m_ScreenWidth, m_ScreenHeight;
 // Operations
 public:
-	BOOL	SetupPixelFormat(HDC hdc);
-	GLvoid	drawScene(BOOL drawSelectRect);
+	bool	SetupPixelFormat(HDC hdc);
+	GLvoid	drawScene(bool drawSelectRect);
 	GLvoid	initializeGL(GLsizei width, GLsizei height);
 	GLvoid	resize( GLsizei width, GLsizei height );
 	void	GetGLInfo();
@@ -63,24 +63,24 @@ public:
 	void	HandleKeyDown(UINT nChar);
 	void	resetEmitter();
 	void	editEmitter(tEmitter *emitter);
-	BOOL	GetEmitter(CString filename);
-	BOOL	SaveEmitter(CString filename);
+	bool	GetEmitter(CString filename);
+	bool	SaveEmitter(CString filename);
 // Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(COGLView)
 	public:
-	virtual BOOL Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext = NULL);
+	virtual bool Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext = NULL);
 	//}}AFX_VIRTUAL
 
 // Implementation
 public:
 	virtual ~COGLView();
-	BOOL	m_AntiAlias;
-	BOOL	m_DrawAxis;
+	bool	m_AntiAlias;
+	bool	m_DrawAxis;
 	tEmitter m_Emitter;
 
 protected:
-	BOOL	m_DrawSystem;
+	bool	m_DrawSystem;
 	tVector m_ViewRot;		// USED TO ALLOW VIEW TO ROTATE
 	tEmitter *m_CurrentEmitter;
 	// Generated message map functions

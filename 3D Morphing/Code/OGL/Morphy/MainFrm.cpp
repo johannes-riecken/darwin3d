@@ -89,20 +89,20 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_Slider.Create(TBS_NOTICKS | TBS_BOTH | WS_CHILD | WS_VISIBLE, CRect(1, rect.bottom - 40,rect.right - 3,rect.bottom - 20),this,105);
 
-	m_Slider.ShowWindow(TRUE);
+	m_Slider.ShowWindow(true);
 
-	m_Slider.Invalidate(TRUE);
+	m_Slider.Invalidate(true);
 
 	m_OGLView.m_ptrStatusBar = &m_wndStatusBar;
 	m_OGLView.Create(NULL,"Render Window",WS_CHILD | WS_VISIBLE, CRect(1, 1,rect.right - 3,rect.bottom),this,104,&m_Slider); // - 60 bottom
-	m_OGLView.ShowWindow(TRUE);
+	m_OGLView.ShowWindow(true);
 
-	m_OGLView.Invalidate(TRUE);
+	m_OGLView.Invalidate(true);
 
 	return 0;
 }
 
-BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
+bool CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	HICON hicon;

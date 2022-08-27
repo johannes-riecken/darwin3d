@@ -21,7 +21,7 @@ CTimeProps::CTimeProps(CWnd* pParent /*=NULL*/)
 	: CDialog(CTimeProps::IDD, pParent)
 {
 	//{{AFX_DATA_INIT(CTimeProps)
-	m_FixedTimeSteps = FALSE;
+	m_FixedTimeSteps = false;
 	m_Iterations = 0;
 	m_MaxTimeStep = 0.0f;
 	//}}AFX_DATA_INIT

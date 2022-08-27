@@ -62,7 +62,7 @@ CSkinApp theApp;
 /////////////////////////////////////////////////////////////////////////////
 // CSkinApp initialization
 
-BOOL CSkinApp::InitInstance()
+bool CSkinApp::InitInstance()
 {
 	AfxEnableControlContainer();
 
@@ -91,7 +91,7 @@ BOOL CSkinApp::InitInstance()
 
 	if (!pFrame->LoadFrame(IDR_MAINFRAME,
         WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN | WS_VISIBLE)) {
-		return FALSE;
+		return false;
 	}
 
 	m_pMainWnd = pFrame;
@@ -100,7 +100,7 @@ BOOL CSkinApp::InitInstance()
 //	m_pMainWnd->ShowWindow(SW_SHOW);
 //	m_pMainWnd->UpdateWindow();
 
-	return TRUE;
+	return true;
 }
 
 /////////////////////////////////////////////////////////////////////////////
