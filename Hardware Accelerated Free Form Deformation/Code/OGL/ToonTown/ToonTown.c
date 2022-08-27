@@ -20,8 +20,8 @@
 // Include files
 #include <windows.h>            // Window defines
 #include <math.h>				// Include for sqrt()
-#include <gl\gl.h>              // OpenGL
-#include <gl\glu.h>             // GLU library
+#include <GL/gl.h>              // OpenGL
+#include <GL/glut.h>             // GLU library
 #include "resource.h"           // About box and other resource identifiers.
 #include "externs.h"
 #include <mmsystem.h>

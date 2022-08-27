@@ -22,8 +22,8 @@
 
 #include <windows.h>	// Normal Windows stuff
 #include <assert.h>
-#include <gl\gl.h>
-#include <gl\glu.h>
+#include <GL/gl.h>
+#include <GL/glut.h>
 #include <math.h>
 #include "externs.h"	// Data shared between files
 

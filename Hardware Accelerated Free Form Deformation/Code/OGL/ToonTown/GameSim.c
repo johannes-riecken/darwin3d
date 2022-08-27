@@ -21,7 +21,7 @@
 
 #include <assert.h>
 #include <GL/gl.h>
-#include <GL/glu.h>
+#include <GL/glut.h>
 #include <math.h>
 #include "externs.h"	// Data shared between files
 

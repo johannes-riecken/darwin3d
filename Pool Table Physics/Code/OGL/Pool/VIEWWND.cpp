@@ -4,9 +4,8 @@
 
 #include <windows.h>	// Normal Windows stuff
 #include <math.h>
-#include <gl/gl.h>		// Core OpenGL functions
-#include <gl/glu.h>		// OpenGL Utility functions
-#include <gl/glaux.h>
+#include <GL/gl.h>		// Core OpenGL functions
+#include <GL/glut.h>		// OpenGL Utility functions
 #include "externs.h"	// Data shared between files
 
 /////////////////////////////////////////////////////////////////////////////////////

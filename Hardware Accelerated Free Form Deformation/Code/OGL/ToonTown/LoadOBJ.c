@@ -21,7 +21,7 @@
 #include <windows.h>	// Normal Windows stuff
 #include <stdio.h>
 //#include <GL/gl.h>
-//#include <GL/glu.h>
+//#include <GL/glut.h>
 #include "loadOBJ.h"
 
 char *gMatName;
