@@ -39,7 +39,7 @@ void DestroySkeleton(t_Bone *root)
 		{
 			if (child->childCnt > 0)
 				DestroySkeleton(child);
-			if (child->primChannel > NULL)
+			if (child->primChannel != NULL)
 			{
 				free(child->primChannel);
 				child->primChannel = NULL;

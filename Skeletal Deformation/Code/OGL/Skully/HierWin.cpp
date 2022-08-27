@@ -150,7 +150,7 @@ void CHierWin::OnLButtonDblClk(UINT nFlags, CPoint point)
 void CHierWin::OnSelchanged(NMHDR* pNMHDR, LRESULT* pResult)
 {
 	NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
-	if (m_Skeleton > NULL)
+	if (m_Skeleton != NULL)
 		m_Skeleton->id = GetItemData(GetSelectedItem());
 	GetParent()->Invalidate(true );
 	*pResult = 0;
