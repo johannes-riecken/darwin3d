@@ -251,7 +251,7 @@ bool LoadOBJ(char *filename,t_Visual *visual)
 							if (words.GetSize() > 4)
 							{
 								sprintf(buffer,"Face %d has more then 3 vertices",fPos);
-								MessageBox(NULL,buffer,"ERROR",MB_OK);
+// 								MessageBox(NULL,buffer,"ERROR",MB_OK);
 							}
 							HandleFace(&words,&face[fPos]);
 							fPos++;

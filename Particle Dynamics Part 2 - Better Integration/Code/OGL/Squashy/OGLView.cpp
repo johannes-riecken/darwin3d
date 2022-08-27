@@ -139,17 +139,17 @@ bool COGLView::SetupPixelFormat(HDC hdc)
     pixelformat = ChoosePixelFormat(hdc, ppfd);
 
     if ((pixelformat = ChoosePixelFormat(hdc, ppfd)) == 0) {
-        MessageBox("ChoosePixelFormat failed", "Error", MB_OK);
+//         MessageBox("ChoosePixelFormat failed", "Error", MB_OK);
         return false;
     }
 
     if (pfd.dwFlags & PFD_NEED_PALETTE) {
-        MessageBox("Needs palette", "Error", MB_OK);
+//         MessageBox("Needs palette", "Error", MB_OK);
         return false;
     }
 
     if (SetPixelFormat(hdc, pixelformat, ppfd) == false) {
-        MessageBox("SetPixelFormat failed", "Error", MB_OK);
+//         MessageBox("SetPixelFormat failed", "Error", MB_OK);
         return false;
     }
 
@@ -745,7 +745,7 @@ void COGLView::LoadFile(CString file1,CString baseName,CString ext)
 		}
 		else
 		{
-			MessageBox("Must Be A Valid OBJ File","Error",MB_OK);
+// 			MessageBox("Must Be A Valid OBJ File","Error",MB_OK);
 			free(visual);
 		}
 	}

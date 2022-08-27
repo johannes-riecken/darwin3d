@@ -204,7 +204,7 @@ void CMainFrame::LoadObjectFile(char *filename,t_Bone *bonePtr)
 		fread(tempstr,1,4,fp); // FDAT
 		if (strncmp(tempstr,"DARW",4)!= 0)
 		{
-			MessageBox("Not a Valid DGF File","Load File", MB_OK|MB_ICONEXCLAMATION);
+// 			MessageBox("Not a Valid DGF File","Load File", MB_OK|MB_ICONEXCLAMATION);
 			return;
 		}
 		fread(tempstr,1,4,fp); // FDAT

@@ -148,17 +148,17 @@ bool COGLView::SetupPixelFormat(HDC hdc)
     pixelformat = ChoosePixelFormat(hdc, ppfd);
 
     if ((pixelformat = ChoosePixelFormat(hdc, ppfd)) == 0) {
-        MessageBox("ChoosePixelFormat failed", "Error", MB_OK);
+//         MessageBox("ChoosePixelFormat failed", "Error", MB_OK);
         return false;
     }
 
     if (pfd.dwFlags & PFD_NEED_PALETTE) {
-        MessageBox("Needs palette", "Error", MB_OK);
+//         MessageBox("Needs palette", "Error", MB_OK);
         return false;
     }
 
     if (SetPixelFormat(hdc, pixelformat, ppfd) == false) {
-        MessageBox("SetPixelFormat failed", "Error", MB_OK);
+//         MessageBox("SetPixelFormat failed", "Error", MB_OK);
         return false;
     }
 
@@ -441,7 +441,7 @@ void COGLView::OnLButtonDown(UINT nFlags, CPoint point)
 		if (ComputeIK(point))
 			drawScene();
 		else // COULDN'T REACH IT, GIVE AN ERROR
-			MessageBox("Point is not reachable","ERROR",MB_OK);
+// 			MessageBox("Point is not reachable","ERROR",MB_OK);
 	}
 	m_Grab_Rot_X = 	m_UpArm.rot.x;
 	m_Grab_Rot_Y = 	m_UpArm.rot.y;

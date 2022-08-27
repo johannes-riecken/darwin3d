@@ -142,7 +142,7 @@ void CMainFrame::OnHelpWhichopengl()
 ///////////////////////////////////////////////////////////////////////////////
 	m_OGLView.GetGLInfo(who,which,version);
 	sprintf(message,"Who:\t%s\nWhich:\t%s\nVersion:\t%s",who,which,version);
-	MessageBox(message,"Which OpenGL Renderer?",MB_OK);
+// 	MessageBox(message,"Which OpenGL Renderer?",MB_OK);
 }
 // OnWhichogl
 
@@ -350,7 +350,7 @@ void CMainFrame::OnFileOpen()
 	{
 		if (!m_OGLView.GetWeights(dialog->GetPathName()))
 		{
-			MessageBox("Unable to load Weight File","Error",MB_OK);
+// 			MessageBox("Unable to load Weight File","Error",MB_OK);
 		}
 	}
 	// RESET THE MAIN DIRECTORY
@@ -375,7 +375,7 @@ void CMainFrame::OnFileSave()
 	{
 		if (!m_OGLView.SaveWeights(dialog->GetPathName()))
 		{
-			MessageBox("Unable to Save Weight File","Error",MB_OK);
+// 			MessageBox("Unable to Save Weight File","Error",MB_OK);
 		}
 	}
 	// RESET THE MAIN DIRECTORY

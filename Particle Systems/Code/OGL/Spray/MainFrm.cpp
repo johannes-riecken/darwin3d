@@ -218,7 +218,7 @@ void CMainFrame::OnFileOpen()
 	{
 		if (!m_OGLView.GetEmitter(dialog->GetPathName()))
 		{
-			MessageBox("Unable to load Emitter File","Error",MB_OK);
+// 			MessageBox("Unable to load Emitter File","Error",MB_OK);
 		}
 	}
 	// RESET THE MAIN DIRECTORY
@@ -243,7 +243,7 @@ void CMainFrame::OnFileSave()
 	{
 		if (!m_OGLView.SaveEmitter(dialog->GetPathName()))
 		{
-			MessageBox("Unable to Save Emitter File","Error",MB_OK);
+// 			MessageBox("Unable to Save Emitter File","Error",MB_OK);
 		}
 	}
 	// RESET THE MAIN DIRECTORY

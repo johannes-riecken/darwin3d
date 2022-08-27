@@ -527,12 +527,12 @@ void CMainFrame::OnLButtonDblClk(UINT nFlags, CPoint point)
 
 	if (sec == -1)
 	{
-		MessageBox("Not inside any..","Inside Sector Test",MB_OK);
+// 		MessageBox("Not inside any..","Inside Sector Test",MB_OK);
 	}
 	else
 	{
 		sprintf(message,"Inside Sector %d",sec);
-		MessageBox(message,"Inside Sector Test",MB_OK);
+// 		MessageBox(message,"Inside Sector Test",MB_OK);
 	}
 	CFrameWnd::OnLButtonDblClk(nFlags, point);
 }
@@ -967,7 +967,7 @@ void CMainFrame::DeleteEdge(short which)
 	t_edge = &m_edgelist[which];
 	char message[80];
 	sprintf(message,"Delete # %d",which);
-	MessageBox(message,"Delete Edge",MB_OK);
+// 	MessageBox(message,"Delete Edge",MB_OK);
 	// FIX THE POINTERS TO THIS EDGE
 	// DO IT FOR THE SECTORS
 	for (loop = 0; loop < m_sectorcnt; loop ++)

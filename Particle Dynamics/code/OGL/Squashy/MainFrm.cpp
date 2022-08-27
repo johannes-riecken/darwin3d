@@ -144,7 +144,7 @@ void CMainFrame::OnHelpWhichopengl()
 	m_OGLView.GetGLInfo(who,which,version,extensions);
 	sprintf(message,"Who:\t%s\nWhich:\t%s\nVersion:\t%s\nExtensions:\t%s",
 		who,which,version,extensions);
-	MessageBox(message,"Which OpenGL Renderer?",MB_OK);
+// 	MessageBox(message,"Which OpenGL Renderer?",MB_OK);
 }
 // OnWhichogl
 

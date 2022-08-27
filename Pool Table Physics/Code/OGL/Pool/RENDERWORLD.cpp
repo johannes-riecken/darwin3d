@@ -212,7 +212,7 @@ void LoadTextures()
 		rgb = LoadTGAFile( g_TexPool[g_TextureCnt].map,&tgaHeader);
 		if (rgb == NULL)
 		{
-			MessageBox(NULL,"Unable to Open File...",g_TexPool[g_TextureCnt].map,MB_OK);
+// 			MessageBox(NULL,"Unable to Open File...",g_TexPool[g_TextureCnt].map,MB_OK);
 			g_TexPool[g_TextureCnt].glTex = 0;
 			return;
 		}
@@ -271,7 +271,7 @@ void LoadSceneFile(char *filename)
 		fread(tempstr,1,4,fp); // FDAT
 		if (strncmp(tempstr,"ROSC",4)!= 0)
 		{
-			MessageBox(NULL,"Not a Valid Data File","Load File", MB_OK|MB_ICONEXCLAMATION);
+// 			MessageBox(NULL,"Not a Valid Data File","Load File", MB_OK|MB_ICONEXCLAMATION);
 			return;
 		}
 
