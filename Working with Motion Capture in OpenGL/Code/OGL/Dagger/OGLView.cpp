@@ -24,6 +24,8 @@
 #endif
 #include "Dagger.h"
 #include "OGLView.h"
+#include <cstring>
+#include <cstdio>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

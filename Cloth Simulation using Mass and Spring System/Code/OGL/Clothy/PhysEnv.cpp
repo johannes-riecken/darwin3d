@@ -38,6 +38,7 @@
 #include "SimProps.h"
 #include "SetVert.h"
 #include "AddSpher.h"
+#include <cstdio>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

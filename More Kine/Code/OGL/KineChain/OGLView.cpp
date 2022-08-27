@@ -30,6 +30,8 @@
 #include "Model.h"		// SOFTIMAGE MODEL DATA
 #include "Restrict.h"	// DOF RESTRICTIONS DIALOG
 #include "Bitmap.h"
+#include <cstring>
+#include <cstdio>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

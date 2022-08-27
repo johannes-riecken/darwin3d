@@ -22,6 +22,8 @@
 #include "Slash.h"
 #include "OGLView.h"
 #include "SetRot.h"
+#include <cstdio>
+#include <cstring>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

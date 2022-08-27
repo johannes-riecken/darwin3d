@@ -28,6 +28,8 @@
 #include "OGLView.h"
 #include "Quatern.h"
 #include "Model.h"		// SOFTIMAGE MODEL DATA
+#include <cstring>
+#include <cstdio>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

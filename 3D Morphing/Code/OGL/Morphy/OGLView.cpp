@@ -26,6 +26,7 @@
 #include "OGLView.h"
 #include "LoadOBJ.h"
 #include "Bitmap.h"
+#include <cstdio>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

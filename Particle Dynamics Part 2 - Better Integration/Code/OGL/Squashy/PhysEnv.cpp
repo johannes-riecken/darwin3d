@@ -37,6 +37,7 @@
 #include "PhysEnv.h"
 #include "SimProps.h"
 #include "VertMass.h"
+#include <cstdio>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

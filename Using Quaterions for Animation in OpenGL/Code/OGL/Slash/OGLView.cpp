@@ -23,6 +23,8 @@
 #include "OGLView.h"
 #include "Model.h"		// SOFTIMAGE MODEL DATA
 #include "SetRot.h"
+#include <cstdio>
+#include <cstring>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

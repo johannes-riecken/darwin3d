@@ -26,6 +26,7 @@
 #include "OGLView.h"
 #include "particle.h"
 #include "EditEmit.h"
+#include <cstring>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

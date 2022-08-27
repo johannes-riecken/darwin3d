@@ -28,6 +28,7 @@
 #include "Math.h"
 #include "EditBlob.h"
 #include "EditSys.h"
+#include <cstring>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
