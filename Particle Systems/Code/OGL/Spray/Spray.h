@@ -24,7 +24,9 @@
 #endif // _MSC_VER >= 1000
 
 #ifndef __AFXWIN_H__
+#ifdef _MSC_VER
 	#error include 'stdafx.h' before including this file for PCH
+#endif
 #endif
 
 #include "resource.h"       // main symbols

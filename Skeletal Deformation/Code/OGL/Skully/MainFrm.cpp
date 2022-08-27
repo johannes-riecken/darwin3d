@@ -18,7 +18,9 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
+#ifdef _MSC_VER
 #include "stdafx.h"
+#endif
 #include "mmsystem.h"		// NEED THIS FOR THE TIMEGETTIME
 #include "Skully.h"
 #include "HierWin.h"

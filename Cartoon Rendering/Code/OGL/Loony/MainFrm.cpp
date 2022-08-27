@@ -16,7 +16,9 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
+#ifdef _MSC_VER
 #include "stdafx.h"
+#endif
 #include "mmsystem.h"		// NEED THIS FOR THE TIMEGETTIME
 #include "Loony.h"
 #include "MainFrm.h"

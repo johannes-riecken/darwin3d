@@ -16,7 +16,9 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
+#ifdef _MSC_VER
 #include "stdafx.h"
+#endif
 #include "Slash.h"
 #include "OGLView.h"
 #include "Model.h"		// SOFTIMAGE MODEL DATA

@@ -20,7 +20,9 @@
 //  Thanks - jeffl@darwin3d.com
 //
 ///////////////////////////////////////////////////////////////////////////////
+#ifdef _MSC_VER
 #include "stdafx.h"
+#endif
 #include "Spray.h"
 #include "Particle.h"
 #include <math.h>

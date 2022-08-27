@@ -20,7 +20,9 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
+#ifdef _MSC_VER
 #include "stdafx.h"
+#endif
 #include "math.h"
 #include "Kine.h"
 #include "OGLView.h"

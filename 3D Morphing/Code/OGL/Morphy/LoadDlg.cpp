@@ -1,7 +1,9 @@
 // LoadDlg.cpp : implementation file
 //
 
+#ifdef _MSC_VER
 #include "stdafx.h"
+#endif
 #include "morphy.h"
 #include "LoadDlg.h"
 

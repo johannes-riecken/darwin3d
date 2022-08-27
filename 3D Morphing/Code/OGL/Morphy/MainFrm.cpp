@@ -17,7 +17,9 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 
+#ifdef _MSC_VER
 #include "stdafx.h"
+#endif
 #include "Morphy.h"
 #include "MainFrm.h"
 #include "LoadDlg.h"

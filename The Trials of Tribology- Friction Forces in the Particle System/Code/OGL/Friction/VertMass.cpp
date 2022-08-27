@@ -1,7 +1,9 @@
 // VertMass.cpp : implementation file
 //
 
+#ifdef _MSC_VER
 #include "stdafx.h"
+#endif
 #include "Friction.h"
 #include "VertMass.h"
 

@@ -18,7 +18,9 @@
 //  Thanks - jeffl@darwin3d.com
 //
 ///////////////////////////////////////////////////////////////////////////////
+#ifdef _MSC_VER
 #include "stdafx.h"
+#endif
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include "loadOBJ.h"

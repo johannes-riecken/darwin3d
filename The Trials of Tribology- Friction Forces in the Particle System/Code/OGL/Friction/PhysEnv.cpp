@@ -28,7 +28,9 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
+#ifdef _MSC_VER
 #include "stdafx.h"
+#endif
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <assert.h>

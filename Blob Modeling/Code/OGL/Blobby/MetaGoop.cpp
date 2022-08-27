@@ -18,7 +18,9 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
+#ifdef _MSC_VER
 #include "stdafx.h"
+#endif
 #include <math.h>
 #include <float.h>
 #include <GL/gl.h>

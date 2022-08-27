@@ -1,7 +1,9 @@
 // NewCloth.cpp : implementation file
 //
 
+#ifdef _MSC_VER
 #include "stdafx.h"
+#endif
 #include "clothy.h"
 #include "NewCloth.h"
 

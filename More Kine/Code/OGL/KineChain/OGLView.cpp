@@ -19,7 +19,9 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
+#ifdef _MSC_VER
 #include "stdafx.h"
+#endif
 #include "math.h"
 #include "KineChain.h"
 #include "MathDefs.h"

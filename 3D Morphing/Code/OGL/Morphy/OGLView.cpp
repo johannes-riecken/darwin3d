@@ -18,7 +18,9 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
+#ifdef _MSC_VER
 #include "stdafx.h"
+#endif
 #include "Morphy.h"
 #include "OGLView.h"
 #include "LoadOBJ.h"

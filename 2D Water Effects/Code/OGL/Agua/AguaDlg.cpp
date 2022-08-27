@@ -1,7 +1,9 @@
 // AguaDlg.cpp : implementation file
 //
 
+#ifdef _MSC_VER
 #include "stdafx.h"
+#endif
 #include <math.h>
 #include "Agua.h"
 #include "AguaDlg.h"

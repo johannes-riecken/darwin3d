@@ -1,7 +1,9 @@
 // Agua.cpp : Defines the class behaviors for the application.
 //
 
+#ifdef _MSC_VER
 #include "stdafx.h"
+#endif
 #include "Agua.h"
 #include "AguaDlg.h"
 

@@ -19,7 +19,9 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
+#ifdef _MSC_VER
 #include "stdafx.h"
+#endif
 #include "mmsystem.h"		// NEED THIS FOR THE TIMEGETTIME
 #include "Dagger.h"
 #include "HierWin.h"
