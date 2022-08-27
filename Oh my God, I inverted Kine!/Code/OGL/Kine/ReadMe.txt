@@ -29,7 +29,7 @@ tan(O3) = b/a
 
 O1 = O3 - O4
 
-Using the Tan identity 
+Using the Tan identity
 
 tan(O3 - O4) = tan(O3) - tan (O4) / (1 + tan(O3)tan(O4)
 
@@ -88,17 +88,17 @@ is in OGLView.cpp at the very bottom.  The function is called
 "ComputeIK" and it takes a point on the screen for the articulated
 arm to try and reach.
 
-Write to me if you have problems or questions and check 
+Write to me if you have problems or questions and check
 the web site or Game Developer's web site for updates.
 
-Jeff Lander 
+Jeff Lander
 jeffl@darwin3d.com
 www.darwin3d.com/gamedev.htm				July 1, 1998
 -----------------------------------------------------------
 
 I know this code could be optimized for maximum performance
 but it was written to be a clean example without a lot of
-tricks.  It should be easy to learn and build from.  
+tricks.  It should be easy to learn and build from.
 
 Here are the details.
 
@@ -106,12 +106,12 @@ I compiled the code with Visual C++ 5.0.  It has been tested
 with Microsoft OpenGL, SGI OpenGL, Permidia 1 and 2 OpenGL
 Drivers, Riva 128, Riva TNT, and Symetra Ultra FX Pro.
 
-It should run on any OpenGL fully complient driver.  This 
+It should run on any OpenGL fully complient driver.  This
 DOES NOT include the mini-QuakeGL driver for 3DFX.  3DFX
 OpenGL does not support OpenGL in a window so will not work
 with this application.
 
-There are instructions in the Help/About dialog.  
+There are instructions in the Help/About dialog.
 
 It also has an example of working with Vertex Arrays as well as
 Display Lists.  I have been playing around with different variations

@@ -71,7 +71,7 @@ static UINT indicators[] =
 CMainFrame::CMainFrame()
 {
 	m_Wireframe = TRUE;
-	m_HArrow = AfxGetApp()->LoadStandardCursor(IDC_ARROW);	
+	m_HArrow = AfxGetApp()->LoadStandardCursor(IDC_ARROW);
 
 }
 
@@ -84,11 +84,11 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 /// Local Variables ///////////////////////////////////////////////////////////
 	RECT rect;
 ///////////////////////////////////////////////////////////////////////////////
-	GetClientRect(&rect); 
+	GetClientRect(&rect);
 
 	if (CFrameWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
-	
+
 	if (!m_wndStatusBar.Create(this) ||
 		!m_wndStatusBar.SetIndicators(indicators,
 		  sizeof(indicators)/sizeof(UINT)))
@@ -97,7 +97,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;      // fail to create
 	}
 
-	m_OGLView.Create(NULL,"Render Window",WS_CHILD | WS_VISIBLE, 
+	m_OGLView.Create(NULL,"Render Window",WS_CHILD | WS_VISIBLE,
 		CRect(OGLWIN_START_X, OGLWIN_START_Y,rect.right - OGLWIN_WIDTH,rect.bottom - OGLWIN_BOTTOM),this,104);
 	m_OGLView.ShowWindow(TRUE);
 
@@ -111,7 +111,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
 	HICON hicon;
-	
+
 	hicon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 
 	m_ClassName = AfxRegisterWndClass(NULL,
@@ -146,16 +146,16 @@ void CMainFrame::Dump(CDumpContext& dc) const
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	OnWhichogl
 // Purpose:		Create dialog to Show which version of OGL is running
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 void CMainFrame::OnWhichogl()
 {
 	m_OGLView.GetGLInfo();
 }
 // OnWhichogl
 
-BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext) 
+BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
 {
-	
+
 	return CFrameWnd::OnCreateClient(lpcs, pContext);
 }
 
@@ -166,16 +166,16 @@ BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
 //              as possible
 // Reference:	OpenGL Programming for Windows 95 by Ron Fosner
 //				Sort of a variation on that code
-///////////////////////////////////////////////////////////////////////////////		
-void CMainFrame::OnPaint() 
+///////////////////////////////////////////////////////////////////////////////
+void CMainFrame::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
-	
-	m_OGLView.drawScene();	
+
+	m_OGLView.drawScene();
 }
 /// OnPaint ////////////////////////////////////////////////////////////
 
-void CMainFrame::OnSize(UINT nType, int cx, int cy) 
+void CMainFrame::OnSize(UINT nType, int cx, int cy)
 {
 	// RESET THE m_OGLView WINDOW SIZE
 	m_OGLView.SetWindowPos( &wndTopMost, OGLWIN_START_X, OGLWIN_START_Y, cx - OGLWIN_WIDTH, cy - OGLWIN_BOTTOM, SWP_NOZORDER );
@@ -186,19 +186,19 @@ void CMainFrame::OnSize(UINT nType, int cx, int cy)
 
 // HAVEN'T IMPLEMENTED ADDING A BONE
 #if 0
-void CMainFrame::OnAddBone() 
+void CMainFrame::OnAddBone()
 {
 	m_HierWin.AddBone();
 }
 #endif
 
-void CMainFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) 
+void CMainFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	m_OGLView.HandleKeyDown(nChar);
 	CFrameWnd::OnKeyDown(nChar, nRepCnt, nFlags);
 }
 
-void CMainFrame::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags) 
+void CMainFrame::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	CFrameWnd::OnKeyUp(nChar, nRepCnt, nFlags);
 	m_OGLView.HandleKeyUp(nChar);
@@ -213,10 +213,10 @@ void CMainFrame::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 /////////////////////////////////////////////////////////////////////////////
 
 
-void CMainFrame::OnFileOpen() 
+void CMainFrame::OnFileOpen()
 {
 /// Local Variables ///////////////////////////////////////////////////////////
-	char BASED_CODE szFilter[] = "Shade Table (*.shd)|*.shd||";  
+	char BASED_CODE szFilter[] = "Shade Table (*.shd)|*.shd||";
 	CFileDialog	*dialog;
 	CString exten;
 ///////////////////////////////////////////////////////////////////////////////
@@ -229,13 +229,13 @@ void CMainFrame::OnFileOpen()
 		m_OGLView.drawScene();
 	}
 	delete dialog;
-	
+
 }
 
-void CMainFrame::OnFileOpenObjectMesh() 
+void CMainFrame::OnFileOpenObjectMesh()
 {
 /// Local Variables ///////////////////////////////////////////////////////////
-	char BASED_CODE szFilter[] = "Object Mesh OBJ (*.obj)|*.obj||";  
+	char BASED_CODE szFilter[] = "Object Mesh OBJ (*.obj)|*.obj||";
 	CFileDialog	*dialog;
 	CString exten;
 ///////////////////////////////////////////////////////////////////////////////
@@ -250,29 +250,29 @@ void CMainFrame::OnFileOpenObjectMesh()
 	delete dialog;
 }
 
-void CMainFrame::OnCartoonAntialias() 
+void CMainFrame::OnCartoonAntialias()
 {
 	m_OGLView.m_AntiAlias = !m_OGLView.m_AntiAlias;
-	m_OGLView.drawScene();	
+	m_OGLView.drawScene();
 }
 
-void CMainFrame::OnUpdateCartoonAntialias(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateCartoonAntialias(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck( m_OGLView.m_AntiAlias );
 }
 
-void CMainFrame::OnCartoonSettings() 
+void CMainFrame::OnCartoonSettings()
 {
 	m_OGLView.CartoonSettings();
 }
 
-void CMainFrame::OnCartoonDrawsilhouette() 
+void CMainFrame::OnCartoonDrawsilhouette()
 {
 	m_OGLView.m_Silhouette = !m_OGLView.m_Silhouette;
-	m_OGLView.drawScene();	
+	m_OGLView.drawScene();
 }
 
-void CMainFrame::OnUpdateCartoonDrawsilhouette(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateCartoonDrawsilhouette(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck( m_OGLView.m_Silhouette );
 }

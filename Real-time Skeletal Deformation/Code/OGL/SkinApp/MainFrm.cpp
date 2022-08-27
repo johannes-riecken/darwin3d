@@ -5,7 +5,7 @@
 // Purpose:	Implementation of Main Window of Deformation System
 //
 // Created:
-//		JL 2/18/98		
+//		JL 2/18/98
 //
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -74,9 +74,9 @@ static UINT indicators[] =
 
 CMainFrame::CMainFrame()
 {
-	m_HArrow = AfxGetApp()->LoadStandardCursor(IDC_ARROW);	
+	m_HArrow = AfxGetApp()->LoadStandardCursor(IDC_ARROW);
 
-	InitializeSkeleton();	
+	InitializeSkeleton();
 }
 
 CMainFrame::~CMainFrame()
@@ -88,7 +88,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 /// Local Variables ///////////////////////////////////////////////////////////
 	RECT rect;
 ///////////////////////////////////////////////////////////////////////////////
-	GetClientRect(&rect); 
+	GetClientRect(&rect);
 
 	if (CFrameWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
@@ -115,7 +115,7 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 /// Local Variables ///////////////////////////////////////////////////////////
 	HICON hicon;
 ///////////////////////////////////////////////////////////////////////////////
-	
+
 	hicon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 
 	m_ClassName = AfxRegisterWndClass(NULL,
@@ -131,13 +131,13 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	OnHelpWhichopengl
 // Purpose:		Create dialog to Show which version of OGL is running
-///////////////////////////////////////////////////////////////////////////////		
-void CMainFrame::OnHelpWhichopengl() 
+///////////////////////////////////////////////////////////////////////////////
+void CMainFrame::OnHelpWhichopengl()
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	char message[80];			// PLACE TO PUT THE MESSAGE
 	char who[80],which[80],version[80];	// OPENGL STUFF
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 	m_OGLView.GetGLInfo(who,which,version);
 	sprintf(message,"Who:\t%s\nWhich:\t%s\nVersion:\t%s",who,which,version);
 	MessageBox(message,"Which OpenGL Renderer?",MB_OK);
@@ -160,26 +160,26 @@ void CMainFrame::Dump(CDumpContext& dc) const
 /////////////////////////////////////////////////////////////////////////////
 // CMainFrame message handlers
 
-void CMainFrame::OnPaint() 
+void CMainFrame::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
 
 	m_OGLView.drawScene(FALSE);
 }
 
-void CMainFrame::OnSize(UINT nType, int cx, int cy) 
+void CMainFrame::OnSize(UINT nType, int cx, int cy)
 {
 	m_OGLView.SetWindowPos( &wndTopMost, 1, 1, cx - 3, cy - 20 , SWP_NOZORDER ); // -60 bottom
 	CFrameWnd::OnSize(nType, cx, cy);
 }
 
-void CMainFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) 
+void CMainFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	m_OGLView.HandleKeyDown(nChar);
 	CFrameWnd::OnKeyDown(nChar, nRepCnt, nFlags);
 }
 
-void CMainFrame::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags) 
+void CMainFrame::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -193,55 +193,55 @@ void CMainFrame::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	CFrameWnd::OnKeyUp(nChar, nRepCnt, nFlags);
 }
 
-void CMainFrame::OnControlLowerarm() 
+void CMainFrame::OnControlLowerarm()
 {
 	m_OGLView.m_SelectedBone = &m_Skeleton.children[1];
 	m_OGLView.drawScene(FALSE);
 }
 
-void CMainFrame::OnUpdateControlLowerarm(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateControlLowerarm(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck(m_OGLView.m_SelectedBone == &m_Skeleton.children[1]);
 }
 
-void CMainFrame::OnControlUpperarm() 
+void CMainFrame::OnControlUpperarm()
 {
 	m_OGLView.m_SelectedBone = &m_Skeleton.children[0];
 	m_OGLView.drawScene(FALSE);
 }
 
-void CMainFrame::OnUpdateControlUpperarm(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateControlUpperarm(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck(m_OGLView.m_SelectedBone == &m_Skeleton.children[0]);
 }
 
 // TOGGLE THE STATUS OF THE VIEW GEOMETRY FLAG
-void CMainFrame::OnViewGeometry() 
+void CMainFrame::OnViewGeometry()
 {
 	m_OGLView.m_DrawGeometry = !m_OGLView.m_DrawGeometry;
 	m_OGLView.drawScene(FALSE);
 }
 
 // SET THE CHECKED STATUS OF THE VIEW GEOMETRY MENU BASED ON STATUS
-void CMainFrame::OnUpdateViewGeometry(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateViewGeometry(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck( m_OGLView.m_DrawGeometry );
 }
 
 // TOGGLE THE STATUS OF THE VIEW BONESYSTEM FLAG
-void CMainFrame::OnViewBonesystem() 
+void CMainFrame::OnViewBonesystem()
 {
 	m_OGLView.m_DrawBoneSystem = !m_OGLView.m_DrawBoneSystem;
 	m_OGLView.drawScene(FALSE);
 }
 
 // SET THE CHECKED STATUS OF THE VIEW BONESYSTEM MENU BASED ON STATUS
-void CMainFrame::OnUpdateViewBonesystem(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateViewBonesystem(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck( m_OGLView.m_DrawBoneSystem );
 }
 
-void CMainFrame::OnViewOutline() 
+void CMainFrame::OnViewOutline()
 {
 	m_OGLView.m_DrawOutline = !m_OGLView.m_DrawOutline;
 	if (m_OGLView.m_DrawOutline)
@@ -251,13 +251,13 @@ void CMainFrame::OnViewOutline()
 	m_OGLView.drawScene(FALSE);
 }
 
-void CMainFrame::OnUpdateViewOutline(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateViewOutline(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck( m_OGLView.m_DrawOutline );
 }
 
 
-void CMainFrame::OnModifyweights() 
+void CMainFrame::OnModifyweights()
 {
 	m_OGLView.ModifyWeights();
 }
@@ -325,7 +325,7 @@ void CMainFrame::InitializeSkeleton()
 // Function:	OnFileNew
 // Purpose:		Clear the weight settings for the model
 ///////////////////////////////////////////////////////////////////////////////
-void CMainFrame::OnFileNew() 
+void CMainFrame::OnFileNew()
 {
 	m_OGLView.ResetWeights();
 }
@@ -334,13 +334,13 @@ void CMainFrame::OnFileNew()
 // Function:	OnFileOpen
 // Purpose:		Load the weight settings for the model
 ///////////////////////////////////////////////////////////////////////////////
-void CMainFrame::OnFileOpen() 
+void CMainFrame::OnFileOpen()
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	char BASED_CODE szFilter[] = "Weight Files (*.WGT)|*.WGT|All Files (*.*)|*.*||";
 	char directory[80];
 	CFileDialog	*dialog;
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 	// HAD TO ADD DIRECTORY STUFF SINCE DIALOG CHANGES DIRECTORY
 	_getcwd(directory,80);
 	dialog = new CFileDialog(TRUE,"WGT",NULL,OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,szFilter);
@@ -359,13 +359,13 @@ void CMainFrame::OnFileOpen()
 // Function:	OnFileSave
 // Purpose:		Save the weight settings for the model
 ///////////////////////////////////////////////////////////////////////////////
-void CMainFrame::OnFileSave() 
+void CMainFrame::OnFileSave()
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	char BASED_CODE szFilter[] = "Weight Files (*.WGT)|*.WGT|All Files (*.*)|*.*||";
 	char directory[80];
 	CFileDialog	*dialog;
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 	// HAD TO ADD DIRECTORY STUFF SINCE DIALOG CHANGES DIRECTORY
 	_getcwd(directory,80);
 	dialog = new CFileDialog(FALSE,"WGT",NULL,OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,szFilter);

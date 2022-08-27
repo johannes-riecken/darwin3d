@@ -5,7 +5,7 @@
 // Purpose:	Implementation of OpenGL Window of Hierarchical Animation System
 //
 // Created:
-//		JL 9/1/97		
+//		JL 9/1/97
 // Versions:
 //		1.01	12/20/97	Fix perspective in OpenGL Resize Code
 //		1.02	1/10/97		Change to display code to handle skeletal hierarchy
@@ -77,7 +77,7 @@ COGLView::~COGLView()
 {
 }
 
-BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext) 
+BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext)
 {
 	return CWnd::Create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, pContext);
 }
@@ -137,7 +137,7 @@ BOOL COGLView::SetupPixelFormat(HDC hdc)
 }
 
 
-int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	RECT rect;
@@ -147,7 +147,7 @@ int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
     m_hDC = ::GetDC(m_hWnd);
     if (!SetupPixelFormat(m_hDC))
 		PostQuitMessage (0);
-	
+
     m_hRC = wglCreateContext(m_hDC);
     wglMakeCurrent(m_hDC, m_hRC);
     GetClientRect(&rect);
@@ -166,7 +166,7 @@ int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 			glVertex3f( 0.15f, -0.04f, 0.0f);
 			glColor3f(0.0f, 1.0f, 0.0f);	// Y AXIS STARTS - COLOR GREEN
 			glVertex3f( 0.0f,  0.2f, 0.0f);
-			glVertex3f( 0.0f, -0.2f, 0.0f);			
+			glVertex3f( 0.0f, -0.2f, 0.0f);
 			glVertex3f( 0.0f,  0.2f, 0.0f);	// TOP PIECE OF ARROWHEAD
 			glVertex3f( 0.04f,  0.15f, 0.0f);
 			glVertex3f( 0.0f,  0.2f, 0.0f);	// BOTTOM PIECE OF ARROWHEAD
@@ -245,7 +245,7 @@ GLvoid COGLView::resize( GLsizei width, GLsizei height )
 	m_ScreenWidth = width;
 	m_ScreenHeight = height;
 
-}    
+}
 //// resize /////////////////////////////////////////////////////////////////
 
 GLvoid COGLView::initializeGL(GLsizei width, GLsizei height)
@@ -317,8 +317,8 @@ GLvoid COGLView::GetSkeletonMat(t_Bone *rootBone)
 		// Set observer's orientation and position
 		glRotatef(curBone->rot.z, 0.0f, 0.0f, 1.0f);
 		glRotatef(curBone->rot.y, 0.0f, 1.0f, 0.0f);
-		glRotatef(curBone->rot.x, 1.0f, 0.0f, 0.0f); 
-	
+		glRotatef(curBone->rot.x, 1.0f, 0.0f, 0.0f);
+
 		// Get the current matrix
 		glGetFloatv(GL_MODELVIEW_MATRIX,tempMatrix.m);
 
@@ -365,8 +365,8 @@ GLvoid COGLView::GetBaseSkeletonMat(t_Bone *rootBone)
 		// Set observer's orientation and position
 		glRotatef(curBone->b_rot.z, 0.0f, 0.0f, 1.0f);
 		glRotatef(curBone->b_rot.y, 0.0f, 1.0f, 0.0f);
-		glRotatef(curBone->b_rot.x, 1.0f, 0.0f, 0.0f); 
-	
+		glRotatef(curBone->b_rot.x, 1.0f, 0.0f, 0.0f);
+
 		// GRAB THE MATRIX AT THIS POINT SO I CAN USE IT FOR THE DEFORMATION
 		glGetFloatv(GL_MODELVIEW_MATRIX,tempMatrix.m);
 		// Invert the matrix and store it for later
@@ -550,14 +550,14 @@ GLvoid COGLView::drawSkeleton(t_Bone *rootBone)
 		// Set observer's orientation and position
 		glRotatef(curBone->rot.z, 0.0f, 0.0f, 1.0f);
 		glRotatef(curBone->rot.y, 0.0f, 1.0f, 0.0f);
-		glRotatef(curBone->rot.x, 1.0f, 0.0f, 0.0f); 
-	
+		glRotatef(curBone->rot.x, 1.0f, 0.0f, 0.0f);
+
 		// GRAB THE MATRIX AT THIS POINT SO I CAN USE IT FOR THE DEFORMATION
 //		glGetFloatv(GL_MODELVIEW_MATRIX,curBone->matrix.m);
 
 		// THE SCALE IS LOCAL SO I PUSH AND POP
 		glPushMatrix();
-		glScalef(curBone->bsphere, curBone->bsphere, curBone->bsphere); 
+		glScalef(curBone->bsphere, curBone->bsphere, curBone->bsphere);
 
 		if (m_DrawSkeleton)
 		{
@@ -598,7 +598,7 @@ GLvoid COGLView::drawScene(BOOL drawSelectRect)
 	if (m_Camera.rot.y  > 360.0f) m_Camera.rot.y  -= 360.0f;
 	if (m_Camera.rot.x   > 360.0f) m_Camera.rot.x   -= 360.0f;
 	if (m_Camera.rot.z > 360.0f) m_Camera.rot.z -= 360.0f;
-	
+
 	glDisable(GL_DEPTH_TEST);	// TURN OFF DEPTH TEST FOR CLEAR
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -612,7 +612,7 @@ GLvoid COGLView::drawScene(BOOL drawSelectRect)
 
 	glRotatef(m_Camera.rot.x, 1.0f, 0.0f, 0.0f);
 	glRotatef(m_Camera.rot.y, 0.0f, 1.0f, 0.0f);
-	glRotatef(m_Camera.rot.z, 0.0f, 0.0f, 1.0f); 
+	glRotatef(m_Camera.rot.z, 0.0f, 0.0f, 1.0f);
 
 	// GRAB THE MATRIX AT THIS POINT SO I CAN USE IT FOR THE DEFORMATION
 	glGetFloatv(GL_MODELVIEW_MATRIX,m_Skeleton.matrix.m);
@@ -652,7 +652,7 @@ GLvoid COGLView::drawScene(BOOL drawSelectRect)
 		glPopMatrix();							// RESTORE THE OLD PROJECTION
 		glMatrixMode(GL_MODELVIEW);				// BACK TO MODEL MODE
 	}
-	
+
 	//    glFinish();
 
 	SwapBuffers(m_hDC);
@@ -688,7 +688,7 @@ void COGLView::SelectVertices(BOOL select)
 
 		glRotatef(m_Camera.rot.x, 1.0f, 0.0f, 0.0f);
 		glRotatef(m_Camera.rot.y, 0.0f, 1.0f, 0.0f);
-		glRotatef(m_Camera.rot.z, 0.0f, 0.0f, 1.0f); 
+		glRotatef(m_Camera.rot.z, 0.0f, 0.0f, 1.0f);
 
 		for (loop2 = 0; loop2 < m_Model.vertexCnt; loop2++)
 		{
@@ -706,7 +706,7 @@ void COGLView::SelectVertices(BOOL select)
 
 	    glPopMatrix();
 		hitCount = glRenderMode(GL_RENDER); // HOW MANY HITS DID I GET
-		CompareBuffer(hitCount,feedBuffer, select);		// CHECK THEM AGAINST MY SELECTION 
+		CompareBuffer(hitCount,feedBuffer, select);		// CHECK THEM AGAINST MY SELECTION
 		free(feedBuffer);		// GET RID OF THE MEMORY
 	}
 }
@@ -747,9 +747,9 @@ void COGLView::CompareBuffer(GLint size, GLfloat *buffer,BOOL select)
 			// CHECK IF THE POINT WAS IN MY SELECTION RECTANGLE
 			// FLOATS 0 AND 1 ARE SCREEN X AND Y
 			// NOTE: OPENGL SETS THE BOTTOM Y=0
-			if (point[0] >= m_SelectRect.left && 
-				point[0] <= m_SelectRect.right && 
-				point[1] <= m_SelectRect.top && 
+			if (point[0] >= m_SelectRect.left &&
+				point[0] <= m_SelectRect.right &&
+				point[1] <= m_SelectRect.top &&
 				point[1] >= m_SelectRect.bottom)
 				// SET THIS VERTEX TO THE CURRENT SELECTION VALUE
 				data[currentVertex] = select;
@@ -758,7 +758,7 @@ void COGLView::CompareBuffer(GLint size, GLfloat *buffer,BOOL select)
 }
 ////// CompareBuffer //////////////////////////////////////////////////////////
 
-void COGLView::OnDestroy() 
+void COGLView::OnDestroy()
 {
 	CWnd::OnDestroy();
 	if (m_hRC)
@@ -767,11 +767,11 @@ void COGLView::OnDestroy()
 		::ReleaseDC(m_hWnd,m_hDC);
     m_hRC = 0;
     m_hDC = 0;
-	
-	
+
+
 }
 
-void COGLView::OnPaint() 
+void COGLView::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
 
@@ -779,7 +779,7 @@ void COGLView::OnPaint()
 	// Do not call CWnd::OnPaint() for painting messages
 }
 
-void COGLView::OnLButtonDown(UINT nFlags, CPoint point) 
+void COGLView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	// STORE OFF THE KIT POINT AND SETTINGS FOR THE MOVEMENT LATER
 	m_mousepos = point;
@@ -800,7 +800,7 @@ void COGLView::OnLButtonDown(UINT nFlags, CPoint point)
 	CWnd::OnLButtonDown(nFlags, point);
 }
 
-void COGLView::OnRButtonDown(UINT nFlags, CPoint point) 
+void COGLView::OnRButtonDown(UINT nFlags, CPoint point)
 {
 	// STORE OFF THE KIT POINT AND SETTINGS FOR THE MOVEMENT LATER
 	m_mousepos = point;
@@ -816,7 +816,7 @@ void COGLView::OnRButtonDown(UINT nFlags, CPoint point)
 }
 
 
-void COGLView::OnLButtonUp(UINT nFlags, CPoint point) 
+void COGLView::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	if ((nFlags & MK_CONTROL) == 0 && (nFlags & MK_SHIFT) == 0)
 
@@ -836,7 +836,7 @@ void COGLView::OnLButtonUp(UINT nFlags, CPoint point)
 // Purpose:		Handler for the mouse.  Handles movement when pressed
 // Arguments:	Flags for key masks and point
 ///////////////////////////////////////////////////////////////////////////////
-void COGLView::OnMouseMove(UINT nFlags, CPoint point) 
+void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	UpdateStatusBar(0);
 	if (nFlags & MK_LBUTTON > 0)
@@ -850,7 +850,7 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 				m_SelectedBone->rot.z = m_Grab_Rot_Z + ((float)ROTATE_SPEED * (point.x - m_mousepos.x));
 				drawScene(FALSE);
 			}
-		}	
+		}
 		// ELSE "SHIFT" ROTATE THE BONE IN XY
 		else if ((nFlags & MK_SHIFT) > 0)
 		{
@@ -914,23 +914,23 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 			}
 		}
 	}
-	
+
 	CWnd::OnMouseMove(nFlags, point);
 }
 //// OnMouseMove //////////////////////////////////////////////////////
 
-void COGLView::OnMove(int x, int y) 
+void COGLView::OnMove(int x, int y)
 {
 	CWnd::OnMove(x, y);
-	
+
 	resize( x,y );
-	
+
 }
 
 // 0 = READY
 // 1 = ROTATE
 // 2 = TRANSLATE
-void COGLView::UpdateStatusBar(int mode) 
+void COGLView::UpdateStatusBar(int mode)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	char message[80];
@@ -950,7 +950,7 @@ void COGLView::UpdateStatusBar(int mode)
 	m_StatusBar->SetPaneText(0,message);
 }
 
-void COGLView::UpdateStatusBarFrameInfo() 
+void COGLView::UpdateStatusBarFrameInfo()
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	char message[80];
@@ -967,11 +967,11 @@ void COGLView::UpdateStatusBarFrameInfo()
 	}
 }
 
-void COGLView::HandleKeyDown(UINT nChar) 
+void COGLView::HandleKeyDown(UINT nChar)
 {
 }
 
-void COGLView::HandleKeyUp(UINT nChar) 
+void COGLView::HandleKeyUp(UINT nChar)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	int loop2;
@@ -1012,10 +1012,10 @@ void COGLView::HandleKeyUp(UINT nChar)
 // Purpose:		Reset the view settings for the skeleton
 // Arguments:	None
 ///////////////////////////////////////////////////////////////////////////////
-void COGLView::OnViewResetskeleton() 
+void COGLView::OnViewResetskeleton()
 {
 	ResetSkeleton(&m_Skeleton);
-	drawScene(FALSE);	
+	drawScene(FALSE);
 	Invalidate(TRUE);
 }
 //// OnViewResetskeleton //////////////////////////////////////////////////////
@@ -1024,7 +1024,7 @@ void COGLView::OnViewResetskeleton()
 // Function:	GetGLInfo
 // Purpose:		Get the OpenGL Vendor and Renderer
 ///////////////////////////////////////////////////////////////////////////////
-void COGLView::GetGLInfo() 
+void COGLView::GetGLInfo()
 {
 //// Local Variables ////////////////////////////////////////////////////////////////
 	char *who, *which, *ver, *ext, *message;
@@ -1053,14 +1053,14 @@ void COGLView::GetGLInfo()
 // Purpose:		Sets up the Weights in the Skeleton for all vertices. Recursive
 // Arguments:	Bone pointer
 ///////////////////////////////////////////////////////////////////////////////
-void COGLView::SetSkeletonList(t_Bone *skeleton) 
-{	
+void COGLView::SetSkeletonList(t_Bone *skeleton)
+{
 /// Local Variables ///////////////////////////////////////////////////////////
 	int loop,loop2;
 	long vptr;
 	t_Bone *child;
 ///////////////////////////////////////////////////////////////////////////////
-	
+
 	if (skeleton->childCnt > 0 && m_Model.vertexData != NULL)
 	{
 		child = skeleton->children;
@@ -1120,13 +1120,13 @@ GLvoid COGLView::WeightBones()
 // Purpose:		Go through bones and clear weights for any selected vertex
 // Arguments:	Bone pointer
 ///////////////////////////////////////////////////////////////////////////////
-void COGLView::ClearBoneWeights(t_Bone *skeleton) 
-{	
+void COGLView::ClearBoneWeights(t_Bone *skeleton)
+{
 /// Local Variables ///////////////////////////////////////////////////////////
 	int loop;
 	t_Bone *child;
 ///////////////////////////////////////////////////////////////////////////////
-	
+
 	if (skeleton->childCnt > 0 && m_Model.vertexData != NULL)
 	{
 		child = skeleton->children;
@@ -1153,13 +1153,13 @@ void COGLView::ClearBoneWeights(t_Bone *skeleton)
 // Purpose:		Go through bones and either read or write weight values
 // Arguments:	Bone pointer, read or write BOOL, and file pointer
 ///////////////////////////////////////////////////////////////////////////////
-void COGLView::IterateBoneWeights(t_Bone *skeleton, BOOL read, FILE *fp) 
-{	
+void COGLView::IterateBoneWeights(t_Bone *skeleton, BOOL read, FILE *fp)
+{
 /// Local Variables ///////////////////////////////////////////////////////////
 	int loop;
 	t_Bone *child;
 ///////////////////////////////////////////////////////////////////////////////
-	
+
 	if (skeleton->childCnt > 0 && m_Model.vertexData != NULL)
 	{
 		child = skeleton->children;
@@ -1180,7 +1180,7 @@ void COGLView::IterateBoneWeights(t_Bone *skeleton, BOOL read, FILE *fp)
 ///////////////////////////////////////////////////////////////////////////////
 // Function:	LoadWeights
 // Purpose:		Load a Weight File
-// Arguments:	Name of the file to open 
+// Arguments:	Name of the file to open
 ///////////////////////////////////////////////////////////////////////////////
 BOOL COGLView::LoadWeights(CString name)
 {

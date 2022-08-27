@@ -8,7 +8,7 @@
 // SINCE THE ENGINE MAY BE IMPLEMENTED ON CONSOLES AND OTHER SYSTEMS
 //
 // Created:
-//		JL 9/1/97		
+//		JL 9/1/97
 // Revisions:
 //		Integrated into Particle Demo		4/18/98
 //
@@ -37,7 +37,7 @@
 // SINCE THE ENGINE MAY BE IMPLEMENTED ON CONSOLES AND OTHER SYSTEMS
 //
 // Created:
-//		JL 4/1/98		
+//		JL 4/1/98
 // Revisions:
 //
 ///////////////////////////////////////////////////////////////////////////////
@@ -99,7 +99,7 @@ BOOL initParticleSystem()
 	for (loop = 0; loop < MAX_PARTICLES - 1; loop++)
 	{
 		m_ParticlePool[loop].next = &m_ParticlePool[loop + 1];
-	}	
+	}
 	// SET THE LAST PARTICLE TO POINT TO NULL
 	m_ParticlePool[MAX_PARTICLES - 1].next = NULL;
 
@@ -184,10 +184,10 @@ BOOL addParticle(tEmitter *emitter)
 ///////////////////////////////////////////////////////////////////////////////
 	// IF THERE IS AN EMITTER AND A PARTICLE IN THE POOL
 	// AND I HAVEN'T EMITTED MY MAX
-	if (emitter != NULL && m_ParticlePool != NULL && 
+	if (emitter != NULL && m_ParticlePool != NULL &&
 		emitter->particleCount < emitter->totalParticles)
 	{
-		particle = m_ParticlePool;		// THE CURRENT PARTICLE 
+		particle = m_ParticlePool;		// THE CURRENT PARTICLE
 		m_ParticlePool = m_ParticlePool->next;	// FIX THE POOL POINTERS
 
 		if (emitter->particle != NULL)
@@ -210,7 +210,7 @@ BOOL addParticle(tEmitter *emitter)
 
 		// CONVERT THE ROTATIONS TO A VECTOR
 		RotationToDirection(pitch,yaw,&particle->dir);
-		
+
 		// MULTIPLY IN THE SPEED FACTOR
 		speed = emitter->speed + (emitter->speedVar * RandomNum());
 		particle->dir.x *= speed;
@@ -331,7 +331,7 @@ BOOL updateEmitter(tEmitter *emitter)
 		emits = emitter->emitsPerFrame + (int)((float)emitter->emitVar * RandomNum());
 		for (loop = 0; loop < emits; loop++)
 			addParticle(emitter);
-		
+
 		return TRUE;
 	}
 	return FALSE;

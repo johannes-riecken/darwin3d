@@ -51,14 +51,14 @@ Thanks again to House of Moves and Biovision for providing
 sample motion files to work with.  Write to me if you have
 problems or questions and check the web site for updates.
 
-Jeff Lander 
+Jeff Lander
 jeffl@darwin3d.com
 www.darwin3d.com/gamedev.htm				Dec. 18, 1997
 -----------------------------------------------------------
 
 I know this code could be optimized for maximum performance
 but it was written to be a clean example without a lot of
-tricks.  It should be easy to learn and build from.  
+tricks.  It should be easy to learn and build from.
 
 Here are the details.
 
@@ -66,21 +66,21 @@ I compiled the code with Visual C++ 5.0.  It has been tested
 with Microsoft OpenGL, SGI OpenGL, Permidia 1 and 2 OpenGL
 Drivers, and Symetra Ultra FX Pro.
 
-It should run on any OpenGL fully complient driver.  This 
+It should run on any OpenGL fully complient driver.  This
 DOES NOT include the mini-QuakeGL driver for 3DFX.  3DFX
 OpenGL does not support OpenGL in a window so will not work
 with this application.
 
-There are instructions in the Help/About dialog.  
+There are instructions in the Help/About dialog.
 
 Use Frame/Load Animation to bring in a BVA file.  You can
 use the VCR style controls to play it back.  Hold the SHIFT
-with the mouse buttons to rotate the view or CTRL to 
+with the mouse buttons to rotate the view or CTRL to
 translate the view around.
 
 The Hierarchy window (HierWin.CPP/H) can be used to select a Bone.
-Double click on it to bring up the edit window.  This allows you 
-to change the bone transformation settings.  Playing the animation 
+Double click on it to bring up the edit window.  This allows you
+to change the bone transformation settings.  Playing the animation
 loses those changes.
 
 I started implementing an Add bone command but it is not complete

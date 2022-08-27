@@ -5,7 +5,7 @@
 // Purpose:	Implementation of Main Application of 2D Collision System
 //
 // Created:
-//		JL 11/1/98		
+//		JL 11/1/98
 //
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -141,9 +141,9 @@ void CFateApp::OnAppAbout()
 /////////////////////////////////////////////////////////////////////////////
 // CFateApp commands
 
-BOOL CAboutDlg::DestroyWindow() 
+BOOL CAboutDlg::DestroyWindow()
 {
 	// TODO: Add your specialized code here and/or call the base class
-	
+
 	return CDialog::DestroyWindow();
 }

@@ -42,27 +42,27 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CWeight message handlers
 
-int CWeight::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+int CWeight::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CDialog::OnCreate(lpCreateStruct) == -1)
 		return -1;
-	
+
 	return 0;
 }
 
-BOOL CWeight::DestroyWindow() 
+BOOL CWeight::DestroyWindow()
 {
 	m_pos = m_Slider.GetPos();
 	return CDialog::DestroyWindow();
 }
 
-BOOL CWeight::OnInitDialog() 
+BOOL CWeight::OnInitDialog()
 {
 	CDialog::OnInitDialog();
-	
+
 	m_Slider.SetRange( 0, 256, TRUE);
 //	m_Slider.SetSelection(  0, 256 );
-	
+
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }

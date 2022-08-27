@@ -81,7 +81,7 @@ COGLView::~COGLView()
 {
 }
 
-BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext) 
+BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -142,7 +142,7 @@ BOOL COGLView::SetupPixelFormat(HDC hdc)
 }
 
 
-int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	RECT rect;
@@ -152,7 +152,7 @@ int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
     m_hDC = ::GetDC(m_hWnd);
     if (!SetupPixelFormat(m_hDC))
 		PostQuitMessage (0);
-	
+
     m_hRC = wglCreateContext(m_hDC);
     wglMakeCurrent(m_hDC, m_hRC);
     GetClientRect(&rect);
@@ -173,7 +173,7 @@ int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 			glVertex3f( 0.15f, -0.04f, 0.0f);
 			glColor3f(0.0f, 1.0f, 0.0f);	// Y AXIS STARTS - COLOR GREEN
 			glVertex3f( 0.0f,  0.2f, 0.0f);
-			glVertex3f( 0.0f, -0.2f, 0.0f);			
+			glVertex3f( 0.0f, -0.2f, 0.0f);
 			glVertex3f( 0.0f,  0.2f, 0.0f);	// TOP PIECE OF ARROWHEAD
 			glVertex3f( 0.04f,  0.15f, 0.0f);
 			glVertex3f( 0.0f,  0.2f, 0.0f);	// BOTTOM PIECE OF ARROWHEAD
@@ -208,7 +208,7 @@ GLvoid COGLView::resize( GLsizei width, GLsizei height )
     glLoadIdentity();
     gluPerspective(35.0, aspect, 1.0, 2000.0);
     glMatrixMode(GL_MODELVIEW);
-}    
+}
 
 GLvoid COGLView::initializeGL(GLsizei width, GLsizei height)
 {
@@ -237,7 +237,7 @@ GLvoid COGLView::initializeGL(GLsizei width, GLsizei height)
 }
 
 // GET THE INFO ON THE VERSION OF OPENGL RUNNING
-void COGLView::GetGLInfo() 
+void COGLView::GetGLInfo()
 {
 //// Local Variables ////////////////////////////////////////////////////////////////
 	char *who, *which, *ver, *ext, *message;
@@ -264,7 +264,7 @@ GLvoid COGLView::drawScene(BOOL drawSelectRect)
 /// Local Variables ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
-	
+
     glDisable(GL_DEPTH_TEST);	// TURN OFF DEPTH TEST FOR CLEAR
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -278,8 +278,8 @@ GLvoid COGLView::drawScene(BOOL drawSelectRect)
 
 	glRotatef(m_ViewRot.z, 0.0f, 0.0f, 1.0f);
 	glRotatef(m_ViewRot.y, 0.0f, 1.0f, 0.0f);
-	glRotatef(m_ViewRot.x, 1.0f, 0.0f, 0.0f); 
-	
+	glRotatef(m_ViewRot.x, 1.0f, 0.0f, 0.0f);
+
 	// DRAW THE AXIS OGL OBJECT
 	if (m_DrawAxis)
 		glCallList(OGL_AXIS_DLIST);
@@ -297,7 +297,7 @@ GLvoid COGLView::drawScene(BOOL drawSelectRect)
 }
 
 
-void COGLView::OnDestroy() 
+void COGLView::OnDestroy()
 {
 	CWnd::OnDestroy();
 	if (m_hRC)
@@ -306,11 +306,11 @@ void COGLView::OnDestroy()
 		::ReleaseDC(m_hWnd,m_hDC);
     m_hRC = 0;
     m_hDC = 0;
-	
-	
+
+
 }
 
-void COGLView::OnPaint() 
+void COGLView::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
 	drawScene(FALSE);
@@ -318,7 +318,7 @@ void COGLView::OnPaint()
 	// Do not call CWnd::OnPaint() for painting messages
 }
 
-void COGLView::OnSize(UINT nType, int cx, int cy) 
+void COGLView::OnSize(UINT nType, int cx, int cy)
 {
 	// RESIZE THE OPENGL WINDOW
 	resize( cx,cy );
@@ -330,7 +330,7 @@ void COGLView::OnSize(UINT nType, int cx, int cy)
 // Function:	IdleFunc
 // Purpose:		Process state changes if animating
 ///////////////////////////////////////////////////////////////////////////////
-void COGLView::IdleFunc() 
+void COGLView::IdleFunc()
 {
 	if (m_DrawSystem)
 	{
@@ -343,7 +343,7 @@ void COGLView::IdleFunc()
 // Input Functions
 ///////////////////////////////////////////////////////////////////////////////
 
-void COGLView::OnLButtonDown(UINT nFlags, CPoint point) 
+void COGLView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	m_mousepos = point;
 	if (m_CurrentEmitter != NULL)
@@ -360,17 +360,17 @@ void COGLView::OnLButtonDown(UINT nFlags, CPoint point)
 	CWnd::OnLButtonDown(nFlags, point);
 }
 
-void COGLView::OnLButtonUp(UINT nFlags, CPoint point) 
+void COGLView::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	if ((nFlags & MK_SHIFT) > 0)
 	{
 		drawScene(FALSE);
 	}
-	
+
 	CWnd::OnLButtonUp(nFlags, point);
 }
 
-void COGLView::OnRButtonDown(UINT nFlags, CPoint point) 
+void COGLView::OnRButtonDown(UINT nFlags, CPoint point)
 {
 	m_mousepos = point;
 	if (m_CurrentEmitter != NULL)
@@ -387,22 +387,22 @@ void COGLView::OnRButtonDown(UINT nFlags, CPoint point)
 	CWnd::OnRButtonDown(nFlags, point);
 }
 
-void COGLView::OnRButtonUp(UINT nFlags, CPoint point) 
+void COGLView::OnRButtonUp(UINT nFlags, CPoint point)
 {
 	if ((nFlags & MK_SHIFT) > 0)
 	{
 		drawScene(FALSE);
 	}
-	
-	
+
+
 	CWnd::OnRButtonUp(nFlags, point);
 }
 
-void COGLView::HandleKeyDown(UINT nChar) 
+void COGLView::HandleKeyDown(UINT nChar)
 {
 }
 
-void COGLView::HandleKeyUp(UINT nChar) 
+void COGLView::HandleKeyUp(UINT nChar)
 {
 	switch (nChar)
 	{
@@ -432,7 +432,7 @@ void COGLView::HandleKeyUp(UINT nChar)
 	drawScene(FALSE);
 }
 
-void COGLView::OnMouseMove(UINT nFlags, CPoint point) 
+void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	if (m_CurrentEmitter != NULL)
 	{
@@ -451,7 +451,7 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 					m_CurrentEmitter->pos.y = m_Grab_Trans_Y - (.1f * (point.y - m_mousepos.y));
 					drawScene(FALSE);
 				}
-			}	
+			}
 			// ELSE ROTATE THE ROOT
 			else if ((nFlags & MK_SHIFT) > 0)
 			{
@@ -478,7 +478,7 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 }
 
 // Double click runs editEmitter
-void COGLView::OnLButtonDblClk(UINT nFlags, CPoint point) 
+void COGLView::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
 	editEmitter(&m_Emitter);
 }
@@ -517,8 +517,8 @@ void COGLView::editEmitter(tEmitter *emitter)
 	dial.m_speed = emitter->speed;
 	dial.m_speedVar = emitter->speedVar;
 	dial.m_yaw = RADTODEG(emitter->yaw);		// DISPLAY IN DEGREES SINCE IT MAKES SENSE
-	dial.m_yawVar = RADTODEG(emitter->yawVar);	
-	dial.m_pitch = RADTODEG(emitter->pitch);	
+	dial.m_yawVar = RADTODEG(emitter->yawVar);
+	dial.m_pitch = RADTODEG(emitter->pitch);
 	dial.m_pitchVar = RADTODEG(emitter->pitchVar);
 	dial.m_name = emitter->name;
 	if (dial.DoModal())

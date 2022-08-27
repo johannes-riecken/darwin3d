@@ -5,7 +5,7 @@
 // Purpose:	Implementation of OpenGL Window of Hierarchical Animation System
 //
 // Created:
-//		JL 9/1/97		
+//		JL 9/1/97
 //
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -46,7 +46,7 @@ public:
 	float m_Grab_Rot_X,m_Grab_Rot_Y,m_Grab_Rot_Z;
 	float m_Grab_Trans_X,m_Grab_Trans_Y,m_Grab_Trans_Z;
 	CStatusBar  *m_StatusBar;
-	
+
 // Operations
 public:
 	BOOL	SetupPixelFormat(HDC hdc);

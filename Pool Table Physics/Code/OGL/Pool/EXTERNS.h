@@ -88,7 +88,7 @@ extern t_Camera			g_POV;
 extern t_CueStick		g_CueStick;
 extern t_Ball			*g_CurrentSys;
 extern int				g_CueHitBall;				// Set when a Cue hits the ball
-extern tVector3			g_CueForce;							
+extern tVector3			g_CueForce;
 extern int				g_BallInPlay;
 extern int				g_UseFriction;				// Global to Select Friction
 

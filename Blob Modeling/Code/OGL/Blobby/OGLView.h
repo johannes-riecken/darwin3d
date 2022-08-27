@@ -5,7 +5,7 @@
 // Purpose:	Implementation of OpenGL Window of 3D Morphing System
 //
 // Created:
-//		JL 10/1/99		
+//		JL 10/1/99
 //
 // The function morphModel() does the main morphing work.
 //
@@ -72,7 +72,7 @@ public:
 	GLvoid	resize( GLsizei width, GLsizei height );
 	void	GetGLInfo();
 	void	HandleKeyUp(UINT nChar);
-	void	HandleKeyDown(UINT nChar);	
+	void	HandleKeyDown(UINT nChar);
 	void	LoadFile(CString file1,CString baseName);
 	void	SaveFile(CString file1,CString baseName);
 	void	OnGoopAddblob();

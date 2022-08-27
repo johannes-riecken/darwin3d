@@ -27,17 +27,17 @@
 // Notes:		This routing is tweaked to handle OpenGLs column-major format
 //				This is one obvious place for optimization perhaps asm code
 ///////////////////////////////////////////////////////////////////////////////
-void IdentityMatrix(tMatrix *mat) 
+void IdentityMatrix(tMatrix *mat)
 {
 ///// Local Variables /////////////////////////////////////////////////////////
 	int loop;
 ///////////////////////////////////////////////////////////////////////////////
 	for (loop = 0; loop < 16; loop++)
 		mat->m[loop] = 0.0f;
-	mat->m[0] = 
-	mat->m[5] = 
-	mat->m[10] = 
-	mat->m[15] = 
+	mat->m[0] =
+	mat->m[5] =
+	mat->m[10] =
+	mat->m[15] =
 		1.0f;
 }
 //// IdentityMatrix ///////////////////////////////////////////////////////////
@@ -49,7 +49,7 @@ void IdentityMatrix(tMatrix *mat)
 ///////////////////////////////////////////////////////////////////////////////
 // Function:	equals operator
 // Purpose:		Sets the current vector to equal list of floats
-// Arguments:	float * 
+// Arguments:	float *
 ///////////////////////////////////////////////////////////////////////////////
 tVector tVector::operator=( float *arg )
 {
@@ -57,7 +57,7 @@ tVector tVector::operator=( float *arg )
 	y = arg[1];
 	z = arg[2];
 	w = arg[3];
-	
+
 	return *this;
 }
 
@@ -65,7 +65,7 @@ tVector tVector::operator=( float *arg )
 ///////////////////////////////////////////////////////////////////////////////
 // Function:	addition operator
 // Purpose:		Subtracts a tVector from the current vector
-// Arguments:	tVector 
+// Arguments:	tVector
 ///////////////////////////////////////////////////////////////////////////////
 tVector tVector::operator+=( tVector &v )
 {
@@ -80,7 +80,7 @@ tVector tVector::operator+=( tVector &v )
 ///////////////////////////////////////////////////////////////////////////////
 // Function:	subtraction operator
 // Purpose:		Subtracts a tVector from the current vector
-// Arguments:	tVector 
+// Arguments:	tVector
 ///////////////////////////////////////////////////////////////////////////////
 tVector tVector::operator-=( tVector &v )
 {
@@ -165,7 +165,7 @@ tVector tVector::operator/=( float arg )
 // Purpose:		Returns the squared length of the vector
 // Arguments:	none
 ///////////////////////////////////////////////////////////////////////////////
-float tVector::Length2() 
+float tVector::Length2()
 {
 	return((x * x) + (y * y) + (z * z) + (w * w));
 }
@@ -175,7 +175,7 @@ float tVector::Length2()
 // Purpose:		Returns the length of the vector
 // Arguments:	none
 ///////////////////////////////////////////////////////////////////////////////
-float tVector::Length() 
+float tVector::Length()
 {
 	return((float)sqrt(Length2()));
 }
@@ -185,14 +185,14 @@ float tVector::Length()
 // Purpose:		Normalizes the class vector
 // Arguments:	none
 ///////////////////////////////////////////////////////////////////////////////
-void tVector::NormalizeVector() 
+void tVector::NormalizeVector()
 {
 	float len = Length();
-    if (len != 0.0) 
-	{ 
-		x /= len;  
-		y /= len; 
-		z /= len; 
+    if (len != 0.0)
+	{
+		x /= len;
+		y /= len;
+		z /= len;
 	}
 }
 
@@ -201,12 +201,12 @@ void tVector::NormalizeVector()
 // Purpose:		Interpolates between vector and another by a factor
 // Arguments:	Vector to lerp to and factor
 ///////////////////////////////////////////////////////////////////////////////
-void tVector::Lerp(tVector *v1, float factor) 
+void tVector::Lerp(tVector *v1, float factor)
 {
-	x = x * (1.0f - factor) + v1->x * factor; 
-	y = y * (1.0f - factor) + v1->y * factor; 
-	z = z * (1.0f - factor) + v1->z * factor; 
-	w = w * (1.0f - factor) + v1->w * factor; 
+	x = x * (1.0f - factor) + v1->x * factor;
+	y = y * (1.0f - factor) + v1->y * factor;
+	z = z * (1.0f - factor) + v1->z * factor;
+	w = w * (1.0f - factor) + v1->w * factor;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -262,19 +262,19 @@ void tVector::MultVectorByMatrix(float *mat)
 {
 	tVector result;
 	result.x = (mat[0] * x) +
-			   (mat[4] * y) +	
+			   (mat[4] * y) +
 			   (mat[8] * z) +
 			   (mat[12] * w);
 	result.y = (mat[1] * x) +
-			   (mat[5] * y) +	
+			   (mat[5] * y) +
 			   (mat[9] * z) +
 			   (mat[13] * w);
 	result.z = (mat[2] * x) +
-			   (mat[6] * y) +	
+			   (mat[6] * y) +
 			   (mat[10] * z) +
 			   (mat[14] * w);
 	result.w = (mat[3] * x) +
-			   (mat[7] * y) +	
+			   (mat[7] * y) +
 			   (mat[11] * z) +
 			   (mat[15] * w);
 
@@ -296,13 +296,13 @@ void tVector::MultVectorByRotMatrix(float *mat)
 {
 	tVector result;
 	result.x = (mat[0] * x) +
-			   (mat[4] * y) +	
+			   (mat[4] * y) +
 			   (mat[8] * z);
 	result.y = (mat[1] * x) +
-			   (mat[5] * y) +	
+			   (mat[5] * y) +
 			   (mat[9] * z);
 	result.z = (mat[2] * x) +
-			   (mat[6] * y) +	
+			   (mat[6] * y) +
 			   (mat[10] * z);
 
 	x = result.x;
@@ -322,14 +322,14 @@ void tVector::MultVectorByRotMatrix(float *mat)
 ///////////////////////////////////////////////////////////////////////////////
 // Function:	equals operator
 // Purpose:		Sets the current vector to equal list of floats
-// Arguments:	float * 
+// Arguments:	float *
 ///////////////////////////////////////////////////////////////////////////////
 tVector3 tVector3::operator=( float *arg )
 {
 	x = arg[0];
 	y = arg[1];
 	z = arg[2];
-	
+
 	return *this;
 }
 
@@ -337,7 +337,7 @@ tVector3 tVector3::operator=( float *arg )
 ///////////////////////////////////////////////////////////////////////////////
 // Function:	addition operator
 // Purpose:		Subtracts a tVector3 from the current vector
-// Arguments:	tVector3 
+// Arguments:	tVector3
 ///////////////////////////////////////////////////////////////////////////////
 tVector3 tVector3::operator+=( tVector3 &v )
 {
@@ -351,7 +351,7 @@ tVector3 tVector3::operator+=( tVector3 &v )
 ///////////////////////////////////////////////////////////////////////////////
 // Function:	subtraction operator
 // Purpose:		Subtracts a tVector3 from the current vector
-// Arguments:	tVector3 
+// Arguments:	tVector3
 ///////////////////////////////////////////////////////////////////////////////
 tVector3 tVector3::operator-=( tVector3 &v )
 {
@@ -430,7 +430,7 @@ tVector3 tVector3::operator/=( float arg )
 // Purpose:		Returns the squared length of the vector
 // Arguments:	none
 ///////////////////////////////////////////////////////////////////////////////
-float tVector3::Length2() 
+float tVector3::Length2()
 {
 	return((x * x) + (y * y) + (z * z));
 }
@@ -440,7 +440,7 @@ float tVector3::Length2()
 // Purpose:		Returns the length of the vector
 // Arguments:	none
 ///////////////////////////////////////////////////////////////////////////////
-float tVector3::Length() 
+float tVector3::Length()
 {
 	return((float)sqrt(Length2()));
 }
@@ -450,14 +450,14 @@ float tVector3::Length()
 // Purpose:		Normalizes the class vector
 // Arguments:	none
 ///////////////////////////////////////////////////////////////////////////////
-void tVector3::NormalizeVector() 
+void tVector3::NormalizeVector()
 {
 	float len = Length();
-    if (len != 0.0) 
-	{ 
-		x /= len;  
-		y /= len; 
-		z /= len; 
+    if (len != 0.0)
+	{
+		x /= len;
+		y /= len;
+		z /= len;
 	}
 }
 
@@ -466,11 +466,11 @@ void tVector3::NormalizeVector()
 // Purpose:		Interpolates between vector and another by a factor
 // Arguments:	Vector to lerp to and factor
 ///////////////////////////////////////////////////////////////////////////////
-void tVector3::Lerp(tVector3 *v1, float factor) 
+void tVector3::Lerp(tVector3 *v1, float factor)
 {
-	x = x * (1.0f - factor) + v1->x * factor; 
-	y = y * (1.0f - factor) + v1->y * factor; 
-	z = z * (1.0f - factor) + v1->z * factor; 
+	x = x * (1.0f - factor) + v1->x * factor;
+	y = y * (1.0f - factor) + v1->y * factor;
+	z = z * (1.0f - factor) + v1->z * factor;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -526,15 +526,15 @@ void tVector3::MultVectorByMatrix(float *mat)
 {
 	tVector3 result;
 	result.x = (mat[0] * x) +
-			   (mat[4] * y) +	
+			   (mat[4] * y) +
 			   (mat[8] * z) +
 			   mat[12];
 	result.y = (mat[1] * x) +
-			   (mat[5] * y) +	
+			   (mat[5] * y) +
 			   (mat[9] * z) +
 			   mat[13];
 	result.z = (mat[2] * x) +
-			   (mat[6] * y) +	
+			   (mat[6] * y) +
 			   (mat[10] * z) +
 			   mat[14];
 
@@ -555,13 +555,13 @@ void tVector3::MultVectorByRotMatrix(float *mat)
 {
 	tVector3 result;
 	result.x = (mat[0] * x) +
-			   (mat[4] * y) +	
+			   (mat[4] * y) +
 			   (mat[8] * z);
 	result.y = (mat[1] * x) +
-			   (mat[5] * y) +	
+			   (mat[5] * y) +
 			   (mat[9] * z);
 	result.z = (mat[2] * x) +
-			   (mat[6] * y) +	
+			   (mat[6] * y) +
 			   (mat[10] * z);
 
 	x = result.x;

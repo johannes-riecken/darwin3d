@@ -5,7 +5,7 @@
 // Purpose:	Implementation of Main Application of Quaternion Animation System
 //
 // Created:
-//		JL 11/1/97		
+//		JL 11/1/97
 // Revisions:
 //		Integrated into Skinning Demo		2/18/98
 //
@@ -148,7 +148,7 @@ void CSprayApp::OnAppAbout()
 /////////////////////////////////////////////////////////////////////////////
 // CSprayApp commands
 
-BOOL CSprayApp::OnIdle(LONG lCount) 
+BOOL CSprayApp::OnIdle(LONG lCount)
 {
 	// Force the main window to redraw itself
 	if (IsWindow(m_pMainWnd->GetSafeHwnd()))

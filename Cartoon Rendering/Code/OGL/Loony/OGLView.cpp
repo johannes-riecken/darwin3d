@@ -69,7 +69,7 @@ COGLView::COGLView()
 	// Set the Default Light Direction
 	m_ShadeLight.x = 0.3f;
 	m_ShadeLight.y = 0.1f;
-	m_ShadeLight.z = 0.8f;	
+	m_ShadeLight.z = 0.8f;
 	NormalizeVector(&m_ShadeLight);	// Normalize it since I know I didn't
 
 	m_SilhouetteColor.r = 0.0f;
@@ -83,7 +83,7 @@ COGLView::~COGLView()
 {
 }
 
-BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext) 
+BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext)
 {
 	return CWnd::Create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, pContext);
 }
@@ -144,7 +144,7 @@ BOOL COGLView::SetupPixelFormat(HDC hdc)
 }
 
 
-int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	RECT rect;
@@ -154,7 +154,7 @@ int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
     m_hDC = ::GetDC(m_hWnd);
     if (!SetupPixelFormat(m_hDC))
 		PostQuitMessage (0);
-	
+
     m_hRC = wglCreateContext(m_hDC);
     wglMakeCurrent(m_hDC, m_hRC);
     GetClientRect(&rect);
@@ -178,7 +178,7 @@ int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 			glVertex3f( 0.15f, -0.04f, 0.0f);
 			glColor3f(0.0f, 1.0f, 0.0f);	// Y AXIS STARTS - COLOR GREEN
 			glVertex3f( 0.0f,  0.2f, 0.0f);
-			glVertex3f( 0.0f, -0.2f, 0.0f);			
+			glVertex3f( 0.0f, -0.2f, 0.0f);
 			glVertex3f( 0.0f,  0.2f, 0.0f);	// TOP PIECE OF ARROWHEAD
 			glVertex3f( 0.04f,  0.15f, 0.0f);
 			glVertex3f( 0.0f,  0.2f, 0.0f);	// BOTTOM PIECE OF ARROWHEAD
@@ -221,7 +221,7 @@ GLvoid COGLView::resize( GLsizei width, GLsizei height )
 	m_ScreenWidth = width;
 	m_ScreenHeight = height;
 
-}    
+}
 //// resize /////////////////////////////////////////////////////////////////
 
 GLvoid COGLView::initializeGL(GLsizei width, GLsizei height)
@@ -382,7 +382,7 @@ GLvoid COGLView::drawScene()
 	if (m_Camera.rot.y  > 360.0f) m_Camera.rot.y  -= 360.0f;
 	if (m_Camera.rot.x   > 360.0f) m_Camera.rot.x   -= 360.0f;
 	if (m_Camera.rot.z > 360.0f) m_Camera.rot.z -= 360.0f;
-	
+
 	glDisable(GL_DEPTH_TEST);	// TURN OFF DEPTH TEST FOR CLEAR
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -396,7 +396,7 @@ GLvoid COGLView::drawScene()
 
 	glRotatef(m_Camera.rot.y, 0.0f, 1.0f, 0.0f);
 	glRotatef(m_Camera.rot.x, 1.0f, 0.0f, 0.0f);
-	glRotatef(m_Camera.rot.z, 0.0f, 0.0f, 1.0f); 
+	glRotatef(m_Camera.rot.z, 0.0f, 0.0f, 1.0f);
 
 	// Draw any loaded model
 	drawModel(&m_Model);
@@ -410,7 +410,7 @@ GLvoid COGLView::drawScene()
 }
 //// drawScene //////////////////////////////////////////////////////
 
-void COGLView::OnDestroy() 
+void COGLView::OnDestroy()
 {
 	CWnd::OnDestroy();
 	if (m_hRC)
@@ -419,11 +419,11 @@ void COGLView::OnDestroy()
 		::ReleaseDC(m_hWnd,m_hDC);
     m_hRC = 0;
     m_hDC = 0;
-	
-	
+
+
 }
 
-void COGLView::OnPaint() 
+void COGLView::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
 
@@ -431,7 +431,7 @@ void COGLView::OnPaint()
 	// Do not call CWnd::OnPaint() for painting messages
 }
 
-void COGLView::OnLButtonDown(UINT nFlags, CPoint point) 
+void COGLView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	// STORE OFF THE HIT POINT AND SETTINGS FOR THE MOVEMENT LATER
 	m_mousepos = point;
@@ -445,7 +445,7 @@ void COGLView::OnLButtonDown(UINT nFlags, CPoint point)
 	CWnd::OnLButtonDown(nFlags, point);
 }
 
-void COGLView::OnRButtonDown(UINT nFlags, CPoint point) 
+void COGLView::OnRButtonDown(UINT nFlags, CPoint point)
 {
 	// STORE OFF THE HIT POINT AND SETTINGS FOR THE MOVEMENT LATER
 	m_mousepos = point;
@@ -460,13 +460,13 @@ void COGLView::OnRButtonDown(UINT nFlags, CPoint point)
 }
 
 
-void COGLView::OnLButtonUp(UINT nFlags, CPoint point) 
+void COGLView::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	m_Dragging = FALSE;
 	CWnd::OnLButtonUp(nFlags, point);
 }
 
-void COGLView::OnRButtonUp(UINT nFlags, CPoint point) 
+void COGLView::OnRButtonUp(UINT nFlags, CPoint point)
 {
 	m_Dragging = FALSE;
 	CWnd::OnRButtonUp(nFlags, point);
@@ -477,7 +477,7 @@ void COGLView::OnRButtonUp(UINT nFlags, CPoint point)
 // Purpose:		Handler for the mouse.  Handles movement when pressed
 // Arguments:	Flags for key masks and point
 ///////////////////////////////////////////////////////////////////////////////
-void COGLView::OnMouseMove(UINT nFlags, CPoint point) 
+void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	if (!m_Dragging) return;
 
@@ -486,7 +486,7 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 	{
 		if ((nFlags & MK_CONTROL) > 0)
 		{
-		}	
+		}
 		// ELSE "SHIFT" MOVE THE BONE IN XY
 		else if ((nFlags & MK_SHIFT) > 0)
 		{
@@ -547,23 +547,23 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 			}
 		}
 	}
-	
+
 	CWnd::OnMouseMove(nFlags, point);
 }
 //// OnMouseMove //////////////////////////////////////////////////////
 
-void COGLView::OnMove(int x, int y) 
+void COGLView::OnMove(int x, int y)
 {
 	CWnd::OnMove(x, y);
-	
+
 	resize( x,y );
-	
+
 }
 
 // 0 = READY
 // 1 = ROTATE
 // 2 = TRANSLATE
-void COGLView::UpdateStatusBar(int mode) 
+void COGLView::UpdateStatusBar(int mode)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	char message[80];
@@ -583,11 +583,11 @@ void COGLView::UpdateStatusBar(int mode)
 	m_StatusBar->SetPaneText(0,message);
 }
 
-void COGLView::HandleKeyDown(UINT nChar) 
+void COGLView::HandleKeyDown(UINT nChar)
 {
 }
 
-void COGLView::HandleKeyUp(UINT nChar) 
+void COGLView::HandleKeyUp(UINT nChar)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -611,7 +611,7 @@ void COGLView::HandleKeyUp(UINT nChar)
 // Function:	GetGLInfo
 // Purpose:		Get the OpenGL Vendor and Renderer
 ///////////////////////////////////////////////////////////////////////////////
-void COGLView::GetGLInfo() 
+void COGLView::GetGLInfo()
 {
 //// Local Variables ////////////////////////////////////////////////////////////////
 	char *who, *which, *ver, *ext, *message;
@@ -711,7 +711,7 @@ void COGLView::LoadShadeTexture(const char *texfile)
 	glBindTexture(GL_TEXTURE_1D, m_ShadeTexture);
 
 	// Do not allow bilinear filtering - not for cartoon rendering
-	glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);	
+	glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
 	glTexImage1D(GL_TEXTURE_1D, 0, GL_RGB, 32, 0,

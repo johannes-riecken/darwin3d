@@ -5,7 +5,7 @@
 // Purpose:	Implementation of OpenGL Window of OBJ Loader
 //
 // Created:
-//		JL 9/23/98		
+//		JL 9/23/98
 //
 // Notes: This version doesn't used shared vertices in a vertex array.  That
 //		  would be a faster way of doing things.  This creates 3 vertices per
@@ -33,18 +33,18 @@ void ParseString(char *buffer,CStringArray *words,int *cnt)
 /// Local Variables ///////////////////////////////////////////////////////////
 	CString in = buffer, temp;
 ///////////////////////////////////////////////////////////////////////////////
-	
+
 	in.TrimLeft();
 	in.TrimRight();
 	*cnt = 0;
-	do 
+	do
 	{
 		temp = in.SpanExcluding(" \t");		// GET UP TO THE NEXT SPACE OR TAB
 		words->Add(temp);
 		if (temp == in) break;
 		in = in.Right(in.GetLength() - temp.GetLength());
 		in.TrimLeft();
-		*cnt = *cnt + 1;			
+		*cnt = *cnt + 1;
 	} while (1);
 	*cnt = *cnt + 1;
 }
@@ -54,7 +54,7 @@ void ParseString(char *buffer,CStringArray *words,int *cnt)
 // Procedure:	LoadMaterialLib
 // Purpose:		Handles the Loading of a Material library
 // Arguments:	Name of the Material Library
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 void LoadMaterialLib(CString name,t_Visual *visual)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
@@ -114,12 +114,12 @@ void LoadMaterialLib(CString name,t_Visual *visual)
 
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	HandleFace
-// Purpose:		Handles the Face Line in an OBJ file.  Extracts index info to 
+// Purpose:		Handles the Face Line in an OBJ file.  Extracts index info to
 //				a face Structure
 // Arguments:	Array of words from the face line, place to put the data
 // Notes:		Not an Official OBJ loader as it doesn't handle more then
 //				3 vertex polygons.  This only handles Triangles
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 void HandleFace(CStringArray *words,t_faceIndex *face)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
@@ -153,7 +153,7 @@ void HandleFace(CStringArray *words,t_faceIndex *face)
 // Arguments:	Name of 0BJ file and pointer to bone
 // Notes:		Not an Official OBJ loader as it doesn't handle more then
 //				3 vertex polygons or multiple objects per file.
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 BOOL LoadOBJ(char *filename,t_Visual *visual)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
@@ -185,7 +185,7 @@ BOOL LoadOBJ(char *filename,t_Visual *visual)
 					{
 						if (temp.GetLength() > 1 && temp[1] == 'n')			// vn IS A NORMAL
 							nCnt++;
-						else if (temp.GetLength() > 1 && temp[1] == 't')	// vt IS A TEXTURE 
+						else if (temp.GetLength() > 1 && temp[1] == 't')	// vt IS A TEXTURE
 							tCnt++;
 						else
 							vCnt++;											// v IS A VERTEX

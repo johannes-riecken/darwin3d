@@ -2,28 +2,28 @@
 !IF "$(CFG)" == ""
 CFG=Slash - Win32 Debug
 !MESSAGE No configuration specified. Defaulting to Slash - Win32 Debug.
-!ENDIF 
+!ENDIF
 
 !IF "$(CFG)" != "Slash - Win32 Release" && "$(CFG)" != "Slash - Win32 Debug"
 !MESSAGE Invalid configuration "$(CFG)" specified.
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
-!MESSAGE 
+!MESSAGE
 !MESSAGE NMAKE /f "Slash.mak" CFG="Slash - Win32 Debug"
-!MESSAGE 
+!MESSAGE
 !MESSAGE Possible choices for configuration are:
-!MESSAGE 
+!MESSAGE
 !MESSAGE "Slash - Win32 Release" (based on "Win32 (x86) Application")
 !MESSAGE "Slash - Win32 Debug" (based on "Win32 (x86) Application")
-!MESSAGE 
+!MESSAGE
 !ERROR An invalid configuration is specified.
-!ENDIF 
+!ENDIF
 
 !IF "$(OS)" == "Windows_NT"
 NULL=
-!ELSE 
+!ELSE
 NULL=nul
-!ENDIF 
+!ENDIF
 
 CPP=cl.exe
 MTL=midl.exe
@@ -37,15 +37,15 @@ INTDIR=.\Release
 OutDir=.\Release
 # End Custom Macros
 
-!IF "$(RECURSE)" == "0" 
+!IF "$(RECURSE)" == "0"
 
 ALL : "$(OUTDIR)\Slash.exe"
 
-!ELSE 
+!ELSE
 
 ALL : "$(OUTDIR)\Slash.exe"
 
-!ENDIF 
+!ENDIF
 
 CLEAN :
 	-@erase "$(INTDIR)\MainFrm.obj"
@@ -65,19 +65,19 @@ CLEAN :
 
 CPP_PROJ=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS"\
  /Fp"$(INTDIR)\Slash.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c\
- 
+
 CPP_OBJS=.\Release/
 CPP_SBRS=.
-MTL_PROJ=/nologo /D "NDEBUG" /mktyplib203 /o NUL /win32 
-RSC_PROJ=/l 0x409 /fo"$(INTDIR)\Slash.res" /d "NDEBUG" 
+MTL_PROJ=/nologo /D "NDEBUG" /mktyplib203 /o NUL /win32
+RSC_PROJ=/l 0x409 /fo"$(INTDIR)\Slash.res" /d "NDEBUG"
 BSC32=bscmake.exe
-BSC32_FLAGS=/nologo /o"$(OUTDIR)\Slash.bsc" 
+BSC32_FLAGS=/nologo /o"$(OUTDIR)\Slash.bsc"
 BSC32_SBRS= \
-	
+
 LINK32=link.exe
 LINK32_FLAGS=opengl32.lib glu32.lib glaux.lib /nologo /subsystem:windows\
  /incremental:no /pdb:"$(OUTDIR)\Slash.pdb" /machine:I386\
- /out:"$(OUTDIR)\Slash.exe" 
+ /out:"$(OUTDIR)\Slash.exe"
 LINK32_OBJS= \
 	"$(INTDIR)\MainFrm.obj" \
 	"$(INTDIR)\OGLView.obj" \
@@ -101,15 +101,15 @@ INTDIR=.\Debug
 OutDir=.\Debug
 # End Custom Macros
 
-!IF "$(RECURSE)" == "0" 
+!IF "$(RECURSE)" == "0"
 
 ALL : "$(OUTDIR)\Slash.exe"
 
-!ELSE 
+!ELSE
 
 ALL : "$(OUTDIR)\Slash.exe"
 
-!ENDIF 
+!ENDIF
 
 CLEAN :
 	-@erase "$(INTDIR)\MainFrm.obj"
@@ -132,19 +132,19 @@ CLEAN :
 
 CPP_PROJ=/nologo /MTd /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS"\
  /Fp"$(INTDIR)\Slash.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c\
- 
+
 CPP_OBJS=.\Debug/
 CPP_SBRS=.
-MTL_PROJ=/nologo /D "_DEBUG" /mktyplib203 /o NUL /win32 
-RSC_PROJ=/l 0x409 /fo"$(INTDIR)\Slash.res" /d "_DEBUG" 
+MTL_PROJ=/nologo /D "_DEBUG" /mktyplib203 /o NUL /win32
+RSC_PROJ=/l 0x409 /fo"$(INTDIR)\Slash.res" /d "_DEBUG"
 BSC32=bscmake.exe
-BSC32_FLAGS=/nologo /o"$(OUTDIR)\Slash.bsc" 
+BSC32_FLAGS=/nologo /o"$(OUTDIR)\Slash.bsc"
 BSC32_SBRS= \
-	
+
 LINK32=link.exe
 LINK32_FLAGS=opengl32.lib glu32.lib glaux.lib /nologo /subsystem:windows\
  /incremental:yes /pdb:"$(OUTDIR)\Slash.pdb" /debug /machine:I386\
- /out:"$(OUTDIR)\Slash.exe" /pdbtype:sept 
+ /out:"$(OUTDIR)\Slash.exe" /pdbtype:sept
 LINK32_OBJS= \
 	"$(INTDIR)\MainFrm.obj" \
 	"$(INTDIR)\OGLView.obj" \
@@ -160,36 +160,36 @@ LINK32_OBJS= \
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<
 
-!ENDIF 
+!ENDIF
 
 .c{$(CPP_OBJS)}.obj::
    $(CPP) @<<
-   $(CPP_PROJ) $< 
+   $(CPP_PROJ) $<
 <<
 
 .cpp{$(CPP_OBJS)}.obj::
    $(CPP) @<<
-   $(CPP_PROJ) $< 
+   $(CPP_PROJ) $<
 <<
 
 .cxx{$(CPP_OBJS)}.obj::
    $(CPP) @<<
-   $(CPP_PROJ) $< 
+   $(CPP_PROJ) $<
 <<
 
 .c{$(CPP_SBRS)}.sbr::
    $(CPP) @<<
-   $(CPP_PROJ) $< 
+   $(CPP_PROJ) $<
 <<
 
 .cpp{$(CPP_SBRS)}.sbr::
    $(CPP) @<<
-   $(CPP_PROJ) $< 
+   $(CPP_PROJ) $<
 <<
 
 .cxx{$(CPP_SBRS)}.sbr::
    $(CPP) @<<
-   $(CPP_PROJ) $< 
+   $(CPP_PROJ) $<
 <<
 
 
@@ -204,7 +204,7 @@ DEP_CPP_MAINF=\
 	".\Quatern.h"\
 	".\Skeleton.h"\
 	".\Slash.h"\
-	
+
 
 "$(INTDIR)\MainFrm.obj" : $(SOURCE) $(DEP_CPP_MAINF) "$(INTDIR)"\
  "$(INTDIR)\Slash.pch"
@@ -221,13 +221,13 @@ DEP_CPP_MAINF=\
 	".\StdAfx.h"\
 	{$(INCLUDE)}"GL\gl.h"\
 	{$(INCLUDE)}"GL\glu.h"\
-	
+
 
 "$(INTDIR)\MainFrm.obj" : $(SOURCE) $(DEP_CPP_MAINF) "$(INTDIR)"\
  "$(INTDIR)\Slash.pch"
 
 
-!ENDIF 
+!ENDIF
 
 SOURCE=.\OGLView.cpp
 
@@ -240,7 +240,7 @@ DEP_CPP_OGLVI=\
 	".\SetRot.h"\
 	".\Skeleton.h"\
 	".\Slash.h"\
-	
+
 
 "$(INTDIR)\OGLView.obj" : $(SOURCE) $(DEP_CPP_OGLVI) "$(INTDIR)"\
  "$(INTDIR)\Slash.pch"
@@ -258,13 +258,13 @@ DEP_CPP_OGLVI=\
 	".\StdAfx.h"\
 	{$(INCLUDE)}"GL\gl.h"\
 	{$(INCLUDE)}"GL\glu.h"\
-	
+
 
 "$(INTDIR)\OGLView.obj" : $(SOURCE) $(DEP_CPP_OGLVI) "$(INTDIR)"\
  "$(INTDIR)\Slash.pch"
 
 
-!ENDIF 
+!ENDIF
 
 SOURCE=.\Quatern.cpp
 
@@ -273,7 +273,7 @@ SOURCE=.\Quatern.cpp
 DEP_CPP_QUATE=\
 	".\Quatern.h"\
 	".\Skeleton.h"\
-	
+
 
 "$(INTDIR)\Quatern.obj" : $(SOURCE) $(DEP_CPP_QUATE) "$(INTDIR)"\
  "$(INTDIR)\Slash.pch"
@@ -285,13 +285,13 @@ DEP_CPP_QUATE=\
 	".\Quatern.h"\
 	".\Skeleton.h"\
 	".\StdAfx.h"\
-	
+
 
 "$(INTDIR)\Quatern.obj" : $(SOURCE) $(DEP_CPP_QUATE) "$(INTDIR)"\
  "$(INTDIR)\Slash.pch"
 
 
-!ENDIF 
+!ENDIF
 
 SOURCE=.\SetRot.cpp
 
@@ -300,7 +300,7 @@ SOURCE=.\SetRot.cpp
 DEP_CPP_SETRO=\
 	".\SetRot.h"\
 	".\Slash.h"\
-	
+
 
 "$(INTDIR)\SetRot.obj" : $(SOURCE) $(DEP_CPP_SETRO) "$(INTDIR)"\
  "$(INTDIR)\Slash.pch"
@@ -312,13 +312,13 @@ DEP_CPP_SETRO=\
 	".\SetRot.h"\
 	".\Slash.h"\
 	".\StdAfx.h"\
-	
+
 
 "$(INTDIR)\SetRot.obj" : $(SOURCE) $(DEP_CPP_SETRO) "$(INTDIR)"\
  "$(INTDIR)\Slash.pch"
 
 
-!ENDIF 
+!ENDIF
 
 SOURCE=.\Skeleton.cpp
 
@@ -327,7 +327,7 @@ SOURCE=.\Skeleton.cpp
 DEP_CPP_SKELE=\
 	".\Quatern.h"\
 	".\Skeleton.h"\
-	
+
 
 "$(INTDIR)\Skeleton.obj" : $(SOURCE) $(DEP_CPP_SKELE) "$(INTDIR)"\
  "$(INTDIR)\Slash.pch"
@@ -339,13 +339,13 @@ DEP_CPP_SKELE=\
 	".\Quatern.h"\
 	".\Skeleton.h"\
 	".\StdAfx.h"\
-	
+
 
 "$(INTDIR)\Skeleton.obj" : $(SOURCE) $(DEP_CPP_SKELE) "$(INTDIR)"\
  "$(INTDIR)\Slash.pch"
 
 
-!ENDIF 
+!ENDIF
 
 SOURCE=.\Slash.cpp
 
@@ -357,7 +357,7 @@ DEP_CPP_SLASH=\
 	".\Quatern.h"\
 	".\Skeleton.h"\
 	".\Slash.h"\
-	
+
 
 "$(INTDIR)\Slash.obj" : $(SOURCE) $(DEP_CPP_SLASH) "$(INTDIR)"\
  "$(INTDIR)\Slash.pch"
@@ -374,20 +374,20 @@ DEP_CPP_SLASH=\
 	".\StdAfx.h"\
 	{$(INCLUDE)}"GL\gl.h"\
 	{$(INCLUDE)}"GL\glu.h"\
-	
+
 
 "$(INTDIR)\Slash.obj" : $(SOURCE) $(DEP_CPP_SLASH) "$(INTDIR)"\
  "$(INTDIR)\Slash.pch"
 
 
-!ENDIF 
+!ENDIF
 
 SOURCE=.\Slash.rc
 DEP_RSC_SLASH_=\
 	".\res\Slash.ico"\
 	".\res\Slash.rc2"\
 	".\res\SlashDoc.ico"\
-	
+
 
 "$(INTDIR)\Slash.res" : $(SOURCE) $(DEP_RSC_SLASH_) "$(INTDIR)"
 	$(RSC) $(RSC_PROJ) $(SOURCE)
@@ -396,13 +396,13 @@ DEP_RSC_SLASH_=\
 SOURCE=.\StdAfx.cpp
 DEP_CPP_STDAF=\
 	".\StdAfx.h"\
-	
+
 
 !IF  "$(CFG)" == "Slash - Win32 Release"
 
 CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS"\
  /Fp"$(INTDIR)\Slash.pch" /Yc"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c\
- 
+
 
 "$(INTDIR)\StdAfx.obj"	"$(INTDIR)\Slash.pch" : $(SOURCE) $(DEP_CPP_STDAF)\
  "$(INTDIR)"
@@ -415,7 +415,7 @@ CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS"\
 
 CPP_SWITCHES=/nologo /MTd /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D\
  "_WINDOWS" /Fp"$(INTDIR)\Slash.pch" /Yc"stdafx.h" /Fo"$(INTDIR)\\"\
- /Fd"$(INTDIR)\\" /FD /c 
+ /Fd"$(INTDIR)\\" /FD /c
 
 "$(INTDIR)\StdAfx.obj"	"$(INTDIR)\Slash.pch" : $(SOURCE) $(DEP_CPP_STDAF)\
  "$(INTDIR)"
@@ -424,8 +424,8 @@ CPP_SWITCHES=/nologo /MTd /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D\
 <<
 
 
-!ENDIF 
+!ENDIF
 
 
-!ENDIF 
+!ENDIF
 

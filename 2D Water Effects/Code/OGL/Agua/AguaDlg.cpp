@@ -151,7 +151,7 @@ BOOL CAguaDlg::OnInitDialog()
 	//  when the application's main window is not a dialog
 	SetIcon(m_hIcon, TRUE);			// Set big icon
 	SetIcon(m_hIcon, FALSE);		// Set small icon
-	
+
     memset ( &bmi, 0, sizeof(BITMAPINFO) );
     bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
     bmi.bmiHeader.biWidth = WATER_SIZE;		//wndRect.right;	// 1024 mode
@@ -175,7 +175,7 @@ BOOL CAguaDlg::OnInitDialog()
 	m_ReadBuffer = (char *)malloc(WATER_SIZE * WATER_SIZE);
 	m_WriteBuffer = (char *)malloc(WATER_SIZE * WATER_SIZE);
 
-	for (int i = 0; i < WATER_SIZE * WATER_SIZE; i++) 
+	for (int i = 0; i < WATER_SIZE * WATER_SIZE; i++)
 	{
 		m_ReadBuffer[i] = 0;
 		m_WriteBuffer[i] = 0;
@@ -184,7 +184,7 @@ BOOL CAguaDlg::OnInitDialog()
 	LoadTGAFile("Reflect.tga",&m_ReflectImage);
 
 	SetDisplay();
-	
+
 	SetTimer(1,5,NULL);		// Set it up to animate via messages
 
 	m_Drip_Radius_Sqr = m_Drip_Radius * m_Drip_Radius;
@@ -209,7 +209,7 @@ void CAguaDlg::OnSysCommand(UINT nID, LPARAM lParam)
 //  to draw the icon.  For MFC applications using the document/view model,
 //  this is automatically done for you by the framework.
 
-void CAguaDlg::OnPaint() 
+void CAguaDlg::OnPaint()
 {
 	if (IsIconic())
 	{
@@ -241,7 +241,7 @@ HCURSOR CAguaDlg::OnQueryDragIcon()
 	return (HCURSOR) m_hIcon;
 }
 
-LRESULT CAguaDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam) 
+LRESULT CAguaDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 {
 //// Local Variables ////////////////////////////////////////////////////////////////
 	int		xpos,ypos;
@@ -253,8 +253,8 @@ LRESULT CAguaDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 	{
 		case WM_LBUTTONDOWN:
 			dragging = true;
-			pnt.x = LOWORD(lParam);  // horizontal position of cursor 
-			pnt.y = HIWORD(lParam);  // vertical position of cursor 
+			pnt.x = LOWORD(lParam);  // horizontal position of cursor
+			pnt.y = HIWORD(lParam);  // vertical position of cursor
 			ClientToScreen(&pnt);
 			m_Display.GetWindowRect(&rect);
 			if (rect.PtInRect(pnt))
@@ -270,8 +270,8 @@ LRESULT CAguaDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 		case WM_MOUSEMOVE:
 			if (dragging)
 			{
-				pnt.x = LOWORD(lParam);  // horizontal position of cursor 
-				pnt.y = HIWORD(lParam);  // vertical position of cursor 
+				pnt.x = LOWORD(lParam);  // horizontal position of cursor
+				pnt.y = HIWORD(lParam);  // vertical position of cursor
 				ClientToScreen(&pnt);
 				m_Display.GetWindowRect(&rect);
 				if (rect.PtInRect(pnt))
@@ -295,17 +295,17 @@ LRESULT CAguaDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 //	Handle Control UI like text boxes and buttons
 ////////////////////////////////////////////////////////////////////////////////
 
-void CAguaDlg::OnUpdateDamping() 
+void CAguaDlg::OnUpdateDamping()
 {
-	UpdateData(TRUE);		
+	UpdateData(TRUE);
 }
 
-void CAguaDlg::OnUpdateDripRadius() 
+void CAguaDlg::OnUpdateDripRadius()
 {
-	UpdateData(TRUE);	
+	UpdateData(TRUE);
 }
 
-void CAguaDlg::OnImageBrowse() 
+void CAguaDlg::OnImageBrowse()
 {
 	char BASED_CODE szFilter[] = "Targa Files (*.tga)|*.tga||";
 	CFileDialog	*dialog;
@@ -315,13 +315,13 @@ void CAguaDlg::OnImageBrowse()
 	{
 		m_ImageFile = dialog->GetPathName();
 	}
-	UpdateData(FALSE);	
+	UpdateData(FALSE);
 	OnUpdateImagefile();
 }
 
-void CAguaDlg::OnUpdateImagefile() 
+void CAguaDlg::OnUpdateImagefile()
 {
-	UpdateData(TRUE);	
+	UpdateData(TRUE);
 	LoadTGAFile((char *)(LPCSTR)m_ImageFile,&m_ReflectImage);
 }
 
@@ -333,7 +333,7 @@ void CAguaDlg::OnUpdateImagefile()
 // Procedure:	SetDisplay
 // Purpose:		To convert the height field into something to look at in the dialog
 /////////////////////////////////////////////////////////////////////////////////////
-void CAguaDlg::SetDisplay() 
+void CAguaDlg::SetDisplay()
 {
 //// Local Variables ////////////////////////////////////////////////////////////////
 	char	*temp;
@@ -346,9 +346,9 @@ void CAguaDlg::SetDisplay()
 	m_WriteBuffer = temp;
 
 	int cnt = 0;
-	for (int j = 0; j < WATER_SIZE; j++) 
+	for (int j = 0; j < WATER_SIZE; j++)
 	{
-		for (int i = 0; i < WATER_SIZE; i++, cnt++) 
+		for (int i = 0; i < WATER_SIZE; i++, cnt++)
 		{
 			xoff = i;
 			if (i > 0 && i < WATER_SIZE - 1)
@@ -384,7 +384,7 @@ void CAguaDlg::SetDisplay()
 				b = m_Blue;
 			}
 
-			
+
 			r += m_ReadBuffer[cnt];
 			g += m_ReadBuffer[cnt];
 			b += m_ReadBuffer[cnt];
@@ -415,7 +415,7 @@ int inline CAguaDlg::SquaredDist(int sx, int sy, int dx, int dy)
 // Purpose:		Creates an initial drip in the water field
 //				Usually caused by mouse press
 /////////////////////////////////////////////////////////////////////////////////////
-void CAguaDlg::MakeDrip(int x, int y, int depth) 
+void CAguaDlg::MakeDrip(int x, int y, int depth)
 {
 //// Local Variables ////////////////////////////////////////////////////////////////
 	int i,j,dist,finaldepth;
@@ -445,7 +445,7 @@ void CAguaDlg::MakeDrip(int x, int y, int depth)
 // Procedure:	ProcessWater
 // Purpose:		Calculate new values for the water height field
 /////////////////////////////////////////////////////////////////////////////////////
-void CAguaDlg::ProcessWater() 
+void CAguaDlg::ProcessWater()
 {
 //// Local Variables ////////////////////////////////////////////////////////////////
 	int i,j;

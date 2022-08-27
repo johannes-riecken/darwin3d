@@ -2,28 +2,28 @@
 !IF "$(CFG)" == ""
 CFG=Friction - Win32 Debug
 !MESSAGE No configuration specified. Defaulting to Friction - Win32 Debug.
-!ENDIF 
+!ENDIF
 
 !IF "$(CFG)" != "Friction - Win32 Release" && "$(CFG)" != "Friction - Win32 Debug"
 !MESSAGE Invalid configuration "$(CFG)" specified.
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
-!MESSAGE 
+!MESSAGE
 !MESSAGE NMAKE /f "Friction.mak" CFG="Friction - Win32 Debug"
-!MESSAGE 
+!MESSAGE
 !MESSAGE Possible choices for configuration are:
-!MESSAGE 
+!MESSAGE
 !MESSAGE "Friction - Win32 Release" (based on "Win32 (x86) Application")
 !MESSAGE "Friction - Win32 Debug" (based on "Win32 (x86) Application")
-!MESSAGE 
+!MESSAGE
 !ERROR An invalid configuration is specified.
-!ENDIF 
+!ENDIF
 
 !IF "$(OS)" == "Windows_NT"
 NULL=
-!ELSE 
+!ELSE
 NULL=nul
-!ENDIF 
+!ENDIF
 
 !IF  "$(CFG)" == "Squashy - Win32 Release"
 
@@ -65,44 +65,44 @@ CLEAN :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
 CPP=cl.exe
-CPP_PROJ=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\Squashy.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_PROJ=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\Squashy.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c
 
 .c{$(INTDIR)}.obj::
    $(CPP) @<<
-   $(CPP_PROJ) $< 
+   $(CPP_PROJ) $<
 <<
 
 .cpp{$(INTDIR)}.obj::
    $(CPP) @<<
-   $(CPP_PROJ) $< 
+   $(CPP_PROJ) $<
 <<
 
 .cxx{$(INTDIR)}.obj::
    $(CPP) @<<
-   $(CPP_PROJ) $< 
+   $(CPP_PROJ) $<
 <<
 
 .c{$(INTDIR)}.sbr::
    $(CPP) @<<
-   $(CPP_PROJ) $< 
+   $(CPP_PROJ) $<
 <<
 
 .cpp{$(INTDIR)}.sbr::
    $(CPP) @<<
-   $(CPP_PROJ) $< 
+   $(CPP_PROJ) $<
 <<
 
 .cxx{$(INTDIR)}.sbr::
    $(CPP) @<<
-   $(CPP_PROJ) $< 
+   $(CPP_PROJ) $<
 <<
 
 MTL=midl.exe
-MTL_PROJ=/nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32 
+MTL_PROJ=/nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
 RSC=rc.exe
-RSC_PROJ=/l 0x409 /fo"$(INTDIR)\Squashy.res" /d "NDEBUG" 
+RSC_PROJ=/l 0x409 /fo"$(INTDIR)\Squashy.res" /d "NDEBUG"
 BSC32=bscmake.exe
-BSC32_FLAGS=/nologo /o"$(OUTDIR)\Squashy.bsc" 
+BSC32_FLAGS=/nologo /o"$(OUTDIR)\Squashy.bsc"
 BSC32_SBRS= \
 	"$(INTDIR)\Bitmap.sbr" \
 	"$(INTDIR)\Squashy.sbr" \
@@ -120,7 +120,7 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=dsound.lib winmm.lib opengl32.lib glu32.lib glaux.lib /nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\Squashy.pdb" /machine:I386 /out:"$(OUTDIR)\Squashy.exe" 
+LINK32_FLAGS=dsound.lib winmm.lib opengl32.lib glu32.lib glaux.lib /nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\Squashy.pdb" /machine:I386 /out:"$(OUTDIR)\Squashy.exe"
 LINK32_OBJS= \
 	"$(INTDIR)\Bitmap.obj" \
 	"$(INTDIR)\Squashy.obj" \
@@ -181,44 +181,44 @@ CLEAN :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
 CPP=cl.exe
-CPP_PROJ=/nologo /MTd /W3 /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\Squashy.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_PROJ=/nologo /MTd /W3 /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\Squashy.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c
 
 .c{$(INTDIR)}.obj::
    $(CPP) @<<
-   $(CPP_PROJ) $< 
+   $(CPP_PROJ) $<
 <<
 
 .cpp{$(INTDIR)}.obj::
    $(CPP) @<<
-   $(CPP_PROJ) $< 
+   $(CPP_PROJ) $<
 <<
 
 .cxx{$(INTDIR)}.obj::
    $(CPP) @<<
-   $(CPP_PROJ) $< 
+   $(CPP_PROJ) $<
 <<
 
 .c{$(INTDIR)}.sbr::
    $(CPP) @<<
-   $(CPP_PROJ) $< 
+   $(CPP_PROJ) $<
 <<
 
 .cpp{$(INTDIR)}.sbr::
    $(CPP) @<<
-   $(CPP_PROJ) $< 
+   $(CPP_PROJ) $<
 <<
 
 .cxx{$(INTDIR)}.sbr::
    $(CPP) @<<
-   $(CPP_PROJ) $< 
+   $(CPP_PROJ) $<
 <<
 
 MTL=midl.exe
-MTL_PROJ=/nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32 
+MTL_PROJ=/nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
 RSC=rc.exe
-RSC_PROJ=/l 0x409 /fo"$(INTDIR)\Squashy.res" /d "_DEBUG" 
+RSC_PROJ=/l 0x409 /fo"$(INTDIR)\Squashy.res" /d "_DEBUG"
 BSC32=bscmake.exe
-BSC32_FLAGS=/nologo /o"$(OUTDIR)\Squashy.bsc" 
+BSC32_FLAGS=/nologo /o"$(OUTDIR)\Squashy.bsc"
 BSC32_SBRS= \
 	"$(INTDIR)\Bitmap.sbr" \
 	"$(INTDIR)\Squashy.sbr" \
@@ -236,7 +236,7 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=dsound.lib winmm.lib opengl32.lib glu32.lib glaux.lib /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\Squashy.pdb" /debug /machine:I386 /out:"$(OUTDIR)\Squashy.exe" /pdbtype:sept 
+LINK32_FLAGS=dsound.lib winmm.lib opengl32.lib glu32.lib glaux.lib /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\Squashy.pdb" /debug /machine:I386 /out:"$(OUTDIR)\Squashy.exe" /pdbtype:sept
 LINK32_OBJS= \
 	"$(INTDIR)\Bitmap.obj" \
 	"$(INTDIR)\Squashy.obj" \
@@ -254,16 +254,16 @@ LINK32_OBJS= \
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<
 
-!ENDIF 
+!ENDIF
 
 
 !IF "$(NO_EXTERNAL_DEPS)" != "1"
 !IF EXISTS("Squashy.dep")
 !INCLUDE "Squashy.dep"
-!ELSE 
+!ELSE
 !MESSAGE Warning: cannot find "Squashy.dep"
-!ENDIF 
-!ENDIF 
+!ENDIF
+!ENDIF
 
 
 !IF "$(CFG)" == "Squashy - Win32 Release" || "$(CFG)" == "Squashy - Win32 Debug"
@@ -317,7 +317,7 @@ SOURCE=.\StdAfx.cpp
 
 !IF  "$(CFG)" == "Squashy - Win32 Release"
 
-CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\Squashy.pch" /Yc"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\Squashy.pch" /Yc"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c
 
 "$(INTDIR)\StdAfx.obj"	"$(INTDIR)\StdAfx.sbr"	"$(INTDIR)\Squashy.pch" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -327,7 +327,7 @@ CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /FR"$(
 
 !ELSEIF  "$(CFG)" == "Squashy - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MTd /W3 /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\Squashy.pch" /Yc"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MTd /W3 /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\Squashy.pch" /Yc"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c
 
 "$(INTDIR)\StdAfx.obj"	"$(INTDIR)\StdAfx.sbr"	"$(INTDIR)\Squashy.pch" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -335,8 +335,8 @@ CPP_SWITCHES=/nologo /MTd /W3 /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /
 <<
 
 
-!ENDIF 
+!ENDIF
 
 
-!ENDIF 
+!ENDIF
 

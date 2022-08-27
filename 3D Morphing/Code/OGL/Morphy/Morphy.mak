@@ -2,28 +2,28 @@
 !IF "$(CFG)" == ""
 CFG=Morphy - Win32 Debug
 !MESSAGE No configuration specified. Defaulting to Morphy - Win32 Debug.
-!ENDIF 
+!ENDIF
 
 !IF "$(CFG)" != "Morphy - Win32 Release" && "$(CFG)" != "Morphy - Win32 Debug"
 !MESSAGE Invalid configuration "$(CFG)" specified.
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
-!MESSAGE 
+!MESSAGE
 !MESSAGE NMAKE /f "Morphy.mak" CFG="Morphy - Win32 Debug"
-!MESSAGE 
+!MESSAGE
 !MESSAGE Possible choices for configuration are:
-!MESSAGE 
+!MESSAGE
 !MESSAGE "Morphy - Win32 Release" (based on "Win32 (x86) Application")
 !MESSAGE "Morphy - Win32 Debug" (based on "Win32 (x86) Application")
-!MESSAGE 
+!MESSAGE
 !ERROR An invalid configuration is specified.
-!ENDIF 
+!ENDIF
 
 !IF "$(OS)" == "Windows_NT"
 NULL=
-!ELSE 
+!ELSE
 NULL=nul
-!ENDIF 
+!ENDIF
 
 !IF  "$(CFG)" == "Morphy - Win32 Release"
 
@@ -55,48 +55,48 @@ CLEAN :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
 CPP=cl.exe
-CPP_PROJ=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /Fp"$(INTDIR)\Morphy.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_PROJ=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /Fp"$(INTDIR)\Morphy.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c
 
 .c{$(INTDIR)}.obj::
    $(CPP) @<<
-   $(CPP_PROJ) $< 
+   $(CPP_PROJ) $<
 <<
 
 .cpp{$(INTDIR)}.obj::
    $(CPP) @<<
-   $(CPP_PROJ) $< 
+   $(CPP_PROJ) $<
 <<
 
 .cxx{$(INTDIR)}.obj::
    $(CPP) @<<
-   $(CPP_PROJ) $< 
+   $(CPP_PROJ) $<
 <<
 
 .c{$(INTDIR)}.sbr::
    $(CPP) @<<
-   $(CPP_PROJ) $< 
+   $(CPP_PROJ) $<
 <<
 
 .cpp{$(INTDIR)}.sbr::
    $(CPP) @<<
-   $(CPP_PROJ) $< 
+   $(CPP_PROJ) $<
 <<
 
 .cxx{$(INTDIR)}.sbr::
    $(CPP) @<<
-   $(CPP_PROJ) $< 
+   $(CPP_PROJ) $<
 <<
 
 MTL=midl.exe
-MTL_PROJ=/nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32 
+MTL_PROJ=/nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
 RSC=rc.exe
-RSC_PROJ=/l 0x409 /fo"$(INTDIR)\Morphy.res" /d "NDEBUG" 
+RSC_PROJ=/l 0x409 /fo"$(INTDIR)\Morphy.res" /d "NDEBUG"
 BSC32=bscmake.exe
-BSC32_FLAGS=/nologo /o"$(OUTDIR)\Morphy.bsc" 
+BSC32_FLAGS=/nologo /o"$(OUTDIR)\Morphy.bsc"
 BSC32_SBRS= \
-	
+
 LINK32=link.exe
-LINK32_FLAGS=dsound.lib winmm.lib opengl32.lib glu32.lib glaux.lib /nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\Morphy.pdb" /machine:I386 /out:"$(OUTDIR)\Morphy.exe" 
+LINK32_FLAGS=dsound.lib winmm.lib opengl32.lib glu32.lib glaux.lib /nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\Morphy.pdb" /machine:I386 /out:"$(OUTDIR)\Morphy.exe"
 LINK32_OBJS= \
 	"$(INTDIR)\Bitmap.obj" \
 	"$(INTDIR)\LoadDlg.obj" \
@@ -157,44 +157,44 @@ CLEAN :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
 CPP=cl.exe
-CPP_PROJ=/nologo /MTd /W3 /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\Morphy.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_PROJ=/nologo /MTd /W3 /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\Morphy.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c
 
 .c{$(INTDIR)}.obj::
    $(CPP) @<<
-   $(CPP_PROJ) $< 
+   $(CPP_PROJ) $<
 <<
 
 .cpp{$(INTDIR)}.obj::
    $(CPP) @<<
-   $(CPP_PROJ) $< 
+   $(CPP_PROJ) $<
 <<
 
 .cxx{$(INTDIR)}.obj::
    $(CPP) @<<
-   $(CPP_PROJ) $< 
+   $(CPP_PROJ) $<
 <<
 
 .c{$(INTDIR)}.sbr::
    $(CPP) @<<
-   $(CPP_PROJ) $< 
+   $(CPP_PROJ) $<
 <<
 
 .cpp{$(INTDIR)}.sbr::
    $(CPP) @<<
-   $(CPP_PROJ) $< 
+   $(CPP_PROJ) $<
 <<
 
 .cxx{$(INTDIR)}.sbr::
    $(CPP) @<<
-   $(CPP_PROJ) $< 
+   $(CPP_PROJ) $<
 <<
 
 MTL=midl.exe
-MTL_PROJ=/nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32 
+MTL_PROJ=/nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
 RSC=rc.exe
-RSC_PROJ=/l 0x409 /fo"$(INTDIR)\Morphy.res" /d "_DEBUG" 
+RSC_PROJ=/l 0x409 /fo"$(INTDIR)\Morphy.res" /d "_DEBUG"
 BSC32=bscmake.exe
-BSC32_FLAGS=/nologo /o"$(OUTDIR)\Morphy.bsc" 
+BSC32_FLAGS=/nologo /o"$(OUTDIR)\Morphy.bsc"
 BSC32_SBRS= \
 	"$(INTDIR)\Bitmap.sbr" \
 	"$(INTDIR)\LoadDlg.sbr" \
@@ -212,7 +212,7 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=dsound.lib winmm.lib opengl32.lib glu32.lib glaux.lib /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\Morphy.pdb" /debug /machine:I386 /out:"$(OUTDIR)\Morphy.exe" /pdbtype:sept 
+LINK32_FLAGS=dsound.lib winmm.lib opengl32.lib glu32.lib glaux.lib /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\Morphy.pdb" /debug /machine:I386 /out:"$(OUTDIR)\Morphy.exe" /pdbtype:sept
 LINK32_OBJS= \
 	"$(INTDIR)\Bitmap.obj" \
 	"$(INTDIR)\LoadDlg.obj" \
@@ -230,16 +230,16 @@ LINK32_OBJS= \
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<
 
-!ENDIF 
+!ENDIF
 
 
 !IF "$(NO_EXTERNAL_DEPS)" != "1"
 !IF EXISTS("Morphy.dep")
 !INCLUDE "Morphy.dep"
-!ELSE 
+!ELSE
 !MESSAGE Warning: cannot find "Morphy.dep"
-!ENDIF 
-!ENDIF 
+!ENDIF
+!ENDIF
 
 
 !IF "$(CFG)" == "Morphy - Win32 Release" || "$(CFG)" == "Morphy - Win32 Debug"
@@ -257,7 +257,7 @@ SOURCE=.\Bitmap.cpp
 "$(INTDIR)\Bitmap.obj"	"$(INTDIR)\Bitmap.sbr" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Morphy.pch"
 
 
-!ENDIF 
+!ENDIF
 
 SOURCE=.\LoadDlg.cpp
 
@@ -273,7 +273,7 @@ SOURCE=.\LoadDlg.cpp
 "$(INTDIR)\LoadDlg.obj"	"$(INTDIR)\LoadDlg.sbr" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Morphy.pch"
 
 
-!ENDIF 
+!ENDIF
 
 SOURCE=.\LoadOBJ.cpp
 
@@ -289,7 +289,7 @@ SOURCE=.\LoadOBJ.cpp
 "$(INTDIR)\LoadOBJ.obj"	"$(INTDIR)\LoadOBJ.sbr" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Morphy.pch"
 
 
-!ENDIF 
+!ENDIF
 
 SOURCE=.\MainFrm.cpp
 
@@ -305,7 +305,7 @@ SOURCE=.\MainFrm.cpp
 "$(INTDIR)\MainFrm.obj"	"$(INTDIR)\MainFrm.sbr" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Morphy.pch"
 
 
-!ENDIF 
+!ENDIF
 
 SOURCE=.\Morphy.cpp
 
@@ -321,7 +321,7 @@ SOURCE=.\Morphy.cpp
 "$(INTDIR)\Morphy.obj"	"$(INTDIR)\Morphy.sbr" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Morphy.pch"
 
 
-!ENDIF 
+!ENDIF
 
 SOURCE=.\Morphy.rc
 
@@ -343,7 +343,7 @@ SOURCE=.\OGLView.cpp
 "$(INTDIR)\OGLView.obj"	"$(INTDIR)\OGLView.sbr" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Morphy.pch"
 
 
-!ENDIF 
+!ENDIF
 
 SOURCE=.\Skeleton.cpp
 
@@ -359,7 +359,7 @@ SOURCE=.\Skeleton.cpp
 "$(INTDIR)\Skeleton.obj"	"$(INTDIR)\Skeleton.sbr" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Morphy.pch"
 
 
-!ENDIF 
+!ENDIF
 
 SOURCE=.\Slider.cpp
 
@@ -375,13 +375,13 @@ SOURCE=.\Slider.cpp
 "$(INTDIR)\Slider.obj"	"$(INTDIR)\Slider.sbr" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Morphy.pch"
 
 
-!ENDIF 
+!ENDIF
 
 SOURCE=.\StdAfx.cpp
 
 !IF  "$(CFG)" == "Morphy - Win32 Release"
 
-CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /Fp"$(INTDIR)\Morphy.pch" /Yc"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /Fp"$(INTDIR)\Morphy.pch" /Yc"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c
 
 "$(INTDIR)\StdAfx.obj"	"$(INTDIR)\Morphy.pch" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -391,7 +391,7 @@ CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /Fp"$(
 
 !ELSEIF  "$(CFG)" == "Morphy - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MTd /W3 /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\Morphy.pch" /Yc"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MTd /W3 /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\Morphy.pch" /Yc"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c
 
 "$(INTDIR)\StdAfx.obj"	"$(INTDIR)\StdAfx.sbr"	"$(INTDIR)\Morphy.pch" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -399,8 +399,8 @@ CPP_SWITCHES=/nologo /MTd /W3 /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /
 <<
 
 
-!ENDIF 
+!ENDIF
 
 
-!ENDIF 
+!ENDIF
 

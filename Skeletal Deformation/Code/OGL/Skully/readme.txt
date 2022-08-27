@@ -24,8 +24,8 @@ The process is:
 2. Load the Mesh with "Open Mesh File" Select one of the three models.
 
 The mesh is now loaded and associated with the skeleton.  If you select
-"View/Draw Deformed" it will vanish.  This is because the weights are 
-not set.  You could set the weights manually (instructions later) or 
+"View/Draw Deformed" it will vanish.  This is because the weights are
+not set.  You could set the weights manually (instructions later) or
 load a weight file.
 
 3. "Load Weight File" to get the weighting for the model.  You need to
@@ -70,8 +70,8 @@ deformation is performed from.
 To set the weights:
 
 1. Select the Bone that you want to work with by selecting it in
-the heirarchy.  
-2. Double Click on the Bone name to bring up the editing window. 
+the heirarchy.
+2. Double Click on the Bone name to bring up the editing window.
 Set the weight value that will influence that bone. Value of 1 is
 full influence, .5 is 50%, etc.
 3. Select the Vertices to influence by LMB drag a selection box on
@@ -120,7 +120,7 @@ of the DX7 and GL-HW T&L version.  The restrictions mean I need to add
 some filters.
 
 DX7 is still in Beta and completely broken on all 3D cards
-as of last week.  I have new drivers I need to install and 
+as of last week.  I have new drivers I need to install and
 test but for now, my Direct X sample will no longer work.
 I will post the DX7 version as soon as it stablizes.
 

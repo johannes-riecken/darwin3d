@@ -5,7 +5,7 @@
 // Purpose:	Implementation of OpenGL Window of Inverse Kinematics System
 //
 // Created:
-//		JL 7/1/98		
+//		JL 7/1/98
 //		JL 9/20/98   FIXED A BUG IN THE IK CALCULATIONS
 //
 // Notes:	The meat of this application is the last routine in this file.
@@ -85,7 +85,7 @@ COGLView::~COGLView()
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	UpdateStatus
 // Purpose:		Update the status bar with orientation info
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 void COGLView::UpdateStatus()
 {
 /// Local Variables ///////////////////////////////////////////////////////////
@@ -102,7 +102,7 @@ void COGLView::UpdateStatus()
 	m_ptrStatusBar->SetPaneText(2,message);
 }
 
-BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext) 
+BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext)
 {
 	UpdateStatus();	// DRAW INITIAL STATUS BAR
 	return CWnd::Create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, pContext);
@@ -163,7 +163,7 @@ BOOL COGLView::SetupPixelFormat(HDC hdc)
     return TRUE;
 }
 
-int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	RECT rect;
@@ -173,7 +173,7 @@ int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
     m_hDC = ::GetDC(m_hWnd);
     if (!SetupPixelFormat(m_hDC))
 		PostQuitMessage (0);
-	
+
     m_hRC = wglCreateContext(m_hDC);
     wglMakeCurrent(m_hDC, m_hRC);
     GetClientRect(&rect);
@@ -194,7 +194,7 @@ int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 			glVertex3f( 0.15f, -0.04f, 0.0f);
 			glColor3f(0.0f, 1.0f, 0.0f);	// Y AXIS STARTS - COLOR GREEN
 			glVertex3f( 0.0f,  0.2f, 0.0f);
-			glVertex3f( 0.0f, -0.2f, 0.0f);			
+			glVertex3f( 0.0f, -0.2f, 0.0f);
 			glVertex3f( 0.0f,  0.2f, 0.0f);	// TOP PIECE OF ARROWHEAD
 			glVertex3f( 0.04f,  0.15f, 0.0f);
 			glVertex3f( 0.0f,  0.2f, 0.0f);	// BOTTOM PIECE OF ARROWHEAD
@@ -239,7 +239,7 @@ GLvoid COGLView::resize( GLsizei width, GLsizei height )
 	m_ModelScale = (float)height / 6.0f;
 	glScalef(m_ModelScale,m_ModelScale,0.0f);
 
-}    
+}
 
 GLvoid COGLView::initializeGL(GLsizei width, GLsizei height)
 {
@@ -269,7 +269,7 @@ GLvoid COGLView::initializeGL(GLsizei width, GLsizei height)
 }
 
 // GET THE INFO ON THE VERSION OF OPENGL RUNNING
-void COGLView::GetGLInfo() 
+void COGLView::GetGLInfo()
 {
 //// Local Variables ////////////////////////////////////////////////////////////////
 	char *who, *which, *ver, *ext, *message;
@@ -296,9 +296,9 @@ void COGLView::GetGLInfo()
 // Procedure:	drawModel
 // Purpose:		Draws the model associated with a bone
 // Notes:		Currently uses a global model not associated with the bone
-//              The data uses Quads with shared vertices and vertex coloring 
+//              The data uses Quads with shared vertices and vertex coloring
 //				so I chose to use indexed vertex arrays
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 GLvoid COGLView::drawModel(t_Bone *curBone)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
@@ -314,7 +314,7 @@ GLvoid COGLView::drawModel(t_Bone *curBone)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	drawScene
 // Purpose:		Draws the current OpenGL scene
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 GLvoid COGLView::drawScene(GLvoid)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
@@ -334,7 +334,7 @@ GLvoid COGLView::drawScene(GLvoid)
 	// ROTATE THE ROOT
 	glRotatef(m_Body.rot.z, 0.0f, 0.0f, 1.0f);
     glRotatef(m_Body.rot.y, 0.0f, 1.0f, 0.0f);
- 	glRotatef(m_Body.rot.x, 1.0f, 0.0f, 0.0f); 
+ 	glRotatef(m_Body.rot.x, 1.0f, 0.0f, 0.0f);
 
 	// Declare the Array of Data
 	glInterleavedArrays(BODYFORMAT,0,(GLvoid *)&BODY);
@@ -348,7 +348,7 @@ GLvoid COGLView::drawScene(GLvoid)
 	// ROTATE THE ROOT
 	glRotatef(m_UpArm.rot.z, 0.0f, 0.0f, 1.0f);
     glRotatef(m_UpArm.rot.y, 0.0f, 1.0f, 0.0f);
- 	glRotatef(m_UpArm.rot.x, 1.0f, 0.0f, 0.0f); 
+ 	glRotatef(m_UpArm.rot.x, 1.0f, 0.0f, 0.0f);
 
 	// Declare the Array of Data
 	glInterleavedArrays(UPARMFORMAT,0,(GLvoid *)&UPARM);
@@ -364,13 +364,13 @@ GLvoid COGLView::drawScene(GLvoid)
 	// ROTATE THE ROOT
 	glRotatef(m_LowArm.rot.z, 0.0f, 0.0f, 1.0f);
     glRotatef(m_LowArm.rot.y, 0.0f, 1.0f, 0.0f);
- 	glRotatef(m_LowArm.rot.x, 1.0f, 0.0f, 0.0f); 
+ 	glRotatef(m_LowArm.rot.x, 1.0f, 0.0f, 0.0f);
 
 	// Declare the Array of Data
 	glInterleavedArrays(LOWARMFORMAT,0,(GLvoid *)&LOWARM);
 	// Draw all the Quads at once
 	glDrawArrays(GL_TRIANGLES,0,LOWARMPOLYCNT * 3);
-    
+
 	// DRAW THE AXIS
 	glCallList(OGL_AXIS_DLIST);
 
@@ -390,7 +390,7 @@ GLvoid COGLView::drawScene(GLvoid)
 }
 // 	drawScene
 
-void COGLView::OnDestroy() 
+void COGLView::OnDestroy()
 {
 	CWnd::OnDestroy();
 	if (m_hRC)
@@ -399,11 +399,11 @@ void COGLView::OnDestroy()
 		::ReleaseDC(m_hWnd,m_hDC);
     m_hRC = 0;
     m_hDC = 0;
-	
-	
+
+
 }
 
-void COGLView::OnPaint() 
+void COGLView::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
 	drawScene();
@@ -411,7 +411,7 @@ void COGLView::OnPaint()
 	// Do not call CWnd::OnPaint() for painting messages
 }
 
-void COGLView::OnSize(UINT nType, int cx, int cy) 
+void COGLView::OnSize(UINT nType, int cx, int cy)
 {
 	// RESIZE THE OPENGL WINDOW
 	resize( cx,cy );
@@ -420,8 +420,8 @@ void COGLView::OnSize(UINT nType, int cx, int cy)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	OnLButtonDown
 // Purpose:		Left button down grabs the current point pos so I can use it
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::OnLButtonDown(UINT nFlags, CPoint point) 
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	char mess[80];
@@ -453,8 +453,8 @@ void COGLView::OnLButtonDown(UINT nFlags, CPoint point)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	OnRButtonDown
 // Purpose:		Right button down grabs the current point pos so I can use it
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::OnRButtonDown(UINT nFlags, CPoint point) 
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::OnRButtonDown(UINT nFlags, CPoint point)
 {
 	m_mousepos = point;
 	m_Grab_Rot_X = 	m_UpArm.rot.x;
@@ -466,11 +466,11 @@ void COGLView::OnRButtonDown(UINT nFlags, CPoint point)
 	CWnd::OnLButtonDown(nFlags, point);
 }
 
-void COGLView::HandleKeyDown(UINT nChar) 
+void COGLView::HandleKeyDown(UINT nChar)
 {
 }
 
-void COGLView::HandleKeyUp(UINT nChar) 
+void COGLView::HandleKeyUp(UINT nChar)
 {
 	switch (nChar)
 	{
@@ -483,8 +483,8 @@ void COGLView::HandleKeyUp(UINT nChar)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	OnMouseMove
 // Purpose:		Handle mouse moves while pressed
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::OnMouseMove(UINT nFlags, CPoint point) 
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	if (nFlags & MK_LBUTTON > 0)
 	{
@@ -521,8 +521,8 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	OnLButtonDblClk
 // Purpose:		Left Double click, get dialog for Orientation
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::OnLButtonDblClk(UINT nFlags, CPoint point) 
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
 }
 
@@ -600,7 +600,7 @@ double FASTATAN (double z)
 // Returns:		TRUE if a solution exists, FALSE if the position isn't in reach
 // Notes:		There was a bug in this in the Sept Game Developer source
 //				for this in the final angle calculation
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 BOOL COGLView::ComputeIK(CPoint endPos)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
@@ -618,7 +618,7 @@ BOOL COGLView::ComputeIK(CPoint endPos)
 	// MULTIPLY THE BONE LENGTHS BY THE WINDOW SCALE
 	l1 = m_LowArm.trans.x * m_ModelScale;
 	l2 = m_Effector.trans.x * m_ModelScale;
-	
+
 	// CALCULATE THE COSINE OF ANGLE 2
 	cos2 = ((ex * ex) + (ey * ey) - (l1 * l1) - (l2 * l2)) / (2 * l1 * l2);
 
@@ -633,7 +633,7 @@ BOOL COGLView::ComputeIK(CPoint endPos)
 		// COMPUTE ANGLE 1
 		// HERE IS WHERE THE BUG WAS SEE THE README.TXT FOR MORE INFO
 		// CALCULATE THE TAN OF ANGLE 1
-		tan1 = (-(l2 * sin2 * ex) + ((l1 + (l2 * cos2)) * ey)) / 
+		tan1 = (-(l2 * sin2 * ex) + ((l1 + (l2 * cos2)) * ey)) /
 				  ((l2 * sin2 * ey) + ((l1 + (l2 * cos2)) * ex));
 		// GET THE ACTUAL ANGLE
 		angle1 = FASTATAN(tan1);

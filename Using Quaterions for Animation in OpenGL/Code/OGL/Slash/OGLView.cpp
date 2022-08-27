@@ -5,7 +5,7 @@
 // Purpose:	Implementation of OpenGL Window of Quaternion Animation System
 //
 // Created:
-//		JL 11/1/97		
+//		JL 11/1/97
 //
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -54,7 +54,7 @@ COGLView::~COGLView()
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	UpdateStatus
 // Purpose:		Update the status bar with orientation info
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 void COGLView::UpdateStatus()
 {
 /// Local Variables ///////////////////////////////////////////////////////////
@@ -66,7 +66,7 @@ void COGLView::UpdateStatus()
 		m_ptrStatusBar->SetPaneText(1,"Quaternion Mode");
 	else
 		m_ptrStatusBar->SetPaneText(1,"Euler Mode");
-	
+
 	// PRINT THE CURRENT EULER ANGLES
 	sprintf(message,"Rot (%.1f,%.1f,%.1f)",
 		m_Skeleton->children->rot.x,
@@ -83,7 +83,7 @@ void COGLView::UpdateStatus()
 	m_ptrStatusBar->SetPaneText(3,message);
 }
 
-BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, t_Bone *skeleton, CCreateContext* pContext) 
+BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, t_Bone *skeleton, CCreateContext* pContext)
 {
 	m_Skeleton = skeleton;
 	UpdateStatus();	// DRAW INITIAL STATUS BAR
@@ -145,7 +145,7 @@ BOOL COGLView::SetupPixelFormat(HDC hdc)
     return TRUE;
 }
 
-int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	RECT rect;
@@ -155,7 +155,7 @@ int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
     m_hDC = ::GetDC(m_hWnd);
     if (!SetupPixelFormat(m_hDC))
 		PostQuitMessage (0);
-	
+
     m_hRC = wglCreateContext(m_hDC);
     wglMakeCurrent(m_hDC, m_hRC);
     GetClientRect(&rect);
@@ -176,7 +176,7 @@ int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 			glVertex3f( 0.15f, -0.04f, 0.0f);
 			glColor3f(0.0f, 1.0f, 0.0f);	// Y AXIS STARTS - COLOR GREEN
 			glVertex3f( 0.0f,  0.2f, 0.0f);
-			glVertex3f( 0.0f, -0.2f, 0.0f);			
+			glVertex3f( 0.0f, -0.2f, 0.0f);
 			glVertex3f( 0.0f,  0.2f, 0.0f);	// TOP PIECE OF ARROWHEAD
 			glVertex3f( 0.04f,  0.15f, 0.0f);
 			glVertex3f( 0.0f,  0.2f, 0.0f);	// BOTTOM PIECE OF ARROWHEAD
@@ -212,7 +212,7 @@ GLvoid COGLView::resize( GLsizei width, GLsizei height )
     glLoadIdentity();
     gluPerspective(10.0, aspect, 1.0, 2000.0);
     glMatrixMode(GL_MODELVIEW);
-}    
+}
 
 GLvoid COGLView::initializeGL(GLsizei width, GLsizei height)
 {
@@ -240,7 +240,7 @@ GLvoid COGLView::initializeGL(GLsizei width, GLsizei height)
 }
 
 // GET THE INFO ON THE VERSION OF OPENGL RUNNING
-void COGLView::GetGLInfo() 
+void COGLView::GetGLInfo()
 {
 //// Local Variables ////////////////////////////////////////////////////////////////
 	char *who, *which, *ver, *ext, *message;
@@ -266,9 +266,9 @@ void COGLView::GetGLInfo()
 // Procedure:	drawModel
 // Purpose:		Draws the model associated with a bone
 // Notes:		Currently uses a global model not associated with the bone
-//              The data uses Quads with shared vertices and vertex coloring 
+//              The data uses Quads with shared vertices and vertex coloring
 //				so I chose to use indexed vertex arrays
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 GLvoid COGLView::drawModel(t_Bone *curBone)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
@@ -295,7 +295,7 @@ GLvoid COGLView::drawModel(t_Bone *curBone)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	drawScene
 // Purpose:		Draws the current OpenGL scene
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 GLvoid COGLView::drawScene(GLvoid)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
@@ -307,7 +307,7 @@ GLvoid COGLView::drawScene(GLvoid)
 	if (m_Skeleton->rot.y  > 360.0f) m_Skeleton->rot.y  -= 360.0f;
     if (m_Skeleton->rot.x   > 360.0f) m_Skeleton->rot.x   -= 360.0f;
     if (m_Skeleton->rot.z > 360.0f) m_Skeleton->rot.z -= 360.0f;
-	
+
     glDisable(GL_DEPTH_TEST);	// TURN OFF DEPTH TEST FOR CLEAR
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -322,7 +322,7 @@ GLvoid COGLView::drawScene(GLvoid)
 	// ROTATE THE ROOT
 	glRotatef(m_Skeleton->rot.z, 1.0f, 0.0f, 0.0f);
     glRotatef(m_Skeleton->rot.y, 0.0f, 1.0f, 0.0f);
- 	glRotatef(m_Skeleton->rot.x, 0.0f, 0.0f, 1.0f); 
+ 	glRotatef(m_Skeleton->rot.x, 0.0f, 0.0f, 1.0f);
 
 	curBone = m_Skeleton->children;
 	for (loop = 0; loop < m_Skeleton->childCnt; loop++)
@@ -342,12 +342,12 @@ GLvoid COGLView::drawScene(GLvoid)
 			QuatToAxisAngle(&curBone->quat,&axisAngle);
 			AxisAngleToQuat((tVector *)&axisAngle, axisAngle.w, &temp);
 			// DO THE ROTATION
-			glRotatef(axisAngle.w, axisAngle.x, axisAngle.y, axisAngle.z); 
+			glRotatef(axisAngle.w, axisAngle.x, axisAngle.y, axisAngle.z);
 		}
 		else
 		{
 			// Rotate out the model via Euler angles
-			glRotatef(curBone->rot.z, 0.0f, 0.0f, 1.0f); 
+			glRotatef(curBone->rot.z, 0.0f, 0.0f, 1.0f);
 			glRotatef(curBone->rot.y, 0.0f, 1.0f, 0.0f);
 			glRotatef(curBone->rot.x, 1.0f, 0.0f, 0.0f);
 
@@ -375,7 +375,7 @@ GLvoid COGLView::drawScene(GLvoid)
 }
 // 	drawScene
 
-void COGLView::OnDestroy() 
+void COGLView::OnDestroy()
 {
 	CWnd::OnDestroy();
 	if (m_hRC)
@@ -384,11 +384,11 @@ void COGLView::OnDestroy()
 		::ReleaseDC(m_hWnd,m_hDC);
     m_hRC = 0;
     m_hDC = 0;
-	
-	
+
+
 }
 
-void COGLView::OnPaint() 
+void COGLView::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
 	drawScene();
@@ -396,7 +396,7 @@ void COGLView::OnPaint()
 	// Do not call CWnd::OnPaint() for painting messages
 }
 
-void COGLView::OnSize(UINT nType, int cx, int cy) 
+void COGLView::OnSize(UINT nType, int cx, int cy)
 {
 	// RESIZE THE OPENGL WINDOW
 //	resize( cx,cy );
@@ -405,8 +405,8 @@ void COGLView::OnSize(UINT nType, int cx, int cy)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	OnLButtonDown
 // Purpose:		Left button down grabs the current point pos so I can use it
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::OnLButtonDown(UINT nFlags, CPoint point) 
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	m_mousepos = point;
 	m_Grab_Rot_X = 	m_Skeleton->children->rot.x;
@@ -421,8 +421,8 @@ void COGLView::OnLButtonDown(UINT nFlags, CPoint point)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	OnRButtonDown
 // Purpose:		Right button down grabs the current point pos so I can use it
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::OnRButtonDown(UINT nFlags, CPoint point) 
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::OnRButtonDown(UINT nFlags, CPoint point)
 {
 	m_mousepos = point;
 	m_Grab_Rot_X = 	m_Skeleton->children->rot.x;
@@ -434,11 +434,11 @@ void COGLView::OnRButtonDown(UINT nFlags, CPoint point)
 	CWnd::OnLButtonDown(nFlags, point);
 }
 
-void COGLView::HandleKeyDown(UINT nChar) 
+void COGLView::HandleKeyDown(UINT nChar)
 {
 }
 
-void COGLView::HandleKeyUp(UINT nChar) 
+void COGLView::HandleKeyUp(UINT nChar)
 {
 	tVector	euler;
 	switch (nChar)
@@ -454,8 +454,8 @@ void COGLView::HandleKeyUp(UINT nChar)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	OnMouseMove
 // Purpose:		Handle mouse moves while pressed
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::OnMouseMove(UINT nFlags, CPoint point) 
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	if (nFlags & MK_LBUTTON > 0)
 	{
@@ -472,7 +472,7 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 				m_Skeleton->trans.y = m_Grab_Trans_Y - (.1f * (point.y - m_mousepos.y));
 				drawScene();
 			}
-		}	
+		}
 		// ELSE ROTATE THE BONE
 		else
 		{
@@ -513,8 +513,8 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	OnLButtonDblClk
 // Purpose:		Left Double click, get dialog for Orientation
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::OnLButtonDblClk(UINT nFlags, CPoint point) 
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
 	CSetRot dialog;
 	dialog.m_XAxis = m_Skeleton->children->rot.x;

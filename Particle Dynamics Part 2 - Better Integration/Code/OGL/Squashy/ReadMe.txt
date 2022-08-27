@@ -3,20 +3,20 @@
 v. 2.0
 
 Sorry it took some time to release this code.  It took a
-while to recover from the GDC andd get my actual job-work 
+while to recover from the GDC andd get my actual job-work
 caught up.  I finally sat down and commented and cleaned
 things up.
 
-This is the same demonstration as the February column with 
-the addition of better integration.  There are two integrators 
+This is the same demonstration as the February column with
+the addition of better integration.  There are two integrators
 in addition to the Euler one from that issue.
 
 Midpoint Method (RK2)
 	This integrator evaluates the function at a half step then
-	takes a full step with those values 
+	takes a full step with those values
 
 Runge-Kutta 4
-	This very sophisticated integrator actually evaluates the 
+	This very sophisticated integrator actually evaluates the
 	function four times and is very stable even with very stiff
 	springs.
 
@@ -38,7 +38,7 @@ stability as far as I can see.
 This needs to be optimized like crazy if you want to use it in a
 production application.  One obvious point for optimizing would be
 to change the way the springs work so that they use the squared-distance
-as the baseline so it would avoid the SQRT function in the force 
+as the baseline so it would avoid the SQRT function in the force
 calculations.  I am sure you will all find a lot of others.  The
 RK4 code could probably be organized a lot better I know.  Drop me
 a copy of any cool improvements you make.
@@ -57,15 +57,15 @@ but it was as clear as I could make it in the time allowed.
 All the major functions for the actual dynamic simulation are in
 the files:	PhysEnv.h and PhysEnv.cpp.  Some of the timing
 and display code is in OGLView.h and OGLView.cpp.  Most of
-the UI is passed through MainFrm.cpp to OGLView.  
+the UI is passed through MainFrm.cpp to OGLView.
 
-All of the simulation constants can be set through the 
+All of the simulation constants can be set through the
 Simulation Properties dialog.  Any changes to the spring constants
 are applied to all springs in the simulation.  There is currently
 no way to change the settings for an individual spring.
 
 You can load in one of the pre-made simulations or create a
-new one by loading in an OBJ.  The OBJ needs to be scaled 
+new one by loading in an OBJ.  The OBJ needs to be scaled
 within a +-5 unit cube world so it fits within the world boundaries.
 An OBJ file loads as a point cloud.  You then can connect the dots
 by selecting vertices two at a time.  Press "ENTER" to connect the
@@ -86,7 +86,7 @@ Demos:
 
 "GonaBlow"
 Be sure an check out the "GonaBlow" demo.  It shows what happens
-when the integrator suffers from numerical instability.  You can 
+when the integrator suffers from numerical instability.  You can
 prove this by halving the MaxStepSize in the Timing Property Dialog.
 We will fix that next month.
 
@@ -105,17 +105,17 @@ errors.  In theory, it should balance exactly forever.
 
 This is a pretty complex demo.  Any problems or questions, email me.
 
-Jeff Lander 
+Jeff Lander
 jeffl@darwin3d.com
-www.darwin3d.com/gamedev.htm				
+www.darwin3d.com/gamedev.htm
 -----------------------------------------------------------
 
 I compiled the code with Visual C++ 6.0.  It has been tested
 with Microsoft OpenGL, SGI OpenGL for Windows, Permidia 1 and 2 OpenGL
-Drivers, Riva 128 (New Beta OGL Drivers), AccelGalaxy, 
+Drivers, Riva 128 (New Beta OGL Drivers), AccelGalaxy,
 and Symetra Ultra FX Pro.
 
-It should run on any OpenGL fully complient driver.  This 
+It should run on any OpenGL fully complient driver.  This
 DOES NOT include the mini-QuakeGL driver for 3DFX.  3DFX
 OpenGL does not support OpenGL in a window so will not work
 with this application.

@@ -1,4 +1,4 @@
-Slash II - Slash Harder	
+Slash II - Slash Harder
 
 Quaternion Interpolation Demonstration Program March 15, 1998
 -------------------------------------------------------------
@@ -13,17 +13,17 @@ interpolating between Quaternions.  If you want more
 explaination of the Euler angle to Quaternion code, see the
 March 98 Game Developer magazine and sample code.
 
-Write to me if you have problems or questions and check 
+Write to me if you have problems or questions and check
 the web site or Game Developer's web site for updates.
 
-Jeff Lander 
+Jeff Lander
 jeffl@darwin3d.com
-www.darwin3d.com/gamedev.htm			
+www.darwin3d.com/gamedev.htm
 -----------------------------------------------------------
 
 I know this code could be optimized for maximum performance
 but it was written to be a clean example without a lot of
-tricks.  It should be easy to learn and build from.  
+tricks.  It should be easy to learn and build from.
 
 Here are the details.
 
@@ -31,19 +31,19 @@ I compiled the code with Visual C++ 5.0.  It has been tested
 with Microsoft OpenGL, SGI OpenGL, Permidia 1 and 2 OpenGL
 Drivers, Riva 128 (New Beta OGL Drivers), and Symetra Ultra FX Pro.
 
-It should run on any OpenGL fully complient driver.  This 
+It should run on any OpenGL fully complient driver.  This
 DOES NOT include the mini-QuakeGL driver for 3DFX.  3DFX
 OpenGL does not support OpenGL in a window so will not work
 with this application.
 
-There are instructions in the Help/About dialog.  
+There are instructions in the Help/About dialog.
 
 This program is to demonstrate the use of Quaternions for
 animation control in OpenGL.
 
 The user interface for creating keyframe positions is a little
 strange.  What can I say, you want a good keyframing program,
-buy a professional 3D animation package. 
+buy a professional 3D animation package.
 
 Anyway, it works like this:
 
@@ -58,7 +58,7 @@ Select the bone you wish to position and then rotate it to the desired
 orientation by dragging with the left mouse button for X and Y and
 right button for the Z axis.  When you have it set to the final
 position, select "Keyframe/Set End Key" this locks it in.  Do that
-for all 3 bones.  
+for all 3 bones.
 
 After all the keyframes are locked, move them all to the starting
 orientation.  Then you can use the slider to interpolate between
@@ -66,7 +66,7 @@ them.
 
 Other Functions:
 
-1,2,3			Select Upper Arm, Lower Arm, Hand as current bone. 
+1,2,3			Select Upper Arm, Lower Arm, Hand as current bone.
 Double Click	Brings up edit box for orientation of current bone.
 Ctrl+Mouse Drag	Translate the base position of the system.
 

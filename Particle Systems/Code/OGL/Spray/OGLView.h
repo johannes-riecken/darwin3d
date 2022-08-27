@@ -5,7 +5,7 @@
 // Purpose:	Implementation of OpenGL Window of Particle System
 //
 // Created:
-//		JL 11/1/97		
+//		JL 11/1/97
 // Revisions:
 //		Integrated into Particle System Demo		2/18/98
 //

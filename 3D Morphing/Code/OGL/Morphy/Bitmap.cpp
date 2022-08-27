@@ -382,7 +382,7 @@ PrintDIBitmap(HWND       owner,		/* I - Owner/parent window */
   pd.lStructSize = sizeof(pd);
   pd.hwndOwner   = owner;
   pd.Flags       = PD_RETURNDC;
-  pd.hInstance   = NULL;									    
+  pd.hInstance   = NULL;
   if (!PrintDlg(&pd))
     return (0);		/* User chose 'cancel'... */
 
@@ -483,7 +483,7 @@ ConvertRGB(BITMAPINFO *info,		/* I - Original bitmap information */
   */
 
   width   = 3 * info->bmiHeader.biWidth;
-  width   = (width + 3) & ~3;	
+  width   = (width + 3) & ~3;
   bitsize = width * info->bmiHeader.biHeight;
   if ((newbits = (GLubyte *)calloc(bitsize, 1)) == NULL)
     return (NULL);

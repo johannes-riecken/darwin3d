@@ -5,7 +5,7 @@
 // Purpose:	Implementation of OpenGL Window of Quaternion Animation System
 //
 // Created:
-//		JL 11/1/97		
+//		JL 11/1/97
 //
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -49,7 +49,7 @@ public:
 	float m_Grab_Rot_X,m_Grab_Rot_Y,m_Grab_Rot_Z;
 	float m_Grab_Trans_X,m_Grab_Trans_Y,m_Grab_Trans_Z;
 	BOOL m_DrawGeometry;
-	BOOL m_UseQuat;	
+	BOOL m_UseQuat;
 	float m_AnimBlend;
 	t_Bone *m_Skeleton;
 	t_Bone *m_CurBone;		// WHICH ONE IS UNDER UI CONTROL

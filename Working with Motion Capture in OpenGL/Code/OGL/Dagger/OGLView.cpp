@@ -5,7 +5,7 @@
 // Purpose:	Implementation of OpenGL Window of Hierarchical Animation System
 //
 // Created:
-//		JL 9/1/97		
+//		JL 9/1/97
 // Versions:
 //		1.01	12/20/97	Fix perspective in OpenGL Resize Code
 //		1.02	1/10/97		Change to display code to handle skeletal hierarchy
@@ -56,7 +56,7 @@ COGLView::~COGLView()
 {
 }
 
-BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, t_Bone *skeleton, CCreateContext* pContext) 
+BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, t_Bone *skeleton, CCreateContext* pContext)
 {
 	m_Skeleton = skeleton;
 	m_SelectedBone = skeleton;
@@ -133,7 +133,7 @@ void COGLView::DrawAxis(void)
 			glVertex3f( 0.15f, -0.04f, 0.0f);
 			glColor3f(0.0f, 1.0f, 0.0f);	// Y AXIS STARTS - COLOR GREEN
 			glVertex3f( 0.0f,  0.2f, 0.0f);
-			glVertex3f( 0.0f, -0.2f, 0.0f);			
+			glVertex3f( 0.0f, -0.2f, 0.0f);
 			glVertex3f( 0.0f,  0.2f, 0.0f);	// TOP PIECE OF ARROWHEAD
 			glVertex3f( 0.04f,  0.15f, 0.0f);
 			glVertex3f( 0.0f,  0.2f, 0.0f);	// BOTTOM PIECE OF ARROWHEAD
@@ -149,7 +149,7 @@ void COGLView::DrawAxis(void)
 }
 //// DrawAxis /////////////////////////////////////////////////////////////////
 
-int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	RECT rect;
@@ -159,7 +159,7 @@ int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
     m_hDC = ::GetDC(m_hWnd);
     if (!SetupPixelFormat(m_hDC))
 		PostQuitMessage (0);
-	
+
     m_hRC = wglCreateContext(m_hDC);
     wglMakeCurrent(m_hDC, m_hRC);
     GetClientRect(&rect);
@@ -180,7 +180,7 @@ int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 			glVertex3f( 0.15f, -0.04f, 0.0f);
 			glColor3f(0.0f, 1.0f, 0.0f);	// Y AXIS STARTS - COLOR GREEN
 			glVertex3f( 0.0f,  0.2f, 0.0f);
-			glVertex3f( 0.0f, -0.2f, 0.0f);			
+			glVertex3f( 0.0f, -0.2f, 0.0f);
 			glVertex3f( 0.0f,  0.2f, 0.0f);	// TOP PIECE OF ARROWHEAD
 			glVertex3f( 0.04f,  0.15f, 0.0f);
 			glVertex3f( 0.0f,  0.2f, 0.0f);	// BOTTOM PIECE OF ARROWHEAD
@@ -257,7 +257,7 @@ GLvoid COGLView::resize( GLsizei width, GLsizei height )
     glLoadIdentity();
 	gluPerspective(10.0, aspect,1, 2000);
     glMatrixMode(GL_MODELVIEW);
-}    
+}
 //// resize /////////////////////////////////////////////////////////////////
 
 GLvoid COGLView::initializeGL(GLsizei width, GLsizei height)
@@ -307,11 +307,11 @@ GLvoid COGLView::drawSkeleton(t_Bone *rootBone)
 		// Set observer's orientation and position
 		glRotatef(curBone->rot.y, 0.0f, 1.0f, 0.0f);
 		glRotatef(curBone->rot.x, 1.0f, 0.0f, 0.0f);
-		glRotatef(curBone->rot.z, 0.0f, 0.0f, 1.0f); 
-	
+		glRotatef(curBone->rot.z, 0.0f, 0.0f, 1.0f);
+
 		// THE SCALE IS LOCAL SO I PUSH AND POP
 		glPushMatrix();
-		glScalef(curBone->scale.x, curBone->scale.y, curBone->scale.z); 
+		glScalef(curBone->scale.x, curBone->scale.y, curBone->scale.z);
 
 #if USE_DRAWLISTS
 		// DRAW THE AXIS OGL OBJECT
@@ -353,7 +353,7 @@ GLvoid COGLView::drawScene(GLvoid)
 	if (m_Skeleton->rot.y  > 360.0f) m_Skeleton->rot.y  -= 360.0f;
     if (m_Skeleton->rot.x   > 360.0f) m_Skeleton->rot.x   -= 360.0f;
     if (m_Skeleton->rot.z > 360.0f) m_Skeleton->rot.z -= 360.0f;
-	
+
     glDisable(GL_DEPTH_TEST);	// TURN OFF DEPTH TEST FOR CLEAR
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -367,7 +367,7 @@ GLvoid COGLView::drawScene(GLvoid)
 
     glRotatef(m_Skeleton->rot.x, 1.0f, 0.0f, 0.0f);
     glRotatef(m_Skeleton->rot.y, 0.0f, 1.0f, 0.0f);
-    glRotatef(m_Skeleton->rot.z, 0.0f, 0.0f, 1.0f); 
+    glRotatef(m_Skeleton->rot.z, 0.0f, 0.0f, 1.0f);
 
 	m_SelectedBone = m_Skeleton;
 
@@ -383,7 +383,7 @@ GLvoid COGLView::drawScene(GLvoid)
 //// drawScene //////////////////////////////////////////////////////
 
 
-void COGLView::OnDestroy() 
+void COGLView::OnDestroy()
 {
 	CWnd::OnDestroy();
 	if (m_hRC)
@@ -392,11 +392,11 @@ void COGLView::OnDestroy()
 		::ReleaseDC(m_hWnd,m_hDC);
     m_hRC = 0;
     m_hDC = 0;
-	
-	
+
+
 }
 
-void COGLView::OnPaint() 
+void COGLView::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
 
@@ -404,7 +404,7 @@ void COGLView::OnPaint()
 	// Do not call CWnd::OnPaint() for painting messages
 }
 
-void COGLView::OnLButtonDown(UINT nFlags, CPoint point) 
+void COGLView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	// STORE OFF THE KIT POINT AND SETTINGS FOR THE MOVEMENT LATER
 	m_mousepos = point;
@@ -417,7 +417,7 @@ void COGLView::OnLButtonDown(UINT nFlags, CPoint point)
 	CWnd::OnLButtonDown(nFlags, point);
 }
 
-void COGLView::OnRButtonDown(UINT nFlags, CPoint point) 
+void COGLView::OnRButtonDown(UINT nFlags, CPoint point)
 {
 	// STORE OFF THE KIT POINT AND SETTINGS FOR THE MOVEMENT LATER
 	m_mousepos = point;
@@ -434,7 +434,7 @@ void COGLView::OnRButtonDown(UINT nFlags, CPoint point)
 // 0 = READY
 // 1 = ROTATE
 // 2 = TRANSLATE
-void COGLView::UpdateStatusBar(int mode) 
+void COGLView::UpdateStatusBar(int mode)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	char message[80];
@@ -454,7 +454,7 @@ void COGLView::UpdateStatusBar(int mode)
 	m_StatusBar->SetPaneText(0,message);
 }
 
-void COGLView::UpdateStatusBarFrameInfo() 
+void COGLView::UpdateStatusBarFrameInfo()
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	char message[80];
@@ -467,11 +467,11 @@ void COGLView::UpdateStatusBarFrameInfo()
 	}
 }
 
-void COGLView::HandleKeyDown(UINT nChar) 
+void COGLView::HandleKeyDown(UINT nChar)
 {
 }
 
-void COGLView::HandleKeyUp(UINT nChar) 
+void COGLView::HandleKeyUp(UINT nChar)
 {
 }
 
@@ -480,7 +480,7 @@ void COGLView::HandleKeyUp(UINT nChar)
 // Purpose:		Handler for the mouse.  Handles movement when pressed
 // Arguments:	Flags for key masks and point
 ///////////////////////////////////////////////////////////////////////////////
-void COGLView::OnMouseMove(UINT nFlags, CPoint point) 
+void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	UpdateStatusBar(0);
 	if (nFlags & MK_LBUTTON > 0)
@@ -499,7 +499,7 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 				m_SelectedBone->trans.y = m_Grab_Trans_Y - (.05f * (point.y - m_mousepos.y));
 				drawScene();
 			}
-		}	
+		}
 		// ELSE "SHIFT" ROTATE THE ROOT
 		else if ((nFlags & MK_SHIFT) > 0)
 		{
@@ -537,7 +537,7 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 			}
 		}
 	}
-	
+
 	CWnd::OnMouseMove(nFlags, point);
 }
 //// OnMouseMove //////////////////////////////////////////////////////
@@ -547,7 +547,7 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 // Purpose:		Reset the view settings for the skeleton
 // Arguments:	None
 ///////////////////////////////////////////////////////////////////////////////
-void COGLView::OnViewResetskeleton() 
+void COGLView::OnViewResetskeleton()
 {
 	m_Skeleton->trans.x = 0.0f;
 	m_Skeleton->trans.y = -3.0f;
@@ -555,7 +555,7 @@ void COGLView::OnViewResetskeleton()
 	m_Skeleton->rot.x = 0.0f;
 	m_Skeleton->rot.y = 0.0f;
 	m_Skeleton->rot.z = 0.0f;
-	drawScene();	
+	drawScene();
 }
 //// OnViewResetskeleton //////////////////////////////////////////////////////
 
@@ -564,7 +564,7 @@ void COGLView::OnViewResetskeleton()
 // Purpose:		Get the OpenGL Vendor and Rederer info as strings
 // Arguments:	None
 ///////////////////////////////////////////////////////////////////////////////
-void COGLView::GetGLInfo() 
+void COGLView::GetGLInfo()
 {
 //// Local Variables ////////////////////////////////////////////////////////////////
 	char *who, *which, *ver, *ext, *message;

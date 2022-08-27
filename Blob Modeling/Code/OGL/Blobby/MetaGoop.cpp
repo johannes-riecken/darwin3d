@@ -4,7 +4,7 @@
 //
 // Purpose:	Implementation of MetaGoop
 //			This is the main file for the MetaGoop system.
-//		
+//
 // Created:
 //		JL  10/18/99
 // Revisions: Jan 2000
@@ -174,7 +174,7 @@ void Goop_CheckEdge(float threshold, tMetaGoopEval *a, tMetaGoopEval *b, tVector
 	VectorMultiply(&diff, ratio);
 	VectorSubtract(&a->pos,&diff,vertex);
 }
-// 
+//
 
 /////////////////////////////////////////////////////////////////////////////////////
 // Procedure:	Goop_CheckPyramid
@@ -198,7 +198,7 @@ void Goop_CheckPyramid(float threshold,tMetaGoopEval **pyramid)
 			inside++;
 			if (firstIn == -1) firstIn = loop;	// Track the first
 		}
-		else 
+		else
 		{
 			outside++;
 			if (firstOut == -1) firstOut = loop;	// Track the first
@@ -245,7 +245,7 @@ void Goop_CheckPyramid(float threshold,tMetaGoopEval **pyramid)
 	if (outside == 3 || inside == 3)
 	{
 		// TODO: Need to determine facing here.
-		glColor3f(1.0f, 0.0f, 0.0f);	
+		glColor3f(1.0f, 0.0f, 0.0f);
 		glBegin(GL_TRIANGLES);
 
 			glVertex3fv((float *)&vertex[0]);
@@ -256,7 +256,7 @@ void Goop_CheckPyramid(float threshold,tMetaGoopEval **pyramid)
 	else	// Handle the case with four vertices
 	{
 		// TODO: This is wrong, I think there are cases where the triangles will cross
-		glColor3f(1.0f, 0.0f, 0.0f);	
+		glColor3f(1.0f, 0.0f, 0.0f);
 		glBegin(GL_TRIANGLES);
 			glVertex3fv((float *)&vertex[0]);
 			glVertex3fv((float *)&vertex[1]);
@@ -267,7 +267,7 @@ void Goop_CheckPyramid(float threshold,tMetaGoopEval **pyramid)
 		glEnd();
 	}
 }
-// 
+//
 
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -315,7 +315,7 @@ void Goop_CheckCubeSurf(float threshold,tMetaGoopEval **cube)
 	pyramid[0] = cube[1]; pyramid[1] = cube[4]; pyramid[2] = cube[5]; pyramid[3] = cube[3];
 	Goop_CheckPyramid(threshold, pyramid);
 }
-// 
+//
 
 /////////////////////////////////////////////////////////////////////////////////////
 // Procedure:	Goop_EvaluateSurface

@@ -5,7 +5,7 @@
 // Purpose:	Implementation of Main Window of Quaternion Animation System
 //
 // Created:
-//		JL 11/1/97		
+//		JL 11/1/97
 //
 ///////////////////////////////////////////////////////////////////////////////
 //

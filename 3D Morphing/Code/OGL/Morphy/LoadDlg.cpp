@@ -45,11 +45,11 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CLoadDlg message handlers
 
-void CLoadDlg::OnBrowse1() 
+void CLoadDlg::OnBrowse1()
 {
 	char szFilter[] = "OBJ files (*.obj)|*.obj||";  // WILL INCLUDE Biovision Hierarchy BVH (*.bvh)|*.bvh|
 	CFileDialog	dialog( TRUE, ".obj", NULL, NULL, szFilter, this);
-	CString name;		
+	CString name;
 	if (dialog.DoModal())
 	{
 		name = dialog.GetFileName( ) ;
@@ -58,11 +58,11 @@ void CLoadDlg::OnBrowse1()
 	}
 }
 
-void CLoadDlg::OnBrowse2() 
+void CLoadDlg::OnBrowse2()
 {
 	char szFilter[] = "OBJ files (*.obj)|*.obj||";  // WILL INCLUDE Biovision Hierarchy BVH (*.bvh)|*.bvh|
 	CFileDialog	dialog( TRUE, ".obj", NULL, NULL, szFilter, this);
-	CString name;		
+	CString name;
 	if (dialog.DoModal())
 	{
 		name = dialog.GetFileName( ) ;

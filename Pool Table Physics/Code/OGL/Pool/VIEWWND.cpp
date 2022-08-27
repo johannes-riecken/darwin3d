@@ -43,7 +43,7 @@ void SetupViewRC(void)
 
 	// Enable color tracking
 //	glEnable(GL_COLOR_MATERIAL);
-	
+
 	// Set Material properties to follow glColor values
 //	glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
 
@@ -66,12 +66,12 @@ void SetDCDepthPixelFormat(HDC hDC)
 
 	static PIXELFORMATDESCRIPTOR pfd = {
 		sizeof(PIXELFORMATDESCRIPTOR),  // Size of this structure
-		1,                                                              // Version of this structure    
+		1,                                                              // Version of this structure
 		PFD_DRAW_TO_WINDOW |                    // Draw to Window (not to bitmap)
 		PFD_SUPPORT_OPENGL |					// Support OpenGL calls in window
 		PFD_DOUBLEBUFFER,                       // Double buffered
 		PFD_TYPE_RGBA,                          // RGBA Color mode
-		24,                                     // Want 24bit color 
+		24,                                     // Want 24bit color
 		0,0,0,0,0,0,                            // Not used to select mode
 		0,0,                                    // Not used to select mode
 		0,0,0,0,0,                              // Not used to select mode
@@ -105,7 +105,7 @@ LRESULT CALLBACK WndProcView(HWND    hWnd,
 	static HGLRC  hRC;	// Keep the Rendering Context
 	float	magnitude;
 /////////////////////////////////////////////////////////////////////////////////////
-	
+
 	switch (message)
 		{
 		// Window creation, setup here
@@ -135,7 +135,7 @@ LRESULT CALLBACK WndProcView(HWND    hWnd,
 			wglMakeCurrent(hDC,NULL);
 			wglDeleteContext(hRC);
 
-			// Destroy the palette if it was created 
+			// Destroy the palette if it was created
 			if(hPalette != NULL)
 				DeleteObject(hPalette);
 
@@ -149,9 +149,9 @@ LRESULT CALLBACK WndProcView(HWND    hWnd,
 			int nWidth,nHeight;
 			double dAspect;
 
-			nWidth = LOWORD(lParam);  // width of client area 
-			nHeight = HIWORD(lParam); // height of client area 
-	
+			nWidth = LOWORD(lParam);  // width of client area
+			nHeight = HIWORD(lParam); // height of client area
+
 			if(nHeight == 0)		  // Don't allow divide by zero
 				nHeight = 1;
 
@@ -162,7 +162,7 @@ LRESULT CALLBACK WndProcView(HWND    hWnd,
 
 			// Set the viewport to be the entire window
 		    glViewport(0, 0, nWidth, nHeight);
-	
+
 			// Setup Perspective
 			glMatrixMode(GL_PROJECTION);
 			glLoadIdentity();
@@ -189,7 +189,7 @@ LRESULT CALLBACK WndProcView(HWND    hWnd,
 
 
 		// Windows is telling the application that it may modify
-		// the system palette.  This message in essance asks the 
+		// the system palette.  This message in essance asks the
 		// application for a new palette.
 		case WM_QUERYNEWPALETTE:
 			// If the palette was created.
@@ -201,7 +201,7 @@ LRESULT CALLBACK WndProcView(HWND    hWnd,
 				SelectPalette(hDC, hPalette, FALSE);
 
 				// Map entries from the currently selected palette to
-				// the system palette.  The return value is the number 
+				// the system palette.  The return value is the number
 				// of palette entries modified.
 				nRet = RealizePalette(hDC);
 
@@ -212,8 +212,8 @@ LRESULT CALLBACK WndProcView(HWND    hWnd,
 				}
 			break;
 
-	
-		// This window may set the palette, even though it is not the 
+
+		// This window may set the palette, even though it is not the
 		// currently active window.
 		case WM_PALETTECHANGED:
 			// Don't do anything if the palette does not exist, or if
@@ -225,7 +225,7 @@ LRESULT CALLBACK WndProcView(HWND    hWnd,
 
 				// Map entries to system palette
 				RealizePalette(hDC);
-				
+
 				// Remap the current colors to the newly realized palette
 				UpdateColors(hDC);
 				return 0;
@@ -237,8 +237,8 @@ LRESULT CALLBACK WndProcView(HWND    hWnd,
 			g_Dragging = TRUE;
 			g_LastYaw = g_POV.rot.y;		// Save the old Yaw
 			g_LastPitch = g_POV.rot.x;		// Save the old Pitch
-			g_MouseHitX = LOWORD(lParam);  // horizontal position of cursor 
-			g_MouseHitY = HIWORD(lParam);  // vertical position of cursor 
+			g_MouseHitX = LOWORD(lParam);  // horizontal position of cursor
+			g_MouseHitY = HIWORD(lParam);  // vertical position of cursor
 
 			// Reset Cue Position
 			g_CueStick.pos.x = g_CurrentSys->pos.x;
@@ -247,8 +247,8 @@ LRESULT CALLBACK WndProcView(HWND    hWnd,
 			break;
 
 		case WM_MOUSEMOVE:
-			tx = LOWORD(lParam);  // horizontal position of cursor 
-			ty = HIWORD(lParam);  // vertical position of cursor 
+			tx = LOWORD(lParam);  // horizontal position of cursor
+			ty = HIWORD(lParam);  // vertical position of cursor
 			if (g_Dragging)
 			{
 				if (tx != g_MouseHitX)
@@ -259,8 +259,8 @@ LRESULT CALLBACK WndProcView(HWND    hWnd,
 				if (ty != g_MouseHitY)
 				{
 					g_POV.rot.x = g_LastPitch + (float)(ty - g_MouseHitY);
-					if (g_POV.rot.x < 0.0f) g_POV.rot.x = 0.0f;			
-					if (g_POV.rot.x > 90.0f) g_POV.rot.x = 90.0f;			
+					if (g_POV.rot.x < 0.0f) g_POV.rot.x = 0.0f;
+					if (g_POV.rot.x > 90.0f) g_POV.rot.x = 90.0f;
 					InvalidateRect(hWnd,NULL,FALSE);
 				}
 
@@ -278,14 +278,14 @@ LRESULT CALLBACK WndProcView(HWND    hWnd,
 						g_CueStick.drawtime = GetTime();
 					}
 					// If the stick is at the ball, it is a hit
-					else if (g_CueStick.draw < 0.0f)	
+					else if (g_CueStick.draw < 0.0f)
 					{
 						// TODO: Add a Cue Stick hits ball sound here
 						g_CueHitBall = TRUE;				// Set when a Cue hits the ball
 						magnitude = -CUE_STICK_FORCE * ((g_CueStick.old_draw - g_CueStick.draw) / (GetTime() - g_CueStick.drawtime));
-						g_CueForce.x = magnitude * sin(DEGTORAD(g_CueStick.yaw));							
-						g_CueForce.z = magnitude * cos(DEGTORAD(g_CueStick.yaw));							
-						g_CueStick.draw = 0.2f;			
+						g_CueForce.x = magnitude * sin(DEGTORAD(g_CueStick.yaw));
+						g_CueForce.z = magnitude * cos(DEGTORAD(g_CueStick.yaw));
+						g_CueStick.draw = 0.2f;
 						g_BallInPlay = TRUE;
 						g_DrawingStick = FALSE;
 					}
@@ -306,8 +306,8 @@ LRESULT CALLBACK WndProcView(HWND    hWnd,
 			g_DrawingStick = TRUE;
 			g_LastDraw = g_CueStick.draw;		// Save the old Yaw
 			g_CueStick.old_draw = g_CueStick.draw;		// Save the old Yaw
-			g_MouseHitX = LOWORD(lParam);  // horizontal position of cursor 
-			g_MouseHitY = HIWORD(lParam);  // vertical position of cursor 
+			g_MouseHitX = LOWORD(lParam);  // horizontal position of cursor
+			g_MouseHitY = HIWORD(lParam);  // vertical position of cursor
 			// Reset Cue Position
 			g_CueStick.pos.x = g_CurrentSys->pos.x;
 			g_CueStick.pos.z = g_CurrentSys->pos.z;

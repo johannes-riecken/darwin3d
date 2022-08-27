@@ -5,7 +5,7 @@
 // Purpose:	Implementation of OpenGL Window of Inverse Kinematic System
 //
 // Created:
-//		JL 7/1/98		
+//		JL 7/1/98
 //
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -47,7 +47,7 @@ public:
 	float m_Grab_Rot_X,m_Grab_Rot_Y,m_Grab_Rot_Z;
 	float m_Grab_Trans_X,m_Grab_Trans_Y,m_Grab_Trans_Z;
 	BOOL m_DrawGeometry;
-	BOOL m_UseQuat;	
+	BOOL m_UseQuat;
 // Operations
 public:
 	BOOL	SetupPixelFormat(HDC hdc);

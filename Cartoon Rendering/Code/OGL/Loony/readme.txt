@@ -26,7 +26,7 @@ because the bilinear filtering is turned off also.  If it was on,
 the shader wouldn't look like a Toon.
 
 You can edit the .SHD files and create your own settings.  They are
-simple text files.  
+simple text files.
 
 Model files are Wavefront OBJs.  I get the model base color from the
 Diffuse color in the MTL file.
@@ -52,27 +52,27 @@ Add blending with a texture.
 
 ---------------------------------------------------------------------
 
-Write to me if you have problems or questions and check 
+Write to me if you have problems or questions and check
 the web site or Game Developer's web site for updates.
 
-Jeff Lander 
+Jeff Lander
 jeffl@darwin3d.com
 www.darwin3d.com/gamedev.htm
 -----------------------------------------------------------
 
 I know this code could be optimized for maximum performance
 but it was written to be a clean example without a lot of
-tricks.  It should be easy to learn and build from.  
+tricks.  It should be easy to learn and build from.
 
 Here are the details.
 
 I compiled the code with Visual C++ 5.0.  It has been tested
 with Microsoft OpenGL, SGI OpenGL, Permidia 1 and 2 OpenGL
-Drivers, Riva 128 (New Beta OGL Drivers), AccelGalaxy, 
+Drivers, Riva 128 (New Beta OGL Drivers), AccelGalaxy,
 and Symetra Ultra FX Pro.
 
-It should run on any OpenGL fully complient driver.  This 
+It should run on any OpenGL fully complient driver.  This
 DOES NOT include the mini-QuakeGL driver for 3DFX Voodoo or
-Voodoo 2.  3DFX Voodoo and Voodoo 2 OpenGL do not support 
+Voodoo 2.  3DFX Voodoo and Voodoo 2 OpenGL do not support
 OpenGL in a window so will not work with this application.
 

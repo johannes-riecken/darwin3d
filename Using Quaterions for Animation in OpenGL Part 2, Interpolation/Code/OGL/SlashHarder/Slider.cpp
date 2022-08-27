@@ -37,11 +37,11 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CSlider message handlers
 
-int CSlider::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+int CSlider::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CSliderCtrl::OnCreate(lpCreateStruct) == -1)
 		return -1;
-	
+
 	// SET UP THE SLIDER SO IT GOES FROM 0 - 1024
 	SetRange(0,1024,TRUE);
 	SetPos(0);
@@ -50,7 +50,7 @@ int CSlider::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 // GET A FLOAT REPRESENTING THE RELATIVE POSITION OF THE SLIDER
 // Returns: float from 0-1
-float CSlider::GetSetting() 
+float CSlider::GetSetting()
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	int position;
@@ -59,14 +59,14 @@ float CSlider::GetSetting()
 	return position / 1024.0f;
 }
 
-void CSlider::OnLButtonDown(UINT nFlags, CPoint point) 
+void CSlider::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	// MARK THE DRAG
 	m_pressed = TRUE;
 	CSliderCtrl::OnLButtonDown(nFlags, point);
 }
 
-void CSlider::OnMouseMove(UINT nFlags, CPoint point) 
+void CSlider::OnMouseMove(UINT nFlags, CPoint point)
 {
 	// IF I AM DRAGGING, REDRAW MY MAIN WINDOW
 	if (m_pressed)
@@ -74,7 +74,7 @@ void CSlider::OnMouseMove(UINT nFlags, CPoint point)
 	CSliderCtrl::OnMouseMove(nFlags, point);
 }
 
-void CSlider::OnLButtonUp(UINT nFlags, CPoint point) 
+void CSlider::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	// NOT DRAGGING ANY MORE
 	m_pressed = FALSE;

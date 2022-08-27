@@ -6,28 +6,28 @@
 !IF "$(CFG)" == ""
 CFG=Pool - Win32 Debug
 !MESSAGE No configuration specified.  Defaulting to Pool - Win32 Debug.
-!ENDIF 
+!ENDIF
 
 !IF "$(CFG)" != "Pool - Win32 Release" && "$(CFG)" != "Pool - Win32 Debug"
 !MESSAGE Invalid configuration "$(CFG)" specified.
 !MESSAGE You can specify a configuration when running NMAKE on this makefile
 !MESSAGE by defining the macro CFG on the command line.  For example:
-!MESSAGE 
+!MESSAGE
 !MESSAGE NMAKE /f "Pool.mak" CFG="Pool - Win32 Debug"
-!MESSAGE 
+!MESSAGE
 !MESSAGE Possible choices for configuration are:
-!MESSAGE 
+!MESSAGE
 !MESSAGE "Pool - Win32 Release" (based on "Win32 (x86) Application")
 !MESSAGE "Pool - Win32 Debug" (based on "Win32 (x86) Application")
-!MESSAGE 
+!MESSAGE
 !ERROR An invalid configuration is specified.
-!ENDIF 
+!ENDIF
 
 !IF "$(OS)" == "Windows_NT"
 NULL=
-!ELSE 
+!ELSE
 NULL=nul
-!ENDIF 
+!ENDIF
 ################################################################################
 # Begin Project
 # PROP Target_Last_Scanned "Pool - Win32 Debug"
@@ -52,7 +52,7 @@ INTDIR=.\Release
 
 ALL : "$(OUTDIR)\Pool.exe"
 
-CLEAN : 
+CLEAN :
 	-@erase ".\Release\vc40.pdb"
 	-@erase ".\Release\Pool.exe"
 	-@erase ".\Release\glutils.obj"
@@ -71,19 +71,19 @@ CLEAN :
 # ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
 # ADD CPP /nologo /W3 /GX /Zi /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
 CPP_PROJ=/nologo /ML /W3 /GX /Zi /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS"\
- /Fp"$(INTDIR)/Pool.pch" /YX /Fo"$(INTDIR)/" /Fd"$(INTDIR)/" /c 
+ /Fp"$(INTDIR)/Pool.pch" /YX /Fo"$(INTDIR)/" /Fd"$(INTDIR)/" /c
 CPP_OBJS=.\Release/
 CPP_SBRS=
 # ADD BASE MTL /nologo /D "NDEBUG" /win32
 # ADD MTL /nologo /D "NDEBUG" /win32
-MTL_PROJ=/nologo /D "NDEBUG" /win32 
+MTL_PROJ=/nologo /D "NDEBUG" /win32
 # ADD BASE RSC /l 0x409 /d "NDEBUG"
 # ADD RSC /l 0x409 /d "NDEBUG"
-RSC_PROJ=/l 0x409 /fo"$(INTDIR)/RESOURCE.res" /d "NDEBUG" 
+RSC_PROJ=/l 0x409 /fo"$(INTDIR)/RESOURCE.res" /d "NDEBUG"
 BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
-BSC32_FLAGS=/nologo /o"$(OUTDIR)/Pool.bsc" 
+BSC32_FLAGS=/nologo /o"$(OUTDIR)/Pool.bsc"
 BSC32_SBRS=
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /machine:I386
@@ -93,7 +93,7 @@ LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib\
  advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib\
  odbccp32.lib opengl32.lib glu32.lib  glaux.lib /nologo /subsystem:windows\
  /incremental:no /pdb:"$(OUTDIR)/Pool.pdb" /machine:I386\
- /out:"$(OUTDIR)/Pool.exe" 
+ /out:"$(OUTDIR)/Pool.exe"
 LINK32_OBJS= \
 	".\Release\glutils.obj" \
 	".\Release\initworld.obj" \
@@ -127,7 +127,7 @@ INTDIR=.\Debug
 
 ALL : "$(OUTDIR)\Pool.exe" "$(OUTDIR)\Pool.bsc"
 
-CLEAN : 
+CLEAN :
 	-@erase ".\Debug\vc40.pdb"
 	-@erase ".\Debug\vc40.idb"
 	-@erase ".\Debug\Pool.bsc"
@@ -158,19 +158,19 @@ CLEAN :
 # ADD BASE CPP /nologo /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /YX /c
 # ADD CPP /nologo /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /Fr /YX /c
 CPP_PROJ=/nologo /MLd /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS"\
- /Fr"$(INTDIR)/" /Fp"$(INTDIR)/Pool.pch" /YX /Fo"$(INTDIR)/" /Fd"$(INTDIR)/" /c 
+ /Fr"$(INTDIR)/" /Fp"$(INTDIR)/Pool.pch" /YX /Fo"$(INTDIR)/" /Fd"$(INTDIR)/" /c
 CPP_OBJS=.\Debug/
 CPP_SBRS=.\Debug/
 # ADD BASE MTL /nologo /D "_DEBUG" /win32
 # ADD MTL /nologo /D "_DEBUG" /win32
-MTL_PROJ=/nologo /D "_DEBUG" /win32 
+MTL_PROJ=/nologo /D "_DEBUG" /win32
 # ADD BASE RSC /l 0x409 /d "_DEBUG"
 # ADD RSC /l 0x409 /d "_DEBUG"
-RSC_PROJ=/l 0x409 /fo"$(INTDIR)/RESOURCE.res" /d "_DEBUG" 
+RSC_PROJ=/l 0x409 /fo"$(INTDIR)/RESOURCE.res" /d "_DEBUG"
 BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
-BSC32_FLAGS=/nologo /o"$(OUTDIR)/Pool.bsc" 
+BSC32_FLAGS=/nologo /o"$(OUTDIR)/Pool.bsc"
 BSC32_SBRS= \
 	".\Debug\CompassWnd.sbr" \
 	".\Debug\ViewWnd.sbr" \
@@ -193,7 +193,7 @@ LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib\
  advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib\
  odbccp32.lib opengl32.lib glu32.lib  glaux.lib /nologo /subsystem:windows\
  /incremental:no /pdb:"$(OUTDIR)/Pool.pdb" /map:"$(INTDIR)/Pool.map" /debug\
- /debugtype:both /machine:I386 /out:"$(OUTDIR)/Pool.exe" 
+ /debugtype:both /machine:I386 /out:"$(OUTDIR)/Pool.exe"
 LINK32_OBJS= \
 	".\Debug\CompassWnd.obj" \
 	".\Debug\ViewWnd.obj" \
@@ -210,25 +210,25 @@ LINK32_OBJS= \
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<
 
-!ENDIF 
+!ENDIF
 
 .c{$(CPP_OBJS)}.obj:
-   $(CPP) $(CPP_PROJ) $<  
+   $(CPP) $(CPP_PROJ) $<
 
 .cpp{$(CPP_OBJS)}.obj:
-   $(CPP) $(CPP_PROJ) $<  
+   $(CPP) $(CPP_PROJ) $<
 
 .cxx{$(CPP_OBJS)}.obj:
-   $(CPP) $(CPP_PROJ) $<  
+   $(CPP) $(CPP_PROJ) $<
 
 .c{$(CPP_SBRS)}.sbr:
-   $(CPP) $(CPP_PROJ) $<  
+   $(CPP) $(CPP_PROJ) $<
 
 .cpp{$(CPP_SBRS)}.sbr:
-   $(CPP) $(CPP_PROJ) $<  
+   $(CPP) $(CPP_PROJ) $<
 
 .cxx{$(CPP_SBRS)}.sbr:
-   $(CPP) $(CPP_PROJ) $<  
+   $(CPP) $(CPP_PROJ) $<
 
 ################################################################################
 # Begin Target
@@ -240,7 +240,7 @@ LINK32_OBJS= \
 
 !ELSEIF  "$(CFG)" == "Pool - Win32 Debug"
 
-!ENDIF 
+!ENDIF
 
 ################################################################################
 # Begin Source File
@@ -248,7 +248,7 @@ LINK32_OBJS= \
 SOURCE=.\Pool.c
 DEP_CPP_Pool_=\
 	".\glutils.h"\
-	
+
 
 !IF  "$(CFG)" == "Pool - Win32 Release"
 
@@ -264,7 +264,7 @@ DEP_CPP_Pool_=\
 "$(INTDIR)\Pool.sbr" : $(SOURCE) $(DEP_CPP_Pool_) "$(INTDIR)"
 
 
-!ENDIF 
+!ENDIF
 
 # End Source File
 ################################################################################
@@ -284,7 +284,7 @@ SOURCE=.\glutils.c
 DEP_CPP_GLUTI=\
 	".\glutils.h"\
 	".\externs.h"\
-	
+
 
 !IF  "$(CFG)" == "Pool - Win32 Release"
 
@@ -300,7 +300,7 @@ DEP_CPP_GLUTI=\
 "$(INTDIR)\glutils.sbr" : $(SOURCE) $(DEP_CPP_GLUTI) "$(INTDIR)"
 
 
-!ENDIF 
+!ENDIF
 
 # End Source File
 ################################################################################
@@ -309,7 +309,7 @@ DEP_CPP_GLUTI=\
 SOURCE=.\CenterWnd.c
 DEP_CPP_CENTE=\
 	".\externs.h"\
-	
+
 
 !IF  "$(CFG)" == "Pool - Win32 Release"
 
@@ -325,7 +325,7 @@ DEP_CPP_CENTE=\
 "$(INTDIR)\CenterWnd.sbr" : $(SOURCE) $(DEP_CPP_CENTE) "$(INTDIR)"
 
 
-!ENDIF 
+!ENDIF
 
 # End Source File
 ################################################################################
@@ -338,7 +338,7 @@ DEP_CPP_VIEWW=\
 	{$(INCLUDE)}"\gl\glaux.h"\
 	".\externs.h"\
 	".\glutils.h"\
-	
+
 
 !IF  "$(CFG)" == "Pool - Win32 Release"
 
@@ -354,7 +354,7 @@ DEP_CPP_VIEWW=\
 "$(INTDIR)\ViewWnd.sbr" : $(SOURCE) $(DEP_CPP_VIEWW) "$(INTDIR)"
 
 
-!ENDIF 
+!ENDIF
 
 # End Source File
 ################################################################################
@@ -364,7 +364,7 @@ SOURCE=.\RadarWnd.c
 DEP_CPP_RADAR=\
 	".\glutils.h"\
 	".\externs.h"\
-	
+
 
 !IF  "$(CFG)" == "Pool - Win32 Release"
 
@@ -380,7 +380,7 @@ DEP_CPP_RADAR=\
 "$(INTDIR)\RadarWnd.sbr" : $(SOURCE) $(DEP_CPP_RADAR) "$(INTDIR)"
 
 
-!ENDIF 
+!ENDIF
 
 # End Source File
 ################################################################################
@@ -390,7 +390,7 @@ SOURCE=.\CompassWnd.c
 DEP_CPP_COMPA=\
 	".\externs.h"\
 	".\glutils.h"\
-	
+
 
 !IF  "$(CFG)" == "Pool - Win32 Release"
 
@@ -406,7 +406,7 @@ DEP_CPP_COMPA=\
 "$(INTDIR)\CompassWnd.sbr" : $(SOURCE) $(DEP_CPP_COMPA) "$(INTDIR)"
 
 
-!ENDIF 
+!ENDIF
 
 # End Source File
 ################################################################################
@@ -416,7 +416,7 @@ SOURCE=.\initworld.c
 DEP_CPP_INITW=\
 	".\glutils.h"\
 	".\externs.h"\
-	
+
 
 !IF  "$(CFG)" == "Pool - Win32 Release"
 
@@ -432,7 +432,7 @@ DEP_CPP_INITW=\
 "$(INTDIR)\initworld.sbr" : $(SOURCE) $(DEP_CPP_INITW) "$(INTDIR)"
 
 
-!ENDIF 
+!ENDIF
 
 # End Source File
 ################################################################################
@@ -445,7 +445,7 @@ DEP_CPP_RENDE=\
 	{$(INCLUDE)}"\gl\glaux.h"\
 	".\externs.h"\
 	".\glutils.h"\
-	
+
 
 !IF  "$(CFG)" == "Pool - Win32 Release"
 
@@ -461,7 +461,7 @@ DEP_CPP_RENDE=\
 "$(INTDIR)\RenderWorld.sbr" : $(SOURCE) $(DEP_CPP_RENDE) "$(INTDIR)"
 
 
-!ENDIF 
+!ENDIF
 
 # End Source File
 # End Target

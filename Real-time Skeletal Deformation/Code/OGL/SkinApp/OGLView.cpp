@@ -94,7 +94,7 @@ COGLView::~COGLView()
 	free(m_Skeleton->children[1].CV_weight);
 }
 
-BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, t_Bone *skeleton, CCreateContext* pContext) 
+BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, t_Bone *skeleton, CCreateContext* pContext)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
     int loop;
@@ -110,7 +110,7 @@ BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwSty
 	// DEFORMATION OF THE HAND.  WEIGHTING DIALOG IS A PAIN IN THE
 	// BUTT.  HOWEVER, IF YOU SET UP THE WEIGHTS IT WOULD WORK
 	m_Skeleton->children[2].CV_weight = (float *)malloc(m_Mesh.desc->pointCnt * sizeof(float));
-	
+
 	// SET INITIAL WEIGHT VALUES
 	for (loop = 0; loop < m_Mesh.desc->pointCnt; loop++)
 	{
@@ -119,7 +119,7 @@ BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwSty
 		// HAND WEIGHTING IS ALWAYS ZERO
 		m_Skeleton->children[2].CV_weight[loop] = 0.0f;
 	}
-	
+
 	// PLACE TO STORE BASE MESH POINTS
 	m_DeformedMesh = (tColoredVertex *)malloc(sizeof(tColoredVertex) * m_Mesh.desc->pointCnt);
 	memcpy(m_DeformedMesh, m_Mesh.desc->frame[m_Mesh.desc->cur_frame]->data,sizeof(tColoredVertex) * m_Mesh.desc->pointCnt);
@@ -233,7 +233,7 @@ void COGLView::CreateBoneDLists(t_Bone *bone)
 	}
 }
 
-int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	RECT rect;
@@ -243,7 +243,7 @@ int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
     m_hDC = ::GetDC(m_hWnd);
     if (!SetupPixelFormat(m_hDC))
 		PostQuitMessage (0);
-	
+
     m_hRC = wglCreateContext(m_hDC);
     wglMakeCurrent(m_hDC, m_hRC);
     GetClientRect(&rect);
@@ -264,7 +264,7 @@ int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 			glVertex3f( 0.15f, -0.04f, 0.0f);
 			glColor3f(0.0f, 1.0f, 0.0f);	// Y AXIS STARTS - COLOR GREEN
 			glVertex3f( 0.0f,  0.2f, 0.0f);
-			glVertex3f( 0.0f, -0.2f, 0.0f);			
+			glVertex3f( 0.0f, -0.2f, 0.0f);
 			glVertex3f( 0.0f,  0.2f, 0.0f);	// TOP PIECE OF ARROWHEAD
 			glVertex3f( 0.04f,  0.15f, 0.0f);
 			glVertex3f( 0.0f,  0.2f, 0.0f);	// BOTTOM PIECE OF ARROWHEAD
@@ -303,7 +303,7 @@ GLvoid COGLView::resize( GLsizei width, GLsizei height )
     glLoadIdentity();
     gluPerspective(35.0, aspect, 1.0, 2000.0);
     glMatrixMode(GL_MODELVIEW);
-}    
+}
 
 GLvoid COGLView::initializeGL(GLsizei width, GLsizei height)
 {
@@ -332,7 +332,7 @@ GLvoid COGLView::initializeGL(GLsizei width, GLsizei height)
 }
 
 // GET THE INFO ON THE VERSION OF OPENGL RUNNING
-void COGLView::GetGLInfo(char *who,char *which, char *version) 
+void COGLView::GetGLInfo(char *who,char *which, char *version)
 {
     strcpy(who,(char *)::glGetString( GL_VENDOR ));
 
@@ -370,7 +370,7 @@ GLvoid COGLView::drawModel(t_Bone *baseBone, tColoredVertex *deformedMesh)
 			}
 		}
 		glEnd();
-	}	
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -418,7 +418,7 @@ GLvoid COGLView::DeformBone(t_Bone *rootBone, tColoredVertex *meshdata, tColored
 		// CHECK IF THIS BONE HAS CHILDREN, IF SO RECURSIVE CALL
 		if (curBone->childCnt > 0)
 			DeformBone(curBone, meshdata, defdata);
-		
+
 		curBone++;
 	}
 }
@@ -484,11 +484,11 @@ GLvoid COGLView::drawSkeleton(t_Bone *rootBone)
 
 		glRotatef(curBone->rot.z, 0.0f, 0.0f, 1.0f);
 		glRotatef(curBone->rot.y, 0.0f, 1.0f, 0.0f);
-		glRotatef(curBone->rot.x, 1.0f, 0.0f, 0.0f); 
-	
+		glRotatef(curBone->rot.x, 1.0f, 0.0f, 0.0f);
+
 		// THE SCALE IS LOCAL SO I PUSH AND POP
 		glPushMatrix();
-		glScalef(curBone->scale.x, curBone->scale.y, curBone->scale.z); 
+		glScalef(curBone->scale.x, curBone->scale.y, curBone->scale.z);
 
 		// DO I WISH TO DISPLAY ANYTHING
 		if (m_DrawBoneSystem)
@@ -533,7 +533,7 @@ GLvoid COGLView::drawScene(BOOL drawSelectRect)
 	if (m_Skeleton->rot.y  > 360.0f) m_Skeleton->rot.y  -= 360.0f;
     if (m_Skeleton->rot.x   > 360.0f) m_Skeleton->rot.x   -= 360.0f;
     if (m_Skeleton->rot.z > 360.0f) m_Skeleton->rot.z -= 360.0f;
-	
+
     glDisable(GL_DEPTH_TEST);	// TURN OFF DEPTH TEST FOR CLEAR
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -547,7 +547,7 @@ GLvoid COGLView::drawScene(BOOL drawSelectRect)
 
 	glRotatef(m_Skeleton->rot.z, 0.0f, 0.0f, 1.0f);
     glRotatef(m_Skeleton->rot.y, 0.0f, 1.0f, 0.0f);
- 	glRotatef(m_Skeleton->rot.x, 1.0f, 0.0f, 0.0f); 
+ 	glRotatef(m_Skeleton->rot.x, 1.0f, 0.0f, 0.0f);
 
 	drawSkeleton(m_Skeleton);
 
@@ -601,7 +601,7 @@ GLvoid COGLView::drawScene(BOOL drawSelectRect)
 }
 
 
-void COGLView::OnDestroy() 
+void COGLView::OnDestroy()
 {
 	CWnd::OnDestroy();
 	if (m_hRC)
@@ -610,11 +610,11 @@ void COGLView::OnDestroy()
 		::ReleaseDC(m_hWnd,m_hDC);
     m_hRC = 0;
     m_hDC = 0;
-	
-	
+
+
 }
 
-void COGLView::OnPaint() 
+void COGLView::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
 	drawScene(FALSE);
@@ -622,7 +622,7 @@ void COGLView::OnPaint()
 	// Do not call CWnd::OnPaint() for painting messages
 }
 
-void COGLView::OnSize(UINT nType, int cx, int cy) 
+void COGLView::OnSize(UINT nType, int cx, int cy)
 {
 	// RESIZE THE OPENGL WINDOW
 	resize( cx,cy );
@@ -630,7 +630,7 @@ void COGLView::OnSize(UINT nType, int cx, int cy)
 	m_ScreenHeight = cy;
 }
 
-void COGLView::OnLButtonDown(UINT nFlags, CPoint point) 
+void COGLView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	m_mousepos = point;
 	if (m_SelectedBone != NULL)
@@ -647,7 +647,7 @@ void COGLView::OnLButtonDown(UINT nFlags, CPoint point)
 	CWnd::OnLButtonDown(nFlags, point);
 }
 
-void COGLView::OnLButtonUp(UINT nFlags, CPoint point) 
+void COGLView::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	// IF I AM HOLDING THE 'SHIFT' BUTTON PICK VERTICES
 	if ((nFlags & MK_SHIFT) > 0)
@@ -655,11 +655,11 @@ void COGLView::OnLButtonUp(UINT nFlags, CPoint point)
 		SelectVertices(TRUE);
 		drawScene(FALSE);
 	}
-	
+
 	CWnd::OnLButtonUp(nFlags, point);
 }
 
-void COGLView::OnRButtonDown(UINT nFlags, CPoint point) 
+void COGLView::OnRButtonDown(UINT nFlags, CPoint point)
 {
 	m_mousepos = point;
 	if (m_SelectedBone != NULL)
@@ -676,7 +676,7 @@ void COGLView::OnRButtonDown(UINT nFlags, CPoint point)
 	CWnd::OnRButtonDown(nFlags, point);
 }
 
-void COGLView::OnRButtonUp(UINT nFlags, CPoint point) 
+void COGLView::OnRButtonUp(UINT nFlags, CPoint point)
 {
 	// IF I AM HOLDING THE 'SHIFT' BUTTON PICK VERTICES
 	if ((nFlags & MK_SHIFT) > 0)
@@ -684,16 +684,16 @@ void COGLView::OnRButtonUp(UINT nFlags, CPoint point)
 		SelectVertices(FALSE);
 		drawScene(FALSE);
 	}
-	
-	
+
+
 	CWnd::OnRButtonUp(nFlags, point);
 }
 
-void COGLView::HandleKeyDown(UINT nChar) 
+void COGLView::HandleKeyDown(UINT nChar)
 {
 }
 
-void COGLView::HandleKeyUp(UINT nChar) 
+void COGLView::HandleKeyUp(UINT nChar)
 {
 	switch (nChar)
 	{
@@ -727,7 +727,7 @@ void COGLView::HandleKeyUp(UINT nChar)
 	drawScene(FALSE);
 }
 
-void COGLView::OnMouseMove(UINT nFlags, CPoint point) 
+void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	m_SelectRect.right = point.x;
 	m_SelectRect.bottom = m_ScreenHeight - point.y;
@@ -748,7 +748,7 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 					m_Skeleton->trans.y = m_Grab_Trans_Y - (.1f * (point.y - m_mousepos.y));
 					drawScene(FALSE);
 				}
-			}	
+			}
 			// ELSE ROTATE THE ROOT
 			else if ((nFlags & MK_SHIFT) == 0)
 			{
@@ -803,7 +803,7 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 	CWnd::OnMouseMove(nFlags, point);
 }
 
-void COGLView::OnLButtonDblClk(UINT nFlags, CPoint point) 
+void COGLView::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	CSetRot dialog;
@@ -909,7 +909,7 @@ void COGLView::SelectVertices(BOOL select)
 		glEnd();
 	}
 	hitCount = glRenderMode(GL_RENDER); // HOW MANY HITS DID I GET
-	CompareBuffer(hitCount,feedBuffer, select);		// CHECK THEM AGAINST MY SELECTION 
+	CompareBuffer(hitCount,feedBuffer, select);		// CHECK THEM AGAINST MY SELECTION
 	free(feedBuffer);		// GET RID OF THE MEMORY
 }
 ////// SelectVertices /////////////////////////////////////////////////////////
@@ -947,9 +947,9 @@ void COGLView::CompareBuffer(GLint size, GLfloat *buffer,BOOL select)
 			// CHECK IF THE POINT WAS IN MY SELECTION RECTANGLE
 			// FLOATS 0 AND 1 ARE SCREEN X AND Y
 			// NOTE: OPENGL SETS THE BOTTOM Y=0
-			if (point[0] >= m_SelectRect.left && 
-				point[0] <= m_SelectRect.right && 
-				point[1] <= m_SelectRect.top && 
+			if (point[0] >= m_SelectRect.left &&
+				point[0] <= m_SelectRect.right &&
+				point[1] <= m_SelectRect.top &&
 				point[1] >= m_SelectRect.bottom)
 				// SET THIS VERTEX TO THE CURRENT SELECTION VALUE
 				m_SelectFlags[currentVertex] = select;

@@ -6,28 +6,28 @@
 !IF "$(CFG)" == ""
 CFG=Fate - Win32 Debug
 !MESSAGE No configuration specified.  Defaulting to Fate - Win32 Debug.
-!ENDIF 
+!ENDIF
 
 !IF "$(CFG)" != "Fate - Win32 Release" && "$(CFG)" != "Fate - Win32 Debug"
 !MESSAGE Invalid configuration "$(CFG)" specified.
 !MESSAGE You can specify a configuration when running NMAKE on this makefile
 !MESSAGE by defining the macro CFG on the command line.  For example:
-!MESSAGE 
+!MESSAGE
 !MESSAGE NMAKE /f "Fate.mak" CFG="Fate - Win32 Debug"
-!MESSAGE 
+!MESSAGE
 !MESSAGE Possible choices for configuration are:
-!MESSAGE 
+!MESSAGE
 !MESSAGE "Fate - Win32 Release" (based on "Win32 (x86) Application")
 !MESSAGE "Fate - Win32 Debug" (based on "Win32 (x86) Application")
-!MESSAGE 
+!MESSAGE
 !ERROR An invalid configuration is specified.
-!ENDIF 
+!ENDIF
 
 !IF "$(OS)" == "Windows_NT"
 NULL=
-!ELSE 
+!ELSE
 NULL=nul
-!ENDIF 
+!ENDIF
 ################################################################################
 # Begin Project
 # PROP Target_Last_Scanned "Fate - Win32 Debug"
@@ -52,7 +52,7 @@ INTDIR=.\Release
 
 ALL : "$(OUTDIR)\Fate.exe" "$(OUTDIR)\Fate.hlp"
 
-CLEAN : 
+CLEAN :
 	-@erase "$(INTDIR)\Fate.hlp"
 	-@erase "$(INTDIR)\Fate.obj"
 	-@erase "$(INTDIR)\Fate.pch"
@@ -71,26 +71,26 @@ CLEAN :
 # ADD BASE CPP /nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Yu"stdafx.h" /c
 # ADD CPP /nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /Yu"stdafx.h" /c
 CPP_PROJ=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D\
- "_MBCS" /Fp"$(INTDIR)/Fate.pch" /Yu"stdafx.h" /Fo"$(INTDIR)/" /c 
+ "_MBCS" /Fp"$(INTDIR)/Fate.pch" /Yu"stdafx.h" /Fo"$(INTDIR)/" /c
 CPP_OBJS=.\Release/
 CPP_SBRS=.\.
 # ADD BASE MTL /nologo /D "NDEBUG" /win32
 # ADD MTL /nologo /D "NDEBUG" /win32
-MTL_PROJ=/nologo /D "NDEBUG" /win32 
+MTL_PROJ=/nologo /D "NDEBUG" /win32
 # ADD BASE RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
 # ADD RSC /l 0x409 /d "NDEBUG"
-RSC_PROJ=/l 0x409 /fo"$(INTDIR)/Fate.res" /d "NDEBUG" 
+RSC_PROJ=/l 0x409 /fo"$(INTDIR)/Fate.res" /d "NDEBUG"
 BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
-BSC32_FLAGS=/nologo /o"$(OUTDIR)/Fate.bsc" 
+BSC32_FLAGS=/nologo /o"$(OUTDIR)/Fate.bsc"
 BSC32_SBRS= \
-	
+
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /machine:I386
 # ADD LINK32 winmm.lib /nologo /subsystem:windows /machine:I386
 LINK32_FLAGS=winmm.lib /nologo /subsystem:windows /incremental:no\
- /pdb:"$(OUTDIR)/Fate.pdb" /machine:I386 /out:"$(OUTDIR)/Fate.exe" 
+ /pdb:"$(OUTDIR)/Fate.pdb" /machine:I386 /out:"$(OUTDIR)/Fate.exe"
 LINK32_OBJS= \
 	"$(INTDIR)\Fate.obj" \
 	"$(INTDIR)\Fate.res" \
@@ -123,7 +123,7 @@ INTDIR=.\Debug
 
 ALL : "$(OUTDIR)\Fate.exe" "$(OUTDIR)\Fate.hlp"
 
-CLEAN : 
+CLEAN :
 	-@erase "$(INTDIR)\Fate.hlp"
 	-@erase "$(INTDIR)\Fate.obj"
 	-@erase "$(INTDIR)\Fate.pch"
@@ -147,26 +147,26 @@ CLEAN :
 # ADD CPP /nologo /MDd /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Yu"stdafx.h" /c
 CPP_PROJ=/nologo /MDd /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS"\
  /D "_AFXDLL" /D "_MBCS" /Fp"$(INTDIR)/Fate.pch" /Yu"stdafx.h" /Fo"$(INTDIR)/"\
- /Fd"$(INTDIR)/" /c 
+ /Fd"$(INTDIR)/" /c
 CPP_OBJS=.\Debug/
 CPP_SBRS=.\.
 # ADD BASE MTL /nologo /D "_DEBUG" /win32
 # ADD MTL /nologo /D "_DEBUG" /win32
-MTL_PROJ=/nologo /D "_DEBUG" /win32 
+MTL_PROJ=/nologo /D "_DEBUG" /win32
 # ADD BASE RSC /l 0x409 /d "_DEBUG" /d "_AFXDLL"
 # ADD RSC /l 0x409 /d "_DEBUG" /d "_AFXDLL"
-RSC_PROJ=/l 0x409 /fo"$(INTDIR)/Fate.res" /d "_DEBUG" /d "_AFXDLL" 
+RSC_PROJ=/l 0x409 /fo"$(INTDIR)/Fate.res" /d "_DEBUG" /d "_AFXDLL"
 BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
-BSC32_FLAGS=/nologo /o"$(OUTDIR)/Fate.bsc" 
+BSC32_FLAGS=/nologo /o"$(OUTDIR)/Fate.bsc"
 BSC32_SBRS= \
-	
+
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /debug /machine:I386
 # ADD LINK32 winmm.lib /nologo /subsystem:windows /debug /machine:I386
 LINK32_FLAGS=winmm.lib /nologo /subsystem:windows /incremental:yes\
- /pdb:"$(OUTDIR)/Fate.pdb" /debug /machine:I386 /out:"$(OUTDIR)/Fate.exe" 
+ /pdb:"$(OUTDIR)/Fate.pdb" /debug /machine:I386 /out:"$(OUTDIR)/Fate.exe"
 LINK32_OBJS= \
 	"$(INTDIR)\Fate.obj" \
 	"$(INTDIR)\Fate.res" \
@@ -182,25 +182,25 @@ LINK32_OBJS= \
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<
 
-!ENDIF 
+!ENDIF
 
 .c{$(CPP_OBJS)}.obj:
-   $(CPP) $(CPP_PROJ) $<  
+   $(CPP) $(CPP_PROJ) $<
 
 .cpp{$(CPP_OBJS)}.obj:
-   $(CPP) $(CPP_PROJ) $<  
+   $(CPP) $(CPP_PROJ) $<
 
 .cxx{$(CPP_OBJS)}.obj:
-   $(CPP) $(CPP_PROJ) $<  
+   $(CPP) $(CPP_PROJ) $<
 
 .c{$(CPP_SBRS)}.sbr:
-   $(CPP) $(CPP_PROJ) $<  
+   $(CPP) $(CPP_PROJ) $<
 
 .cpp{$(CPP_SBRS)}.sbr:
-   $(CPP) $(CPP_PROJ) $<  
+   $(CPP) $(CPP_PROJ) $<
 
 .cxx{$(CPP_SBRS)}.sbr:
-   $(CPP) $(CPP_PROJ) $<  
+   $(CPP) $(CPP_PROJ) $<
 
 ################################################################################
 # Begin Target
@@ -212,7 +212,7 @@ LINK32_OBJS= \
 
 !ELSEIF  "$(CFG)" == "Fate - Win32 Debug"
 
-!ENDIF 
+!ENDIF
 
 ################################################################################
 # Begin Source File
@@ -223,7 +223,7 @@ SOURCE=.\ReadMe.txt
 
 !ELSEIF  "$(CFG)" == "Fate - Win32 Debug"
 
-!ENDIF 
+!ENDIF
 
 # End Source File
 ################################################################################
@@ -239,7 +239,7 @@ DEP_CPP_FATE_=\
 	".\loadpcx.h"\
 	".\MainFrm.h"\
 	".\StdAfx.h"\
-	
+
 
 "$(INTDIR)\Fate.obj" : $(SOURCE) $(DEP_CPP_FATE_) "$(INTDIR)"\
  "$(INTDIR)\Fate.pch"
@@ -252,7 +252,7 @@ DEP_CPP_FATE_=\
 SOURCE=.\StdAfx.cpp
 DEP_CPP_STDAF=\
 	".\StdAfx.h"\
-	
+
 
 !IF  "$(CFG)" == "Fate - Win32 Release"
 
@@ -261,7 +261,7 @@ DEP_CPP_STDAF=\
 BuildCmds= \
 	$(CPP) /nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS"\
  /Fp"$(INTDIR)/Fate.pch" /Yc"stdafx.h" /Fo"$(INTDIR)/" /c $(SOURCE) \
-	
+
 
 "$(INTDIR)\StdAfx.obj" : $(SOURCE) $(DEP_CPP_STDAF) "$(INTDIR)"
    $(BuildCmds)
@@ -277,7 +277,7 @@ BuildCmds= \
 	$(CPP) /nologo /MDd /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS"\
  /D "_AFXDLL" /D "_MBCS" /Fp"$(INTDIR)/Fate.pch" /Yc"stdafx.h" /Fo"$(INTDIR)/"\
  /Fd"$(INTDIR)/" /c $(SOURCE) \
-	
+
 
 "$(INTDIR)\StdAfx.obj" : $(SOURCE) $(DEP_CPP_STDAF) "$(INTDIR)"
    $(BuildCmds)
@@ -285,7 +285,7 @@ BuildCmds= \
 "$(INTDIR)\Fate.pch" : $(SOURCE) $(DEP_CPP_STDAF) "$(INTDIR)"
    $(BuildCmds)
 
-!ENDIF 
+!ENDIF
 
 # End Source File
 ################################################################################
@@ -296,7 +296,7 @@ DEP_CPP_MAINF=\
 	".\Fate.h"\
 	".\MainFrm.h"\
 	".\StdAfx.h"\
-	
+
 
 "$(INTDIR)\MainFrm.obj" : $(SOURCE) $(DEP_CPP_MAINF) "$(INTDIR)"\
  "$(INTDIR)\Fate.pch"
@@ -311,7 +311,7 @@ DEP_CPP_FATED=\
 	".\Fate.h"\
 	".\FateDoc.h"\
 	".\StdAfx.h"\
-	
+
 
 "$(INTDIR)\FateDoc.obj" : $(SOURCE) $(DEP_CPP_FATED) "$(INTDIR)"\
  "$(INTDIR)\Fate.pch"
@@ -332,7 +332,7 @@ DEP_CPP_FATEV=\
 	".\MainFrm.h"\
 	".\SecAttr.h"\
 	".\StdAfx.h"\
-	
+
 
 "$(INTDIR)\FateView.obj" : $(SOURCE) $(DEP_CPP_FATEV) "$(INTDIR)"\
  "$(INTDIR)\Fate.pch"
@@ -348,7 +348,7 @@ DEP_RSC_FATE_R=\
 	".\res\Fate.rc2"\
 	".\res\FateDoc.ico"\
 	".\res\Toolbar.bmp"\
-	
+
 
 "$(INTDIR)\Fate.res" : $(SOURCE) $(DEP_RSC_FATE_R) "$(INTDIR)"
    $(RSC) $(RSC_PROJ) $(SOURCE)
@@ -386,7 +386,7 @@ InputPath=.\hlp\Fate.hpj
 
 # End Custom Build
 
-!ENDIF 
+!ENDIF
 
 # End Source File
 ################################################################################
@@ -399,7 +399,7 @@ DEP_CPP_SECAT=\
 	".\loadpcx.h"\
 	".\SecAttr.h"\
 	".\StdAfx.h"\
-	
+
 
 "$(INTDIR)\SecAttr.obj" : $(SOURCE) $(DEP_CPP_SECAT) "$(INTDIR)"\
  "$(INTDIR)\Fate.pch"
@@ -413,7 +413,7 @@ SOURCE=.\Loadpcx.cpp
 DEP_CPP_LOADP=\
 	".\loadpcx.h"\
 	".\StdAfx.h"\
-	
+
 
 "$(INTDIR)\Loadpcx.obj" : $(SOURCE) $(DEP_CPP_LOADP) "$(INTDIR)"\
  "$(INTDIR)\Fate.pch"

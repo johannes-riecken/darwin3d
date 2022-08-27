@@ -2,7 +2,7 @@
 // Procedure:	CheckDOFRestrictions
 // Purpose:		Make sure link is within valid DOF
 // Arguments:	Link
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 void COGLView::CheckDOFRestrictions(t_Bone *link)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
@@ -13,17 +13,17 @@ void COGLView::CheckDOFRestrictions(t_Bone *link)
 	QuatToEuler(&link->quat, &euler);
 
 	// CHECK THE DOF SETTINGS
-	if (euler.x > (float)link->max_rx) 
+	if (euler.x > (float)link->max_rx)
 		euler.x = (float)link->max_rx;
-	if (euler.x < (float)link->min_rx) 
+	if (euler.x < (float)link->min_rx)
 		euler.x = (float)link->min_rx;
-	if (euler.y > (float)link->max_ry) 
+	if (euler.y > (float)link->max_ry)
 		euler.y = (float)link->max_ry;
-	if (euler.y < (float)link->min_ry) 
+	if (euler.y < (float)link->min_ry)
 		euler.y = (float)link->min_ry;
-	if (euler.z > (float)link->max_rz) 
+	if (euler.z > (float)link->max_rz)
 		euler.z = (float)link->max_rz;
-	if (euler.z < (float)link->min_rz) 
+	if (euler.z < (float)link->min_rz)
 		euler.z = (float)link->min_rz;
 
 	// BACK TO QUATERNION
@@ -35,7 +35,7 @@ void COGLView::CheckDOFRestrictions(t_Bone *link)
 // Purpose:		Compute an IK Solution to an end effector position in 3D
 // Arguments:	End Target (x,y,z)
 // Returns:		TRUE if a solution exists, FALSE if the position isn't in reach
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 BOOL COGLView::ComputeCCDLink(tVector endPos)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
@@ -93,7 +93,7 @@ BOOL COGLView::ComputeCCDLink(tVector endPos)
 				turnAngle = acos((float)cosAngle);	// GET THE ANGLE
 				turnDeg = RADTODEG(turnAngle);		// COVERT TO DEGREES
 				// DAMPING
-				if (m_Damping && turnDeg > m_Link[link].damp_width) 
+				if (m_Damping && turnDeg > m_Link[link].damp_width)
 					turnDeg = m_Link[link].damp_width;
 				AxisAngleToQuat(&crossResult,turnDeg,&aquat);
 				MultQuaternions(&m_Link[link].quat, &aquat,&m_Link[link].quat);
@@ -106,7 +106,7 @@ BOOL COGLView::ComputeCCDLink(tVector endPos)
 			if (--link < 0) link = EFFECTOR_POS - 1;	// START OF THE CHAIN, RESTART
 		}
 	// QUIT IF I AM CLOSE ENOUGH OR BEEN RUNNING LONG ENOUGH
-	} while (tries++ < MAX_IK_TRIES && 
+	} while (tries++ < MAX_IK_TRIES &&
 				VectorSquaredDistance(&curEnd, &desiredEnd) > IK_POS_THRESH);
 	if (tries == MAX_IK_TRIES)
 		return FALSE;

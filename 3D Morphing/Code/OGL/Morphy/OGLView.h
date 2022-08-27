@@ -5,7 +5,7 @@
 // Purpose:	Implementation of OpenGL Window of 3D Morphing System
 //
 // Created:
-//		JL 10/1/98		
+//		JL 10/1/98
 //
 // The function morphModel() does the main morphing work.
 //

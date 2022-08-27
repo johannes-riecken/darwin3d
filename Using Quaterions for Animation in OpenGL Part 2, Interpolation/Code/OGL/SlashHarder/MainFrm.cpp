@@ -5,7 +5,7 @@
 // Purpose:	Implementation of Main Window of Quaternion Animation System
 //
 // Created:
-//		JL 9/1/97		
+//		JL 9/1/97
 //
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -67,9 +67,9 @@ static UINT indicators[] =
 
 CMainFrame::CMainFrame()
 {
-	m_HArrow = AfxGetApp()->LoadStandardCursor(IDC_ARROW);	
+	m_HArrow = AfxGetApp()->LoadStandardCursor(IDC_ARROW);
 
-	InitializeSkeleton();	
+	InitializeSkeleton();
 }
 
 CMainFrame::~CMainFrame()
@@ -82,7 +82,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 /// Local Variables ///////////////////////////////////////////////////////////
 	RECT rect;
 ///////////////////////////////////////////////////////////////////////////////
-	GetClientRect(&rect); 
+	GetClientRect(&rect);
 
 	if (CFrameWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
@@ -115,7 +115,7 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 /// Local Variables ///////////////////////////////////////////////////////////
 	HICON hicon;
 ///////////////////////////////////////////////////////////////////////////////
-	
+
 	hicon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 
 	m_ClassName = AfxRegisterWndClass(NULL,
@@ -131,8 +131,8 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	OnHelpWhichopengl
 // Purpose:		Create dialog to Show which version of OGL is running
-///////////////////////////////////////////////////////////////////////////////		
-void CMainFrame::OnHelpWhichopengl() 
+///////////////////////////////////////////////////////////////////////////////
+void CMainFrame::OnHelpWhichopengl()
 {
 	m_OGLView.GetGLInfo();
 }
@@ -154,27 +154,27 @@ void CMainFrame::Dump(CDumpContext& dc) const
 /////////////////////////////////////////////////////////////////////////////
 // CMainFrame message handlers
 
-void CMainFrame::OnPaint() 
+void CMainFrame::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
 
 	m_OGLView.drawScene();
 }
 
-void CMainFrame::OnSize(UINT nType, int cx, int cy) 
+void CMainFrame::OnSize(UINT nType, int cx, int cy)
 {
 	m_OGLView.SetWindowPos( &wndTopMost, 1, 1, cx - 3, cy - 46 , SWP_NOZORDER ); // -60 bottom
 	m_Slider.SetWindowPos( &wndTopMost, 1, cy - 44, cx - 3, 25 , SWP_NOZORDER ); // -60 bottom
 	CFrameWnd::OnSize(nType, cx, cy);
 }
 
-void CMainFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) 
+void CMainFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	m_OGLView.HandleKeyDown(nChar);
 	CFrameWnd::OnKeyDown(nChar, nRepCnt, nFlags);
 }
 
-void CMainFrame::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags) 
+void CMainFrame::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -311,39 +311,39 @@ void CMainFrame::InitializeSkeleton()
 	tempBones[2].s_rot.z = -84.0;
 }
 
-void CMainFrame::OnEndkey() 
-{	
+void CMainFrame::OnEndkey()
+{
 	m_OGLView.SetEndKey();
 }
 
-// SELECTION CONTROLS FOR THE MENU OPTIONS 
+// SELECTION CONTROLS FOR THE MENU OPTIONS
 // THESE ROUTINES CONTROL WHICH BONE IS UNDER UI CONTROL
-void CMainFrame::OnControlUpperarm() 
+void CMainFrame::OnControlUpperarm()
 {
 	m_OGLView.m_CurBone = &m_Skeleton.children[0];
 }
 
-void CMainFrame::OnUpdateControlUpperarm(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateControlUpperarm(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck(m_OGLView.m_CurBone == &m_Skeleton.children[0]);
 }
 
-void CMainFrame::OnControlLowerarm() 
+void CMainFrame::OnControlLowerarm()
 {
 	m_OGLView.m_CurBone = &m_Skeleton.children[1];
 }
 
-void CMainFrame::OnUpdateControlLowerarm(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateControlLowerarm(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck(m_OGLView.m_CurBone == &m_Skeleton.children[1]);
 }
 
-void CMainFrame::OnControlHand() 
+void CMainFrame::OnControlHand()
 {
 	m_OGLView.m_CurBone = &m_Skeleton.children[2];
 }
 
-void CMainFrame::OnUpdateControlHand(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateControlHand(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck(m_OGLView.m_CurBone == &m_Skeleton.children[2]);
 }

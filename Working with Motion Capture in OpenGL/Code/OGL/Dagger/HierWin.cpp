@@ -4,7 +4,7 @@
 //
 //
 // Created:
-//		JL 9/1/97		
+//		JL 9/1/97
 //
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -38,22 +38,22 @@ CHierWin::~CHierWin()
 }
 
 
-BOOL CHierWin::PreCreateWindow(CREATESTRUCT& cs) 
+BOOL CHierWin::PreCreateWindow(CREATESTRUCT& cs)
 {
 	CString className;
 	HCURSOR arrow;
 
-	arrow = AfxGetApp()->LoadStandardCursor(IDC_ARROW);	
+	arrow = AfxGetApp()->LoadStandardCursor(IDC_ARROW);
 
 //	className = AfxRegisterWndClass(NULL,
 //		(HCURSOR)arrow, (HBRUSH)::GetStockObject(DKGRAY_BRUSH), 0); //m_HArrow
 //	cs.lpszClass = className;
-	
+
 	return CTreeCtrl::PreCreateWindow(cs);
 }
 
-int CHierWin::OnCreate(LPCREATESTRUCT lpCreateStruct) 
-{	
+int CHierWin::OnCreate(LPCREATESTRUCT lpCreateStruct)
+{
 	if (CTreeCtrl::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
@@ -61,23 +61,23 @@ int CHierWin::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	return 0;
 }
 
-void CHierWin::ResetSkeleton() 
-{	
+void CHierWin::ResetSkeleton()
+{
 	DeleteAllItems();	// CLEAR THE CONTROL
 	m_TreeRoot = InsertItem( "Skeleton", TVI_ROOT, TVI_LAST );
 	// SET THE ROOT DATA TO NULL
 	SetItemData( m_TreeRoot, NULL );
 }
 
-void CHierWin::SetSkeleton(t_Bone *skeleton, HTREEITEM item) 
-{	
+void CHierWin::SetSkeleton(t_Bone *skeleton, HTREEITEM item)
+{
 /// Local Variables ///////////////////////////////////////////////////////////
 	int loop;
 	t_Bone *child;
 	HTREEITEM curItem;
 ///////////////////////////////////////////////////////////////////////////////
-	
-	if (item == NULL) 
+
+	if (item == NULL)
 	{
 		item = m_TreeRoot;
 		m_Skeleton = skeleton;
@@ -98,7 +98,7 @@ void CHierWin::SetSkeleton(t_Bone *skeleton, HTREEITEM item)
 	}
 }
 
-void CHierWin::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags) 
+void CHierWin::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	// RESET FOCUS TO MAINFRAME
 	// NEEDED TO ADD THIS SINCE THE TREECTRL WILL HOLD FOCUS
@@ -106,7 +106,7 @@ void CHierWin::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	//CTreeCtrl::OnKeyUp(nChar, nRepCnt, nFlags);
 }
 
-void CHierWin::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) 
+void CHierWin::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	// RESET FOCUS TO MAINFRAME
 	// NEEDED TO ADD THIS SINCE THE TREECTRL WILL HOLD FOCUS
@@ -128,22 +128,22 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CHierWin message handlers
 
-void CHierWin::OnLButtonUp(UINT nFlags, CPoint point) 
+void CHierWin::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	// RESET FOCUS TO MAINFRAME
 	// NEEDED TO ADD THIS SINCE THE TREECTRL WILL HOLD FOCUS
 	GetParent()->SetFocus( );
-	
+
 	CTreeCtrl::OnLButtonUp(nFlags, point);
 }
 
-void CHierWin::OnLButtonDblClk(UINT nFlags, CPoint point) 
+void CHierWin::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
-	EditBone();	
+	EditBone();
 	CTreeCtrl::OnLButtonDblClk(nFlags, point);
 }
 
-void CHierWin::OnSelchanged(NMHDR* pNMHDR, LRESULT* pResult) 
+void CHierWin::OnSelchanged(NMHDR* pNMHDR, LRESULT* pResult)
 {
 	NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
 	if (m_Skeleton > NULL)
@@ -152,7 +152,7 @@ void CHierWin::OnSelchanged(NMHDR* pNMHDR, LRESULT* pResult)
 	*pResult = 0;
 }
 
-void CHierWin::AddBone() 
+void CHierWin::AddBone()
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	HTREEITEM item,curItem;
@@ -186,10 +186,10 @@ void CHierWin::AddBone()
 		else
 			curItem = InsertItem( dialog.m_BoneName, item, TVI_LAST );
 			EnsureVisible( curItem );
-	}	
+	}
 }
 
-void CHierWin::EditBone() 
+void CHierWin::EditBone()
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	HTREEITEM item;
@@ -218,7 +218,7 @@ void CHierWin::EditBone()
 			bonePtr->rot.z = dialog.m_Rot_Z;
 			ResetSkeleton();
 			SetSkeleton(m_Skeleton, NULL);
-		}	
+		}
 	}
 }
 

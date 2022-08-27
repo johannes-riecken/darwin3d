@@ -5,7 +5,7 @@
 // Purpose:	Implementation of Main Application of Hierarchical Animation System
 //
 // Created:
-//		JL 9/1/97		
+//		JL 9/1/97
 //
 ///////////////////////////////////////////////////////////////////////////////
 //

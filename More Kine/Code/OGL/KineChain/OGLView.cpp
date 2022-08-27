@@ -5,7 +5,7 @@
 // Purpose:	Implementation of OpenGL Window of Inverse Kinematics System
 //
 // Created:
-//		JL 7/1/98		
+//		JL 7/1/98
 //
 // Notes:	The meat of this application is the last routine in this file.
 //			"ComputeIK" takes a target point and solves the two bone system.
@@ -39,7 +39,7 @@ static char THIS_FILE[] = __FILE__;
 #define OGL_AXIS_DLIST		99		// OPENGL DISPLAY LIST ID
 #define ROTATE_SPEED		1.0		// SPEED OF ROTATION
 #define EFFECTOR_POS		5		// THIS CHAIN HAS 5 LINKS
-#define MAX_IK_TRIES		100		// TIMES THROUGH THE CCD LOOP (TRIES = # / LINKS) 
+#define MAX_IK_TRIES		100		// TIMES THROUGH THE CCD LOOP (TRIES = # / LINKS)
 #define IK_POS_THRESH		1.0f	// THRESHOLD FOR SUCCESS
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -133,7 +133,7 @@ COGLView::~COGLView()
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	UpdateStatus
 // Purpose:		Update the status bar with orientation info
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 void COGLView::UpdateStatus()
 {
 /// Local Variables ///////////////////////////////////////////////////////////
@@ -148,7 +148,7 @@ void COGLView::UpdateStatus()
 
 }
 
-BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext) 
+BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext)
 {
 	UpdateStatus();	// DRAW INITIAL STATUS BAR
 	return CWnd::Create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, pContext);
@@ -210,7 +210,7 @@ BOOL COGLView::SetupPixelFormat(HDC hdc)
     return TRUE;
 }
 
-int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	RECT rect;
@@ -220,7 +220,7 @@ int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
     m_hDC = ::GetDC(m_hWnd);
     if (!SetupPixelFormat(m_hDC))
 		PostQuitMessage (0);
-	
+
     m_hRC = wglCreateContext(m_hDC);
     wglMakeCurrent(m_hDC, m_hRC);
     GetClientRect(&rect);
@@ -241,7 +241,7 @@ int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 			glVertex3f( 0.15f, -0.04f, 0.0f);
 			glColor3f(0.0f, 1.0f, 0.0f);	// Y AXIS STARTS - COLOR GREEN
 			glVertex3f( 0.0f,  0.2f, 0.0f);
-			glVertex3f( 0.0f, -0.2f, 0.0f);			
+			glVertex3f( 0.0f, -0.2f, 0.0f);
 			glVertex3f( 0.0f,  0.2f, 0.0f);	// TOP PIECE OF ARROWHEAD
 			glVertex3f( 0.04f,  0.15f, 0.0f);
 			glVertex3f( 0.0f,  0.2f, 0.0f);	// BOTTOM PIECE OF ARROWHEAD
@@ -295,14 +295,14 @@ GLvoid COGLView::resize( GLsizei width, GLsizei height )
 	glScalef(m_ModelScale,m_ModelScale,0.0f);
 
 	m_Link[0].trans.x = ((float)width / 2.0f) / m_ModelScale;
-}    
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	LoadBoneTexture
 // Purpose:		Load texture images for the bone
-// Notes:		Some of this code was originally from the OpenGL SuperBible 
+// Notes:		Some of this code was originally from the OpenGL SuperBible
 //				by Richard Wright Jr. and Michael Sweet
-//				THIS SHOULD LOOK THROUGH ALL BONES AND SEE IF TEXTURE IS 
+//				THIS SHOULD LOOK THROUGH ALL BONES AND SEE IF TEXTURE IS
 //				ALREADY LOADED.
 GLvoid COGLView::LoadBoneTexture(t_Bone *curBone, char *name)
 {
@@ -396,7 +396,7 @@ GLvoid COGLView::initializeGL(GLsizei width, GLsizei height)
 }
 
 // GET THE INFO ON THE VERSION OF OPENGL RUNNING
-void COGLView::GetGLInfo() 
+void COGLView::GetGLInfo()
 {
 //// Local Variables ////////////////////////////////////////////////////////////////
 	char *who, *which, *ver, *ext, *message;
@@ -491,11 +491,11 @@ GLvoid COGLView::drawSkeleton(t_Bone *rootBone,BOOL actuallyDraw)
 
 		glRotatef(curBone->rot.z, 0.0f, 0.0f, 1.0f);
 		glRotatef(curBone->rot.y, 0.0f, 1.0f, 0.0f);
-		glRotatef(curBone->rot.x, 1.0f, 0.0f, 0.0f); 
-	
+		glRotatef(curBone->rot.x, 1.0f, 0.0f, 0.0f);
+
 		// THE SCALE IS LOCAL SO I PUSH AND POP
 		glPushMatrix();
-		glScalef(curBone->scale.x, curBone->scale.y, curBone->scale.z); 
+		glScalef(curBone->scale.x, curBone->scale.y, curBone->scale.z);
 
 		if (actuallyDraw)
 		{
@@ -540,7 +540,7 @@ GLvoid COGLView::drawSkeleton(t_Bone *rootBone,BOOL actuallyDraw)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	drawScene
 // Purpose:		Draws the current OpenGL scene
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 GLvoid COGLView::drawScene(BOOL actuallyDraw)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
@@ -563,7 +563,7 @@ GLvoid COGLView::drawScene(BOOL actuallyDraw)
 	// ROTATE THE ROOT
 	glRotatef(m_Link[0].rot.z, 0.0f, 0.0f, 1.0f);
     glRotatef(m_Link[0].rot.y, 0.0f, 1.0f, 0.0f);
- 	glRotatef(m_Link[0].rot.x, 1.0f, 0.0f, 0.0f); 
+ 	glRotatef(m_Link[0].rot.x, 1.0f, 0.0f, 0.0f);
 
 	// GRAB THE MATRIX AT THIS POINT SO I CAN USE IT FOR THE DEFORMATION
 	glGetFloatv(GL_MODELVIEW_MATRIX,m_Link[0].matrix.m);
@@ -596,7 +596,7 @@ GLvoid COGLView::drawScene(BOOL actuallyDraw)
 }
 // 	drawScene
 
-void COGLView::OnDestroy() 
+void COGLView::OnDestroy()
 {
 	CWnd::OnDestroy();
 	if (m_hRC)
@@ -605,11 +605,11 @@ void COGLView::OnDestroy()
 		::ReleaseDC(m_hWnd,m_hDC);
     m_hRC = 0;
     m_hDC = 0;
-	
-	
+
+
 }
 
-void COGLView::OnPaint() 
+void COGLView::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
 	drawScene(TRUE);
@@ -617,7 +617,7 @@ void COGLView::OnPaint()
 	// Do not call CWnd::OnPaint() for painting messages
 }
 
-void COGLView::OnSize(UINT nType, int cx, int cy) 
+void COGLView::OnSize(UINT nType, int cx, int cy)
 {
 	// RESIZE THE OPENGL WINDOW
 	resize( cx,cy );
@@ -626,8 +626,8 @@ void COGLView::OnSize(UINT nType, int cx, int cy)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	OnLButtonDown
 // Purpose:		Left button down grabs the current point pos so I can use it
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::OnLButtonDown(UINT nFlags, CPoint point) 
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	CPoint joint1,joint2,effector;
@@ -659,8 +659,8 @@ void COGLView::OnLButtonDown(UINT nFlags, CPoint point)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	OnRButtonDown
 // Purpose:		Right button down grabs the current point pos so I can use it
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::OnRButtonDown(UINT nFlags, CPoint point) 
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::OnRButtonDown(UINT nFlags, CPoint point)
 {
 	m_mousepos = point;
 	point.y = m_Height - point.y - 1;
@@ -685,7 +685,7 @@ void COGLView::OnRButtonDown(UINT nFlags, CPoint point)
 	CWnd::OnLButtonDown(nFlags, point);
 }
 
-void COGLView::OnMButtonDown(UINT nFlags, CPoint point) 
+void COGLView::OnMButtonDown(UINT nFlags, CPoint point)
 {
 	m_mousepos = point;
 	point.y = m_Height - point.y - 1;
@@ -710,11 +710,11 @@ void COGLView::OnMButtonDown(UINT nFlags, CPoint point)
 	CWnd::OnMButtonDown(nFlags, point);
 }
 
-void COGLView::HandleKeyDown(UINT nChar) 
+void COGLView::HandleKeyDown(UINT nChar)
 {
 }
 
-void COGLView::HandleKeyUp(UINT nChar) 
+void COGLView::HandleKeyUp(UINT nChar)
 {
 	switch (nChar)
 	{
@@ -727,8 +727,8 @@ void COGLView::HandleKeyUp(UINT nChar)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	OnMouseMove
 // Purpose:		Handle mouse moves while pressed
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::OnMouseMove(UINT nFlags, CPoint point) 
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	if (nFlags & MK_LBUTTON > 0)
 	{
@@ -776,16 +776,16 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	OnLButtonDblClk
 // Purpose:		Left Double click, get dialog for Orientation
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::OnLButtonDblClk(UINT nFlags, CPoint point) 
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	SetRestrictions
 // Purpose:		Open Dialog to set up restrictions
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::SetRestrictions() 
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::SetRestrictions()
 {
 	CRestrict dialog;
 	dialog.m_Damp0 = m_Link[0].damp_width;
@@ -829,7 +829,7 @@ void COGLView::SetRestrictions()
 // Purpose:		Compute an IK Solution to an end effector position
 // Arguments:	End Target (x,y)
 // Returns:		TRUE if a solution exists, FALSE if the position isn't in reach
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 BOOL COGLView::ComputeOneCCDLink(CPoint endPos,int link)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
@@ -860,7 +860,7 @@ BOOL COGLView::ComputeOneCCDLink(CPoint endPos,int link)
 
 			NormalizeVector(&curVector);
 			NormalizeVector(&targetVector);
-			
+
 			cosAngle = DotProduct(&targetVector,&curVector);
 
 			if (cosAngle < 0.99999)
@@ -890,7 +890,7 @@ BOOL COGLView::ComputeOneCCDLink(CPoint endPos,int link)
 // Purpose:		Compute an IK Solution to an end effector position
 // Arguments:	End Target (x,y)
 // Returns:		TRUE if a solution exists, FALSE if the position isn't in reach
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 BOOL COGLView::ComputeCCDLink(CPoint endPos)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
@@ -948,12 +948,12 @@ BOOL COGLView::ComputeCCDLink(CPoint endPos)
 					turnAngle = acos((float)cosAngle);	// GET THE ANGLE
 					turnDeg = RADTODEG(turnAngle);		// COVERT TO DEGREES
 					// DAMPING
-					if (m_Damping && turnDeg > m_Link[link].damp_width) 
+					if (m_Damping && turnDeg > m_Link[link].damp_width)
 						turnDeg = m_Link[link].damp_width;
 					m_Link[link].rot.z -= (float)turnDeg;	// ACTUALLY TURN THE LINK
 					// DOF RESTRICTIONS
 					if (m_DOF_Restrict &&
-						m_Link[link].rot.z < (float)m_Link[link].min_rz) 
+						m_Link[link].rot.z < (float)m_Link[link].min_rz)
 						m_Link[link].rot.z = (float)m_Link[link].min_rz;
 				}
 				else if (crossResult.z < 0.0f)	// ROTATE COUNTER CLOCKWISE
@@ -961,12 +961,12 @@ BOOL COGLView::ComputeCCDLink(CPoint endPos)
 					turnAngle = acos((float)cosAngle);
 					turnDeg = RADTODEG(turnAngle);
 					// DAMPING
-					if (m_Damping && turnDeg > m_Link[link].damp_width) 
+					if (m_Damping && turnDeg > m_Link[link].damp_width)
 						turnDeg = m_Link[link].damp_width;
 					m_Link[link].rot.z += (float)turnDeg;	// ACTUALLY TURN THE LINK
 					// DOF RESTRICTIONS
 					if (m_DOF_Restrict &&
-						m_Link[link].rot.z > (float)m_Link[link].max_rz) 
+						m_Link[link].rot.z > (float)m_Link[link].max_rz)
 						m_Link[link].rot.z = (float)m_Link[link].max_rz;
 				}
 				// RECALC ALL THE MATRICES WITHOUT DRAWING ANYTHING
@@ -975,7 +975,7 @@ BOOL COGLView::ComputeCCDLink(CPoint endPos)
 			if (--link < 0) link = EFFECTOR_POS - 1;	// START OF THE CHAIN, RESTART
 		}
 	// QUIT IF I AM CLOSE ENOUGH OR BEEN RUNNING LONG ENOUGH
-	} while (tries++ < MAX_IK_TRIES && 
+	} while (tries++ < MAX_IK_TRIES &&
 				VectorSquaredDistance(&curEnd, &desiredEnd) > IK_POS_THRESH);
 	return TRUE;
 }

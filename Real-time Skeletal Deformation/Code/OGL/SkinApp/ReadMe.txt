@@ -13,7 +13,7 @@ Select Bone to control via the Control menu options or
 '1' or '2' to select upper arm or lower arm respectively.
 
 Mouse drag allows you to rotate the currently selected
-bone.  Left mouse button controls X and Y rotations and 
+bone.  Left mouse button controls X and Y rotations and
 Right mouse button controls Z rotation.
 
 CTRL+Drag allows you to move the system around the screen.
@@ -60,11 +60,11 @@ harder to get through.  So please don't mail with comments like
 "Your trig routines should use look-up tables."  You guys
 can have fun speeding it all up in your own individual projects.
 
-The main deformation routine is DeformBone in OGLView.cpp.  
+The main deformation routine is DeformBone in OGLView.cpp.
 It is a recursive function that applies the deformation for
 each bone to the main model.
 
-The code is set up with a three bones system.  
+The code is set up with a three bones system.
 Upper arm, Lower arm, and hand.
 The hand is only there to define the length of the lower arm.
 The engine would allow you to weight to the hand but the interface
@@ -96,7 +96,7 @@ the program more user friendly.
 
 Weighting Color Cues
 It would be very easy to ID which bone influences which
-vertex.  Softimage does this by changing the colors of 
+vertex.  Softimage does this by changing the colors of
 vertex display to be the color of the bone that influences it.
 
 Weighting Dialog Defaults
@@ -105,7 +105,7 @@ weight of the selected vertices.
 
 DOF Restrictions
 Use the Degree of Freedom variables in the bone structure
-to store restrictions. In the User controls, use these 
+to store restrictions. In the User controls, use these
 values to limit rotations.
 
 Any questions, email to jeffl@darwin3d.com

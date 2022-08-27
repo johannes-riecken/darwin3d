@@ -5,7 +5,7 @@
 // Purpose:	Implementation of Main Window of Particle System
 //
 // Created:
-//		JL 2/18/98		
+//		JL 2/18/98
 //
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -66,8 +66,8 @@ static UINT indicators[] =
 
 CMainFrame::CMainFrame()
 {
-	m_HArrow = AfxGetApp()->LoadStandardCursor(IDC_ARROW);	
-	
+	m_HArrow = AfxGetApp()->LoadStandardCursor(IDC_ARROW);
+
 }
 
 CMainFrame::~CMainFrame()
@@ -79,7 +79,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 /// Local Variables ///////////////////////////////////////////////////////////
 	RECT rect;
 ///////////////////////////////////////////////////////////////////////////////
-	GetClientRect(&rect); 
+	GetClientRect(&rect);
 
 	if (CFrameWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
@@ -106,7 +106,7 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 /// Local Variables ///////////////////////////////////////////////////////////
 	HICON hicon;
 ///////////////////////////////////////////////////////////////////////////////
-	
+
 	hicon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 
 	m_ClassName = AfxRegisterWndClass(NULL,
@@ -122,8 +122,8 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	OnHelpWhichopengl
 // Purpose:		Create dialog to Show which version of OGL is running
-///////////////////////////////////////////////////////////////////////////////		
-void CMainFrame::OnHelpWhichopengl() 
+///////////////////////////////////////////////////////////////////////////////
+void CMainFrame::OnHelpWhichopengl()
 {
 	m_OGLView.GetGLInfo();
 }
@@ -144,26 +144,26 @@ void CMainFrame::Dump(CDumpContext& dc) const
 
 /////////////////////////////////////////////////////////////////////////////
 // CMainFrame message handlers
-void CMainFrame::OnPaint() 
+void CMainFrame::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
 
 	m_OGLView.drawScene(FALSE);
 }
 
-void CMainFrame::OnSize(UINT nType, int cx, int cy) 
+void CMainFrame::OnSize(UINT nType, int cx, int cy)
 {
 	m_OGLView.SetWindowPos( &wndTopMost, 1, 1, cx - 3, cy - 20 , SWP_NOZORDER ); // -60 bottom
 	CFrameWnd::OnSize(nType, cx, cy);
 }
 
-void CMainFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) 
+void CMainFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	m_OGLView.HandleKeyDown(nChar);
 	CFrameWnd::OnKeyDown(nChar, nRepCnt, nFlags);
 }
 
-void CMainFrame::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags) 
+void CMainFrame::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -184,7 +184,7 @@ void CMainFrame::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 // Function:	IdleFunc
 // Purpose:		Process state changes if animating
 ///////////////////////////////////////////////////////////////////////////////
-void CMainFrame::IdleFunc() 
+void CMainFrame::IdleFunc()
 {
 	m_OGLView.IdleFunc();
 }
@@ -193,7 +193,7 @@ void CMainFrame::IdleFunc()
 // Function:	OnFileNew
 // Purpose:		Clear the weight settings for the model
 ///////////////////////////////////////////////////////////////////////////////
-void CMainFrame::OnFileNew() 
+void CMainFrame::OnFileNew()
 {
 	m_OGLView.resetEmitter();
 }
@@ -202,13 +202,13 @@ void CMainFrame::OnFileNew()
 // Function:	OnFileOpen
 // Purpose:		Load the Emitter settings for the system
 ///////////////////////////////////////////////////////////////////////////////
-void CMainFrame::OnFileOpen() 
+void CMainFrame::OnFileOpen()
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	char BASED_CODE szFilter[] = "Particle Emitter Files (*.pef)|*.PEF|All Files (*.*)|*.*||";
 	char directory[80];
 	CFileDialog	*dialog;
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 	// HAD TO ADD DIRECTORY STUFF SINCE DIALOG CHANGES DIRECTORY
 	_getcwd(directory,80);
 	dialog = new CFileDialog(TRUE,"PEF",NULL,OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,szFilter);
@@ -227,13 +227,13 @@ void CMainFrame::OnFileOpen()
 // Function:	OnFileSave
 // Purpose:		Save the Emitter settings for the system
 ///////////////////////////////////////////////////////////////////////////////
-void CMainFrame::OnFileSave() 
+void CMainFrame::OnFileSave()
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	char BASED_CODE szFilter[] = "Weight Files (*.PEF)|*.PEF|All Files (*.*)|*.*||";
 	char directory[80];
 	CFileDialog	*dialog;
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 	// HAD TO ADD DIRECTORY STUFF SINCE DIALOG CHANGES DIRECTORY
 	_getcwd(directory,80);
 	dialog = new CFileDialog(FALSE,"PEF",NULL,OFN_OVERWRITEPROMPT,szFilter);
@@ -248,27 +248,27 @@ void CMainFrame::OnFileSave()
 	_chdir(directory);
 }
 
-void CMainFrame::OnSettingsAntialiaspoints() 
+void CMainFrame::OnSettingsAntialiaspoints()
 {
 	m_OGLView.m_AntiAlias = !m_OGLView.m_AntiAlias;
 }
 
-void CMainFrame::OnUpdateSettingsAntialiaspoints(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateSettingsAntialiaspoints(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck( m_OGLView.m_AntiAlias );
 }
 
-void CMainFrame::OnSettingsEditemitter() 
+void CMainFrame::OnSettingsEditemitter()
 {
 	m_OGLView.editEmitter(&m_OGLView.m_Emitter);
 }
 
-void CMainFrame::OnSettingsShowaxis() 
+void CMainFrame::OnSettingsShowaxis()
 {
 	m_OGLView.m_DrawAxis = !m_OGLView.m_DrawAxis;
 }
 
-void CMainFrame::OnUpdateSettingsShowaxis(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateSettingsShowaxis(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck( m_OGLView.m_DrawAxis );
 }

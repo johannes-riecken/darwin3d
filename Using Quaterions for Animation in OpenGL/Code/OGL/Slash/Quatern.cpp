@@ -9,7 +9,7 @@
 // ALSO NOT TOTALLY OPTIMIZED AND TRICKED OUT FOR CLARITY
 //
 // Created:
-//		JL 9/1/97		
+//		JL 9/1/97
 //
 // Sources:
 //	Shoemake, Ken, "Animating Rotations with Quaternion Curves"
@@ -21,7 +21,7 @@
 // Notes:
 //			There are a couple of methods of conversion here so it
 // can be played around with a bit.  One is more clear and the other
-// is a bit faster.  
+// is a bit faster.
 //
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -86,8 +86,8 @@ void AddVectors(tVector *vect1, tVector *vect2, tVector *dest)
 ///////////////////////////////////////////////////////////////////////////////
 float DotVectors(tVector *vect1, tVector *vect2)
 {
-	return	(vect1->x * vect2->x) + 
-			(vect1->y * vect2->y) + 
+	return	(vect1->x * vect2->x) +
+			(vect1->y * vect2->y) +
 			(vect1->z * vect2->z);
 }
 //// DotVectors ///////////////////////////////////////////////////////////////
@@ -137,7 +137,7 @@ void MultQuaternions(tQuaternion *quat1, tQuaternion *quat2, tQuaternion *dest)
 }
 //// MultQuaternions //////////////////////////////////////////////////////////
 
-/* AN OPTIMIZATION/REORGANIZATION OF ABOVE CODE - NOT AS CLEAR 
+/* AN OPTIMIZATION/REORGANIZATION OF ABOVE CODE - NOT AS CLEAR
    I THINK THIS IS SIMILAR TO GRAPHIC GEMS THOUGH I DON'T HAVE THE REF HANDY
    THE MATH CHECKS OUT THOUGH */
 ///////////////////////////////////////////////////////////////////////////////
@@ -175,9 +175,9 @@ void NormalizeQuaternion(tQuaternion *quat)
 	float magnitude;
 ///////////////////////////////////////////////////////////////////////////////
 	// FIRST STEP, FIND THE MAGNITUDE
-	magnitude = (quat->x * quat->x) + 
-				(quat->y * quat->y) + 
-				(quat->z * quat->z) + 
+	magnitude = (quat->x * quat->x) +
+				(quat->y * quat->y) +
+				(quat->z * quat->z) +
 				(quat->w * quat->w);
 
 	// DIVIDE BY THE MAGNITUDE TO NORMALIZE
@@ -190,7 +190,7 @@ void NormalizeQuaternion(tQuaternion *quat)
 
 ///////////////////////////////////////////////////////////////////////////////
 // THESE TWO PROCEDURES ARE FUNCTIONALLY EQUIVALENT.  TWO METHODS TO CONVERT
-// A SERIES OF ROTATIONS TO QUATERNIONS.  
+// A SERIES OF ROTATIONS TO QUATERNIONS.
 ///////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -353,9 +353,9 @@ void QuatToEuler(const tQuaternion *quat, tVector *euler)
 	yr = (float)atan2(sy,cy);
 	euler->y = (yr * 180.0f) / (float)M_PI;
 
-	// AVOID DIVIDE BY ZERO ERROR ONLY WHERE Y= +-90 or +-270 
+	// AVOID DIVIDE BY ZERO ERROR ONLY WHERE Y= +-90 or +-270
 	// NOT CHECKING cy BECAUSE OF PRECISION ERRORS
-	if (sy != 1.0f && sy != -1.0f)	
+	if (sy != 1.0f && sy != -1.0f)
 	{
 		cx = matrix[2][2] / cy;
 		sx = matrix[2][1] / cy;
@@ -402,12 +402,12 @@ void SlerpQuat(tQuaternion *quat1,tQuaternion *quat2,float slerp, tQuaternion *r
 ///////////////////////////////////////////////////////////////////////////////
 	// USE THE DOT PRODUCT TO GET THE COSINE OF THE ANGLE BETWEEN THE
 	// QUATERNIONS
-	cosom = quat1->x * quat2->x + 
-			quat1->y * quat2->y + 
-			quat1->z * quat2->z + 
-			quat1->w * quat2->w; 
+	cosom = quat1->x * quat2->x +
+			quat1->y * quat2->y +
+			quat1->z * quat2->z +
+			quat1->w * quat2->w;
 
-	// CHECK A COUPLE OF SPECIAL CASES. 
+	// CHECK A COUPLE OF SPECIAL CASES.
 	// MAKE SURE THE TWO QUATERNIONS ARE NOT EXACTLY OPPOSITE? (WITHIN A LITTLE SLOP)
 	if ((1.0 + cosom) > DELTA)
 	{

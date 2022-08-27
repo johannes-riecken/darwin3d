@@ -8,7 +8,7 @@
 // SINCE THE ENGINE MAY BE IMPLEMENTED ON CONSOLES AND OTHER SYSTEMS
 //
 // Created:
-//		JL 9/1/97		
+//		JL 9/1/97
 // Revisions:
 //		Integrated into Kine Demo		8/18/98
 //

@@ -8,7 +8,7 @@
 // SINCE THE ENGINE MAY BE IMPLEMENTED ON CONSOLES AND OTHER SYSTEMS
 //
 // Created:
-//		JL 9/1/97		
+//		JL 9/1/97
 // Revisions:
 //		Integrated into Kine Demo		8/18/98
 //
@@ -45,21 +45,21 @@ typedef struct
 	float u,v;
 } t2DCoord;
 
-struct tVector  
+struct tVector
 {
 	float x,y,z,w;
 public:
-	tVector() {	x = y = z = 0.0f; w = 1.0f; }	
+	tVector() {	x = y = z = 0.0f; w = 1.0f; }
 	tVector(tVector &_v) { x = _v.x; y = _v.y; z = _v.z; w = _v.w; }
 	tVector(float _x, float _y, float _z, float _w = 1.0f) { x = _x; y = _y; z = _z; w = _w; }
 	~tVector() {}
 
 public:
-	
+
 	void	Zero() { x = 0.0f; y = 0.0f; z = 0.0f; w = 0.0f; }
 	void	CrossProduct(tVector &v1, tVector &v2);
 	float	Length2();
-	float	Length(); 
+	float	Length();
 	void	NormalizeVector();
 	void	Lerp(tVector *v,float factor);
 	float	Dot(tVector *v);
@@ -86,11 +86,11 @@ inline float		Length(tVector &v)							{ return sqrtf(DotProd(v, v));	}
 inline float		rLength(tVector &v)							{ return 1.0f / Length(v);	}
 inline tVector		Normalize(tVector &v)						{ return (Length2(v) > 0.0f) ? v * rLength(v) : v;		}
 
-struct tVector3  
+struct tVector3
 {
 	float x,y,z;
 public:
-	tVector3() {	x = y = z = 0; } 
+	tVector3() {	x = y = z = 0; }
 	tVector3(float _x, float _y, float _z) { x = _x; y = _y; z = _z; }
 	tVector3(tVector3&_v) { x = _v.x; y = _v.y; z = _v.z; }
 	~tVector3() {}
@@ -99,7 +99,7 @@ public:
 	void	Zero() { x = 0.0f; y = 0.0f; z = 0.0f; }
 	void	CrossProduct(tVector3 &v1, tVector3 &v2);
 	float	Length2();
-	float	Length(); 
+	float	Length();
 	void	NormalizeVector();
 	void	Lerp(tVector3 *v,float factor);
 	float	Dot(tVector3 *v);
@@ -126,7 +126,7 @@ public:
 /// Quaternion Definitions ////////////////////////////////////////////////////
 struct tQuaternion : public tVector
 {
-	tQuaternion() : tVector() { } 
+	tQuaternion() : tVector() { }
 };
 ///////////////////////////////////////////////////////////////////////////////
 

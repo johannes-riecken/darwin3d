@@ -5,9 +5,9 @@
 // Purpose:	Implementation of Windows BMP Loader
 //
 // Created:
-//		JL 7/1/98		
+//		JL 7/1/98
 //
-// Notes:		This code was originally from the OpenGL SuperBible 
+// Notes:		This code was originally from the OpenGL SuperBible
 //				by Richard Wright Jr. and Michael Sweet
 ///////////////////////////////////////////////////////////////////////////////
 //

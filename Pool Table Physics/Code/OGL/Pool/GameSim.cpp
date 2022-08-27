@@ -48,13 +48,13 @@ int				g_UseDamping = TRUE;				// Use a Damping force
 int				g_UseFriction = TRUE;				// Use Friction
 int				g_CueHitBall = FALSE;				// Set when a Cue hits the ball
 int				g_BallInPlay = FALSE;				// Ball has been hit
-tVector3		g_CueForce;							
+tVector3		g_CueForce;
 tVector3		g_Gravity;
 
 t_Contact		g_Contact[MAX_CONTACTS];			// LIST OF POSSIBLE COLLISIONS
 int				g_ContactCnt;						// COLLISION COUNT
 t_CollisionPlane	g_CollisionPlane[4];		// LIST OF COLLISION PLANES
-int					g_CollisionPlaneCnt;			
+int					g_CollisionPlaneCnt;
 t_Ball			g_GameSys[SYSTEM_COUNT][BALL_COUNT];			// LIST OF PHYSICAL PARTICLES
 t_Ball			*g_CurrentSys,*g_TargetSys;
 
@@ -94,7 +94,7 @@ BOOL InitGame(void)
 
 	g_CurrentSys = g_GameSys[0];
 	g_TargetSys = g_GameSys[1];
-	
+
 	g_CollisionPlaneCnt = 4;
 
 	// Left Bumper
@@ -112,7 +112,7 @@ BOOL InitGame(void)
 	// Right Bumper
 	g_CollisionPlane[3].normal = tVector3( 0.0f, 0.0f, 1.0f);
 	g_CollisionPlane[3].d = BOTTOM_BUMPER;
-	
+
 	return TRUE;
 }
 
@@ -125,7 +125,7 @@ void SetupBalls()
 	for (loop = 0; loop < SYSTEM_COUNT; loop++)
 	{
 		for (loop2 = 0; loop2 < BALL_COUNT; loop2++)
-		{	
+		{
 			switch (loop2)
 			{
 			// Ball 1 is the Cueball
@@ -153,7 +153,7 @@ void SetupBalls()
 
 
 // Velocity Threshold that decides between Static and Kinetic Friction
-#define STATIC_THRESHOLD	0.03f				
+#define STATIC_THRESHOLD	0.03f
 
 void ComputeForces( t_Ball	*system)
 {
@@ -161,7 +161,7 @@ void ComputeForces( t_Ball	*system)
 	int loop;
 	t_Ball		*curBall;
 	tVector3		contactN;
-	float		FdotN,VdotN,Vmag;		
+	float		FdotN,VdotN,Vmag;
 	tVector3		Vn,Vt;				// CONTACT RESOLUTION IMPULSE
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -188,7 +188,7 @@ void ComputeForces( t_Ball	*system)
 		// Only friction with the table top is handled
 		if (g_UseFriction)
 		{
-			// Calculate Fn 
+			// Calculate Fn
 			FdotN = g_Gravity.y / curBall->oneOverM;		// Gravity
 			// Calculate Vt Velocity Tangent to Normal Plane
 			contactN = tVector3( 0.0f, 1.0f, 0.0f);
@@ -211,7 +211,7 @@ void ComputeForces( t_Ball	*system)
 				curBall->f += Vt;
 
 				// Once the Cue Ball Stops reset the stick
-				if (loop == 0)								
+				if (loop == 0)
 				{
 					g_BallInPlay = FALSE;
 				}
@@ -226,11 +226,11 @@ void ComputeForces( t_Ball	*system)
 	{
 		system[0].f += g_CueForce;
 	}
-}   
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// Function:	IntegrateSysOverTime 
+// Function:	IntegrateSysOverTime
 // Purpose:		Does the Integration for all the points in a system
 // Arguments:	Initial Position, Source and Target Particle Systems and Time
 // Notes:		Computes a single integration step
@@ -259,7 +259,7 @@ void IntegrateSysOverTime(t_Ball *initial,t_Ball *source, t_Ball *target, float 
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// Function:	EulerIntegrate 
+// Function:	EulerIntegrate
 // Purpose:		Calculate new Positions and Velocities given a deltatime
 // Arguments:	DeltaTime that has passed since last iteration
 // Notes:		This integrator uses Euler's method
@@ -271,7 +271,7 @@ void EulerIntegrate( float DeltaTime)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// Function:	MidPointIntegrate 
+// Function:	MidPointIntegrate
 // Purpose:		Calculate new Positions and Velocities given a deltatime
 // Arguments:	DeltaTime that has passed since last iteration
 // Notes:		This integrator uses the Midpoint method
@@ -309,7 +309,7 @@ int CheckForCollisions( t_Ball	*system )
 	g_ContactCnt = 0;		// THERE ARE CURRENTLY NO CONTACTS
 
 	curBall = system;
-	for (loop = 0; (loop < BALL_COUNT) && (collisionState != PENETRATING); 
+	for (loop = 0; (loop < BALL_COUNT) && (collisionState != PENETRATING);
 			loop++,curBall++)
 	{
         for(planeIndex = 0;(planeIndex < g_CollisionPlaneCnt) &&
@@ -333,7 +333,7 @@ int CheckForCollisions( t_Ball	*system )
 					// TODO: Add a Collision with bumper sound here
                     collisionState = COLLIDING_WITH_WALL;
 					g_Contact[g_ContactCnt].type = COLLIDING_WITH_WALL;
-					g_Contact[g_ContactCnt].ball = loop; 
+					g_Contact[g_ContactCnt].ball = loop;
 					g_Contact[g_ContactCnt].Kr = g_Kr_Bumper;		// Ball to bumper Kr
 					memcpy(&g_Contact[g_ContactCnt].normal,&plane->normal,sizeof(tVector3));
 					g_ContactCnt++;
@@ -341,9 +341,9 @@ int CheckForCollisions( t_Ball	*system )
             }
         }
 
-		// Now check ball to ball collisions.  
+		// Now check ball to ball collisions.
 		ball2 = system;
-		for (loop2 = 0; (loop2 < BALL_COUNT) && (collisionState != PENETRATING); 
+		for (loop2 = 0; (loop2 < BALL_COUNT) && (collisionState != PENETRATING);
 				loop2++,ball2++)
 		{
 			if (loop2 == loop) continue;		// don't test against self
@@ -353,7 +353,7 @@ int CheckForCollisions( t_Ball	*system )
 
 			dist = distVect.Length2();
 			// SINCE IT IS TESTING THE SQUARED DISTANCE, SQUARE THE RADIUS ALSO
-			dist = dist - (BALL_DIAMETER * BALL_DIAMETER);	// Width of a ball 
+			dist = dist - (BALL_DIAMETER * BALL_DIAMETER);	// Width of a ball
 
 			if(dist < -ballDepthEpsilon)
 			{
@@ -372,8 +372,8 @@ int CheckForCollisions( t_Ball	*system )
 				{
 					collisionState = COLLIDING_WITH_BALL;
 					g_Contact[g_ContactCnt].type = COLLIDING_WITH_BALL;
-					g_Contact[g_ContactCnt].ball = loop; 
-					g_Contact[g_ContactCnt].ball2 = loop2; 
+					g_Contact[g_ContactCnt].ball = loop;
+					g_Contact[g_ContactCnt].ball2 = loop2;
 					g_Contact[g_ContactCnt].Kr = g_Kr_Ball;		// Ball to Ball Kr
 					memcpy(&g_Contact[g_ContactCnt].normal,&distVect,sizeof(tVector3));
 					ball2->flags = 1;
@@ -391,7 +391,7 @@ void ResolveCollisions( t_Ball	*system )
 {
 	t_Contact	*contact;
 	t_Ball		*ball,*ball2;		// THE PARTICLE COLLIDING
-	float		VdotN;		
+	float		VdotN;
 	tVector3	Vn,Vt,Vn1;				// CONTACT RESOLUTION IMPULSE
 	int			loop;
 
@@ -485,7 +485,7 @@ void Simulate(float DeltaTime, BOOL running)
         else
         {
             // either colliding or clear
-            if(collisionState == COLLIDING_WITH_WALL || 
+            if(collisionState == COLLIDING_WITH_WALL ||
 			   collisionState == COLLIDING_WITH_BALL)
             {
                 int Counter = 0;
@@ -502,7 +502,7 @@ void Simulate(float DeltaTime, BOOL running)
 
             // we made a successful step, so swap configurations
             // to "save" the data for the next step
-            
+
 			CurrentTime = TargetTime;
 			TargetTime = DeltaTime;
 

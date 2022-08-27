@@ -5,10 +5,10 @@
 // Purpose:	Implementation of Particle Physics System
 //
 // Created:
-//		JL 12/1/98		
+//		JL 12/1/98
 // Modified:
 //		JL 3/6/99 - FIXED GRAVITY FORCE CALCULATION BUG
-//		JL 3/8/99 - ADDED MORE POSSIBLE CONTACTS AS EACH VERTEX CAN CONTACT MORE 
+//		JL 3/8/99 - ADDED MORE POSSIBLE CONTACTS AS EACH VERTEX CAN CONTACT MORE
 //					THEN ONE COLLISION SURFACE (SHOULD IT BE DYNAMICALLY ALLOC'ED?)
 //		JL 3/20/99 - ADDED THE MIDPOINT AND RK INTEGRATOR NEEDED TO ALLOC 5 TEMP PARTICLE ARRAYS
 //
@@ -61,7 +61,7 @@ CPhysEnv::CPhysEnv()
 	m_ParticleCnt = 0;
 	m_Contact = NULL;
 	m_Spring = NULL;
-	m_SpringCnt = 0;		
+	m_SpringCnt = 0;
 
 	m_UseGravity = TRUE;
 	m_DrawSprings = TRUE;
@@ -146,7 +146,7 @@ void CPhysEnv::RenderWorld()
 	tParticle	*tempParticle;
 	tSpring		*tempSpring;
 
-	// FIRST DRAW THE WORLD CONTAINER  
+	// FIRST DRAW THE WORLD CONTAINER
 	glColor3f(1.0f,1.0f,1.0f);
     // do a big linestrip to get most of edges
     glBegin(GL_LINE_STRIP);
@@ -168,7 +168,7 @@ void CPhysEnv::RenderWorld()
         glVertex3f(-m_WorldSizeX/2.0f, m_WorldSizeY/2.0f, m_WorldSizeZ/2.0f);
         glVertex3f(-m_WorldSizeX/2.0f,-m_WorldSizeY/2.0f, m_WorldSizeZ/2.0f);
     glEnd();
-    
+
     // draw floor
     glDisable(GL_CULL_FACE);
     glBegin(GL_QUADS);
@@ -265,7 +265,7 @@ void CPhysEnv::GetNearestPoint(int x, int y)
 		tempParticle++;
 	}
 	hitCount = glRenderMode(GL_RENDER); // HOW MANY HITS DID I GET
-	CompareBuffer(hitCount,feedBuffer,(float)x,(float)y);		// CHECK THE HIT 
+	CompareBuffer(hitCount,feedBuffer,(float)x,(float)y);		// CHECK THE HIT
 	free(feedBuffer);		// GET RID OF THE MEMORY
 }
 ////// GetNearestPoint ////////////////////////////////////////////////////////
@@ -423,14 +423,14 @@ void CPhysEnv::FreeSystem()
 		free(m_Spring);
 		m_Spring = NULL;
 	}
-	m_SpringCnt = 0;	
+	m_SpringCnt = 0;
 	m_ParticleCnt = 0;
 }
 ////// FreeSystem //////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////
 // Function:	LoadData
-// Purpose:		Load a simulation system 
+// Purpose:		Load a simulation system
 // Arguments:	File pointer
 ///////////////////////////////////////////////////////////////////////////////
 void CPhysEnv::LoadData(FILE *fp)
@@ -468,7 +468,7 @@ void CPhysEnv::LoadData(FILE *fp)
 
 ///////////////////////////////////////////////////////////////////////////////
 // Function:	SaveData
-// Purpose:		Save a simulation system 
+// Purpose:		Save a simulation system
 // Arguments:	File pointer
 ///////////////////////////////////////////////////////////////////////////////
 void CPhysEnv::SaveData(FILE *fp)
@@ -556,7 +556,7 @@ void CPhysEnv::ApplyUserForce(tVector *force)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// Function:	SetMouseForce 
+// Function:	SetMouseForce
 // Purpose:		Allows the user to interact with selected points by dragging
 // Arguments:	Delta distance from clicked point, local x and y axes
 ///////////////////////////////////////////////////////////////////////////////
@@ -595,8 +595,8 @@ void CPhysEnv::AddSpring()
 		spring->Kd = m_Ksd;
 		spring->p1 = m_Pick[0];
 		spring->p2 = m_Pick[1];
-		spring->restLen = 
-			sqrt(VectorSquaredDistance(&m_CurrentSys[m_Pick[0]].pos, 
+		spring->restLen =
+			sqrt(VectorSquaredDistance(&m_CurrentSys[m_Pick[0]].pos,
 									   &m_CurrentSys[m_Pick[1]].pos));
 	}
 }
@@ -614,8 +614,8 @@ void CPhysEnv::ComputeForces( tParticle	*system )
 	{
 		MAKEVECTOR(curParticle->f,0.0f,0.0f,0.0f)		// CLEAR FORCE VECTOR
 
-		// BUG (3/8/99): THERE WAS A BUG HERE, I FORGOT YOU NEED TO DIVIDE 
-		//		BY 1/M TO GET THE TRUE FORCE ACTING ON THE PARTICLE INSTEAD OF A MULTIPLY 
+		// BUG (3/8/99): THERE WAS A BUG HERE, I FORGOT YOU NEED TO DIVIDE
+		//		BY 1/M TO GET THE TRUE FORCE ACTING ON THE PARTICLE INSTEAD OF A MULTIPLY
 		//		THANKS TO ED POVAZ FOR THE SPOT...
 		if (m_UseGravity && curParticle->oneOverM != 0) // && curParticle->type != CONTACTING)
 		{
@@ -659,14 +659,14 @@ void CPhysEnv::ComputeForces( tParticle	*system )
 	{
 		p1 = &system[spring->p1];
 		p2 = &system[spring->p2];
-		VectorDifference(&p1->pos,&p2->pos,&deltaP);	// Vector distance 
+		VectorDifference(&p1->pos,&p2->pos,&deltaP);	// Vector distance
 		dist = VectorLength(&deltaP);					// Magnitude of deltaP
 
 		Hterm = (dist - spring->restLen) * spring->Ks;	// Ks * (dist - rest)
-		
+
 		VectorDifference(&p1->v,&p2->v,&deltaV);		// Delta Velocity Vector
 		Dterm = (DotProduct(&deltaV,&deltaP) * spring->Kd) / dist; // Damping Term
-		
+
 		ScaleVector(&deltaP,1.0f / dist, &springForce);	// Normalize Distance Vector
 		ScaleVector(&springForce,-(Hterm + Dterm),&springForce);	// Calc Force
 //		if (p1->type != CONTACTING)
@@ -683,7 +683,7 @@ void CPhysEnv::ComputeForces( tParticle	*system )
 		if (m_Pick[0] > -1)
 		{
 			p1 = &system[m_Pick[0]];
-			VectorDifference(&p1->pos,&m_MouseDragPos[0],&deltaP);	// Vector distance 
+			VectorDifference(&p1->pos,&m_MouseDragPos[0],&deltaP);	// Vector distance
 			dist = VectorLength(&deltaP);					// Magnitude of deltaP
 
 			if (dist != 0.0f)
@@ -698,7 +698,7 @@ void CPhysEnv::ComputeForces( tParticle	*system )
 		if (m_Pick[1] > -1)
 		{
 			p1 = &system[m_Pick[1]];
-			VectorDifference(&p1->pos,&m_MouseDragPos[1],&deltaP);	// Vector distance 
+			VectorDifference(&p1->pos,&m_MouseDragPos[1],&deltaP);	// Vector distance
 			dist = VectorLength(&deltaP);					// Magnitude of deltaP
 
 			if (dist != 0.0f)
@@ -712,12 +712,12 @@ void CPhysEnv::ComputeForces( tParticle	*system )
 		}
 	}
 
-}   
+}
 
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// Function:	IntegrateSysOverTime 
+// Function:	IntegrateSysOverTime
 // Purpose:		Does the Integration for all the points in a system
 // Arguments:	Initial Position, Source and Target Particle Systems and Time
 // Notes:		Computes a single integration step
@@ -750,7 +750,7 @@ void CPhysEnv::IntegrateSysOverTime(tParticle *initial,tParticle *source, tParti
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// Function:	EulerIntegrate 
+// Function:	EulerIntegrate
 // Purpose:		Calculate new Positions and Velocities given a deltatime
 // Arguments:	DeltaTime that has passed since last iteration
 // Notes:		This integrator uses Euler's method
@@ -762,7 +762,7 @@ void CPhysEnv::EulerIntegrate( float DeltaTime)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// Function:	MidPointIntegrate 
+// Function:	MidPointIntegrate
 // Purpose:		Calculate new Positions and Velocities given a deltatime
 // Arguments:	DeltaTime that has passed since last iteration
 // Notes:		This integrator uses the Midpoint method
@@ -785,7 +785,7 @@ void CPhysEnv::MidPointIntegrate( float DeltaTime)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// Function:	RK4Integrate 
+// Function:	RK4Integrate
 // Purpose:		Calculate new Positions and Velocities given a deltatime
 // Arguments:	DeltaTime that has passed since last iteration
 // Notes:		This integrator uses the Runga-Kutta 4 method
@@ -959,7 +959,7 @@ int CPhysEnv::CheckForCollisions( tParticle	*system )
 	m_ContactCnt = 0;		// THERE ARE CURRENTLY NO CONTACTS
 
 	curParticle = system;
-	for (loop = 0; (loop < m_ParticleCnt) && (collisionState != PENETRATING); 
+	for (loop = 0; (loop < m_ParticleCnt) && (collisionState != PENETRATING);
 			loop++,curParticle++)
 	{
         for(int planeIndex = 0;(planeIndex < m_CollisionPlaneCnt) &&
@@ -989,7 +989,7 @@ int CPhysEnv::CheckForCollisions( tParticle	*system )
                 {
                     collisionState = COLLIDING;
 					m_Contact[m_ContactCnt].type = COLLIDING;
-					m_Contact[m_ContactCnt].particle = loop; 
+					m_Contact[m_ContactCnt].particle = loop;
 					memcpy(&m_Contact[m_ContactCnt].normal,&plane->normal,sizeof(tVector));
 					m_ContactCnt++;
                 }
@@ -1004,7 +1004,7 @@ void CPhysEnv::ResolveCollisions( tParticle	*system )
 {
 	tContact	*contact;
 	tParticle	*particle;		// THE PARTICLE COLLIDING
-	float		VdotN;		
+	float		VdotN;
 	tVector		Vn,Vt;				// CONTACT RESOLUTION IMPULSE
 	contact = m_Contact;
 	for (int loop = 0; loop < m_ContactCnt; loop++,contact++)
@@ -1092,7 +1092,7 @@ void CPhysEnv::Simulate(float DeltaTime, BOOL running)
 
             // we made a successful step, so swap configurations
             // to "save" the data for the next step
-            
+
 			CurrentTime = TargetTime;
 			TargetTime = DeltaTime;
 

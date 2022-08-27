@@ -100,7 +100,7 @@ private:
 	float				m_Csf, m_Ckf;			// Static and Kinetic Friction
 	float				m_MouseForceKs;			// MOUSE SPRING COEFFICIENT
 	tCollisionPlane		*m_CollisionPlane;		// LIST OF COLLISION PLANES
-	int					m_CollisionPlaneCnt;			
+	int					m_CollisionPlaneCnt;
 	tContact			*m_Contact;				// LIST OF POSSIBLE COLLISIONS
 	int					m_ContactCnt;			// COLLISION COUNT
 	tParticle			*m_ParticleSys[3];		// LIST OF PHYSICAL PARTICLES
@@ -108,7 +108,7 @@ private:
 	tParticle			*m_TempSys[5];			// SETUP FOR TEMP PARTICLES USED WHILE INTEGRATING
 	int					m_ParticleCnt;
 	tSpring				*m_Spring;				// VALID SPRINGS IN SYSTEM
-	int					m_SpringCnt;		
+	int					m_SpringCnt;
 	int					m_Pick[2];				// INDEX COUNTERS FOR SELECTING
 	tVector				m_MouseDragPos[2];		// POSITION OF DRAGGED MOUSE VECTOR
 // Operations

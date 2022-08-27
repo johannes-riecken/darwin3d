@@ -8,12 +8,12 @@
 //		JL 2/10/99	Modified from Mass-Spring Particle demo to handle cloth
 // Modified:
 //		JL 3/6/99 - FIXED GRAVITY FORCE CALCULATION BUG
-//		JL 3/8/99 - ADDED MORE POSSIBLE CONTACTS AS EACH VERTEX CAN CONTACT MORE 
+//		JL 3/8/99 - ADDED MORE POSSIBLE CONTACTS AS EACH VERTEX CAN CONTACT MORE
 //					THEN ONE COLLISION SURFACE (SHOULD IT BE DYNAMICALLY ALLOC'ED?)
 //		JL 3/20/99 - ADDED THE MIDPOINT AND RK INTEGRATOR NEEDED TO ALLOC 5 TEMP PARTICLE ARRAYS
 //
 // Notes:	A bit of this along with the organization comes from Chris Hecker's
-//			Physics Articles from last year www.d6.com.  Hopefully this will get 
+//			Physics Articles from last year www.d6.com.  Hopefully this will get
 //			everyone back up to speed before we dig deeper into the world of Dynamics.
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -63,7 +63,7 @@ CPhysEnv::CPhysEnv()
 	m_ParticleCnt = 0;
 	m_Contact = NULL;
 	m_Spring = NULL;
-	m_SpringCnt = 0;		
+	m_SpringCnt = 0;
 	m_MouseForceActive = FALSE;
 
 	m_UseGravity = TRUE;
@@ -146,7 +146,7 @@ void CPhysEnv::RenderWorld()
 	tParticle	*tempParticle;
 	tSpring		*tempSpring;
 
-	// FIRST DRAW THE WORLD CONTAINER  
+	// FIRST DRAW THE WORLD CONTAINER
 	glColor3f(1.0f,1.0f,1.0f);
     // do a big linestrip to get most of edges
     glBegin(GL_LINE_STRIP);
@@ -168,7 +168,7 @@ void CPhysEnv::RenderWorld()
         glVertex3f(-m_WorldSizeX/2.0f, m_WorldSizeY/2.0f, m_WorldSizeZ/2.0f);
         glVertex3f(-m_WorldSizeX/2.0f,-m_WorldSizeY/2.0f, m_WorldSizeZ/2.0f);
     glEnd();
-    
+
     // draw floor
     glDisable(GL_CULL_FACE);
     glBegin(GL_QUADS);
@@ -277,7 +277,7 @@ void CPhysEnv::GetNearestPoint(int x, int y)
 		tempParticle++;
 	}
 	hitCount = glRenderMode(GL_RENDER); // HOW MANY HITS DID I GET
-	CompareBuffer(hitCount,feedBuffer,(float)x,(float)y);		// CHECK THE HIT 
+	CompareBuffer(hitCount,feedBuffer,(float)x,(float)y);		// CHECK THE HIT
 	free(feedBuffer);		// GET RID OF THE MEMORY
 }
 
@@ -428,7 +428,7 @@ void CPhysEnv::FreeSystem()
 		free(m_Spring);
 		m_Spring = NULL;
 	}
-	m_SpringCnt = 0;	
+	m_SpringCnt = 0;
 	m_ParticleCnt = 0;
 }
 ////// FreeSystem //////////////////////////////////////////////////////////////
@@ -549,7 +549,7 @@ void CPhysEnv::ApplyUserForce(tVector *force)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// Function:	SetMouseForce 
+// Function:	SetMouseForce
 // Purpose:		Allows the user to interact with selected points by dragging
 // Arguments:	Delta distance from clicked point, local x and y axes
 ///////////////////////////////////////////////////////////////////////////////
@@ -589,8 +589,8 @@ void CPhysEnv::AddSpring()
 		spring->Kd = m_Ksd;
 		spring->p1 = m_Pick[0];
 		spring->p2 = m_Pick[1];
-		spring->restLen = 
-			sqrt(VectorSquaredDistance(&m_CurrentSys[m_Pick[0]].pos, 
+		spring->restLen =
+			sqrt(VectorSquaredDistance(&m_CurrentSys[m_Pick[0]].pos,
 									   &m_CurrentSys[m_Pick[1]].pos));
 		spring->type = 	MANUAL_SPRING;
 	}
@@ -615,8 +615,8 @@ void CPhysEnv::AddSpring(int v1, int v2,float Ksh,float Ksd, int type)
 		spring->Kd = Ksd;
 		spring->p1 = v1;
 		spring->p2 = v2;
-		spring->restLen = 
-			sqrt(VectorSquaredDistance(&m_CurrentSys[v1].pos, 
+		spring->restLen =
+			sqrt(VectorSquaredDistance(&m_CurrentSys[v1].pos,
 									   &m_CurrentSys[v2].pos));
 	}
 }
@@ -676,14 +676,14 @@ void CPhysEnv::ComputeForces( tParticle	*system )
 	{
 		p1 = &system[spring->p1];
 		p2 = &system[spring->p2];
-		VectorDifference(&p1->pos,&p2->pos,&deltaP);	// Vector distance 
+		VectorDifference(&p1->pos,&p2->pos,&deltaP);	// Vector distance
 		dist = VectorLength(&deltaP);					// Magnitude of deltaP
 
 		Hterm = (dist - spring->restLen) * spring->Ks;	// Ks * (dist - rest)
-		
+
 		VectorDifference(&p1->v,&p2->v,&deltaV);		// Delta Velocity Vector
 		Dterm = (DotProduct(&deltaV,&deltaP) * spring->Kd) / dist; // Damping Term
-		
+
 		ScaleVector(&deltaP,1.0f / dist, &springForce);	// Normalize Distance Vector
 		ScaleVector(&springForce,-(Hterm + Dterm),&springForce);	// Calc Force
 		VectorSum(&p1->f,&springForce,&p1->f);			// Apply to Particle 1
@@ -698,7 +698,7 @@ void CPhysEnv::ComputeForces( tParticle	*system )
 		if (m_Pick[0] > -1)
 		{
 			p1 = &system[m_Pick[0]];
-			VectorDifference(&p1->pos,&m_MouseDragPos[0],&deltaP);	// Vector distance 
+			VectorDifference(&p1->pos,&m_MouseDragPos[0],&deltaP);	// Vector distance
 			dist = VectorLength(&deltaP);					// Magnitude of deltaP
 
 			if (dist != 0.0f)
@@ -713,7 +713,7 @@ void CPhysEnv::ComputeForces( tParticle	*system )
 		if (m_Pick[1] > -1)
 		{
 			p1 = &system[m_Pick[1]];
-			VectorDifference(&p1->pos,&m_MouseDragPos[1],&deltaP);	// Vector distance 
+			VectorDifference(&p1->pos,&m_MouseDragPos[1],&deltaP);	// Vector distance
 			dist = VectorLength(&deltaP);					// Magnitude of deltaP
 
 			if (dist != 0.0f)
@@ -726,10 +726,10 @@ void CPhysEnv::ComputeForces( tParticle	*system )
 			}
 		}
 	}
-}   
+}
 
 ///////////////////////////////////////////////////////////////////////////////
-// Function:	IntegrateSysOverTime 
+// Function:	IntegrateSysOverTime
 // Purpose:		Does the Integration for all the points in a system
 // Arguments:	Initial Position, Source and Target Particle Systems and Time
 // Notes:		Computes a single integration step
@@ -762,7 +762,7 @@ void CPhysEnv::IntegrateSysOverTime(tParticle *initial,tParticle *source, tParti
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// Function:	EulerIntegrate 
+// Function:	EulerIntegrate
 // Purpose:		Calculate new Positions and Velocities given a deltatime
 // Arguments:	DeltaTime that has passed since last iteration
 // Notes:		This integrator uses Euler's method
@@ -774,7 +774,7 @@ void CPhysEnv::EulerIntegrate( float DeltaTime)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// Function:	MidPointIntegrate 
+// Function:	MidPointIntegrate
 // Purpose:		Calculate new Positions and Velocities given a deltatime
 // Arguments:	DeltaTime that has passed since last iteration
 // Notes:		This integrator uses the Midpoint method
@@ -797,7 +797,7 @@ void CPhysEnv::MidPointIntegrate( float DeltaTime)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// Function:	RK4Integrate 
+// Function:	RK4Integrate
 // Purpose:		Calculate new Positions and Velocities given a deltatime
 // Arguments:	DeltaTime that has passed since last iteration
 // Notes:		This integrator uses the Runga-Kutta 4 method
@@ -971,7 +971,7 @@ int CPhysEnv::CheckForCollisions( tParticle	*system )
 	m_ContactCnt = 0;		// THERE ARE CURRENTLY NO CONTACTS
 
 	curParticle = system;
-	for (loop = 0; (loop < m_ParticleCnt) && (collisionState != PENETRATING); 
+	for (loop = 0; (loop < m_ParticleCnt) && (collisionState != PENETRATING);
 			loop++,curParticle++)
 	{
 		// CHECK THE MAIN BOUNDARY PLANES FIRST
@@ -995,7 +995,7 @@ int CPhysEnv::CheckForCollisions( tParticle	*system )
                 if(relativeVelocity < 0.0f)
                 {
                     collisionState = COLLIDING;
-					m_Contact[m_ContactCnt].particle = loop; 
+					m_Contact[m_ContactCnt].particle = loop;
 					memcpy(&m_Contact[m_ContactCnt].normal,&plane->normal,sizeof(tVector));
 					m_ContactCnt++;
                 }
@@ -1034,7 +1034,7 @@ int CPhysEnv::CheckForCollisions( tParticle	*system )
 					if(relativeVelocity < 0.0f)
 					{
 						collisionState = COLLIDING;
-						m_Contact[m_ContactCnt].particle = loop; 
+						m_Contact[m_ContactCnt].particle = loop;
 						memcpy(&m_Contact[m_ContactCnt].normal,&distVect,sizeof(tVector));
 						m_ContactCnt++;
 					}
@@ -1051,7 +1051,7 @@ void CPhysEnv::ResolveCollisions( tParticle	*system )
 {
 	tContact	*contact;
 	tParticle	*particle;		// THE PARTICLE COLLIDING
-	float		VdotN;		
+	float		VdotN;
 	tVector		Vn,Vt;				// CONTACT RESOLUTION IMPULSE
 	contact = m_Contact;
 	for (int loop = 0; loop < m_ContactCnt; loop++,contact++)
@@ -1139,7 +1139,7 @@ void CPhysEnv::Simulate(float DeltaTime, BOOL running)
 
             // we made a successful step, so swap configurations
             // to "save" the data for the next step
-            
+
 			CurrentTime = TargetTime;
 			TargetTime = DeltaTime;
 
@@ -1152,7 +1152,7 @@ void CPhysEnv::Simulate(float DeltaTime, BOOL running)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// Function:	AddCollisionSphere 
+// Function:	AddCollisionSphere
 // Purpose:		Add a collision sphere to the system
 ///////////////////////////////////////////////////////////////////////////////
 void CPhysEnv::AddCollisionSphere()
@@ -1167,16 +1167,16 @@ void CPhysEnv::AddCollisionSphere()
 	dialog.m_ZPos = 0.0f;
 	if (dialog.DoModal())
 	{
-		temparray = (tCollisionSphere *)malloc(sizeof(tCollisionSphere) * (m_SphereCnt+1)); 	
+		temparray = (tCollisionSphere *)malloc(sizeof(tCollisionSphere) * (m_SphereCnt+1));
 		if (m_SphereCnt > 0)
 		{
 			memcpy(temparray,m_Sphere,sizeof(tCollisionSphere) * m_SphereCnt);
 			free(m_Sphere);
 		}
-		
+
 		MAKEVECTOR(temparray[m_SphereCnt].pos,dialog.m_XPos,dialog.m_YPos, dialog.m_ZPos)
 		temparray[m_SphereCnt].radius = dialog.m_Radius;
-	
+
 		m_Sphere = temparray;
 		m_SphereCnt++;
 	}

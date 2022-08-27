@@ -1,8 +1,8 @@
 Accelerated FFD deformation				May 2000
 --------------------------------------------------------
-v. 1.0  
+v. 1.0
 
-This is a demonstration of how skeletal deformation techniques can be 
+This is a demonstration of how skeletal deformation techniques can be
 used to accelerate arbitrary deformation functions such as a cubic FFD.
 
 A lattice of control points is created around an object and those control
@@ -13,7 +13,7 @@ This demo also uses the cartoon rendering shader from January.
 
 How it works.
 
-	Click and drag the Left Mouse Button on one or two control points to 
+	Click and drag the Left Mouse Button on one or two control points to
 	change the deformation lattice.
 
 	Click and drag the Right Mouse Button to rotate the view around.
@@ -24,7 +24,7 @@ How it works.
 	Draw Springs
 	Draw Control Vertices (CVs)
 	Draw Mesh
-	Draw Vertex Influences (This displays the rough weighting on the mesh of the 
+	Draw Vertex Influences (This displays the rough weighting on the mesh of the
 		first selected CV)
 
 Problems for you to explore:
@@ -43,18 +43,18 @@ Problems for you to explore:
 
 Any questions email:
 
-Jeff Lander 
+Jeff Lander
 jeffl@darwin3d.com
-www.darwin3d.com/gamedev.htm				
+www.darwin3d.com/gamedev.htm
 -----------------------------------------------------------
 
 I compiled the code with Visual C++ 6.0.  It has been tested
 with Microsoft OpenGL, SGI OpenGL for Windows, Permidia 2 OpenGL
-Drivers, Riva 128, TNT, TNT2, AccelGalaxy, ATI Rage LT Pro, 
+Drivers, Riva 128, TNT, TNT2, AccelGalaxy, ATI Rage LT Pro,
 and Matrox G400.
 
-It should run on any OpenGL fully complient driver.  This 
-DOES NOT include the mini-QuakeGL driver for 3DFX Voodoo series. 
+It should run on any OpenGL fully complient driver.  This
+DOES NOT include the mini-QuakeGL driver for 3DFX Voodoo series.
 3DFX OpenGL that does not support OpenGL in a window will not work
 with this application.
 

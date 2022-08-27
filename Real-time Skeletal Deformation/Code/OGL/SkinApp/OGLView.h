@@ -5,7 +5,7 @@
 // Purpose:	Implementation of OpenGL Window of Deformation System
 //
 // Created:
-//		JL 11/1/97		
+//		JL 11/1/97
 // Revisions:
 //		Integrated into Skinning Demo		2/18/98
 //
@@ -49,7 +49,7 @@ public:
 	float	m_Grab_Rot_X,m_Grab_Rot_Y,m_Grab_Rot_Z;
 	float	m_Grab_Trans_X,m_Grab_Trans_Y,m_Grab_Trans_Z;
 	BOOL	m_DrawGeometry, m_DrawBoneSystem, m_DrawOutline;
-	BOOL	m_Defmode_TwoBone;	
+	BOOL	m_Defmode_TwoBone;
 	float	m_AnimBlend;
 	t_Bone	*m_SelectedBone;	// THE CURRENTLY PICKED BONE
 	t_Bone	m_Mesh;				// THE MESH TO DEFORM

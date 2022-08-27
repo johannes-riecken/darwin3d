@@ -10,12 +10,12 @@ the year.  However, there have been some key changes.
 
 1. A contact model has been added.  This required changing
 the particle structure so models from the previous version will
-not work.  I create the cube and diamond for this demo.  The 
+not work.  I create the cube and diamond for this demo.  The
 contact model checks to see if distance from the particle to the
 contact surface is below the contactEpsilon threshold (currently 0.01f).
 If so, the particle is marked and the contact normal is saved.
 
-2. Friction force is added via the Coulomb model during 
+2. Friction force is added via the Coulomb model during
 ComputeForces.  If the relative velocity is greater then the
 threshold STATIC_THRESHOLD, the kinetic friction is applied.
 Otherwise, static friction is used.
@@ -33,7 +33,7 @@ a Billiards simulation with rigid spheres.
 
 In the meantime, you can play with the coefficients and
 contact model.  Switch integrators and see the effects.
-If you are ambitions, add this into the cloth demo from 
+If you are ambitions, add this into the cloth demo from
 a few months ago to the sphere collision routines.
 
 Also think about creating a list of contacts and storing
@@ -58,15 +58,15 @@ but it was as clear as I could make it in the time allowed.
 All the major functions for the actual dynamic simulation are in
 the files:	PhysEnv.h and PhysEnv.cpp.  Some of the timing
 and display code is in OGLView.h and OGLView.cpp.  Most of
-the UI is passed through MainFrm.cpp to OGLView.  
+the UI is passed through MainFrm.cpp to OGLView.
 
-All of the simulation constants can be set through the 
+All of the simulation constants can be set through the
 Simulation Properties dialog.  Any changes to the spring constants
 are applied to all springs in the simulation.  There is currently
 no way to change the settings for an individual spring.
 
 You can load in one of the pre-made simulations or create a
-new one by loading in an OBJ.  The OBJ needs to be scaled 
+new one by loading in an OBJ.  The OBJ needs to be scaled
 within a +-5 unit cube world so it fits within the world boundaries.
 An OBJ file loads as a point cloud.  You then can connect the dots
 by selecting vertices two at a time.  Press "ENTER" to connect the
@@ -86,17 +86,17 @@ dialog.  The force will apply to the one or two vertices selected.
 Demos:
 
 
-Jeff Lander 
+Jeff Lander
 jeffl@darwin3d.com
-www.darwin3d.com/gamedev.htm				
+www.darwin3d.com/gamedev.htm
 -----------------------------------------------------------
 
 I compiled the code with Visual C++ 6.0.  It has been tested
 with Microsoft OpenGL, SGI OpenGL for Windows, Permidia 1 and 2 OpenGL
-Drivers, Riva 128, TNT, TNT2, AccelGalaxy, 
+Drivers, Riva 128, TNT, TNT2, AccelGalaxy,
 and Symetra Ultra FX Pro.
 
-It should run on any OpenGL fully complient driver.  This 
+It should run on any OpenGL fully complient driver.  This
 DOES NOT include the mini-QuakeGL driver for 3DFX.  3DFX
 OpenGL does not support OpenGL in a window so will not work
 with this application.

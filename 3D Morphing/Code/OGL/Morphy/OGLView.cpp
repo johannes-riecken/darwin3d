@@ -5,7 +5,7 @@
 // Purpose:	Implementation of OpenGL Window of 3D Morphing System
 //
 // Created:
-//		JL 10/1/98		
+//		JL 10/1/98
 //
 // The function morphModel() does the main morphing work.
 //
@@ -62,7 +62,7 @@ COGLView::~COGLView()
 }
 
 
-BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CSlider *slider, CCreateContext* pContext) 
+BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CSlider *slider, CCreateContext* pContext)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	t_Visual	*visual = NULL;
@@ -144,7 +144,7 @@ BOOL COGLView::SetupPixelFormat(HDC hdc)
     return TRUE;
 }
 
-int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	RECT rect;
@@ -154,7 +154,7 @@ int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
     m_hDC = ::GetDC(m_hWnd);
     if (!SetupPixelFormat(m_hDC))
 		PostQuitMessage (0);
-	
+
     m_hRC = wglCreateContext(m_hDC);
     wglMakeCurrent(m_hDC, m_hRC);
     GetClientRect(&rect);
@@ -175,7 +175,7 @@ int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 			glVertex3f( 0.15f, -0.04f, 0.0f);
 			glColor3f(0.0f, 1.0f, 0.0f);	// Y AXIS STARTS - COLOR GREEN
 			glVertex3f( 0.0f,  0.2f, 0.0f);
-			glVertex3f( 0.0f, -0.2f, 0.0f);			
+			glVertex3f( 0.0f, -0.2f, 0.0f);
 			glVertex3f( 0.0f,  0.2f, 0.0f);	// TOP PIECE OF ARROWHEAD
 			glVertex3f( 0.04f,  0.15f, 0.0f);
 			glVertex3f( 0.0f,  0.2f, 0.0f);	// BOTTOM PIECE OF ARROWHEAD
@@ -212,7 +212,7 @@ GLvoid COGLView::resize( GLsizei width, GLsizei height )
     glLoadIdentity();
     gluPerspective(10.0, aspect, 1.0, 2000.0);
     glMatrixMode(GL_MODELVIEW);
-}    
+}
 
 GLvoid COGLView::initializeGL(GLsizei width, GLsizei height)
 {
@@ -245,7 +245,7 @@ GLvoid COGLView::initializeGL(GLsizei width, GLsizei height)
 
 	glShadeModel(GL_SMOOTH);
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-	
+
 	glMaterialfv(GL_FRONT,GL_AMBIENT, ambient);
 	glMaterialfv(GL_FRONT,GL_DIFFUSE, diffuse);
 	glMaterialfv(GL_FRONT,GL_SPECULAR, specular);
@@ -331,7 +331,7 @@ GLvoid COGLView::LoadBoneTexture(t_Bone *curBone)
 }
 
 // GET THE INFO ON THE VERSION OF OPENGL RUNNING
-void COGLView::GetGLInfo() 
+void COGLView::GetGLInfo()
 {
 //// Local Variables ////////////////////////////////////////////////////////////////
 	char *who, *which, *ver, *ext, *message;
@@ -358,7 +358,7 @@ void COGLView::GetGLInfo()
 // Purpose:		Does the Morph for the Model
 // Arguments:	Pointer to main bone
 // Notes:		Normals should probably be normalized (but it seems to work fine)
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 GLvoid COGLView::morphModel(t_Bone *curBone)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
@@ -372,13 +372,13 @@ GLvoid COGLView::morphModel(t_Bone *curBone)
 		dest = curBone->visuals[2].vertexData;		// DESTINATION FOR MORPHED FRAME
 		ratio = m_Slider->GetSetting();				// GET MORPH VALUE (0 - 1)
 		// LOOP THROUGH THE VERTICES
-		for (loop = 0; loop < curBone->visuals[0].triCnt * 3; loop++)	
+		for (loop = 0; loop < curBone->visuals[0].triCnt * 3; loop++)
 		{
 			// GO THROUGH EACH ELEMENT IN THE VERTEX STRUCTURE
 			for (pointloop = 0; pointloop < curBone->visuals[0].vSize; pointloop++)
 			{
 				// THE NEW POSITION IS A LERP BETWEEN THE TWO POINTS
-				dest[(loop * curBone->visuals[0].vSize) + pointloop] = 
+				dest[(loop * curBone->visuals[0].vSize) + pointloop] =
 					LERP(src1[(loop * curBone->visuals[0].vSize) + pointloop],
 						 src2[(loop * curBone->visuals[0].vSize) + pointloop],ratio);
 			}
@@ -392,9 +392,9 @@ GLvoid COGLView::morphModel(t_Bone *curBone)
 // Procedure:	drawModel
 // Purpose:		Draws the model associated with a bone
 // Notes:		Currently uses a global model not associated with the bone
-//              The data uses Quads with shared vertices and vertex coloring 
+//              The data uses Quads with shared vertices and vertex coloring
 //				so I chose to use indexed vertex arrays
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 GLvoid COGLView::drawModel(t_Bone *curBone)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
@@ -433,7 +433,7 @@ GLvoid COGLView::drawModel(t_Bone *curBone)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	drawScene
 // Purpose:		Draws the current OpenGL scene
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 GLvoid COGLView::drawScene(GLvoid)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
@@ -442,7 +442,7 @@ GLvoid COGLView::drawScene(GLvoid)
 	if (m_Skeleton.rot.y  > 360.0f) m_Skeleton.rot.y  -= 360.0f;
     if (m_Skeleton.rot.x   > 360.0f) m_Skeleton.rot.x   -= 360.0f;
     if (m_Skeleton.rot.z > 360.0f) m_Skeleton.rot.z -= 360.0f;
-	
+
     glDisable(GL_DEPTH_TEST);	// TURN OFF DEPTH TEST FOR CLEAR
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -457,7 +457,7 @@ GLvoid COGLView::drawScene(GLvoid)
 	// ROTATE THE ROOT
 	glRotatef(m_Skeleton.rot.z, 1.0f, 0.0f, 0.0f);
     glRotatef(m_Skeleton.rot.y, 0.0f, 1.0f, 0.0f);
- 	glRotatef(m_Skeleton.rot.x, 0.0f, 0.0f, 1.0f); 
+ 	glRotatef(m_Skeleton.rot.x, 0.0f, 0.0f, 1.0f);
 
 	// IF I WANT TO, DRAW THE GEOMETRY
 	if (m_DrawGeometry)
@@ -473,7 +473,7 @@ GLvoid COGLView::drawScene(GLvoid)
 }
 // 	drawScene
 
-void COGLView::OnDestroy() 
+void COGLView::OnDestroy()
 {
 	CWnd::OnDestroy();
 	if (m_hRC)
@@ -482,11 +482,11 @@ void COGLView::OnDestroy()
 		::ReleaseDC(m_hWnd,m_hDC);
     m_hRC = 0;
     m_hDC = 0;
-	
-	
+
+
 }
 
-void COGLView::OnPaint() 
+void COGLView::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
 	drawScene();
@@ -494,7 +494,7 @@ void COGLView::OnPaint()
 	// Do not call CWnd::OnPaint() for painting messages
 }
 
-void COGLView::OnSize(UINT nType, int cx, int cy) 
+void COGLView::OnSize(UINT nType, int cx, int cy)
 {
 	// RESIZE THE OPENGL WINDOW
 	resize( cx,cy );
@@ -503,8 +503,8 @@ void COGLView::OnSize(UINT nType, int cx, int cy)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	OnLButtonDown
 // Purpose:		Left button down grabs the current point pos so I can use it
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::OnLButtonDown(UINT nFlags, CPoint point) 
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	m_mousepos = point;
 	m_Grab_Rot_X = 	m_Skeleton.rot.x;
@@ -519,8 +519,8 @@ void COGLView::OnLButtonDown(UINT nFlags, CPoint point)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	OnRButtonDown
 // Purpose:		Right button down grabs the current point pos so I can use it
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::OnRButtonDown(UINT nFlags, CPoint point) 
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::OnRButtonDown(UINT nFlags, CPoint point)
 {
 	m_mousepos = point;
 	m_Grab_Rot_X = 	m_Skeleton.rot.x;
@@ -532,11 +532,11 @@ void COGLView::OnRButtonDown(UINT nFlags, CPoint point)
 	CWnd::OnLButtonDown(nFlags, point);
 }
 
-void COGLView::HandleKeyDown(UINT nChar) 
+void COGLView::HandleKeyDown(UINT nChar)
 {
 }
 
-void COGLView::HandleKeyUp(UINT nChar) 
+void COGLView::HandleKeyUp(UINT nChar)
 {
 	switch (nChar)
 	{
@@ -547,10 +547,10 @@ void COGLView::HandleKeyUp(UINT nChar)
 		break;
 	case '2': m_curVisual = 1;
 		break;
-	case 'O': 
+	case 'O':
 		glPolygonMode(GL_FRONT,GL_LINE);
 		break;
-	case 'F': 
+	case 'F':
 		glPolygonMode(GL_FRONT,GL_FILL);
 		break;
 	}
@@ -560,8 +560,8 @@ void COGLView::HandleKeyUp(UINT nChar)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	OnMouseMove
 // Purpose:		Handle mouse moves while pressed
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::OnMouseMove(UINT nFlags, CPoint point) 
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	if (nFlags & MK_LBUTTON > 0)
 	{
@@ -578,7 +578,7 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 				m_Skeleton.trans.y = m_Grab_Trans_Y - (.1f * (point.y - m_mousepos.y));
 				drawScene();
 			}
-		}	
+		}
 		// ELSE ROTATE THE BONE
 		else
 		{
@@ -619,16 +619,16 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	OnLButtonDblClk
 // Purpose:		Left Double click, get dialog for Orientation
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::OnLButtonDblClk(UINT nFlags, CPoint point) 
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	LoadFiles
 // Purpose:		Loads the OBJ files into memory
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::LoadFiles(CString file1, CString file2) 
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::LoadFiles(CString file1, CString file2)
 {
 	if (m_Skeleton.visuals[0].vertexData != NULL)
 	{

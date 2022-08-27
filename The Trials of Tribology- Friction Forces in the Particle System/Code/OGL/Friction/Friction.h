@@ -3,7 +3,7 @@
 // Purpose:	Implementation of OpenGL Window of Friction Demonstration
 //
 // Created:
-//		JL 11/20/98		
+//		JL 11/20/98
 //		JL 06/01/99		Modified from other code
 //
 ///////////////////////////////////////////////////////////////////////////////

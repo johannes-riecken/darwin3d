@@ -5,7 +5,7 @@
 // Purpose:	Implementation of OpenGL Window of 3D Blob modelling
 //
 // Created:
-//		JL 11/20/99		
+//		JL 11/20/99
 //
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -67,7 +67,7 @@ static UINT indicators[] =
 
 CMainFrame::CMainFrame()
 {
-	m_HArrow = AfxGetApp()->LoadStandardCursor(IDC_ARROW);	
+	m_HArrow = AfxGetApp()->LoadStandardCursor(IDC_ARROW);
 }
 
 CMainFrame::~CMainFrame()
@@ -79,7 +79,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 /// Local Variables ///////////////////////////////////////////////////////////
 	RECT rect;
 ///////////////////////////////////////////////////////////////////////////////
-	GetClientRect(&rect); 
+	GetClientRect(&rect);
 
 	if (CFrameWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
@@ -106,7 +106,7 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 /// Local Variables ///////////////////////////////////////////////////////////
 	HICON hicon;
 ///////////////////////////////////////////////////////////////////////////////
-	
+
 	hicon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 
 	m_ClassName = AfxRegisterWndClass(NULL,
@@ -123,8 +123,8 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 // Procedure:	OnHelpWhichopengl
 // Purpose:		Create dialog to Show which version of OGL is running
 // Notes:		Pretty Handy info for debugging
-///////////////////////////////////////////////////////////////////////////////		
-void CMainFrame::OnHelpWhichopengl() 
+///////////////////////////////////////////////////////////////////////////////
+void CMainFrame::OnHelpWhichopengl()
 {
 	m_OGLView.GetGLInfo();
 }
@@ -146,27 +146,27 @@ void CMainFrame::Dump(CDumpContext& dc) const
 /////////////////////////////////////////////////////////////////////////////
 // CMainFrame message handlers
 
-void CMainFrame::OnPaint() 
+void CMainFrame::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
 
 	m_OGLView.DrawScene();
 }
 
-void CMainFrame::OnSize(UINT nType, int cx, int cy) 
+void CMainFrame::OnSize(UINT nType, int cx, int cy)
 {
 	m_OGLView.SetWindowPos( &wndTopMost, 1, 1, cx - 3, cy - 21 , SWP_NOZORDER ); // -60 bottom
 
 	CFrameWnd::OnSize(nType, cx, cy);
 }
 
-void CMainFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) 
+void CMainFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	m_OGLView.HandleKeyDown(nChar);
 	CFrameWnd::OnKeyDown(nChar, nRepCnt, nFlags);
 }
 
-void CMainFrame::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags) 
+void CMainFrame::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -181,74 +181,74 @@ void CMainFrame::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 }
 
 // TOGGLE THE STATUS OF THE VIEW GEOMETRY FLAG
-void CMainFrame::OnViewGeometry() 
+void CMainFrame::OnViewGeometry()
 {
 	m_OGLView.m_DrawGeometry = !m_OGLView.m_DrawGeometry;
 	m_OGLView.DrawScene();
 }
 
 // SET THE CHECKED STATUS OF THE VIEW GEOMETRY MENU BASED ON STATUS
-void CMainFrame::OnUpdateViewGeometry(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateViewGeometry(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck( m_OGLView.m_DrawGeometry );
 }
 
-void CMainFrame::OnViewDrawblobs() 
+void CMainFrame::OnViewDrawblobs()
 {
 	m_OGLView.m_DrawBlobs = !m_OGLView.m_DrawBlobs;
 	m_OGLView.DrawScene();
 }
 
-void CMainFrame::OnUpdateViewDrawblobs(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateViewDrawblobs(CCmdUI* pCmdUI)
 {
-	pCmdUI->SetCheck( m_OGLView.m_DrawBlobs );	
+	pCmdUI->SetCheck( m_OGLView.m_DrawBlobs );
 }
 
-void CMainFrame::OnViewDrawfield() 
+void CMainFrame::OnViewDrawfield()
 {
 	m_OGLView.m_DrawField = !m_OGLView.m_DrawField;
 	m_OGLView.DrawScene();
 }
 
-void CMainFrame::OnUpdateViewDrawfield(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateViewDrawfield(CCmdUI* pCmdUI)
 {
-	pCmdUI->SetCheck( m_OGLView.m_DrawField );	
+	pCmdUI->SetCheck( m_OGLView.m_DrawField );
 }
 
-void CMainFrame::OnFileOpen() 
+void CMainFrame::OnFileOpen()
 {
 	char szFilter[] = "Blob files (*.blb)|*.blb||";  // WILL INCLUDE Biovision Hierarchy BVH (*.bvh)|*.bvh|
 	CFileDialog	dialog( TRUE, ".obj", NULL, NULL, szFilter, this);
-	CString name;		
+	CString name;
 	if (dialog.DoModal())
 	{
 		m_OGLView.LoadFile(dialog.GetFileName( ),dialog.GetFileTitle( ) );
 	}
 }
 
-void CMainFrame::OnFileSave() 
+void CMainFrame::OnFileSave()
 {
 	char szFilter[] = "Blob files (*.blb)|*.blb||";  // WILL INCLUDE Biovision Hierarchy BVH (*.bvh)|*.bvh|
 	CFileDialog	dialog( FALSE, ".obj", NULL, NULL, szFilter, this);
-	CString name;		
+	CString name;
 	if (dialog.DoModal())
 	{
 		m_OGLView.SaveFile(dialog.GetFileName( ),dialog.GetFileTitle( ) );
 	}
 }
 
-void CMainFrame::OnGoopAddblob() 
+void CMainFrame::OnGoopAddblob()
 {
 	m_OGLView.OnGoopAddblob();
 }
 
-void CMainFrame::OnGoopEditblob() 
+void CMainFrame::OnGoopEditblob()
 {
 	m_OGLView.EditBlob();
 }
 
-void CMainFrame::OnGoopSystemsettings() 
+void CMainFrame::OnGoopSystemsettings()
 {
-	m_OGLView.EditSys();	
+	m_OGLView.EditSys();
 }
 

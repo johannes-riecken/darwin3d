@@ -23,7 +23,7 @@
 #include "MathDefs.h"
 
 // The metagoop structure.  It is pretty simple.  This could be modified
-// in a number of ways for example you could create non-sphere blobs via 
+// in a number of ways for example you could create non-sphere blobs via
 // scaling and rotation.
 typedef struct
 {

@@ -8,7 +8,7 @@
 // SINCE THE ENGINE MAY BE IMPLEMENTED ON CONSOLES AND OTHER SYSTEMS
 //
 // Created:
-//		JL 4/1/98		
+//		JL 4/1/98
 // Revisions:
 //
 ///////////////////////////////////////////////////////////////////////////////

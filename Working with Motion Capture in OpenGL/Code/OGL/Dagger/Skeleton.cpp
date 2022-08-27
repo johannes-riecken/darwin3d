@@ -8,7 +8,7 @@
 // SINCE THE ENGINE MAY BE IMPLEMENTED ON CONSOLES AND OTHER SYSTEMS
 //
 // Created:
-//		JL 9/1/97		
+//		JL 9/1/97
 //
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -138,7 +138,7 @@ void BoneSetFrame(t_Bone *bone,int frame)
 			bone->rot.y = offset[4];
 			bone->rot.z = offset[5];
 
-// I DON'T REALLY WANT MY ANIMATION TO DEAL WITH SCALE RIGHT NOW 
+// I DON'T REALLY WANT MY ANIMATION TO DEAL WITH SCALE RIGHT NOW
 // EVEN THOUGH IT IS IN THE BVA FILE
 //			bone->scale.x = offset[6];
 //			bone->scale.y = offset[7];
@@ -165,7 +165,7 @@ void BoneAdvanceFrame(t_Bone *bone,int direction,BOOL doChildren)
 ///////////////////////////////////////////////////////////////////////////////
 	if (bone->primChanType != CHANNEL_TYPE_BVH)
 	{
-		// THERE MUST BE SOME THINGS TO ADVANCE 
+		// THERE MUST BE SOME THINGS TO ADVANCE
 		if (bone->childCnt > 0)
 		{
 			child = bone->children;

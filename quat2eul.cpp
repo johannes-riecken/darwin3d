@@ -32,9 +32,9 @@ void QuatToEuler(const tQuaternion *quat, tVector *euler)
 	yr = (float)atan2(sy,cy);
 	euler->y = (yr * 180.0f) / (float)M_PI;
 
-	// AVOID DIVIDE BY ZERO ERROR ONLY WHERE Y= +-90 or +-270 
+	// AVOID DIVIDE BY ZERO ERROR ONLY WHERE Y= +-90 or +-270
 	// NOT CHECKING cy BECAUSE OF PRECISION ERRORS
-	if (sy != 1.0f && sy != -1.0f)	
+	if (sy != 1.0f && sy != -1.0f)
 	{
 		cx = matrix[2][2] / cy;
 		sx = matrix[2][1] / cy;

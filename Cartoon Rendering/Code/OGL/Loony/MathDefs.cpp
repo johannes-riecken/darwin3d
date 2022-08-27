@@ -33,15 +33,15 @@
 void MultVectorByMatrix(tMatrix *mat, tVector *v,tVector *result)
 {
 	result->x = (mat->m[0] * v->x) +
-			   (mat->m[4] * v->y) +	
+			   (mat->m[4] * v->y) +
 			   (mat->m[8] * v->z) +
 			   mat->m[12];
 	result->y = (mat->m[1] * v->x) +
-			   (mat->m[5] * v->y) +	
+			   (mat->m[5] * v->y) +
 			   (mat->m[9] * v->z) +
 			   mat->m[13];
 	result->z = (mat->m[2] * v->x) +
-			   (mat->m[6] * v->y) +	
+			   (mat->m[6] * v->y) +
 			   (mat->m[10] * v->z) +
 			   mat->m[14];
 }
@@ -57,13 +57,13 @@ void MultVectorByMatrix(tMatrix *mat, tVector *v,tVector *result)
 void MultVectorByRotMatrix(tMatrix *mat, tVector *v,tVector *result)
 {
 	result->x = (mat->m[0] * v->x) +
-			   (mat->m[4] * v->y) +	
+			   (mat->m[4] * v->y) +
 			   (mat->m[8] * v->z);
 	result->y = (mat->m[1] * v->x) +
-			   (mat->m[5] * v->y) +	
+			   (mat->m[5] * v->y) +
 			   (mat->m[9] * v->z);
 	result->z = (mat->m[2] * v->x) +
-			   (mat->m[6] * v->y) +	
+			   (mat->m[6] * v->y) +
 			   (mat->m[10] * v->z);
 }
 //// MultVectorByMatrix //////////////////////////////////////////////////////
@@ -72,7 +72,7 @@ void MultVectorByRotMatrix(tMatrix *mat, tVector *v,tVector *result)
 // Two Utility functions that I pulled from the Mesa GL source
 // This is a great source of information about the inner working of functions
 // in OpenGL
-// 
+//
 // www.mesagl.com for info
 //
 // Adapted to work with my data types
@@ -212,7 +212,7 @@ BOOL InvertMatrix(float  *m, float *out )
  MAT(out,2,0) = r2[4]; MAT(out,2,1) = r2[5],
  MAT(out,2,2) = r2[6]; MAT(out,2,3) = r2[7],
  MAT(out,3,0) = r3[4]; MAT(out,3,1) = r3[5],
- MAT(out,3,2) = r3[6]; MAT(out,3,3) = r3[7]; 
+ MAT(out,3,2) = r3[6]; MAT(out,3,3) = r3[7];
 
  return TRUE;
 
@@ -220,27 +220,27 @@ BOOL InvertMatrix(float  *m, float *out )
 #undef SWAP_ROWS
 }
 
-/* returns squared length of input vector */    
-double VectorSquaredLength(tVector *v) 
+/* returns squared length of input vector */
+double VectorSquaredLength(tVector *v)
 {
 	return((v->x * v->x) + (v->y * v->y) + (v->z * v->z));
 }
 
 /* returns length of input vector */
-double VectorLength(tVector *v) 
+double VectorLength(tVector *v)
 {
 	return(sqrt(VectorSquaredLength(v)));
 }
 
 /* destructively normalizes the input vector */
-void NormalizeVector(tVector *v) 
+void NormalizeVector(tVector *v)
 {
 	float len = (float)VectorLength(v);
-    if (len != 0.0) 
-	{ 
-		v->x /= len;  
-		v->y /= len; 
-		v->z /= len; 
+    if (len != 0.0)
+	{
+		v->x /= len;
+		v->y /= len;
+		v->z /= len;
 	}
 }
 
@@ -257,28 +257,28 @@ void CrossProduct(tVector *v1, tVector *v2, tVector *result)
 	result->z = (v1->x * v2->y) - (v1->y * v2->x);
 }
 
-double VectorSquaredDistance(tVector *v1, tVector *v2) 
+double VectorSquaredDistance(tVector *v1, tVector *v2)
 {
-	return(	((v1->x - v2->x) * (v1->x - v2->x)) + 
-			((v1->y - v2->y) * (v1->y - v2->y)) + 	
-			((v1->z - v2->z) * (v1->z - v2->z)) ); 	
+	return(	((v1->x - v2->x) * (v1->x - v2->x)) +
+			((v1->y - v2->y) * (v1->y - v2->y)) +
+			((v1->z - v2->z) * (v1->z - v2->z)) );
 }
 
-void ScaleVector(tVector *v, float scale, tVector *result) 
+void ScaleVector(tVector *v, float scale, tVector *result)
 {
 	result->x = v->x * scale;
 	result->y = v->y * scale;
 	result->z = v->z * scale;
 }
 
-void VectorSum(tVector *v1, tVector *v2, tVector *result) 
+void VectorSum(tVector *v1, tVector *v2, tVector *result)
 {
 	result->x = v1->x + v2->x;
 	result->y = v1->y + v2->y;
 	result->z = v1->z + v2->z;
 }
 
-void VectorDifference(tVector *v1, tVector *v2, tVector *result) 
+void VectorDifference(tVector *v1, tVector *v2, tVector *result)
 {
 	result->x = v1->x - v2->x;
 	result->y = v1->y - v2->y;

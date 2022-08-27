@@ -5,7 +5,7 @@
 // Purpose: implementation of the Custom Skeleton file Loader
 //
 // Created:
-//		JL 9/12/99		
+//		JL 9/12/99
 //
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -20,7 +20,7 @@
 
 
 #define MAX_CHILDREN 8
-typedef struct 
+typedef struct
 {
 	void	*parent;
 	void	*child[MAX_CHILDREN];

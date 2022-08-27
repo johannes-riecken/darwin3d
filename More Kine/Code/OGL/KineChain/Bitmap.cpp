@@ -5,9 +5,9 @@
 // Purpose:	Implementation of Windows BMP Loader
 //
 // Created:
-//		JL 7/1/98		
+//		JL 7/1/98
 //
-// Notes:		This code was originally from the OpenGL SuperBible 
+// Notes:		This code was originally from the OpenGL SuperBible
 //				by Richard Wright Jr. and Michael Sweet
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -31,7 +31,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	LoadDIBitmap
 // Purpose:		Load texture images for the bone
-// Arguments:	Name of the file to load, bitmap info 
+// Arguments:	Name of the file to load, bitmap info
 void *LoadDIBitmap(char	*filename,BITMAPINFO	**info)
 {
   FILE			*fp;		/* Open file pointer */
@@ -157,7 +157,7 @@ GLubyte * ConvertBitsToGL(BITMAPINFO *info,void *bits)
   */
 
   width   = 3 * info->bmiHeader.biWidth;
-  width   = (width + 3) & ~3;	
+  width   = (width + 3) & ~3;
   bitsize = width * info->bmiHeader.biHeight;
   if ((newbits = (GLubyte *)calloc(bitsize, 1)) == NULL)
     return (NULL);

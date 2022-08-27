@@ -1,12 +1,12 @@
 /////////////////////////////////////////////////////////////////////////////////////
 // RenderWorld.c
 // This file actually renders the world complete with balls and cuestick
-// 
+//
 // The code base was pulled from the OpenGL Super Bible.
 // Great book that I highly recommend
 //
 // Created:
-//		JL 9/5/99		
+//		JL 9/5/99
 //
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -55,7 +55,7 @@ typedef struct {
 } tPrimPoly;
 
 // A Scene consisting for Triangles and Quads
-typedef struct 
+typedef struct
 {
 	long		vertexCnt;
 	tVector3	*vertex;
@@ -103,7 +103,7 @@ void InitRender(void)
 			glVertex3f( 0.15f, -0.04f, 0.0f);
 			glColor3f(0.0f, 1.0f, 0.0f);	// Y AXIS STARTS - COLOR GREEN
 			glVertex3f( 0.0f,  0.2f, 0.0f);
-			glVertex3f( 0.0f, -0.2f, 0.0f);			
+			glVertex3f( 0.0f, -0.2f, 0.0f);
 			glVertex3f( 0.0f,  0.2f, 0.0f);	// TOP PIECE OF ARROWHEAD
 			glVertex3f( 0.04f,  0.15f, 0.0f);
 			glVertex3f( 0.0f,  0.2f, 0.0f);	// BOTTOM PIECE OF ARROWHEAD
@@ -236,14 +236,14 @@ void LoadTextures()
 		{
 			glTexImage2D(GL_TEXTURE_2D, 0, 4, tgaHeader.d_width, tgaHeader.d_height, 0,
 				GL_RGBA , GL_UNSIGNED_BYTE, rgb);
-			rv = gluBuild2DMipmaps( GL_TEXTURE_2D, 4, tgaHeader.d_width, tgaHeader.d_height, 
+			rv = gluBuild2DMipmaps( GL_TEXTURE_2D, 4, tgaHeader.d_width, tgaHeader.d_height,
 				GL_RGBA, GL_UNSIGNED_BYTE, rgb );
 		}
 		else
 		{
 			glTexImage2D(GL_TEXTURE_2D, 0, 3, tgaHeader.d_width, tgaHeader.d_height, 0,
 				GL_RGB, GL_UNSIGNED_BYTE, rgb);
-			rv = gluBuild2DMipmaps( GL_TEXTURE_2D, 3, tgaHeader.d_width, tgaHeader.d_height, GL_RGB, 
+			rv = gluBuild2DMipmaps( GL_TEXTURE_2D, 3, tgaHeader.d_width, tgaHeader.d_height, GL_RGB,
 				GL_UNSIGNED_BYTE, rgb );
 		}
 		/*
@@ -285,12 +285,12 @@ void LoadSceneFile(char *filename)
 
 		visual->tri = (tPrimPoly *)malloc(sizeof(tPrimPoly) * (visual->triCnt));
 		fread(visual->tri,sizeof(tPrimPoly),visual->triCnt,fp);
-	
+
 		fread(&visual->quadCnt,sizeof(long),1,fp);
 
 		visual->quad = (tPrimPoly *)malloc(sizeof(tPrimPoly) * (visual->quadCnt));
 		fread(visual->quad,sizeof(tPrimPoly),visual->quadCnt,fp);
-	
+
 		fclose(fp);
 	}
 }
@@ -313,7 +313,7 @@ void RenderCueAndBalls()
 	// Draw the Cue Stick
 	glPushMatrix();
 		glTranslatef(g_CueStick.pos.x,g_CueStick.pos.y,g_CueStick.pos.z);
-		glRotatef(g_CueStick.yaw, 0.0f, 1.0f, 0.0f); 
+		glRotatef(g_CueStick.yaw, 0.0f, 1.0f, 0.0f);
 		glRotatef(-5.0f, 1.0f, 0.0f, 0.0f);			// Tilt it back a little for looks
 		glTranslatef(0,0,g_CueStick.draw);
 		glCallList(OGL_CUE_DLIST);
@@ -335,11 +335,11 @@ void RenderScene()
 	{
 		poly = visual->quad;
 		glBindTexture(GL_TEXTURE_2D, g_TexPool[loop2].glTex);
-		
+
 		for (loop = 0; loop < visual->quadCnt; loop++)
 		{
 			if ((poly->type & POLY_TEXTURED) > 0 && poly->TexNdx1 == (uint)loop2)
-			{		
+			{
 				glBegin(GL_QUADS);
 				glTexCoord2fv((float *)&poly->t1[0]);
 				glColor3ubv((unsigned char *)&poly->color[0]);
@@ -362,7 +362,7 @@ void RenderScene()
 		for (loop = 0; loop < visual->triCnt; loop++)
 		{
 			if ((poly->type & POLY_TEXTURED) > 0 && poly->TexNdx1 == (uint)loop2)
-			{		
+			{
 				glBegin(GL_TRIANGLES);
 				glTexCoord2fv((float *)&poly->t1[0]);
 				glColor3ubv((unsigned char *)&poly->color[0]);
@@ -397,7 +397,7 @@ void RenderWorld(void)
 	glTranslatef(-g_POV.trans.x, -g_POV.trans.y, -g_POV.trans.z);
 
 	glRotatef(g_POV.rot.z, 0.0f, 0.0f, 1.0f);
-	glRotatef(g_POV.rot.x, 1.0f, 0.0f, 0.0f); 
+	glRotatef(g_POV.rot.x, 1.0f, 0.0f, 0.0f);
 	glRotatef(g_POV.rot.y, 0.0f, 1.0f, 0.0f);
 
 	glTranslatef(-g_CueStick.pos.x, -g_CueStick.pos.y, -g_CueStick.pos.z);

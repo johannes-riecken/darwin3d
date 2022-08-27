@@ -5,7 +5,7 @@
 // Purpose:	Implementation of Main Window of Hierarchical Animation System
 //
 // Created:
-//		JL 9/1/97		
+//		JL 9/1/97
 // Modified:
 //		JL 7/10/99		Created skeleton Demo for Oct 99 GDMag
 //
@@ -86,7 +86,7 @@ static UINT indicators[] =
 CMainFrame::CMainFrame()
 {
 	m_Wireframe = TRUE;
-	m_HArrow = AfxGetApp()->LoadStandardCursor(IDC_ARROW);	
+	m_HArrow = AfxGetApp()->LoadStandardCursor(IDC_ARROW);
 
 }
 
@@ -100,11 +100,11 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 /// Local Variables ///////////////////////////////////////////////////////////
 	RECT rect;
 ///////////////////////////////////////////////////////////////////////////////
-	GetClientRect(&rect); 
+	GetClientRect(&rect);
 
 	if (CFrameWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
-	
+
 	if (!m_wndStatusBar.Create(this) ||
 		!m_wndStatusBar.SetIndicators(indicators,
 		  sizeof(indicators)/sizeof(UINT)))
@@ -113,11 +113,11 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;      // fail to create
 	}
 
-	m_HierWin.Create( WS_BORDER | TVS_HASBUTTONS | TVS_LINESATROOT | TVS_HASLINES | TVS_SHOWSELALWAYS, 
+	m_HierWin.Create( WS_BORDER | TVS_HASBUTTONS | TVS_LINESATROOT | TVS_HASLINES | TVS_SHOWSELALWAYS,
 		CRect(HIERWIN_START_X, HIERWIN_START_Y,HIERWIN_WIDTH,rect.bottom - HIERWIN_BOTTOM), this, 1001);
 	m_HierWin.ShowWindow(TRUE);
 
-	m_OGLView.Create(NULL,"Render Window",WS_CHILD | WS_VISIBLE, 
+	m_OGLView.Create(NULL,"Render Window",WS_CHILD | WS_VISIBLE,
 		CRect(OGLWIN_START_X, OGLWIN_START_Y,rect.right - OGLWIN_WIDTH,rect.bottom - OGLWIN_BOTTOM),this,104);
 	m_OGLView.ShowWindow(TRUE);
 
@@ -131,7 +131,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
 	HICON hicon;
-	
+
 	hicon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 
 	m_ClassName = AfxRegisterWndClass(NULL,
@@ -166,16 +166,16 @@ void CMainFrame::Dump(CDumpContext& dc) const
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	OnWhichogl
 // Purpose:		Create dialog to Show which version of OGL is running
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 void CMainFrame::OnWhichogl()
 {
 	m_OGLView.GetGLInfo();
 }
 // OnWhichogl
 
-BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext) 
+BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
 {
-	
+
 	return CFrameWnd::OnCreateClient(lpcs, pContext);
 }
 
@@ -186,19 +186,19 @@ BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
 //              as possible
 // Reference:	OpenGL Programming for Windows 95 by Ron Fosner
 //				Sort of a variation on that code
-///////////////////////////////////////////////////////////////////////////////		
-void CMainFrame::OnPaint() 
+///////////////////////////////////////////////////////////////////////////////
+void CMainFrame::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
-	
-	m_OGLView.drawScene(FALSE);	
+
+	m_OGLView.drawScene(FALSE);
 }
 /// OnPaint ////////////////////////////////////////////////////////////
 
-void CMainFrame::OnSize(UINT nType, int cx, int cy) 
+void CMainFrame::OnSize(UINT nType, int cx, int cy)
 {
 	// RESET THE HierWin WINDOW SIZE
-	m_HierWin.SetWindowPos( &wndTopMost, HIERWIN_START_X, HIERWIN_START_Y, HIERWIN_WIDTH, cy - HIERWIN_BOTTOM, SWP_NOZORDER ); 
+	m_HierWin.SetWindowPos( &wndTopMost, HIERWIN_START_X, HIERWIN_START_Y, HIERWIN_WIDTH, cy - HIERWIN_BOTTOM, SWP_NOZORDER );
 	// RESET THE m_OGLView WINDOW SIZE
 	m_OGLView.SetWindowPos( &wndTopMost, OGLWIN_START_X, OGLWIN_START_Y, cx - OGLWIN_WIDTH, cy - OGLWIN_BOTTOM, SWP_NOZORDER );
 	// RESET THE ACTUAL OPENGL WINDOW SIZE
@@ -208,19 +208,19 @@ void CMainFrame::OnSize(UINT nType, int cx, int cy)
 
 // HAVEN'T IMPLEMENTED ADDING A BONE
 #if 0
-void CMainFrame::OnAddBone() 
+void CMainFrame::OnAddBone()
 {
 	m_HierWin.AddBone();
 }
 #endif
 
-void CMainFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) 
+void CMainFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	m_OGLView.HandleKeyDown(nChar);
 	CFrameWnd::OnKeyDown(nChar, nRepCnt, nFlags);
 }
 
-void CMainFrame::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags) 
+void CMainFrame::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	CFrameWnd::OnKeyUp(nChar, nRepCnt, nFlags);
 	m_OGLView.HandleKeyUp(nChar);
@@ -235,10 +235,10 @@ void CMainFrame::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 /////////////////////////////////////////////////////////////////////////////
 
 
-void CMainFrame::OnFileOpen() 
+void CMainFrame::OnFileOpen()
 {
 /// Local Variables ///////////////////////////////////////////////////////////
-	char BASED_CODE szFilter[] = "Darwin Skeleton (*.dar)|*.dar||";  
+	char BASED_CODE szFilter[] = "Darwin Skeleton (*.dar)|*.dar||";
 	CFileDialog	*dialog;
 	CString exten;
 ///////////////////////////////////////////////////////////////////////////////
@@ -254,13 +254,13 @@ void CMainFrame::OnFileOpen()
 		m_OGLView.OnViewResetskeleton();
 	}
 	delete dialog;
-	
+
 }
 
-void CMainFrame::OnFileOpencharactermesh() 
+void CMainFrame::OnFileOpencharactermesh()
 {
 /// Local Variables ///////////////////////////////////////////////////////////
-	char BASED_CODE szFilter[] = "Character Mesh OBJ (*.obj)|*.obj||";  
+	char BASED_CODE szFilter[] = "Character Mesh OBJ (*.obj)|*.obj||";
 	CFileDialog	*dialog;
 	CString exten;
 ///////////////////////////////////////////////////////////////////////////////
@@ -276,10 +276,10 @@ void CMainFrame::OnFileOpencharactermesh()
 	delete dialog;
 }
 
-void CMainFrame::OnFileOpenweight() 
+void CMainFrame::OnFileOpenweight()
 {
 /// Local Variables ///////////////////////////////////////////////////////////
-	char BASED_CODE szFilter[] = "Weight File (*.wgt)|*.wgt||";  
+	char BASED_CODE szFilter[] = "Weight File (*.wgt)|*.wgt||";
 	CFileDialog	*dialog;
 	CString exten;
 ///////////////////////////////////////////////////////////////////////////////
@@ -293,10 +293,10 @@ void CMainFrame::OnFileOpenweight()
 	delete dialog;
 }
 
-void CMainFrame::OnFileSave() 
+void CMainFrame::OnFileSave()
 {
 /// Local Variables ///////////////////////////////////////////////////////////
-	char BASED_CODE szFilter[] = "Weight File (*.wgt)|*.wgt||";  
+	char BASED_CODE szFilter[] = "Weight File (*.wgt)|*.wgt||";
 	CFileDialog	*dialog;
 	CString exten;
 ///////////////////////////////////////////////////////////////////////////////
@@ -310,13 +310,13 @@ void CMainFrame::OnFileSave()
 	delete dialog;
 }
 
-void CMainFrame::OnSkeletonResetskeleton() 
+void CMainFrame::OnSkeletonResetskeleton()
 {
 	// PASS THIS MESSAGE OFF TO THE OGL CLASS
 	m_OGLView.OnViewResetskeleton();
 }
 
-void CMainFrame::OnViewOutline() 
+void CMainFrame::OnViewOutline()
 {
 	m_Wireframe = !m_Wireframe;
 	if (m_Wireframe)
@@ -326,46 +326,46 @@ void CMainFrame::OnViewOutline()
 	Invalidate(TRUE );
 }
 
-void CMainFrame::OnUpdateViewOutline(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateViewOutline(CCmdUI* pCmdUI)
 {
-	pCmdUI->SetCheck( m_Wireframe );	
+	pCmdUI->SetCheck( m_Wireframe );
 }
 
-void CMainFrame::OnViewViewskeleton() 
+void CMainFrame::OnViewViewskeleton()
 {
 	m_OGLView.m_DrawSkeleton = !m_OGLView.m_DrawSkeleton;
 	m_OGLView.drawScene(FALSE);
 }
 
-void CMainFrame::OnUpdateViewViewskeleton(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateViewViewskeleton(CCmdUI* pCmdUI)
 {
-	pCmdUI->SetCheck( m_OGLView.m_DrawSkeleton );		
+	pCmdUI->SetCheck( m_OGLView.m_DrawSkeleton );
 }
 
 
-void CMainFrame::OnViewDrawdeformed() 
+void CMainFrame::OnViewDrawdeformed()
 {
 	m_OGLView.m_DrawDeformed = !m_OGLView.m_DrawDeformed;
 	m_OGLView.drawScene(FALSE);
 }
 
-void CMainFrame::OnUpdateViewDrawdeformed(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateViewDrawdeformed(CCmdUI* pCmdUI)
 {
-	pCmdUI->SetCheck( m_OGLView.m_DrawDeformed );		
+	pCmdUI->SetCheck( m_OGLView.m_DrawDeformed );
 }
 
-void CMainFrame::OnSkeletonSetrestpose() 
+void CMainFrame::OnSkeletonSetrestpose()
 {
 	m_OGLView.SetBasePose();
 }
 
-void CMainFrame::OnSkeletonSetboneweights() 
+void CMainFrame::OnSkeletonSetboneweights()
 {
 	m_OGLView.WeightBones();
 }
 
 
-void CMainFrame::OnSkeletonClearselectedweights() 
+void CMainFrame::OnSkeletonClearselectedweights()
 {
 	m_OGLView.ClearBoneWeights(&m_OGLView.m_Skeleton);
 }

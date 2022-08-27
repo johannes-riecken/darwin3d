@@ -5,7 +5,7 @@
 // Purpose:	Implementation of OpenGL Window of 3D Cloth Simulation
 //
 // Created:
-//		JL 2/12/99		
+//		JL 2/12/99
 //
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -92,7 +92,7 @@ static UINT indicators[] =
 
 CMainFrame::CMainFrame()
 {
-	m_HArrow = AfxGetApp()->LoadStandardCursor(IDC_ARROW);	
+	m_HArrow = AfxGetApp()->LoadStandardCursor(IDC_ARROW);
 }
 
 CMainFrame::~CMainFrame()
@@ -104,7 +104,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 /// Local Variables ///////////////////////////////////////////////////////////
 	RECT rect;
 ///////////////////////////////////////////////////////////////////////////////
-	GetClientRect(&rect); 
+	GetClientRect(&rect);
 
 	if (CFrameWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
@@ -131,7 +131,7 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 /// Local Variables ///////////////////////////////////////////////////////////
 	HICON hicon;
 ///////////////////////////////////////////////////////////////////////////////
-	
+
 	hicon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 
 	m_ClassName = AfxRegisterWndClass(NULL,
@@ -148,8 +148,8 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 // Procedure:	OnHelpWhichopengl
 // Purpose:		Create dialog to Show which version of OGL is running
 // Notes:		Pretty Handy info for debugging
-///////////////////////////////////////////////////////////////////////////////		
-void CMainFrame::OnHelpWhichopengl() 
+///////////////////////////////////////////////////////////////////////////////
+void CMainFrame::OnHelpWhichopengl()
 {
 	m_OGLView.GetGLInfo();
 }
@@ -171,27 +171,27 @@ void CMainFrame::Dump(CDumpContext& dc) const
 /////////////////////////////////////////////////////////////////////////////
 // CMainFrame message handlers
 
-void CMainFrame::OnPaint() 
+void CMainFrame::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
 
 	m_OGLView.drawScene();
 }
 
-void CMainFrame::OnSize(UINT nType, int cx, int cy) 
+void CMainFrame::OnSize(UINT nType, int cx, int cy)
 {
 	m_OGLView.SetWindowPos( &wndTopMost, 1, 1, cx - 3, cy - 21 , SWP_NOZORDER ); // -60 bottom
 
 	CFrameWnd::OnSize(nType, cx, cy);
 }
 
-void CMainFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) 
+void CMainFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	m_OGLView.HandleKeyDown(nChar);
 	CFrameWnd::OnKeyDown(nChar, nRepCnt, nFlags);
 }
 
-void CMainFrame::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags) 
+void CMainFrame::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -214,28 +214,28 @@ void CMainFrame::InitializeSkeleton()
 
 
 // TOGGLE THE STATUS OF THE VIEW GEOMETRY FLAG
-void CMainFrame::OnViewGeometry() 
+void CMainFrame::OnViewGeometry()
 {
 	m_OGLView.m_DrawGeometry = !m_OGLView.m_DrawGeometry;
 	m_OGLView.drawScene();
 }
 
 // SET THE CHECKED STATUS OF THE VIEW GEOMETRY MENU BASED ON STATUS
-void CMainFrame::OnUpdateViewGeometry(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateViewGeometry(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck( m_OGLView.m_DrawGeometry );
 }
 
-void CMainFrame::OnFileNewsystem() 
+void CMainFrame::OnFileNewsystem()
 {
-	m_OGLView.NewSystem();	
+	m_OGLView.NewSystem();
 }
 
-void CMainFrame::OnFileOpen() 
+void CMainFrame::OnFileOpen()
 {
 	char szFilter[] = "DPS files (*.dps)|*.dps|OBJ files (*.obj)|*.obj||";  // WILL INCLUDE Biovision Hierarchy BVH (*.bvh)|*.bvh|
 	CFileDialog	dialog( TRUE, ".obj", NULL, OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, szFilter, this);
-	CString name;		
+	CString name;
 	if (dialog.DoModal())
 	{
 		m_OGLView.LoadFile(dialog.GetFileName( ),dialog.GetFileTitle( ),dialog.GetFileExt()  );
@@ -243,11 +243,11 @@ void CMainFrame::OnFileOpen()
 	}
 }
 
-void CMainFrame::OnFileSave() 
+void CMainFrame::OnFileSave()
 {
 	char szFilter[] = "DPS files (*.dps)|*.dps||";  // WILL INCLUDE Biovision Hierarchy BVH (*.bvh)|*.bvh|
 	CFileDialog	dialog( FALSE, ".dps", NULL, OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, szFilter, this);
-	CString name;		
+	CString name;
 	if (dialog.DoModal())
 	{
 		m_OGLView.SaveFile(dialog.GetFileName( ),dialog.GetFileTitle( ));
@@ -255,184 +255,184 @@ void CMainFrame::OnFileSave()
 	}
 }
 
-void CMainFrame::OnSimulationRunning() 
+void CMainFrame::OnSimulationRunning()
 {
 	m_OGLView.HandleKeyUp('R');
 //	m_OGLView.m_SimRunning = !m_OGLView.m_SimRunning;
 //	m_OGLView.Invalidate(TRUE);
 }
 
-void CMainFrame::OnUpdateSimulationRunning(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateSimulationRunning(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck( m_OGLView.m_SimRunning );
 }
 
-void CMainFrame::OnSimulationReset() 
+void CMainFrame::OnSimulationReset()
 {
 	m_OGLView.m_PhysEnv.ResetWorld();
 	m_OGLView.Invalidate(TRUE);
 }
 
-void CMainFrame::OnSimulationSetsimproperties() 
+void CMainFrame::OnSimulationSetsimproperties()
 {
 	m_OGLView.OnSimulationSetsimproperties();
 }
 
-void CMainFrame::OnSimulationSetvertexproperties() 
+void CMainFrame::OnSimulationSetvertexproperties()
 {
 	m_OGLView.OnSetVertexProperties();
 }
 
-void CMainFrame::OnSimulationUsegravity() 
+void CMainFrame::OnSimulationUsegravity()
 {
 	m_OGLView.m_PhysEnv.m_UseGravity = !m_OGLView.m_PhysEnv.m_UseGravity;
 	m_OGLView.Invalidate(TRUE);
 }
 
-void CMainFrame::OnUpdateSimulationUsegravity(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateSimulationUsegravity(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck( m_OGLView.m_PhysEnv.m_UseGravity );
 }
 
 
-void CMainFrame::OnViewShowgeometry() 
+void CMainFrame::OnViewShowgeometry()
 {
 	m_OGLView.m_DrawGeometry = !m_OGLView.m_DrawGeometry;
 	m_OGLView.Invalidate(TRUE);
 }
 
-void CMainFrame::OnUpdateViewShowgeometry(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateViewShowgeometry(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck( m_OGLView.m_DrawGeometry );
 }
 
-void CMainFrame::OnViewShowsprings() 
+void CMainFrame::OnViewShowsprings()
 {
 	m_OGLView.m_PhysEnv.m_DrawSprings = !m_OGLView.m_PhysEnv.m_DrawSprings;
 	m_OGLView.Invalidate(TRUE);
 }
 
-void CMainFrame::OnUpdateViewShowsprings(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateViewShowsprings(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck( m_OGLView.m_PhysEnv.m_DrawSprings );
 }
 
-void CMainFrame::OnViewShowstructural() 
+void CMainFrame::OnViewShowstructural()
 {
 	m_OGLView.m_PhysEnv.m_DrawStructural = !m_OGLView.m_PhysEnv.m_DrawStructural;
 	m_OGLView.Invalidate(TRUE);
 }
 
-void CMainFrame::OnUpdateViewShowstructural(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateViewShowstructural(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck( m_OGLView.m_PhysEnv.m_DrawStructural );
 }
 
-void CMainFrame::OnViewShowshear() 
+void CMainFrame::OnViewShowshear()
 {
 	m_OGLView.m_PhysEnv.m_DrawShear = !m_OGLView.m_PhysEnv.m_DrawShear;
 	m_OGLView.Invalidate(TRUE);
 }
 
-void CMainFrame::OnUpdateViewShowshear(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateViewShowshear(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck( m_OGLView.m_PhysEnv.m_DrawShear );
 }
 
-void CMainFrame::OnViewShowbend() 
+void CMainFrame::OnViewShowbend()
 {
 	m_OGLView.m_PhysEnv.m_DrawBend = !m_OGLView.m_PhysEnv.m_DrawBend;
 	m_OGLView.Invalidate(TRUE);
 }
 
-void CMainFrame::OnUpdateViewShowbend(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateViewShowbend(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck( m_OGLView.m_PhysEnv.m_DrawBend );
 }
 
-void CMainFrame::OnViewShowvertices() 
+void CMainFrame::OnViewShowvertices()
 {
 	m_OGLView.m_PhysEnv.m_DrawVertices = !m_OGLView.m_PhysEnv.m_DrawVertices;
 	m_OGLView.Invalidate(TRUE);
 }
 
-void CMainFrame::OnUpdateViewShowvertices(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateViewShowvertices(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck( m_OGLView.m_PhysEnv.m_DrawVertices );
 }
 
-void CMainFrame::OnClose() 
+void CMainFrame::OnClose()
 {
 	m_OGLView.m_SimRunning = FALSE;
-	
+
 	CFrameWnd::OnClose();
 }
 
-BOOL CMainFrame::DestroyWindow() 
+BOOL CMainFrame::DestroyWindow()
 {
-	
+
 	return CFrameWnd::DestroyWindow();
 }
 
-void CMainFrame::OnFileCreateclothpatch() 
+void CMainFrame::OnFileCreateclothpatch()
 {
 	m_OGLView.CreateClothPatch();
 	m_OGLView.Invalidate(TRUE);
 }
 
-void CMainFrame::OnViewCollisionactive() 
+void CMainFrame::OnViewCollisionactive()
 {
 	m_OGLView.m_PhysEnv.m_CollisionActive = !m_OGLView.m_PhysEnv.m_CollisionActive;
 	m_OGLView.Invalidate(TRUE);
 }
 
-void CMainFrame::OnUpdateViewCollisionactive(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateViewCollisionactive(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck( m_OGLView.m_PhysEnv.m_CollisionActive );
 }
 
 
-void CMainFrame::OnInteuler() 
+void CMainFrame::OnInteuler()
 {
 	m_OGLView.m_PhysEnv.m_IntegratorType = EULER_INTEGRATOR;
 	m_OGLView.Invalidate(TRUE);
 }
 
-void CMainFrame::OnUpdateInteuler(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateInteuler(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck( m_OGLView.m_PhysEnv.m_IntegratorType == EULER_INTEGRATOR );
 }
 
-void CMainFrame::OnIntmidpoint() 
+void CMainFrame::OnIntmidpoint()
 {
 	m_OGLView.m_PhysEnv.m_IntegratorType = MIDPOINT_INTEGRATOR;
 	m_OGLView.Invalidate(TRUE);
 }
 
-void CMainFrame::OnUpdateIntmidpoint(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateIntmidpoint(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck( m_OGLView.m_PhysEnv.m_IntegratorType == MIDPOINT_INTEGRATOR );
 }
 
-void CMainFrame::OnIntrk4() 
+void CMainFrame::OnIntrk4()
 {
 	m_OGLView.m_PhysEnv.m_IntegratorType = RK4_INTEGRATOR;
 	m_OGLView.Invalidate(TRUE);
 }
 
-void CMainFrame::OnUpdateIntrk4(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateIntrk4(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck( m_OGLView.m_PhysEnv.m_IntegratorType == RK4_INTEGRATOR );
 }
 
-void CMainFrame::OnSimulationSettimingproperties() 
+void CMainFrame::OnSimulationSettimingproperties()
 {
-	m_OGLView.OnSetTimeProperties();	
+	m_OGLView.OnSetTimeProperties();
 }
 
 // Add a collision sphere to the physical simulation
-void CMainFrame::OnSimulationAddcollisionsphere() 
+void CMainFrame::OnSimulationAddcollisionsphere()
 {
-	m_OGLView.m_PhysEnv.AddCollisionSphere();	
+	m_OGLView.m_PhysEnv.AddCollisionSphere();
 	m_OGLView.Invalidate(TRUE);
 }

@@ -5,7 +5,7 @@
 // Purpose:	Implementation of OpenGL Window of 3D Cloth Simulation
 //
 // Created:
-//		JL 2/12/99		
+//		JL 2/12/99
 //
 // Notes:
 //		This program is very similar to the mass-spring sim from January.
@@ -75,7 +75,7 @@ COGLView::~COGLView()
 }
 
 
-BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext) 
+BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	t_Visual	*visual = NULL;
@@ -153,7 +153,7 @@ BOOL COGLView::SetupPixelFormat(HDC hdc)
     return TRUE;
 }
 
-int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	RECT rect;
@@ -163,7 +163,7 @@ int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
     m_hDC = ::GetDC(m_hWnd);
     if (!SetupPixelFormat(m_hDC))
 		PostQuitMessage (0);
-	
+
     m_hRC = wglCreateContext(m_hDC);
     wglMakeCurrent(m_hDC, m_hRC);
     GetClientRect(&rect);
@@ -182,7 +182,7 @@ int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 			glVertex3f( 0.2f,  0.0f, 0.0f);	// BOTTOM PIECE OF ARROWHEAD
 			glVertex3f( 0.15f, -0.04f, 0.0f);
 			glVertex3f( 0.0f,  0.2f, 0.0f);
-			glVertex3f( 0.0f, -0.2f, 0.0f);			
+			glVertex3f( 0.0f, -0.2f, 0.0f);
 			glVertex3f( 0.0f,  0.2f, 0.0f);	// TOP PIECE OF ARROWHEAD
 			glVertex3f( 0.04f,  0.15f, 0.0f);
 			glVertex3f( 0.0f,  0.2f, 0.0f);	// BOTTOM PIECE OF ARROWHEAD
@@ -218,7 +218,7 @@ GLvoid COGLView::resize( GLsizei width, GLsizei height )
     glLoadIdentity();
     gluPerspective(10.0, aspect, 1.0, 2000.0);
     glMatrixMode(GL_MODELVIEW);
-}    
+}
 
 GLvoid COGLView::initializeGL(GLsizei width, GLsizei height)
 {
@@ -254,7 +254,7 @@ GLvoid COGLView::initializeGL(GLsizei width, GLsizei height)
 
 //	glShadeModel(GL_SMOOTH);
 //	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-	
+
 //	glMaterialfv(GL_FRONT,GL_AMBIENT, ambient);
 //	glMaterialfv(GL_FRONT,GL_DIFFUSE, diffuse);
 //	glMaterialfv(GL_FRONT,GL_SPECULAR, specular);
@@ -266,7 +266,7 @@ GLvoid COGLView::initializeGL(GLsizei width, GLsizei height)
 }
 
 // GET THE INFO ON THE VERSION OF OPENGL RUNNING
-void COGLView::GetGLInfo() 
+void COGLView::GetGLInfo()
 {
 //// Local Variables ////////////////////////////////////////////////////////////////
 	char *who, *which, *ver, *ext, *message;
@@ -293,7 +293,7 @@ void COGLView::GetGLInfo()
 // Purpose:		Actual simulation loop
 // Notes:		Allows you to adjust the rate of simulation or to change it
 //				to fixed time steps or actual timesteps.
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 void COGLView::RunSim()
 {
 /// Local Variables ///////////////////////////////////////////////////////////
@@ -332,16 +332,16 @@ void COGLView::RunSim()
 // Procedure:	drawModel
 // Purpose:		Draws the model associated with a bone
 // Notes:		Currently uses a global model not associated with the bone
-//              The data uses Quads with shared vertices and vertex coloring 
+//              The data uses Quads with shared vertices and vertex coloring
 //				so I chose to use indexed vertex arrays
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 GLvoid COGLView::drawModel(t_Bone *curBone)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 	if (curBone->visualCnt > 0 && curBone->visuals[0].vertexData != NULL)
 	{
-		glColor3f(1.0f,1.0f,1.0f);	
+		glColor3f(1.0f,1.0f,1.0f);
 		// Declare the Array of Data
 		glInterleavedArrays(curBone->visuals[0].dataFormat,0,(GLvoid *)curBone->visuals[0].vertexData);
 		if (curBone->visuals[0].reuseVertices)
@@ -367,7 +367,7 @@ GLvoid COGLView::drawModel(t_Bone *curBone)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	drawScene
 // Purpose:		Draws the current OpenGL scene
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 GLvoid COGLView::drawScene(GLvoid)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
@@ -391,7 +391,7 @@ GLvoid COGLView::drawScene(GLvoid)
 	// ROTATE THE ROOT
 	glRotatef(m_Skeleton.rot.z, 1.0f, 0.0f, 0.0f);
     glRotatef(m_Skeleton.rot.y, 0.0f, 1.0f, 0.0f);
- 	glRotatef(m_Skeleton.rot.x, 0.0f, 0.0f, 1.0f); 
+ 	glRotatef(m_Skeleton.rot.x, 0.0f, 0.0f, 1.0f);
 
 	// GRAB THE MATRIX AT THIS POINT SO I CAN USE IT FOR THE DEFORMATION
 	glGetFloatv(GL_MODELVIEW_MATRIX,m_Skeleton.matrix.m);
@@ -414,7 +414,7 @@ GLvoid COGLView::drawScene(GLvoid)
 }
 // 	drawScene
 
-void COGLView::OnDestroy() 
+void COGLView::OnDestroy()
 {
 	CWnd::OnDestroy();
 	if (m_hRC)
@@ -425,7 +425,7 @@ void COGLView::OnDestroy()
     m_hDC = 0;
 }
 
-void COGLView::OnPaint() 
+void COGLView::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
 
@@ -433,7 +433,7 @@ void COGLView::OnPaint()
 	// Do not call CWnd::OnPaint() for painting messages
 }
 
-void COGLView::OnSize(UINT nType, int cx, int cy) 
+void COGLView::OnSize(UINT nType, int cx, int cy)
 {
 	// RESIZE THE OPENGL WINDOW
 	m_ScreenWidth = cx;
@@ -444,8 +444,8 @@ void COGLView::OnSize(UINT nType, int cx, int cy)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	OnLButtonDown
 // Purpose:		Left button down grabs the current point pos so I can use it
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::OnLButtonDown(UINT nFlags, CPoint point) 
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	m_mousepos = point;
 	m_Base_Rot_X = 	m_Skeleton.rot.x;
@@ -461,7 +461,7 @@ void COGLView::OnLButtonDown(UINT nFlags, CPoint point)
 	CWnd::OnLButtonDown(nFlags, point);
 }
 
-void COGLView::OnLButtonUp(UINT nFlags, CPoint point) 
+void COGLView::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	m_PhysEnv.m_MouseForceActive = FALSE;		// STOP APPLYING MOUSE FORCE
 	ReleaseCapture();
@@ -472,8 +472,8 @@ void COGLView::OnLButtonUp(UINT nFlags, CPoint point)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	OnRButtonDown
 // Purpose:		Right button down grabs the current point pos so I can use it
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::OnRButtonDown(UINT nFlags, CPoint point) 
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::OnRButtonDown(UINT nFlags, CPoint point)
 {
 	m_mousepos = point;
 	m_Base_Rot_X = 	m_Skeleton.rot.x;
@@ -482,11 +482,11 @@ void COGLView::OnRButtonDown(UINT nFlags, CPoint point)
 	CWnd::OnLButtonDown(nFlags, point);
 }
 
-void COGLView::HandleKeyDown(UINT nChar) 
+void COGLView::HandleKeyDown(UINT nChar)
 {
 }
 
-void COGLView::HandleKeyUp(UINT nChar) 
+void COGLView::HandleKeyUp(UINT nChar)
 {
 	tVector userforce;
 	switch (nChar)
@@ -502,16 +502,16 @@ void COGLView::HandleKeyUp(UINT nChar)
 		break;
 	case '2': m_curVisual = 1;
 		break;
-	case 'O': 
+	case 'O':
 		glPolygonMode(GL_FRONT,GL_LINE);
 		break;
-	case 'F': 
+	case 'F':
 		glPolygonMode(GL_FRONT,GL_FILL);
 		break;
 	case 'R':
 		m_SimRunning = !m_SimRunning;
 		if (m_SimRunning)
-			m_LastTime = GetTime() * m_TimeIterations;	// RESET THE SIM 
+			m_LastTime = GetTime() * m_TimeIterations;	// RESET THE SIM
 		m_StartTime = timeGetTime();
 		m_FrameCnt = 0;
 		break;
@@ -583,7 +583,7 @@ void COGLView::HandleKeyUp(UINT nChar)
 					::TranslateMessage(&msg);
 					::DispatchMessage(&msg);
 				}
-				
+
 				// Give the Idle system some time
 				AfxGetApp()->OnIdle(0);
 				AfxGetApp()->OnIdle(1);
@@ -599,8 +599,8 @@ void COGLView::HandleKeyUp(UINT nChar)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	OnMouseMove
 // Purpose:		Handle mouse moves while pressed
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::OnMouseMove(UINT nFlags, CPoint point) 
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	tVector	localX,localY;
 	if (nFlags & MK_LBUTTON > 0)
@@ -608,7 +608,7 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 		// IF I AM HOLDING THE 'CONTROL' BUTTON TRANSLATE
 		if ((nFlags & MK_CONTROL) > 0 && m_CurBone != NULL)
 		{
-		}	
+		}
 		// ELSE ROTATE THE BONE
 		else if ((nFlags & MK_SHIFT) > 0)
 		{
@@ -671,15 +671,15 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	OnLButtonDblClk
 // Purpose:		Left Double click, get dialog for Orientation
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::OnLButtonDblClk(UINT nFlags, CPoint point) 
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	NewSystem
 // Purpose:		Clears the Simulation
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 void COGLView::NewSystem()
 {
 	m_PhysEnv.FreeSystem();
@@ -700,8 +700,8 @@ void COGLView::NewSystem()
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	LoadFiles
 // Purpose:		Loads the OBJ files into memory
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::LoadFile(CString file1,CString baseName,CString ext) 
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::LoadFile(CString file1,CString baseName,CString ext)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	t_Bone	*children;
@@ -781,9 +781,9 @@ void COGLView::LoadFile(CString file1,CString baseName,CString ext)
 
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	SaveFiles
-// Purpose:		Saves the Particle System 
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::SaveFile(CString file1,CString baseName) 
+// Purpose:		Saves the Particle System
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::SaveFile(CString file1,CString baseName)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	t_Visual *visual;
@@ -816,18 +816,18 @@ void COGLView::SaveFile(CString file1,CString baseName)
 	}
 }
 
-void COGLView::OnClose() 
+void COGLView::OnClose()
 {
-	
+
 	CWnd::OnClose();
 }
 
-void COGLView::OnSimulationSetsimproperties() 
+void COGLView::OnSimulationSetsimproperties()
 {
-	m_PhysEnv.SetWorldProperties();		
+	m_PhysEnv.SetWorldProperties();
 }
 
-void COGLView::OnSetTimeProperties() 
+void COGLView::OnSetTimeProperties()
 {
 	CTimeProps dialog;
 	dialog.m_Iterations = m_TimeIterations;
@@ -843,15 +843,15 @@ void COGLView::OnSetTimeProperties()
 
 void COGLView::OnSetVertexProperties()
 {
-	m_PhysEnv.SetVertexProperties();		
+	m_PhysEnv.SetVertexProperties();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	CreateClothPatch
 // Purpose:		Creates a System to Represent a Cloth Patch
 // Arguments:	Number of Segments in U and V to build
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::CreateClothPatch() 
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::CreateClothPatch()
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	t_Bone	*children;
@@ -914,7 +914,7 @@ void COGLView::CreateClothPatch()
 		visual->vertexCnt = vPos;
 		visual->faceIndex = (unsigned short *)malloc(sizeof(unsigned short) * fPos * visual->vPerFace);
 		visual->faceCnt = fPos;
-		
+
 		// SET THE VERTICES
 		vertex = (tTexturedVertex *)visual->vertexData;
 		for (l1 = 0; l1 < v; l1++,tsv+=tdv)
@@ -968,7 +968,7 @@ void COGLView::CreateClothPatch()
 				}
 
 			// Vertical
-			for (l1 = 0; l1 < (u); l1++)	
+			for (l1 = 0; l1 < (u); l1++)
 				for (l2 = 0; l2 < (v - 1); l2++)
 				{
 					m_PhysEnv.AddSpring((l2 * u) + l1,((l2 + 1) * u) + l1,SstK,SstD,STRUCTURAL_SPRING);
@@ -978,7 +978,7 @@ void COGLView::CreateClothPatch()
 		if (dialog.m_UseShear)
 		{
 			// Shearing Springs
-			for (l1 = 0; l1 < (v - 1); l1++)	
+			for (l1 = 0; l1 < (v - 1); l1++)
 				for (l2 = 0; l2 < (u - 1); l2++)
 				{
 					m_PhysEnv.AddSpring((l1 * u) + l2,((l1 + 1) * u) + l2 + 1,SshK,SshD,SHEAR_SPRING);
@@ -989,7 +989,7 @@ void COGLView::CreateClothPatch()
 		if (dialog.m_UseBend)
 		{
 			// Bend Springs
-			for (l1 = 0; l1 < (v); l1++)	
+			for (l1 = 0; l1 < (v); l1++)
 			{
 				for (l2 = 0; l2 < (u - 2); l2++)
 				{
@@ -997,7 +997,7 @@ void COGLView::CreateClothPatch()
 				}
 				m_PhysEnv.AddSpring((l1 * u) + (u - 3),(l1 * u) + (u - 1),SflK,SflD,BEND_SPRING);
 			}
-			for (l1 = 0; l1 < (u); l1++)	
+			for (l1 = 0; l1 < (u); l1++)
 			{
 				for (l2 = 0; l2 < (v - 2); l2++)
 				{

@@ -5,7 +5,7 @@
 // Purpose:	Implementation of OpenGL Window of 3D Blob Modelling
 //
 // Created:
-//		JL 10/1/99		
+//		JL 10/1/99
 //
 // The function morphModel() does the main morphing work.
 //
@@ -68,7 +68,7 @@ COGLView::~COGLView()
 }
 
 
-BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext) 
+BOOL COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -130,7 +130,7 @@ BOOL COGLView::SetupPixelFormat(HDC hdc)
     return TRUE;
 }
 
-int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	RECT rect;
@@ -140,7 +140,7 @@ int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
     m_hDC = ::GetDC(m_hWnd);
     if (!SetupPixelFormat(m_hDC))
 		PostQuitMessage (0);
-	
+
     m_hRC = wglCreateContext(m_hDC);
     wglMakeCurrent(m_hDC, m_hRC);
     GetClientRect(&rect);
@@ -161,7 +161,7 @@ int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 			glVertex3f( 0.15f, -0.04f, 0.0f);
 			glColor3f(0.0f, 1.0f, 0.0f);	// Y AXIS STARTS - COLOR GREEN
 			glVertex3f( 0.0f,  0.2f, 0.0f);
-			glVertex3f( 0.0f, -0.2f, 0.0f);			
+			glVertex3f( 0.0f, -0.2f, 0.0f);
 			glVertex3f( 0.0f,  0.2f, 0.0f);	// TOP PIECE OF ARROWHEAD
 			glVertex3f( 0.04f,  0.15f, 0.0f);
 			glVertex3f( 0.0f,  0.2f, 0.0f);	// BOTTOM PIECE OF ARROWHEAD
@@ -180,20 +180,20 @@ int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	glNewList(OGL_ICON_DLIST,GL_COMPILE);
 		glBegin(GL_TRIANGLES);
 		glVertex3f(0.0000f, -0.5000f, 0.0000f);
-		glVertex3f(0.5000f, 0.0000f, 0.0000f); 
-		glVertex3f(0.0000f, 0.0000f, 0.5000f);
-		glVertex3f(-0.5000f, 0.0000f, -0.0000f); 
-		glVertex3f(0.0000f, 0.5000f, 0.0000f);
-		glVertex3f(0.0000f, 0.0000f, -0.5000f); 
 		glVertex3f(0.5000f, 0.0000f, 0.0000f);
-		glVertex3f(0.0000f, -0.5000f, 0.0000f); 
-		glVertex3f(0.0000f, 0.0000f, -0.5000f); 
 		glVertex3f(0.0000f, 0.0000f, 0.5000f);
-		glVertex3f(-0.5000f, 0.0000f, -0.0000f); 
+		glVertex3f(-0.5000f, 0.0000f, -0.0000f);
+		glVertex3f(0.0000f, 0.5000f, 0.0000f);
+		glVertex3f(0.0000f, 0.0000f, -0.5000f);
+		glVertex3f(0.5000f, 0.0000f, 0.0000f);
+		glVertex3f(0.0000f, -0.5000f, 0.0000f);
+		glVertex3f(0.0000f, 0.0000f, -0.5000f);
+		glVertex3f(0.0000f, 0.0000f, 0.5000f);
+		glVertex3f(-0.5000f, 0.0000f, -0.0000f);
 		glVertex3f(0.0000f, -0.5000f, 0.0000f);
 		glVertex3f(0.0000f, 0.0000f, -0.5000f);
 		glVertex3f(0.0000f, -0.5000f, 0.0000f);
-		glVertex3f(-0.5000f, 0.0000f, -0.0000f); 
+		glVertex3f(-0.5000f, 0.0000f, -0.0000f);
 		glVertex3f(0.0000f, 0.0000f, -0.5000f);
 		glVertex3f(0.0000f, 0.5000f, 0.0000f);
 		glVertex3f(0.5000f, 0.0000f, 0.0000f);
@@ -201,7 +201,7 @@ int COGLView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		glVertex3f(0.0000f, 0.0000f, 0.5000f);
 		glVertex3f(0.5000f, 0.0000f, 0.0000f);
 		glVertex3f(0.0000f, 0.5000f, 0.0000f);
-		glVertex3f(-0.5000f, 0.0000f, -0.0000f); 
+		glVertex3f(-0.5000f, 0.0000f, -0.0000f);
 		glVertex3f(0.0000f, 0.0000f, 0.5000f);
 		glEnd();
 	glEndList();
@@ -226,7 +226,7 @@ GLvoid COGLView::resize( GLsizei width, GLsizei height )
     glLoadIdentity();
     gluPerspective(10.0, m_Aspect, 1.0, 2000.0);
     glMatrixMode(GL_MODELVIEW);
-}    
+}
 
 GLvoid COGLView::initializeGL(GLsizei width, GLsizei height)
 {
@@ -261,7 +261,7 @@ GLvoid COGLView::initializeGL(GLsizei width, GLsizei height)
 
 	glShadeModel(GL_SMOOTH);
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-	
+
 	glMaterialfv(GL_FRONT,GL_AMBIENT, ambient);
 	glMaterialfv(GL_FRONT,GL_DIFFUSE, diffuse);
 	glMaterialfv(GL_FRONT,GL_SPECULAR, specular);
@@ -273,7 +273,7 @@ GLvoid COGLView::initializeGL(GLsizei width, GLsizei height)
 }
 
 // GET THE INFO ON THE VERSION OF OPENGL RUNNING
-void COGLView::GetGLInfo() 
+void COGLView::GetGLInfo()
 {
 //// Local Variables ////////////////////////////////////////////////////////////////
 	char *who, *which, *ver, *ext, *message;
@@ -298,7 +298,7 @@ void COGLView::GetGLInfo()
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	DrawField
 // Purpose:		Draws the meta field cool to visualize
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 GLvoid COGLView::DrawField()
 {
 /// Local Variables ///////////////////////////////////////////////////////////
@@ -349,7 +349,7 @@ GLvoid COGLView::DrawField()
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	DrawSurface
 // Purpose:		Draws the model associated with a energy field
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 GLvoid COGLView::DrawSurface()
 {
 /// Local Variables ///////////////////////////////////////////////////////////
@@ -361,7 +361,7 @@ GLvoid COGLView::DrawSurface()
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	DrawBlobs
 // Purpose:		Draws the elements of the blob system
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 GLvoid COGLView::DrawBlobs(BOOL selecting)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
@@ -394,7 +394,7 @@ GLvoid COGLView::DrawBlobs(BOOL selecting)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	DrawScene
 // Purpose:		Draws the current OpenGL scene
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 GLvoid COGLView::DrawScene(GLvoid)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
@@ -414,7 +414,7 @@ GLvoid COGLView::DrawScene(GLvoid)
 	// ROTATE THE ROOT
 	glRotatef(m_CameraRot.z, 1.0f, 0.0f, 0.0f);
     glRotatef(m_CameraRot.y, 0.0f, 1.0f, 0.0f);
- 	glRotatef(m_CameraRot.x, 0.0f, 0.0f, 1.0f); 
+ 	glRotatef(m_CameraRot.x, 0.0f, 0.0f, 1.0f);
 
 	if (m_DrawBlobs)
 		DrawBlobs(FALSE);
@@ -464,7 +464,7 @@ GLvoid COGLView::SelectScene(int x, int y)
 	// ROTATE THE ROOT
 	glRotatef(m_CameraRot.z, 1.0f, 0.0f, 0.0f);
     glRotatef(m_CameraRot.y, 0.0f, 1.0f, 0.0f);
- 	glRotatef(m_CameraRot.x, 0.0f, 0.0f, 1.0f); 
+ 	glRotatef(m_CameraRot.x, 0.0f, 0.0f, 1.0f);
 
 	DrawBlobs(TRUE);
 
@@ -481,7 +481,7 @@ GLvoid COGLView::SelectScene(int x, int y)
 
 }
 
-void COGLView::ProcessSelection(GLint hits, GLuint buffer[]) 
+void COGLView::ProcessSelection(GLint hits, GLuint buffer[])
 {
 	int i;
 	unsigned int j;
@@ -501,8 +501,8 @@ void COGLView::ProcessSelection(GLint hits, GLuint buffer[])
 			ptr++;
 
 			if (z1 < nearest)
-			{			
-				m_pCurBlob = &m_pGoopSys->pGoop[item];	
+			{
+				m_pCurBlob = &m_pGoopSys->pGoop[item];
 				nearest = z1;
 			}
 		}
@@ -512,7 +512,7 @@ void COGLView::ProcessSelection(GLint hits, GLuint buffer[])
 		m_pCurBlob = NULL;
 }
 
-void COGLView::OnDestroy() 
+void COGLView::OnDestroy()
 {
 	CWnd::OnDestroy();
 	if (m_hRC)
@@ -523,7 +523,7 @@ void COGLView::OnDestroy()
     m_hDC = 0;
 }
 
-void COGLView::OnPaint() 
+void COGLView::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
 	DrawScene();
@@ -531,7 +531,7 @@ void COGLView::OnPaint()
 	// Do not call CWnd::OnPaint() for painting messages
 }
 
-void COGLView::OnSize(UINT nType, int cx, int cy) 
+void COGLView::OnSize(UINT nType, int cx, int cy)
 {
 	// RESIZE THE OPENGL WINDOW
 	resize( cx,cy );
@@ -540,8 +540,8 @@ void COGLView::OnSize(UINT nType, int cx, int cy)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	OnLButtonDown
 // Purpose:		Left button down grabs the current point pos so I can use it
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::OnLButtonDown(UINT nFlags, CPoint point) 
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	m_mousepos = point;
 
@@ -564,8 +564,8 @@ void COGLView::OnLButtonDown(UINT nFlags, CPoint point)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	OnRButtonDown
 // Purpose:		Right button down grabs the current point pos so I can use it
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::OnRButtonDown(UINT nFlags, CPoint point) 
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::OnRButtonDown(UINT nFlags, CPoint point)
 {
 	m_mousepos = point;
 	m_Base_Rot_X = 	m_CameraRot.x;
@@ -580,21 +580,21 @@ void COGLView::OnRButtonDown(UINT nFlags, CPoint point)
 	CWnd::OnLButtonDown(nFlags, point);
 }
 
-void COGLView::HandleKeyDown(UINT nChar) 
+void COGLView::HandleKeyDown(UINT nChar)
 {
 }
 
-void COGLView::HandleKeyUp(UINT nChar) 
+void COGLView::HandleKeyUp(UINT nChar)
 {
 	switch (nChar)
 	{
 	case 'G':
 		m_DrawGeometry = !m_DrawGeometry;
 		break;
-	case 'O': 
+	case 'O':
 		glPolygonMode(GL_FRONT,GL_LINE);
 		break;
-	case 'F': 
+	case 'F':
 		m_DrawField = !m_DrawField;
 //		glPolygonMode(GL_FRONT,GL_FILL);
 		break;
@@ -607,8 +607,8 @@ void COGLView::HandleKeyUp(UINT nChar)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	OnMouseMove
 // Purpose:		Handle mouse moves while pressed
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::OnMouseMove(UINT nFlags, CPoint point) 
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	float sinAngle,cosAngle;
 	sinAngle = (float)sin(DEGTORAD(m_CameraRot.y));
@@ -617,7 +617,7 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 	{
 		if ((nFlags & MK_CONTROL) > 0)
 		{
-		}	
+		}
 		else if ((nFlags & MK_SHIFT) > 0)
 		{
 		}
@@ -654,8 +654,8 @@ void COGLView::OnMouseMove(UINT nFlags, CPoint point)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	OnLButtonDblClk
 // Purpose:		Left Double click, get dialog for Current Blob
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::OnLButtonDblClk(UINT nFlags, CPoint point) 
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
 	EditBlob();
 }
@@ -697,8 +697,8 @@ void COGLView::EditSys()
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	LoadFiles
 // Purpose:		Loads the Blob files into memory
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::LoadFile(CString file1,CString baseName) 
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::LoadFile(CString file1,CString baseName)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	FILE *fp;
@@ -713,8 +713,8 @@ void COGLView::LoadFile(CString file1,CString baseName)
 		fread(&cnt,sizeof(int),1,fp);
 		for (loop = 0; loop < cnt; loop++)
 		{
-			Goop_AddBlob(m_pGoopSys);	
-			m_pCurBlob = &m_pGoopSys->pGoop[m_pGoopSys->nGoopCnt - 1];	
+			Goop_AddBlob(m_pGoopSys);
+			m_pCurBlob = &m_pGoopSys->pGoop[m_pGoopSys->nGoopCnt - 1];
 			fread(&m_pCurBlob->position, sizeof(tVector),1,fp);
 			fread(&m_pCurBlob->radiusSquared, sizeof(float),1,fp);
 			fread(&m_pCurBlob->strength, sizeof(float),1,fp);
@@ -729,8 +729,8 @@ void COGLView::LoadFile(CString file1,CString baseName)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	SaveFiles
 // Purpose:		Saves the Blob files into memory
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::SaveFile(CString file1,CString baseName) 
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::SaveFile(CString file1,CString baseName)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	FILE *fp;
@@ -757,11 +757,11 @@ void COGLView::SaveFile(CString file1,CString baseName)
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	OnGoopAddblob
 // Purpose:		Add a blob to the system
-///////////////////////////////////////////////////////////////////////////////		
-void COGLView::OnGoopAddblob() 
+///////////////////////////////////////////////////////////////////////////////
+void COGLView::OnGoopAddblob()
 {
-	Goop_AddBlob(m_pGoopSys);	
-	m_pCurBlob = &m_pGoopSys->pGoop[m_pGoopSys->nGoopCnt - 1];	
+	Goop_AddBlob(m_pGoopSys);
+	m_pCurBlob = &m_pGoopSys->pGoop[m_pGoopSys->nGoopCnt - 1];
 	Goop_FindBounds();
 	DrawScene();
 }

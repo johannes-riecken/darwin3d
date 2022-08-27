@@ -5,7 +5,7 @@
 // Purpose:	Implementation of Main Window of Hierarchical Animation System
 //
 // Created:
-//		JL 9/1/97		
+//		JL 9/1/97
 // Versions:
 //		1.01	12/20/97	Added OpenGL Resize Code, Moved window size to defines
 //		1.02	1/10/97		Merge in of ASF Hierarchy read code
@@ -88,7 +88,7 @@ CMainFrame::CMainFrame()
 	m_ElapsedTime = ~(DWORD)0; // initialize to a big number
 	m_Animation_Direction = 1;
 	m_AnimSpeed = 30;			// DEFAULT PLAYBACK SPEED AS FRAME DELAY
-	m_HArrow = AfxGetApp()->LoadStandardCursor(IDC_ARROW);	
+	m_HArrow = AfxGetApp()->LoadStandardCursor(IDC_ARROW);
 
 	InitializeSkeleton();
 }
@@ -103,11 +103,11 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 /// Local Variables ///////////////////////////////////////////////////////////
 	RECT rect;
 ///////////////////////////////////////////////////////////////////////////////
-	GetClientRect(&rect); 
+	GetClientRect(&rect);
 
 	if (CFrameWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
-	
+
 	if (!m_wndToolBar.Create(this) ||
 		!m_wndToolBar.LoadToolBar(IDR_MAINFRAME))
 	{
@@ -133,11 +133,11 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	EnableDocking(CBRS_ALIGN_ANY);
 	DockControlBar(&m_wndToolBar);
 */
-	m_HierWin.Create( TVS_HASBUTTONS | TVS_LINESATROOT | TVS_HASLINES | TVS_SHOWSELALWAYS, 
+	m_HierWin.Create( TVS_HASBUTTONS | TVS_LINESATROOT | TVS_HASLINES | TVS_SHOWSELALWAYS,
 		CRect(HIERWIN_START_X, HIERWIN_START_Y,HIERWIN_WIDTH,rect.bottom - HIERWIN_BOTTOM), this, 1001);
 	m_HierWin.ShowWindow(TRUE);
 
-	m_OGLView.Create(NULL,"Render Window",WS_CHILD | WS_VISIBLE, 
+	m_OGLView.Create(NULL,"Render Window",WS_CHILD | WS_VISIBLE,
 		CRect(OGLWIN_START_X, OGLWIN_START_Y,rect.right - OGLWIN_WIDTH,rect.bottom - OGLWIN_BOTTOM),this,104,&m_Skeleton);
 	m_OGLView.ShowWindow(TRUE);
 
@@ -145,7 +145,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_OGLView.Invalidate(TRUE);
 
-	
+
 	// Now we initialize the animation code
 
 	m_StartTime = ::timeGetTime(); // get time in ms
@@ -161,7 +161,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
 	HICON hicon;
-	
+
 	hicon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 
 	m_ClassName = AfxRegisterWndClass(NULL,
@@ -196,16 +196,16 @@ void CMainFrame::Dump(CDumpContext& dc) const
 ///////////////////////////////////////////////////////////////////////////////
 // Procedure:	OnWhichogl
 // Purpose:		Create dialog to Show which version of OGL is running
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 void CMainFrame::OnWhichogl()
 {
 	m_OGLView.GetGLInfo();
 }
 // OnWhichogl
 
-BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext) 
+BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
 {
-	
+
 	return CFrameWnd::OnCreateClient(lpcs, pContext);
 }
 
@@ -216,8 +216,8 @@ BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
 //              as possible
 // Reference:	OpenGL Programming for Windows 95 by Ron Fosner
 //				Sort of a variation on that code
-///////////////////////////////////////////////////////////////////////////////		
-void CMainFrame::OnPaint() 
+///////////////////////////////////////////////////////////////////////////////
+void CMainFrame::OnPaint()
 {
 	MSG msg;
 	CPaintDC dc(this); // device context for painting
@@ -239,7 +239,7 @@ void CMainFrame::OnPaint()
 				::TranslateMessage(&msg);
 				::DispatchMessage(&msg);
 			}
-			
+
 			// Give the Idle system some time
 			AfxGetApp()->OnIdle(0);
 			AfxGetApp()->OnIdle(1);
@@ -253,20 +253,20 @@ void CMainFrame::OnPaint()
 			// ADVANCE THE ANIMATION
 			BoneAdvanceFrame(&m_Skeleton,m_Animation_Direction,TRUE);
 			// REDRAW THE OGL WINDOW
-			m_OGLView.drawScene();	
+			m_OGLView.drawScene();
 			// RESET THE TIME COUNTER
 			m_previousElapsedTime = m_ElapsedTime;
 		}
 	}
-	
-	m_OGLView.drawScene();	
+
+	m_OGLView.drawScene();
 }
 /// OnPaint ////////////////////////////////////////////////////////////
 
-void CMainFrame::OnSize(UINT nType, int cx, int cy) 
+void CMainFrame::OnSize(UINT nType, int cx, int cy)
 {
 	// RESET THE HierWin WINDOW SIZE
-	m_HierWin.SetWindowPos( &wndTopMost, HIERWIN_START_X, HIERWIN_START_Y, HIERWIN_WIDTH, cy - HIERWIN_BOTTOM, SWP_NOZORDER ); 
+	m_HierWin.SetWindowPos( &wndTopMost, HIERWIN_START_X, HIERWIN_START_Y, HIERWIN_WIDTH, cy - HIERWIN_BOTTOM, SWP_NOZORDER );
 	// RESET THE m_OGLView WINDOW SIZE
 	m_OGLView.SetWindowPos( &wndTopMost, OGLWIN_START_X, OGLWIN_START_Y, cx - OGLWIN_WIDTH, cy - OGLWIN_BOTTOM, SWP_NOZORDER );
 	// RESET THE ACTUAL OPENGL WINDOW SIZE
@@ -276,19 +276,19 @@ void CMainFrame::OnSize(UINT nType, int cx, int cy)
 
 // HAVEN'T IMPLEMENTED ADDING A BONE
 #if 0
-void CMainFrame::OnAddBone() 
+void CMainFrame::OnAddBone()
 {
 	m_HierWin.AddBone();
 }
 #endif
 
-void CMainFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) 
+void CMainFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	m_OGLView.HandleKeyDown(nChar);
 	CFrameWnd::OnKeyDown(nChar, nRepCnt, nFlags);
 }
 
-void CMainFrame::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags) 
+void CMainFrame::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	m_OGLView.HandleKeyUp(nChar);
 	CFrameWnd::OnKeyUp(nChar, nRepCnt, nFlags);
@@ -315,7 +315,7 @@ void CMainFrame::InitializeSkeleton()
 /////////////////////////////////////////////////////////////////////////////
 // View Manipulation Functions
 
-void CMainFrame::OnViewResetskeleton() 
+void CMainFrame::OnViewResetskeleton()
 {
 	// PASS THIS MESSAGE OFF TO THE OGL CLASS
 	m_OGLView.OnViewResetskeleton();
@@ -324,33 +324,33 @@ void CMainFrame::OnViewResetskeleton()
 /////////////////////////////////////////////////////////////////////////////
 // Animation Control Functions
 
-void CMainFrame::OnPlayBack() 
+void CMainFrame::OnPlayBack()
 {
 	m_Animating = TRUE;
 	m_Animation_Direction = -1;
 	Invalidate(TRUE);
 }
 
-void CMainFrame::OnBackFrame() 
+void CMainFrame::OnBackFrame()
 {
 	m_Animating = FALSE;
 	BoneAdvanceFrame(&m_Skeleton,-1,TRUE);
 	m_OGLView.drawScene();
 }
 
-void CMainFrame::OnStop() 
+void CMainFrame::OnStop()
 {
 	m_Animating = FALSE;
 }
 
-void CMainFrame::OnForwardFrame() 
+void CMainFrame::OnForwardFrame()
 {
 	m_Animating = FALSE;
 	BoneAdvanceFrame(&m_Skeleton,1,TRUE);
 	m_OGLView.drawScene();
 }
 
-void CMainFrame::OnPlayForward() 
+void CMainFrame::OnPlayForward()
 {
 	m_Animation_Direction = 1;
 	m_Animating = TRUE;
@@ -361,12 +361,12 @@ void CMainFrame::OnPlayForward()
 // Procedure:	OnAnimationPlaybackspeed
 // Purpose:		Create dialog to change speed of playback
 //				Response to Menu Message
-///////////////////////////////////////////////////////////////////////////////		
-void CMainFrame::OnAnimationPlaybackspeed() 
+///////////////////////////////////////////////////////////////////////////////
+void CMainFrame::OnAnimationPlaybackspeed()
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	CPlaySpeed dialog;		// Class of Dialog box
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 	dialog.m_Playback_Speed = m_AnimSpeed;
 	if (dialog.DoModal())
 	{
@@ -383,11 +383,11 @@ void CMainFrame::OnAnimationPlaybackspeed()
 // Procedure:	OnFileLoadanim
 // Purpose:		Create dialog to load an animation file of various formats
 //				Response to Menu Message
-///////////////////////////////////////////////////////////////////////////////		
-void CMainFrame::OnFileLoadanim() 
+///////////////////////////////////////////////////////////////////////////////
+void CMainFrame::OnFileLoadanim()
 {
 /// Local Variables ///////////////////////////////////////////////////////////
-	char BASED_CODE szFilter[] = "Biovision BVA (*.bva)|*.bva|Biovision Heirarchy BVH (*.bvh)|*.bvh|Acclaim File (*.asf)|*.asf||"; 
+	char BASED_CODE szFilter[] = "Biovision BVA (*.bva)|*.bva|Biovision Heirarchy BVH (*.bvh)|*.bvh|Acclaim File (*.asf)|*.asf||";
 	CFileDialog	*dialog;
 	CString exten;
 ///////////////////////////////////////////////////////////////////////////////
@@ -445,7 +445,7 @@ void CMainFrame::OnFileLoadanim()
 // MFC LIKES TO PUT THESE IN A SEPARATE FILE, BUT IT LIKE THEM IN CODE THAT
 // USES THEM
 //
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////////////
 // CPlaySpeed dialog

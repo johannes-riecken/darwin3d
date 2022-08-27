@@ -1,11 +1,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// LoadAnim.cpp 
+// LoadAnim.cpp
 //
 // Purpose: implementation of the Motion Capture file Loader
 //
 // Created:
-//		JL 9/5/97		
+//		JL 9/5/97
 // Versions:
 //		1.0		12/2/97	Initial Merge of the BVA Code
 //		1.02	1/10/97 Merge in of ASF Hierarchy read code
@@ -39,18 +39,18 @@ void ParseString(char *buffer,CStringArray *words,int *cnt)
 /// Local Variables ///////////////////////////////////////////////////////////
 	CString in = buffer, temp;
 ///////////////////////////////////////////////////////////////////////////////
-	
+
 	in.TrimLeft();
 	in.TrimRight();
 	*cnt = 0;
-	do 
+	do
 	{
 		temp = in.SpanExcluding(" \t");		// GET UP TO THE NEXT SPACE OR TAB
 		words->Add(temp);
 		if (temp == in) break;
 		in = in.Right(in.GetLength() - temp.GetLength());
 		in.TrimLeft();
-		*cnt = *cnt + 1;			
+		*cnt = *cnt + 1;
 	} while (1);
 	*cnt = *cnt + 1;
 }
@@ -157,7 +157,7 @@ BOOL LoadBVA(CString name,t_Bone *root)
 						fgets(buffer,MAX_STRINGLENGTH,fp);
 						// NOW READY TO LOAD ALL THE ANIMATION
 						// ALLOC 9 FLOATS PER FRAME SINCE BVA HAS 9 ELEMENTS TO THE CHANNEL
-						tempChannel = (float *)malloc(sizeof(float) * frameCnt * 
+						tempChannel = (float *)malloc(sizeof(float) * frameCnt *
 							s_Channel_Type_Size[CHANNEL_TYPE_SRT]);
 						fptr = tempChannel;
 						// LOOP THROUGH THE FRAMES OF ANIMATION DATA
@@ -184,7 +184,7 @@ BOOL LoadBVA(CString name,t_Bone *root)
 							}
 							words.RemoveAll();		// CLEAR WORD BUFFER
 						}
-	
+
 						// SET THE CHANNEL INFO INTO BONE
 						curBone->primChannel = tempChannel;
 						curBone->primChanType = CHANNEL_TYPE_SRT;
@@ -192,7 +192,7 @@ BOOL LoadBVA(CString name,t_Bone *root)
 						curBone->primSpeed = (float)(30.0 * frameTime);	// CONVERT TO FRAME STEP SIZE AT 30FPS
 						BoneSetFrame(curBone,0);
 					}
-					
+
 				}
 				else
 				{
@@ -207,7 +207,7 @@ BOOL LoadBVA(CString name,t_Bone *root)
 		}
 		fclose(fp);
 		return TRUE;
-	}	
+	}
 	return FALSE;
 }
 //// LoadBVA //////////////////////////////////////////////////////////////
@@ -359,10 +359,10 @@ BOOL LoadBVH(CString name,t_Bone *root)
 						for (int loop2 = 0; loop2 < channelCnt; loop2++)
 						{
 							animData[loop * channelCnt + loop2] = atof(words.GetAt(loop2));
-							if (loop2 < 3) 
+							if (loop2 < 3)
 								animData[loop * channelCnt + loop2] = animData[loop * channelCnt + loop2] / 10.0f;
 						}
-			
+
 						words.RemoveAll();		// CLEAR WORD BUFFER
 					}
 
@@ -370,11 +370,11 @@ BOOL LoadBVH(CString name,t_Bone *root)
 			}
 
 			words.RemoveAll();		// CLEAR WORD BUFFER
-		}			
+		}
 		// Set the First Frame
 		for (int loop = 0; loop < channelCnt; loop++)
 			*dataptr[loop] = animData[loop];
-		
+
 
 		// SET THE CHANNEL INFO INTO BONE
 		root->primChannel = animData;
@@ -387,7 +387,7 @@ BOOL LoadBVH(CString name,t_Bone *root)
 
 		fclose(fp);
 		return TRUE;
-	}	
+	}
 	return FALSE;
 }
 //// LoadBVH //////////////////////////////////////////////////////////////
@@ -484,7 +484,7 @@ void HandleAcclaimBone(FILE *fp,t_Bone *root)
 			{
 				curBone->flags = CHANNEL_TYPE_RXYZ;	// ROTATION (RX RY RZ) ORDER
 			}
-			// I AM ONLY SUPPORTING THAT DOF SO REPORT OTHERS 
+			// I AM ONLY SUPPORTING THAT DOF SO REPORT OTHERS
 			// NONE OF MY DATA IS IN ANOTHER FORMAT
 			else
 			{
@@ -553,7 +553,7 @@ void HandleAcclaimHierarchy(FILE *fp,t_Bone *root)
 				}
 			}
 			// ANYTHING BUT THE "ROOT" ONE
-			else 
+			else
 			{
 				strcpy(name,words.GetAt(0));	// NAME OF PARENT
 				tempBone = FindBoneParent(root,name);	// GET THE POINTER TO THE PARENT
@@ -704,7 +704,7 @@ BOOL LoadAcclaim(CString name,t_Bone *root)
 		}
 		fclose(fp);
 		return TRUE;
-	}	
+	}
 	return FALSE;
 }
 //// LoadAcclaim //////////////////////////////////////////////////////////////

@@ -32,7 +32,7 @@ enum tIntegratorTypes
 // TYPE FOR CONTACTS THAT ARE FOUND DURING SIM
 typedef struct s_Contact
 {
-	int		particle,particle2;	
+	int		particle,particle2;
     tVector normal;		// Normal of Collision plane
 	int		type;		// COLLIDING OR CONTACT
 	float	Kr;			// Coefficient of restitution
@@ -87,7 +87,7 @@ typedef struct
 	int		mat;
 } t_faceIndex;
 
-typedef struct 
+typedef struct
 {
 	int		dataFormat;
 	tVector	*vertex;		// Vertex
@@ -95,7 +95,7 @@ typedef struct
 	tVector	*normal;		// Vertex
 	tVector	*deformData;	// DEFORMED VERTEX DATA
 	tVector	*texture;		// Vertex
-	t_faceIndex	*index;			
+	t_faceIndex	*index;
 	long	faceCnt;		// NUMBER OF FACES IN VISUAL
 	tVector *matColor;		// POINTER TO VECTOR
 	int		matCnt;
@@ -108,10 +108,10 @@ typedef struct
 	long	normalCnt;		// NUMBER OF VERTICES IN VISUAL
 	long	uvCnt;		// NUMBER OF VERTICES IN VISUAL
 	tVector bbox[8];		// BBOX COORDS
-	tVector transBBox[8];	
+	tVector transBBox[8];
 } t_ToonVisual;
 
-typedef struct 
+typedef struct
 {
 	long	id;							// BONE ID
 	char	name[80];					// BONE NAME
@@ -155,7 +155,7 @@ typedef struct
 	// COLLISION ELEMENTS
 	float	bbox[6];					// BOUNDING BOX (UL XYZ, LR XYZ)
 	tVector	center;						// CENTER OF OBJECT (MASS)
-	float	bsphere;					// BOUNDING SPHERE (RADIUS)  
+	float	bsphere;					// BOUNDING SPHERE (RADIUS)
 	// PHYSICS
 	tVector	length;						// BONE LENGTH VECTOR
 	float	mass;						// MASS

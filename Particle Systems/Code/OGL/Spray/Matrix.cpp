@@ -30,15 +30,15 @@
 void MultVectorByMatrix(tMatrix *mat, tVector *v,tVector *result)
 {
 	result->x = (mat->m[0] * v->x) +
-			   (mat->m[4] * v->y) +	
+			   (mat->m[4] * v->y) +
 			   (mat->m[8] * v->z) +
 			   mat->m[12];
 	result->y = (mat->m[1] * v->x) +
-			   (mat->m[5] * v->y) +	
+			   (mat->m[5] * v->y) +
 			   (mat->m[9] * v->z) +
 			   mat->m[13];
 	result->z = (mat->m[2] * v->x) +
-			   (mat->m[6] * v->y) +	
+			   (mat->m[6] * v->y) +
 			   (mat->m[10] * v->z) +
 			   mat->m[14];
 }

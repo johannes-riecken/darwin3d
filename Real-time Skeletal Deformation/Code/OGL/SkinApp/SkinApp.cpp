@@ -5,7 +5,7 @@
 // Purpose:	Implementation of Main Application of Quaternion Animation System
 //
 // Created:
-//		JL 11/1/97		
+//		JL 11/1/97
 // Revisions:
 //		Integrated into Skinning Demo		2/18/98
 //

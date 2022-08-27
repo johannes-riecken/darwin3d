@@ -5,7 +5,7 @@
 // Purpose:	Implementation of Main Window of Quaternion Animation System
 //
 // Created:
-//		JL 9/1/97		
+//		JL 9/1/97
 //
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -64,9 +64,9 @@ static UINT indicators[] =
 
 CMainFrame::CMainFrame()
 {
-	m_HArrow = AfxGetApp()->LoadStandardCursor(IDC_ARROW);	
+	m_HArrow = AfxGetApp()->LoadStandardCursor(IDC_ARROW);
 
-	InitializeSkeleton();	
+	InitializeSkeleton();
 }
 
 CMainFrame::~CMainFrame()
@@ -79,7 +79,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 /// Local Variables ///////////////////////////////////////////////////////////
 	RECT rect;
 ///////////////////////////////////////////////////////////////////////////////
-	GetClientRect(&rect); 
+	GetClientRect(&rect);
 
 	if (CFrameWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
@@ -106,7 +106,7 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 /// Local Variables ///////////////////////////////////////////////////////////
 	HICON hicon;
 ///////////////////////////////////////////////////////////////////////////////
-	
+
 	hicon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 
 	m_ClassName = AfxRegisterWndClass(NULL,
@@ -123,8 +123,8 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 // Procedure:	OnHelpWhichopengl
 // Purpose:		Create dialog to Show which version of OGL is running
 // Notes:		Pretty Handy info for debugging
-///////////////////////////////////////////////////////////////////////////////		
-void CMainFrame::OnHelpWhichopengl() 
+///////////////////////////////////////////////////////////////////////////////
+void CMainFrame::OnHelpWhichopengl()
 {
 	m_OGLView.GetGLInfo();
 }
@@ -146,26 +146,26 @@ void CMainFrame::Dump(CDumpContext& dc) const
 /////////////////////////////////////////////////////////////////////////////
 // CMainFrame message handlers
 
-void CMainFrame::OnPaint() 
+void CMainFrame::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
 
 	m_OGLView.drawScene();
 }
 
-void CMainFrame::OnSize(UINT nType, int cx, int cy) 
+void CMainFrame::OnSize(UINT nType, int cx, int cy)
 {
 	m_OGLView.SetWindowPos( &wndTopMost, 1, 1, cx - 3, cy - 20 , SWP_NOZORDER ); // -60 bottom
 	CFrameWnd::OnSize(nType, cx, cy);
 }
 
-void CMainFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) 
+void CMainFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	m_OGLView.HandleKeyDown(nChar);
 	CFrameWnd::OnKeyDown(nChar, nRepCnt, nFlags);
 }
 
-void CMainFrame::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags) 
+void CMainFrame::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -219,27 +219,27 @@ void CMainFrame::InitializeSkeleton()
 
 
 // TOGGLE THE STATUS OF THE VIEW GEOMETRY FLAG
-void CMainFrame::OnViewGeometry() 
+void CMainFrame::OnViewGeometry()
 {
 	m_OGLView.m_DrawGeometry = !m_OGLView.m_DrawGeometry;
 	m_OGLView.drawScene();
 }
 
 // SET THE CHECKED STATUS OF THE VIEW GEOMETRY MENU BASED ON STATUS
-void CMainFrame::OnUpdateViewGeometry(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateViewGeometry(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck( m_OGLView.m_DrawGeometry );
 }
 
 // TOGGLE THE STATUS OF THE USE QUATERNIONS FLAG
-void CMainFrame::OnViewUsequaternions() 
+void CMainFrame::OnViewUsequaternions()
 {
 	m_OGLView.m_UseQuat = !m_OGLView.m_UseQuat;
 	m_OGLView.drawScene();
 }
 
 // SET THE CHECKED STATUS OF THE USE QUATERNIONS MENU BASED ON STATUS
-void CMainFrame::OnUpdateViewUsequaternions(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateViewUsequaternions(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck( m_OGLView.m_UseQuat );
 }

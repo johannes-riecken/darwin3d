@@ -8,7 +8,7 @@
 // SINCE THE ENGINE MAY BE IMPLEMENTED ON CONSOLES AND OTHER SYSTEMS
 //
 // Created:
-//		JL 9/1/97		
+//		JL 9/1/97
 // Revisions:
 //		Integrated into Kine Demo		8/18/98
 //
@@ -79,9 +79,9 @@ typedef struct
 ///////////////////////////////////////////////////////////////////////////////
 void MultVectorByMatrix(tMatrix *mat, tVector *v,tVector *result);
 
-double VectorSquaredLength(tVector *v); 
-double VectorLength(tVector *v); 
-void NormalizeVector(tVector *v); 
+double VectorSquaredLength(tVector *v);
+double VectorLength(tVector *v);
+void NormalizeVector(tVector *v);
 double DotProduct(tVector *v1, tVector *v2);
 void CrossProduct(tVector *v1, tVector *v2, tVector *result);
 double VectorSquaredDistance(tVector *v1, tVector *v2);

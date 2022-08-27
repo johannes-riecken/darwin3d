@@ -5,7 +5,7 @@
 // Purpose:	Implementation of 2D Collision System
 //
 // Created:
-//		JL 11/1/98		
+//		JL 11/1/98
 //
 // Notes:  THIS CONTAINS SOME USEFUL COMPUTATIONAL GEOMETRY ROUTINES AT THE
 //	END OF THIS FILE.
@@ -117,7 +117,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	if (CFrameWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
-	
+
 	if (!m_wndStatusBar.Create(this) ||
 		!m_wndStatusBar.SetIndicators(indicators,
 		  sizeof(indicators)/sizeof(UINT)))
@@ -174,7 +174,7 @@ void CMainFrame::Dump(CDumpContext& dc) const
 
 /////////////////////////////////////////////////////////////////////////////
 // Scale the Grid Size Up
-void CMainFrame::OnOptionsGridup() 
+void CMainFrame::OnOptionsGridup()
 {
 	char str[80];
 	if (m_gridsize <= 1024) m_gridsize *= 2;
@@ -185,10 +185,10 @@ void CMainFrame::OnOptionsGridup()
 
 /////////////////////////////////////////////////////////////////////////////
 // Scale the Grid Size Down
-void CMainFrame::OnOptionsGridDown() 
+void CMainFrame::OnOptionsGridDown()
 {
 	char str[80];
-	if (m_gridsize > 2) 
+	if (m_gridsize > 2)
 	{
 		m_gridsize /= 2;
 		sprintf(str,"Grid = %4d",m_gridsize);
@@ -202,7 +202,7 @@ void CMainFrame::OnOptionsGridDown()
 	Invalidate (TRUE);
 }
 
-void CMainFrame::OnOptionsZoomin() 
+void CMainFrame::OnOptionsZoomin()
 {
 	char str[80];
 	if (m_scale <= 10.0) m_scale += .1;
@@ -211,7 +211,7 @@ void CMainFrame::OnOptionsZoomin()
 	Invalidate (TRUE);
 }
 
-void CMainFrame::OnOptionsZoomout() 
+void CMainFrame::OnOptionsZoomout()
 {
 	char str[80];
 	if (m_scale > 0.2)
@@ -223,7 +223,7 @@ void CMainFrame::OnOptionsZoomout()
 	Invalidate (TRUE);
 }
 
-void CMainFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) 
+void CMainFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	tPoint3D	temp;
 	tPoint2D	temp2D;
@@ -231,18 +231,18 @@ void CMainFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	CRect rect;
 	cx = (GetSystemMetrics(SM_CXFULLSCREEN) - (640 + 8)) / 2;
 	cy = (GetSystemMetrics(SM_CYFULLSCREEN) - (480 + 94)) / 2;
-	
+
 	switch (nChar)
 	{
 		case VK_INSERT:
 			InsertPoint();
 			Invalidate(TRUE);
 			break;
-		case VK_DELETE:		
+		case VK_DELETE:
 			DeleteSector();
 			Invalidate(TRUE);
 			break;
-		case VK_RETURN:		
+		case VK_RETURN:
 			CloseSector();
 			Invalidate(TRUE);
 			break;
@@ -320,7 +320,7 @@ void CMainFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			Invalidate(TRUE);
 			break;
 	}
-	
+
 	CFrameWnd::OnKeyDown(nChar, nRepCnt, nFlags);
 }
 
@@ -328,7 +328,7 @@ void CMainFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 // Procedure:	OnRButtonUp
 // Purpose:		Right Mouse Button Handler
 //////////////////////////////////////////////////////////////////
-void CMainFrame::OnRButtonUp(UINT nFlags, CPoint point) 
+void CMainFrame::OnRButtonUp(UINT nFlags, CPoint point)
 {
 	tPoint2D temp;
 	// MOVE THE CAMERA POSITION TO WHERE THE USER CLICKS
@@ -343,9 +343,9 @@ void CMainFrame::OnRButtonUp(UINT nFlags, CPoint point)
 
 #define VERTEX_SNAP_PROXIMITY		100
 
-void CMainFrame::OnLButtonDown(UINT nFlags, CPoint point) 
+void CMainFrame::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	short loop,t_sector,t_edge;	
+	short loop,t_sector,t_edge;
 	tPoint2D temp;
 	long dist;
 	char message[80];
@@ -359,8 +359,8 @@ void CMainFrame::OnLButtonDown(UINT nFlags, CPoint point)
 		{
 			dist = (temp.x - m_edgelist[loop].pos.x) * 		// SQUARED DISTANCE
 					(temp.x - m_edgelist[loop].pos.x) +
-					(temp.y - m_edgelist[loop].pos.y) * 
-					(temp.y - m_edgelist[loop].pos.y); 
+					(temp.y - m_edgelist[loop].pos.y) *
+					(temp.y - m_edgelist[loop].pos.y);
 			if (dist < VERTEX_SNAP_PROXIMITY)
 			{
 				temp.x = m_edgelist[loop].pos.x;
@@ -377,8 +377,8 @@ void CMainFrame::OnLButtonDown(UINT nFlags, CPoint point)
 			{
 				dist = (temp.x - m_edgelist[loop].pos.x) *		// SQUARED DISTANCE
 						(temp.x - m_edgelist[loop].pos.x) +
-						(temp.y - m_edgelist[loop].pos.y) * 
-						(temp.y - m_edgelist[loop].pos.y); 
+						(temp.y - m_edgelist[loop].pos.y) *
+						(temp.y - m_edgelist[loop].pos.y);
 				if (dist < VERTEX_SNAP_PROXIMITY)
 				{
 					temp.x = m_edgelist[loop].pos.x;
@@ -453,10 +453,10 @@ void CMainFrame::OnLButtonDown(UINT nFlags, CPoint point)
 		m_point = NULL;
 		for (loop = 0; loop < m_edgecnt; loop++)
 		{
-			dist = (temp.x - m_edgelist[loop].pos.x) * 
+			dist = (temp.x - m_edgelist[loop].pos.x) *
 					(temp.x - m_edgelist[loop].pos.x) +
-					(temp.y - m_edgelist[loop].pos.y) * 
-					(temp.y - m_edgelist[loop].pos.y); 
+					(temp.y - m_edgelist[loop].pos.y) *
+					(temp.y - m_edgelist[loop].pos.y);
 			if (dist < 100)
 			{
 				m_temppoint.x = m_edgelist[loop].pos.x;
@@ -470,7 +470,7 @@ void CMainFrame::OnLButtonDown(UINT nFlags, CPoint point)
 	CFrameWnd::OnLButtonDown(nFlags, point);
 }
 
-void CMainFrame::OnLButtonUp(UINT nFlags, CPoint point) 
+void CMainFrame::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	short loop;
 	char message[80];
@@ -510,7 +510,7 @@ void CMainFrame::OnLButtonUp(UINT nFlags, CPoint point)
 	CFrameWnd::OnLButtonUp(nFlags, point);
 }
 
-void CMainFrame::OnLButtonDblClk(UINT nFlags, CPoint point) 
+void CMainFrame::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
 	tPoint2D temp;
 	char message[80];
@@ -533,7 +533,7 @@ void CMainFrame::OnLButtonDblClk(UINT nFlags, CPoint point)
 	CFrameWnd::OnLButtonDblClk(nFlags, point);
 }
 
-void CMainFrame::OnMouseMove(UINT nFlags, CPoint point) 
+void CMainFrame::OnMouseMove(UINT nFlags, CPoint point)
 {
 	long startX,startY;
 	short nearest;
@@ -599,17 +599,17 @@ void CMainFrame::OnMouseMove(UINT nFlags, CPoint point)
 	CFrameWnd::OnMouseMove(nFlags, point);
 }
 
-void CMainFrame::OnPaint() 
+void CMainFrame::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
-	
+
 	Draw2DView(&dc);
 	// Do not call CFrameWnd::OnPaint() for painting messages
 }
 
 
 
-void CMainFrame::OnFileNew() 
+void CMainFrame::OnFileNew()
 {
 	// RESET THE WORLD TO NOTHING
 	char message[80];
@@ -621,14 +621,14 @@ void CMainFrame::OnFileNew()
 }
 
 // LOAD A SET OF SECTORS FROM A FILE
-void CMainFrame::OnFileOpen() 
+void CMainFrame::OnFileOpen()
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	char BASED_CODE szFilter[] = "Fate Files (*.fte)|*.FTE|All Files (*.*)|*.*||";
 	char directory[80];
 	CFileDialog	*dialog;
 	FILE	*fp;
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 	// HAD TO ADD DIRECTORY STUFF SINCE DIALOG CHANGES DIRECTORY
 	_getcwd(directory,80);
 	dialog = new CFileDialog(TRUE,"FTE",NULL,OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,szFilter);
@@ -651,14 +651,14 @@ void CMainFrame::OnFileOpen()
 }
 
 // SAVE THE CURRENT SETUP TO A FILE
-void CMainFrame::OnFileSave() 
+void CMainFrame::OnFileSave()
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	char BASED_CODE szFilter[] = "Fate Files (*.fte)|*.FTE|All Files (*.*)|*.*||";
 	char directory[80];
 	CFileDialog	*dialog;
 	FILE	*fp;
-///////////////////////////////////////////////////////////////////////////////		
+///////////////////////////////////////////////////////////////////////////////
 	// HAD TO ADD DIRECTORY STUFF SINCE DIALOG CHANGES DIRECTORY
 	_getcwd(directory,80);
 	dialog = new CFileDialog(FALSE,"PFTE",NULL,OFN_OVERWRITEPROMPT,szFilter);
@@ -781,7 +781,7 @@ void CMainFrame::Draw2DView(CDC* pDC)
 		startX = -65536;
 		startY = -65536;
 		// DO ALL THE COLUMNS
-		for (loop = startX; loop < 65536; loop += m_gridsize)	
+		for (loop = startX; loop < 65536; loop += m_gridsize)
 		{
 			pos = (long)((double)loop * m_scale);
 			pos = pos - m_offX + (m_sizeX / 2);
@@ -792,7 +792,7 @@ void CMainFrame::Draw2DView(CDC* pDC)
 			}
 		}
 		// DO ALL THE COLUMNS
-		for (loop = startY; loop < 65536; loop += m_gridsize)	
+		for (loop = startY; loop < 65536; loop += m_gridsize)
 		{
 			pos = (long)((double)loop * m_scale);
 			pos = pos - m_offY + (m_sizeY / 2);
@@ -803,7 +803,7 @@ void CMainFrame::Draw2DView(CDC* pDC)
 			}
 		}
 	}
-	
+
 	// DRAW ALL THE LINES
 	for (loop = 0; loop < m_sectorcnt; loop++)	// FOR ALL THE SECTORS
 	{
@@ -927,7 +927,7 @@ void CMainFrame::CheckDoubleSided()
 				m_edgelist[outer].backedge = inner;
 				m_edgelist[outer].backsector = m_edgelist[inner].sector;
 			}
-		}		
+		}
 	}
 }
 
@@ -958,7 +958,7 @@ void CMainFrame::InsertPoint()
 
 void CMainFrame::DeleteEdge(short which)
 {
-	short loop;	
+	short loop;
 	tEdge *t_edge;
 	t_edge = &m_edgelist[which];
 	char message[80];
@@ -971,7 +971,7 @@ void CMainFrame::DeleteEdge(short which)
 		if (m_sectorlist[loop].edge == which)
 		{
 			m_sectorlist[loop].edge = t_edge->nextedge;
-			m_edgelist[m_edgelist[loop].nextedge].prevedge = 
+			m_edgelist[m_edgelist[loop].nextedge].prevedge =
 				m_edgelist[m_sectorlist[loop].edge].prevedge;
 		}
 	}
@@ -981,7 +981,7 @@ void CMainFrame::DeleteEdge(short which)
 		if (m_edgelist[loop].nextedge == which)
 		{
 			m_edgelist[loop].nextedge = t_edge->nextedge;
-			m_edgelist[m_edgelist[loop].nextedge].prevedge = 
+			m_edgelist[m_edgelist[loop].nextedge].prevedge =
 				m_edgelist[loop].prevedge;
 		}
 	}
@@ -1011,7 +1011,7 @@ void CMainFrame::DeleteEdge(short which)
 void CMainFrame::DeleteSector()
 {
 	char message[80];
-	short loop, t_sector;	
+	short loop, t_sector;
 	if (m_nearest_edge > -1)
 	{
 		t_sector = m_edgelist[m_nearest_edge].sector;
@@ -1033,7 +1033,7 @@ void CMainFrame::DeleteSector()
 		{
 			memcpy( &m_sectorlist[loop],&m_sectorlist[loop+1],sizeof(tSector) );
 		}
-		m_sectorcnt--;	
+		m_sectorcnt--;
 	}
 	sprintf(message,"Sectors = %d  Edges = %d",m_sectorcnt,m_edgecnt);
 	SetStatusText(1,message);
@@ -1087,23 +1087,23 @@ void CMainFrame::CheckDeleteEdges(tPoint2D *a,tPoint2D *b)
 		if (next > -1)
 		{
 			if (a->x == m_edgelist[loop].pos.x && a->y == m_edgelist[loop].pos.y &&
-				b->x == m_edgelist[next].pos.x && 
+				b->x == m_edgelist[next].pos.x &&
 				b->y == m_edgelist[next].pos.y)
 			{
 				DeleteEdge(loop);
 				loop--;
 			}
 			if (b->x == m_edgelist[loop].pos.x && b->y == m_edgelist[loop].pos.y &&
-				a->x == m_edgelist[next].pos.x && 
+				a->x == m_edgelist[next].pos.x &&
 				a->y == m_edgelist[next].pos.y)
 			{
 				DeleteEdge(loop);
 				loop--;
 			}
 			// IF IT IS A SINGLE POINT, DELETE IT
-			if (m_edgelist[loop].pos.x == 
-				m_edgelist[next].pos.x && 
-				m_edgelist[loop].pos.y == 
+			if (m_edgelist[loop].pos.x ==
+				m_edgelist[next].pos.x &&
+				m_edgelist[loop].pos.y ==
 				m_edgelist[next].pos.y )
 			{
 				DeleteEdge(loop);
@@ -1146,7 +1146,7 @@ void CMainFrame::GetNearestPoint(tPoint2D *a,tPoint2D *b,tPoint2D *c,tPoint2D *n
 	nearest->y = a->y + ((b->y - a->y) * dot_ta)/(dot_ta + dot_tb);
 }
 
-short CMainFrame::GetNearestEdge(CPoint point) 
+short CMainFrame::GetNearestEdge(CPoint point)
 {
 	short loop,winner = -1,next;
 	long distance = 20000,tempdist;
@@ -1161,8 +1161,8 @@ short CMainFrame::GetNearestEdge(CPoint point)
 		if (next >= 0)
 		{
 			b = &m_edgelist[next].pos;
-			GetNearestPoint(a,b,&temp,&nearest); 
-			tempdist =  (nearest.x - temp.x) * (nearest.x - temp.x) + 
+			GetNearestPoint(a,b,&temp,&nearest);
+			tempdist =  (nearest.x - temp.x) * (nearest.x - temp.x) +
 						(nearest.y - temp.y) * (nearest.y - temp.y);
 			if (tempdist < distance)
 			{
@@ -1184,7 +1184,7 @@ short CMainFrame::GetNearestEdge(CPoint point)
 // Purpose:		Make Sure view is not too close to wall
 // Returns:		TRUE if Valid Position, else FALSE
 //////////////////////////////////////////////////////////////////
-BOOL CMainFrame::CheckCollision(short sector, tPoint3D *test) 
+BOOL CMainFrame::CheckCollision(short sector, tPoint3D *test)
 {
 	short loop,next,cur;
 	long tempdist,temp2;
@@ -1218,9 +1218,9 @@ BOOL CMainFrame::CheckCollision(short sector, tPoint3D *test)
 				if (m_edgelist[cur].backedge > -1)
 				{
 					// CHECK ONLY THE SQUARED DISTANCE - NO NEED FOR A SQRT
-					tempdist =  (a->x - test->x) * (a->x - test->x) + 
+					tempdist =  (a->x - test->x) * (a->x - test->x) +
 								(a->y - test->z) * (a->y - test->z);
-					temp2 =		(b->x - test->x) * (b->x - test->x) + 
+					temp2 =		(b->x - test->x) * (b->x - test->x) +
 								(b->y - test->z) * (b->y - test->z);
 					// WHICH IS THE CLOSEST
 					if (temp2 < tempdist)
@@ -1228,9 +1228,9 @@ BOOL CMainFrame::CheckCollision(short sector, tPoint3D *test)
 				}
 				else	// EDGE IS NOT DOUBLE SIDED SO FIND NEAREST POINT ON LINE
 				{
-					GetNearestPoint(a,b,&temp,&nearest); 
+					GetNearestPoint(a,b,&temp,&nearest);
 					// CHECK ONLY THE SQUARED DISTANCE - NO NEED FOR A SQRT
-					tempdist =  (nearest.x - test->x) * (nearest.x - test->x) + 
+					tempdist =  (nearest.x - test->x) * (nearest.x - test->x) +
 								(nearest.y - test->z) * (nearest.y - test->z);
 				}
 				if (tempdist < DISTANCE_THRESH)
@@ -1266,28 +1266,28 @@ BOOL CMainFrame::PointInPoly(tSector *sector, tPoint2D *hitPos)
 	short	edge, first, next;
 	short	quad, next_quad, delta, total;
 
-	edge = first = sector->edge;    
+	edge = first = sector->edge;
 	quad = WHICH_QUAD(m_edgelist[edge].pos, hitPos);
 	total = 0;		// COUNT OF ABSOLUTE SECTORS CROSSED
 	/* LOOP THROUGH THE VERTICES IN A SECTOR */
 	do {
-		next = m_edgelist[edge].nextedge;					
+		next = m_edgelist[edge].nextedge;
 		next_quad = WHICH_QUAD(m_edgelist[next].pos, hitPos);
 		delta = next_quad - quad;		// HOW MANY QUADS HAVE I MOVED
 		// SPECIAL CASES TO HANDLE CROSSINGS OF MORE THEN ONE QUAD
-		switch (delta) {							
+		switch (delta) {
 			case  2: // IF WE CROSSED THE MIDDLE, FIGURE OUT IF IT WAS CLOCKWISE OR COUNTER
-			case -2: 
+			case -2:
 				// US THE X POSITION AT THE HIT POINT TO DETERMINE WHICH WAY AROUND
-				if (X_INTERCEPT(m_edgelist[edge].pos, m_edgelist[next].pos, hitPos->y) > hitPos->x)	
-					delta =  - (delta);					
-				break;							
+				if (X_INTERCEPT(m_edgelist[edge].pos, m_edgelist[next].pos, hitPos->y) > hitPos->x)
+					delta =  - (delta);
+				break;
 			case  3:			// MOVING 3 QUADS IS LIKE MOVING BACK 1
-				delta = -1; 
-				break;					
+				delta = -1;
+				break;
 			case -3:			// MOVING BACK 3 IS LIKE MOVING FORWARD 1
-				delta =	 1; 
-				break;				
+				delta =	 1;
+				break;
 		}
 		/* ADD IN THE DELTA */
 		total += delta;

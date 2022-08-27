@@ -8,7 +8,7 @@
 // SINCE THE ENGINE MAY BE IMPLEMENTED ON CONSOLES AND OTHER SYSTEMS
 //
 // Created:
-//		JL 9/1/97		
+//		JL 9/1/97
 //
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -50,7 +50,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 // COUNT OF NUMBER OF FLOATS FOR EACH CHANNEL TYPE
-static int s_Channel_Type_Size[] = 
+static int s_Channel_Type_Size[] =
 {
 	0,
 	9,
@@ -102,7 +102,7 @@ struct t_Visual
 	uint    glTex;
 	long	*texData;		//
 	tVector bbox[8];		// BBOX COORDS
-	tVector transBBox[8];	
+	tVector transBBox[8];
 };
 
 struct t_VWeight
@@ -163,7 +163,7 @@ struct t_Bone
 	// COLLISION ELEMENTS
 	float	bbox[6];					// BOUNDING BOX (UL XYZ, LR XYZ)
 	tVector	center;						// CENTER OF OBJECT (MASS)
-	float	bsphere;					// BOUNDING SPHERE (RADIUS)  
+	float	bsphere;					// BOUNDING SPHERE (RADIUS)
 	// PHYSICS
 	tVector	length;						// BONE LENGTH VECTOR
 	float	mass;						// MASS
