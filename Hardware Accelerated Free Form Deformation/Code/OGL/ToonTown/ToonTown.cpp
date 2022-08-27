@@ -62,13 +62,13 @@ LRESULT CALLBACK WndProcView(HWND    hWnd,
 
 
 // Dialog procedure for about box
-BOOL APIENTRY AboutDlgProc (HWND hDlg, UINT message, UINT wParam, LONG lParam);
-BOOL BuildClasses(void);
+bool APIENTRY AboutDlgProc (HWND hDlg, UINT message, UINT wParam, LONG lParam);
+bool BuildClasses(void);
 
 float	g_LastTime	=	0;
-int		g_SimRunning =	TRUE;
+int		g_SimRunning =	true;
 long	g_TimeIterations = 10;
-int		g_UseFixedTimeStep = FALSE;
+int		g_UseFixedTimeStep = false;
 float	g_MaxTimeStep = 0.01f;
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -76,8 +76,8 @@ float	g_MaxTimeStep = 0.01f;
 /////////////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////
-// Create the window classes. Returns FALSE if any errors occur
-BOOL BuildClasses(void)
+// Create the window classes. Returns false if any errors occur
+bool BuildClasses(void)
 {
 	WNDCLASS        wc;                // Windows class structure
 
@@ -98,7 +98,7 @@ BOOL BuildClasses(void)
 
 	// Register the window class
 	if(RegisterClass(&wc) == 0)
-		return FALSE;
+		return false;
 
 
 	// Register window style for the main view window
@@ -116,9 +116,9 @@ BOOL BuildClasses(void)
 
 	// Register the window class
 	if(RegisterClass(&wc) == 0)
-		return FALSE;
+		return false;
 
-	return TRUE;
+	return true;
 }
 
 float GetTime( void )
@@ -193,11 +193,11 @@ int APIENTRY WinMain(   HINSTANCE       hInst,
 	// Create the window classes for the main window and the
 	// children
 	if(!BuildClasses())
-		return FALSE;
+		return false;
 
 	// Initializes the world geography
 	if(!InitGame())
-		return FALSE;
+		return false;
 
 	// Create the main application window
 	g_hMainWnd = CreateWindow(
@@ -301,7 +301,7 @@ LRESULT CALLBACK WndProcMain(HWND    hWnd,
 			width = clientRect.right - clientRect.left;
 			height = (clientRect.bottom*2)/5;
 			MoveWindow(g_hViewWnd,0,0,
-					width,clientRect.bottom-clientRect.top,TRUE);
+					width,clientRect.bottom-clientRect.top,true);
 
 			}
 			break;
@@ -332,13 +332,13 @@ LRESULT CALLBACK WndProcMain(HWND    hWnd,
 				case 'G':		// Toggle Gravity
 					{
 					g_UseGravity = !g_UseGravity;
-					InvalidateRect(g_hViewWnd,NULL,FALSE);
+					InvalidateRect(g_hViewWnd,NULL,false);
 					break;
 					}
 				case 'S':		// Toggle Springs
 					{
 					g_DrawSprings = !g_DrawSprings;
-					InvalidateRect(g_hViewWnd,NULL,FALSE);
+					InvalidateRect(g_hViewWnd,NULL,false);
 					break;
 					}
 
@@ -347,7 +347,7 @@ LRESULT CALLBACK WndProcMain(HWND    hWnd,
 
 					if (g_POV.rot.x > 0.0f) g_POV.rot.x -= 1.0;
 					// Invalidate the view window (compass doesn't change)
-					InvalidateRect(g_hViewWnd,NULL,FALSE);
+					InvalidateRect(g_hViewWnd,NULL,false);
 					break;
 					}
 
@@ -356,21 +356,21 @@ LRESULT CALLBACK WndProcMain(HWND    hWnd,
 
 					if (g_POV.rot.x < 90.0f) g_POV.rot.x += 1.0;
 					// Invalidate the view window (compass doesn't change)
-					InvalidateRect(g_hViewWnd,NULL,FALSE);
+					InvalidateRect(g_hViewWnd,NULL,false);
 					break;
 					}
 
 				case VK_LEFT:		// Left arrow, turn left
 					{
 					g_POV.rot.y += 1.0;
-					InvalidateRect(g_hViewWnd,NULL,FALSE);
+					InvalidateRect(g_hViewWnd,NULL,false);
 					break;
 					}
 
 				case VK_RIGHT:		// Right Arrow, turn right
 					{
 					g_POV.rot.y -= 1.0;
-					InvalidateRect(g_hViewWnd,NULL,FALSE);
+					InvalidateRect(g_hViewWnd,NULL,false);
 					break;
 					}
 				case VK_PRIOR:		// PGUP Zoom Out
@@ -378,7 +378,7 @@ LRESULT CALLBACK WndProcMain(HWND    hWnd,
 
 					if (g_POV.trans.z > 1.0f) g_POV.trans.z -= 1.0;
 					// Invalidate the view window (compass doesn't change)
-					InvalidateRect(g_hViewWnd,NULL,FALSE);
+					InvalidateRect(g_hViewWnd,NULL,false);
 					break;
 					}
 				case VK_NEXT:		// PGDN Zoom In
@@ -386,7 +386,7 @@ LRESULT CALLBACK WndProcMain(HWND    hWnd,
 
 					if (g_POV.trans.z < 9.0f) g_POV.trans.z += 1.0;
 					// Invalidate the view window (compass doesn't change)
-					InvalidateRect(g_hViewWnd,NULL,FALSE);
+					InvalidateRect(g_hViewWnd,NULL,false);
 					break;
 					}
 				}
@@ -423,7 +423,7 @@ LRESULT CALLBACK WndProcMain(HWND    hWnd,
 					else
 						CheckMenuItem(hMenu,ID_USE_FRICTION,MF_BYCOMMAND | MF_UNCHECKED);
 
-					InvalidateRect(g_hViewWnd,NULL,FALSE);
+					InvalidateRect(g_hViewWnd,NULL,false);
 					break;
 				// Turn On/Off Friction
 				case ID_USE_GRAVITY:
@@ -435,7 +435,7 @@ LRESULT CALLBACK WndProcMain(HWND    hWnd,
 					else
 						CheckMenuItem(hMenu,ID_USE_GRAVITY,MF_BYCOMMAND | MF_UNCHECKED);
 
-					InvalidateRect(g_hViewWnd,NULL,FALSE);
+					InvalidateRect(g_hViewWnd,NULL,false);
 					break;
 				case ID_VIEW_SPRINGS:
 					g_DrawSprings = !g_DrawSprings;
@@ -446,7 +446,7 @@ LRESULT CALLBACK WndProcMain(HWND    hWnd,
 					else
 						CheckMenuItem(hMenu,ID_VIEW_SPRINGS,MF_BYCOMMAND | MF_UNCHECKED);
 
-					InvalidateRect(g_hViewWnd,NULL,FALSE);
+					InvalidateRect(g_hViewWnd,NULL,false);
 					break;
 				case ID_VIEW_CVS:
 					g_DrawCVs = !g_DrawCVs;
@@ -457,7 +457,7 @@ LRESULT CALLBACK WndProcMain(HWND    hWnd,
 					else
 						CheckMenuItem(hMenu,ID_VIEW_CVS,MF_BYCOMMAND | MF_UNCHECKED);
 
-					InvalidateRect(g_hViewWnd,NULL,FALSE);
+					InvalidateRect(g_hViewWnd,NULL,false);
 					break;
 				case ID_VIEW_MESH:
 					g_DrawMesh = !g_DrawMesh;
@@ -468,7 +468,7 @@ LRESULT CALLBACK WndProcMain(HWND    hWnd,
 					else
 						CheckMenuItem(hMenu,ID_VIEW_MESH,MF_BYCOMMAND | MF_UNCHECKED);
 
-					InvalidateRect(g_hViewWnd,NULL,FALSE);
+					InvalidateRect(g_hViewWnd,NULL,false);
 					break;
 				case ID_VIEW_VERTEXINFLUENCES:
 					g_DrawInfluence = !g_DrawInfluence;
@@ -479,7 +479,7 @@ LRESULT CALLBACK WndProcMain(HWND    hWnd,
 					else
 						CheckMenuItem(hMenu,ID_VIEW_VERTEXINFLUENCES,MF_BYCOMMAND | MF_UNCHECKED);
 
-					InvalidateRect(g_hViewWnd,NULL,FALSE);
+					InvalidateRect(g_hViewWnd,NULL,false);
 					break;
 				}
 			}
@@ -498,7 +498,7 @@ LRESULT CALLBACK WndProcMain(HWND    hWnd,
 
 ///////////////////////////////////////////////////////////////////////////
 // Dialog procedure
-BOOL APIENTRY AboutDlgProc (HWND hDlg, UINT message, UINT wParam, LONG lParam)
+bool APIENTRY AboutDlgProc (HWND hDlg, UINT message, UINT wParam, LONG lParam)
 {
 	switch (message)
 	{
@@ -507,16 +507,16 @@ BOOL APIENTRY AboutDlgProc (HWND hDlg, UINT message, UINT wParam, LONG lParam)
 			{
 			// Validate and Make the changes
 			if(LOWORD(wParam) == IDOK)
-				EndDialog(hDlg,TRUE);
+				EndDialog(hDlg,true);
 		    }
 			break;
 
 		// Closed from sysbox
 		case WM_CLOSE:
-			EndDialog(hDlg,TRUE);
+			EndDialog(hDlg,true);
 			break;
 	}
-	return FALSE;
+	return false;
 }
 
 

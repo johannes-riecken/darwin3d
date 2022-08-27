@@ -343,6 +343,6 @@ int LoadOBJ(const char *filename,t_ToonVisual *visual)
 			free(gMatName);
 	}
 	else
-		return FALSE;
-	return TRUE;
+		return false;
+	return true;
 }

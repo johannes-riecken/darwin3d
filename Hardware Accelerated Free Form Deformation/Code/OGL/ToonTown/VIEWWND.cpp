@@ -15,8 +15,8 @@
 
 int		g_MouseHitX, g_MouseHitY;			// Needed for Mouse Interaction
 int		g_ScreenHeight,g_ScreenWidth;
-int		g_Dragging = FALSE;
-int		g_ForceDrag = FALSE;
+int		g_Dragging = false;
+int		g_ForceDrag = false;
 float	g_LastYaw, g_LastPitch;
 float	g_LastDraw;
 HDC		g_hDC;	// Keep the Device Context
@@ -204,7 +204,7 @@ LRESULT CALLBACK WndProcView(HWND    hWnd,
 				int nRet;
 
 				// Selects the palette into the current device context
-				SelectPalette(hDC, hPalette, FALSE);
+				SelectPalette(hDC, hPalette, false);
 
 				// Map entries from the currently selected palette to
 				// the system palette.  The return value is the number
@@ -212,7 +212,7 @@ LRESULT CALLBACK WndProcView(HWND    hWnd,
 				nRet = RealizePalette(hDC);
 
 				// Repaint, forces remap of palette in current window
-				InvalidateRect(hWnd,NULL,FALSE);
+				InvalidateRect(hWnd,NULL,false);
 
 				return nRet;
 				}
@@ -227,7 +227,7 @@ LRESULT CALLBACK WndProcView(HWND    hWnd,
 			if((hPalette != NULL) && ((HWND)wParam != hWnd))
 				{
 				// Select the palette into the device context
-				SelectPalette(hDC,hPalette,FALSE);
+				SelectPalette(hDC,hPalette,false);
 
 				// Map entries to system palette
 				RealizePalette(hDC);
@@ -242,7 +242,7 @@ LRESULT CALLBACK WndProcView(HWND    hWnd,
 		case WM_LBUTTONDOWN:
 			g_MouseHitX = LOWORD(lParam);  // horizontal position of cursor
 			g_MouseHitY = HIWORD(lParam);  // vertical position of cursor
-			g_ForceDrag = TRUE;
+			g_ForceDrag = true;
 				glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 				glPushMatrix();
 
@@ -276,14 +276,14 @@ LRESULT CALLBACK WndProcView(HWND    hWnd,
 				if (tx != g_MouseHitX)
 				{
 					g_POV.rot.y = g_LastYaw + (float)(tx - g_MouseHitX);
-					InvalidateRect(hWnd,NULL,FALSE);
+					InvalidateRect(hWnd,NULL,false);
 				}
 				if (ty != g_MouseHitY)
 				{
 					g_POV.rot.x = g_LastPitch + (float)(ty - g_MouseHitY);
 					if (g_POV.rot.x < 0.0f) g_POV.rot.x = 0.0f;
 					if (g_POV.rot.x > 90.0f) g_POV.rot.x = 90.0f;
-					InvalidateRect(hWnd,NULL,FALSE);
+					InvalidateRect(hWnd,NULL,false);
 				}
 
 			}
@@ -299,20 +299,20 @@ LRESULT CALLBACK WndProcView(HWND    hWnd,
 				localX.z = g_ViewMatrix.m[8];
 
 				SetMouseForce(tx - g_MouseHitX,ty - g_MouseHitY,&localX,&localY);
-				g_MouseForceActive = TRUE;
+				g_MouseForceActive = true;
 			}
 			break;
 
 		// Handle Left Mouse Button Release
 		case WM_LBUTTONUP:
-			g_ForceDrag = FALSE;
-			g_MouseForceActive = FALSE;
+			g_ForceDrag = false;
+			g_MouseForceActive = false;
 			ReleaseCapture();
 			break;
 
 		// Handle Right Mouse Button Press
 		case WM_RBUTTONDOWN:
-			g_Dragging = TRUE;
+			g_Dragging = true;
 			g_LastYaw = g_POV.rot.y;		// Save the old Yaw
 			g_LastPitch = g_POV.rot.x;		// Save the old Pitch
 			g_MouseHitX = LOWORD(lParam);  // horizontal position of cursor
@@ -323,7 +323,7 @@ LRESULT CALLBACK WndProcView(HWND    hWnd,
 
 		// Handle Right Mouse Button Release
 		case WM_RBUTTONUP:
-			g_Dragging = FALSE;
+			g_Dragging = false;
 			ReleaseCapture();
 			break;
 

@@ -24,6 +24,7 @@
 #include <GL/glut.h>
 #include <math.h>
 #include "externs.h"	// Data shared between files
+#include <cstring>
 
 #define		FFD_NODE_COUNT	64
 #define		FFD_WIDTH	4
@@ -45,14 +46,14 @@ float			g_Csf;
 float			g_Ckf;
 float			g_Kd;
 int				g_IntegratorType;
-int				g_CollisionRootFinding = FALSE;		// ONLY SET WHEN FINDING A COLLISION
-int				g_UseDamping = TRUE;				// Use a Damping force
-int				g_UseFriction = TRUE;				// Use Friction
-int				g_UseGravity = TRUE;				// Use Gravity
-int				g_DrawSprings = TRUE;
-int				g_MouseForceActive = FALSE;
-int				g_DrawCVs = TRUE;
-int				g_DrawMesh = TRUE;
+int				g_CollisionRootFinding = false;		// ONLY SET WHEN FINDING A COLLISION
+int				g_UseDamping = true;				// Use a Damping force
+int				g_UseFriction = true;				// Use Friction
+int				g_UseGravity = true;				// Use Gravity
+int				g_DrawSprings = true;
+int				g_MouseForceActive = false;
+int				g_DrawCVs = true;
+int				g_DrawMesh = true;
 int				g_Pick[2];
 
 tVector			g_CueForce;
@@ -72,7 +73,7 @@ float			g_WorldSizeX,g_WorldSizeY,g_WorldSizeZ;
 tVector			g_FFDmin,g_FFDmax;
 ///////////////////////////////////////////////////////////////////////////////
 // Initialize the world and the objects in it.
-BOOL InitGame(void)
+bool InitGame(void)
 {
 	g_Pick[0] = -1;
 	g_Pick[1] = -1;
@@ -92,7 +93,7 @@ BOOL InitGame(void)
 //	g_IntegratorType = MIDPOINT_INTEGRATOR;
 	g_IntegratorType = EULER_INTEGRATOR;
 
-	g_CollisionRootFinding = FALSE;		// ONLY SET WHEN FINDING A COLLISION
+	g_CollisionRootFinding = false;		// ONLY SET WHEN FINDING A COLLISION
 
 	g_ContactCnt = 0;
 	g_SpringCnt = 0;
@@ -132,7 +133,7 @@ BOOL InitGame(void)
 	g_CollisionPlane[4].d = g_WorldSizeZ / 2.0f;
 
 
-	return TRUE;
+	return true;
 }
 
 void AddSpring(int p1, int p2,t_Particle *sys)
@@ -734,7 +735,7 @@ void ResolveCollisions( t_Particle	*system )
 	}
 }
 
-void Simulate(float DeltaTime, BOOL running)
+void Simulate(float DeltaTime, bool running)
 {
     float		CurrentTime = 0.0f;
     float		TargetTime = DeltaTime;
@@ -774,7 +775,7 @@ void Simulate(float DeltaTime, BOOL running)
         if(collisionState == PENETRATING)
         {
 			// TELL THE SYSTEM I AM LOOKING FOR A COLLISION SO IT WILL USE EULER
-			g_CollisionRootFinding = TRUE;
+			g_CollisionRootFinding = true;
             // we simulated too far, so subdivide time and try again
             TargetTime = (CurrentTime + TargetTime) / 2.0f;
 
@@ -796,7 +797,7 @@ void Simulate(float DeltaTime, BOOL running)
                             COLLIDING_WITH_WALL) && (Counter < 500));
 
                 assert(Counter < 500);
-				g_CollisionRootFinding = FALSE;	// FOUND THE COLLISION POINT BACK TO NORMAL
+				g_CollisionRootFinding = false;	// FOUND THE COLLISION POINT BACK TO NORMAL
             }
 
             // we made a successful step, so swap configurations

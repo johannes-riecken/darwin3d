@@ -34,7 +34,7 @@ t_Mesh		g_Mesh;
 tVector		g_ShadeLight;
 tVector		g_ShadeSrc[32];				// Shade Texture
 unsigned int	g_ShadeTexture;				// Pointer to Shaded texture
-int			g_DrawInfluence = FALSE;
+int			g_DrawInfluence = false;
 tMatrix		g_ViewMatrix;
 void LoadSceneFile(char *filename);
 void LoadShadeTexture(char *texfile);
