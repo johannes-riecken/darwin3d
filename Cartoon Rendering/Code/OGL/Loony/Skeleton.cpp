@@ -21,7 +21,7 @@
 #ifdef _MSC_VER
 #include "stdafx.h"
 #endif
-#include "skeleton.h"
+#include "Skeleton.h"
 #include <cstddef>
 #include <cstdlib>
 
