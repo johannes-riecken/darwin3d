@@ -22,11 +22,11 @@
 #endif
 #include <math.h>
 #include <stdio.h>
-#include <GL/hl.h>		// Core OpenGL functions
+#include <GL/gl.h>		// Core OpenGL functions
 #include <GL/glut.h>		// OpenGL Utility functions
-#include <GL/glaux.h>
 #include "externs.h"	// Data shared between files
 #include "loadtga.h"	// Routines to load the texture files
+#include <cstring>
 
 /// Application Definitions ///////////////////////////////////////////////////
 #define OGL_AXIS_DLIST		1		// OPENGL DISPLAY LIST ID

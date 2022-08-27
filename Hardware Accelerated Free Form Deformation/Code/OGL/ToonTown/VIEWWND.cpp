@@ -8,7 +8,6 @@
 #include <math.h>
 #include <GL/gl.h>		// Core OpenGL functions
 #include <GL/glut.h>		// OpenGL Utility functions
-#include <GL/glaux.h>
 #include "externs.h"	// Data shared between files
 
 /////////////////////////////////////////////////////////////////////////////////////
