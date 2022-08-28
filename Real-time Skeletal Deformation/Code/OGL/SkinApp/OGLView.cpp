@@ -98,7 +98,7 @@ COGLView::~COGLView()
 	free(m_Skeleton->children[1].CV_weight);
 }
 
-bool COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, unsigned int dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, t_Bone *skeleton, CCreateContext* pContext)
+bool COGLView::Create(const char* lpszClassName, const char* lpszWindowName, unsigned int dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, t_Bone *skeleton, CCreateContext* pContext)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
     int loop;

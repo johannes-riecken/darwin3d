@@ -116,7 +116,7 @@ bool LoadBVA(const char* name,t_Bone *root)
 	float *tempChannel,*fptr;
 ///////////////////////////////////////////////////////////////////////////////
 	// OPEN THE BVA FILE
-	if (fp = fopen((LPCTSTR)name,"r")) {
+	if (fp = fopen((const char*)name,"r")) {
 		while (!feof(fp))
 		{
 			fgets(buffer,MAX_STRINGLENGTH,fp);
@@ -238,7 +238,7 @@ bool LoadBVH(const char* name,t_Bone *root)
 	dataptr = (float **)malloc(sizeof(float *) * 255);
 	curBone = root;
 	// OPEN THE BVH FILE
-	if (fp = fopen((LPCTSTR)name,"r")) {
+	if (fp = fopen((const char*)name,"r")) {
 		while (!feof(fp))
 		{
 			fgets(buffer,MAX_STRINGLENGTH,fp);
@@ -613,7 +613,7 @@ bool LoadAcclaim(const char* name,t_Bone *root)
 	// OPEN THE ACCLAIM ASF PORTION OF THE FILE
 	// THIS PART HOLDS THE DEFINITIONS FOR ALL THE BONES AS WELL AS THE
 	// HIERARCHY INFO
-	if (fp = fopen((LPCTSTR)name,"r")) {
+	if (fp = fopen((const char*)name,"r")) {
 		while (!feof(fp))
 		{
 			if (grabNew)

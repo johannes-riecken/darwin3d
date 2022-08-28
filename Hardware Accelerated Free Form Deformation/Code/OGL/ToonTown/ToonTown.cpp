@@ -41,12 +41,12 @@ HWND     g_hMainWnd = NULL;
 HPALETTE hPalette = NULL;
 
 // Class Names for all the window classes in this application
-static LPCTSTR lpszMainWndClass = "MainClass";
-static LPCTSTR lpszViewWndClass = "ViewClass";
+static const char* lpszMainWndClass = "MainClass";
+static const char* lpszViewWndClass = "ViewClass";
 
 
 // Application name and instance storeage
-static LPCTSTR lpszAppName = "GL ToonTown";
+static const char* lpszAppName = "GL ToonTown";
 static HINSTANCE hInstance;
 
 

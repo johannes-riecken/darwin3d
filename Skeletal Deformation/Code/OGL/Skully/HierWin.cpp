@@ -222,7 +222,7 @@ void CHierWin::EditBone()
 		dialog.m_Weight = bonePtr->animBlend;
 		if (dialog.DoModal())
 		{
-			strcpy(bonePtr->name,(LPCTSTR)(dialog.m_BoneName));
+			strcpy(bonePtr->name,(const char*)(dialog.m_BoneName));
 			bonePtr->trans.x = dialog.m_Trans_X;
 			bonePtr->trans.y = dialog.m_Trans_Y;
 			bonePtr->trans.z = dialog.m_Trans_Z;

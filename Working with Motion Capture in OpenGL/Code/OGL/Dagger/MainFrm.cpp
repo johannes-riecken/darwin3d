@@ -22,7 +22,9 @@
 #ifdef _MSC_VER
 #include "stdafx.h"
 #endif
+#ifdef _MSC_VER
 #include "mmsystem.h"		// NEED THIS FOR THE TIMEGETTIME
+#endif
 #include "Dagger.h"
 #include "HierWin.h"
 #include "LoadAnim.h"

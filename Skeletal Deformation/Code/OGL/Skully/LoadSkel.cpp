@@ -50,24 +50,24 @@ void AddDarwinBranch(t_Bone *root, tSkeletonNode *curNode,tSkeletonNode *baseNod
 	{
 		child = &root->children[i];
 		ResetBone(child,root);
-		strcpy(child->name,baseNode[(int)curNode->child[i]].name);
-		child->trans.x = baseNode[(int)curNode->child[i]].tx;
-		child->trans.y = baseNode[(int)curNode->child[i]].ty;
-		child->trans.z = baseNode[(int)curNode->child[i]].tz;
-		child->rot.x = baseNode[(int)curNode->child[i]].rx;
-		child->rot.y = baseNode[(int)curNode->child[i]].ry;
-		child->rot.z = baseNode[(int)curNode->child[i]].rz;
-		child->b_trans.x = baseNode[(int)curNode->child[i]].tx;
-		child->b_trans.y = baseNode[(int)curNode->child[i]].ty;
-		child->b_trans.z = baseNode[(int)curNode->child[i]].tz;
-		child->b_rot.x = baseNode[(int)curNode->child[i]].rx;
-		child->b_rot.y = baseNode[(int)curNode->child[i]].ry;
-		child->b_rot.z = baseNode[(int)curNode->child[i]].rz;
+		strcpy(child->name,baseNode[(intptr_t)curNode->child[i]].name);
+		child->trans.x = baseNode[(intptr_t)curNode->child[i]].tx;
+		child->trans.y = baseNode[(intptr_t)curNode->child[i]].ty;
+		child->trans.z = baseNode[(intptr_t)curNode->child[i]].tz;
+		child->rot.x = baseNode[(intptr_t)curNode->child[i]].rx;
+		child->rot.y = baseNode[(intptr_t)curNode->child[i]].ry;
+		child->rot.z = baseNode[(intptr_t)curNode->child[i]].rz;
+		child->b_trans.x = baseNode[(intptr_t)curNode->child[i]].tx;
+		child->b_trans.y = baseNode[(intptr_t)curNode->child[i]].ty;
+		child->b_trans.z = baseNode[(intptr_t)curNode->child[i]].tz;
+		child->b_rot.x = baseNode[(intptr_t)curNode->child[i]].rx;
+		child->b_rot.y = baseNode[(intptr_t)curNode->child[i]].ry;
+		child->b_rot.z = baseNode[(intptr_t)curNode->child[i]].rz;
 		child->curMatrix = (tMatrix *)malloc(sizeof(tMatrix));
-		child->childCnt = baseNode[(int)curNode->child[i]].childCnt;
+		child->childCnt = baseNode[(intptr_t)curNode->child[i]].childCnt;
 		if (child->childCnt > 0)
 		{
-			AddDarwinBranch(child,&baseNode[(int)curNode->child[i]],baseNode);
+			AddDarwinBranch(child,&baseNode[(intptr_t)curNode->child[i]],baseNode);
 		}
 	}
 }
@@ -87,9 +87,9 @@ bool LoadSkeleton(const char* name,t_Bone *root)
 	t_Bone *child;
 	char	temp[5];
 ///////////////////////////////////////////////////////////////////////////////
-	if (fp = fopen((LPCTSTR)name,"rb")) {
+	if (fp = fopen((const char*)name,"rb")) {
 		fread(temp,sizeof(char),4,fp);
-		fread(&boneCnt,sizeof(int),1,fp);
+		fread(&boneCnt,sizeof(intptr_t),1,fp);
 		bonelist = (tSkeletonNode *)malloc((boneCnt) * sizeof(tSkeletonNode));
 		for (i = 0; i < boneCnt; i++)
 		{
@@ -102,16 +102,16 @@ bool LoadSkeleton(const char* name,t_Bone *root)
 			fread(&tempBone->ry,sizeof(float),1,fp);
 			fread(&tempBone->rz,sizeof(float),1,fp);
 			// FIND THE PARENT
-			fread(&parent,sizeof(int),1,fp);
+			fread(&parent,sizeof(intptr_t),1,fp);
 			if (parent == -1)
 				tempBone->parent = NULL;
 			else
 				tempBone->parent = (t_Bone *)parent;
 
-			fread(&tempBone->childCnt,sizeof(int),1,fp);
+			fread(&tempBone->childCnt,sizeof(intptr_t),1,fp);
 			for (j = 0; j < tempBone->childCnt; j++)
 			{
-				fread(&tempBone->child[j],sizeof(int),1,fp);
+				fread(&tempBone->child[j],sizeof(intptr_t),1,fp);
 			}
 		}
 		fclose(fp);
@@ -137,24 +137,24 @@ bool LoadSkeleton(const char* name,t_Bone *root)
 		{
 			child = &root->children[i];
 			ResetBone(child,root);
-			strcpy(child->name,bonelist[(int)bonelist[0].child[i]].name);
-			child->trans.x = bonelist[(int)bonelist[0].child[i]].tx;
-			child->trans.y = bonelist[(int)bonelist[0].child[i]].ty;
-			child->trans.z = bonelist[(int)bonelist[0].child[i]].tz;
-			child->rot.x = bonelist[(int)bonelist[0].child[i]].rx;
-			child->rot.y = bonelist[(int)bonelist[0].child[i]].ry;
-			child->rot.z = bonelist[(int)bonelist[0].child[i]].rz;
-			child->b_trans.x = bonelist[(int)bonelist[0].child[i]].tx;
-			child->b_trans.y = bonelist[(int)bonelist[0].child[i]].ty;
-			child->b_trans.z = bonelist[(int)bonelist[0].child[i]].tz;
-			child->b_rot.x = bonelist[(int)bonelist[0].child[i]].rx;
-			child->b_rot.y = bonelist[(int)bonelist[0].child[i]].ry;
-			child->b_rot.z = bonelist[(int)bonelist[0].child[i]].rz;
-			child->childCnt = bonelist[(int)bonelist[0].child[i]].childCnt;
+			strcpy(child->name,bonelist[(intptr_t)bonelist[0].child[i]].name);
+			child->trans.x = bonelist[(intptr_t)bonelist[0].child[i]].tx;
+			child->trans.y = bonelist[(intptr_t)bonelist[0].child[i]].ty;
+			child->trans.z = bonelist[(intptr_t)bonelist[0].child[i]].tz;
+			child->rot.x = bonelist[(intptr_t)bonelist[0].child[i]].rx;
+			child->rot.y = bonelist[(intptr_t)bonelist[0].child[i]].ry;
+			child->rot.z = bonelist[(intptr_t)bonelist[0].child[i]].rz;
+			child->b_trans.x = bonelist[(intptr_t)bonelist[0].child[i]].tx;
+			child->b_trans.y = bonelist[(intptr_t)bonelist[0].child[i]].ty;
+			child->b_trans.z = bonelist[(intptr_t)bonelist[0].child[i]].tz;
+			child->b_rot.x = bonelist[(intptr_t)bonelist[0].child[i]].rx;
+			child->b_rot.y = bonelist[(intptr_t)bonelist[0].child[i]].ry;
+			child->b_rot.z = bonelist[(intptr_t)bonelist[0].child[i]].rz;
+			child->childCnt = bonelist[(intptr_t)bonelist[0].child[i]].childCnt;
 			child->curMatrix = (tMatrix *)malloc(sizeof(tMatrix));
 			if (child->childCnt > 0)
 			{
-				AddDarwinBranch(child,&bonelist[(int)bonelist[0].child[i]],bonelist);
+				AddDarwinBranch(child,&bonelist[(intptr_t)bonelist[0].child[i]],bonelist);
 			}
 		}
 

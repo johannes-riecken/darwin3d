@@ -66,7 +66,7 @@ COGLView::~COGLView()
 }
 
 
-bool COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, unsigned int dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CSlider *slider, CCreateContext* pContext)
+bool COGLView::Create(const char* lpszClassName, const char* lpszWindowName, unsigned int dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CSlider *slider, CCreateContext* pContext)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	t_Visual	*visual = NULL;
@@ -650,9 +650,9 @@ void COGLView::LoadFiles(const char* file1, const char* file2)
 		m_Skeleton.visuals[2].vertexData = NULL;
 	}
 
-	if (file1.GetLength() > 0 && LoadOBJ((char *)(LPCTSTR)file1 ,&m_Skeleton.visuals[0]))
+	if (file1.GetLength() > 0 && LoadOBJ((char *)(const char*)file1 ,&m_Skeleton.visuals[0]))
 	{
-		if (file2.GetLength() > 0 && LoadOBJ((char *)(LPCTSTR)file2,&m_Skeleton.visuals[1]))
+		if (file2.GetLength() > 0 && LoadOBJ((char *)(const char*)file2,&m_Skeleton.visuals[1]))
 		{
 			if (m_Skeleton.visuals[0].triCnt == m_Skeleton.visuals[1].triCnt)
 			{

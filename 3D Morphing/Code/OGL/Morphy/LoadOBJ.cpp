@@ -68,7 +68,7 @@ void LoadMaterialLib(const char* name,t_Visual *visual)
 	FILE *fp;
 ///////////////////////////////////////////////////////////////////////////////
 	strcpy(visual->map,"");
-	fp = fopen((LPCTSTR)name,"r");
+	fp = fopen((const char*)name,"r");
 	if (fp != NULL)
 	{
 		// FIRST PASS SETS UP THE NUMBER OF OBJECTS IN THE FILE
@@ -105,7 +105,7 @@ void LoadMaterialLib(const char* name,t_Visual *visual)
 					}
 					else if (temp == "map_Kd")	// TEXTURE MAP NAME
 					{
-						strcpy(visual->map,(LPCTSTR)words.GetAt(1));
+						strcpy(visual->map,(const char*)words.GetAt(1));
 					}
 				}
 			}

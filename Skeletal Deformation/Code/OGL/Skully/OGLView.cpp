@@ -83,7 +83,7 @@ COGLView::~COGLView()
 {
 }
 
-bool COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, unsigned int dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext)
+bool COGLView::Create(const char* lpszClassName, const char* lpszWindowName, unsigned int dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext)
 {
 	return CWnd::Create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, pContext);
 }
@@ -1194,7 +1194,7 @@ bool COGLView::LoadWeights(const char* name)
 	FILE *fp;		// I PREFER THIS STYLE OF FILE ACCESS
 	int count;
 ///////////////////////////////////////////////////////////////////////////////
-	if (fp = fopen((LPCTSTR)name,"rb")) {
+	if (fp = fopen((const char*)name,"rb")) {
 		fread(&count,sizeof(int),1,fp);
 		if (m_Model.vertexCnt == count)
 		{
@@ -1224,7 +1224,7 @@ bool COGLView::SaveWeights(const char* name)
 /// Local Variables ///////////////////////////////////////////////////////////
 	FILE *fp;		// I PREFER THIS STYLE OF FILE ACCESS
 ///////////////////////////////////////////////////////////////////////////////
-	if (fp = fopen((LPCTSTR)name,"wb")) {
+	if (fp = fopen((const char*)name,"wb")) {
 		fwrite(&m_Model.vertexCnt,sizeof(int),1,fp);
 		IterateBoneWeights(&m_Skeleton, false, fp);
 		fclose(fp);

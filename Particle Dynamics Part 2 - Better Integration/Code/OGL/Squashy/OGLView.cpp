@@ -80,7 +80,7 @@ COGLView::~COGLView()
 }
 
 
-bool COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, unsigned int dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext)
+bool COGLView::Create(const char* lpszClassName, const char* lpszWindowName, unsigned int dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	t_Visual	*visual = NULL;
@@ -731,7 +731,7 @@ void COGLView::LoadFile(const char* file1,const char* baseName,const char* ext)
 		visual = (t_Visual *)malloc(sizeof(t_Visual));
 		NewSystem();	// CLEAR WHAT DATA IS THERE
 		// I WANT TO LOAD JUST THE VERTICES AND PUT THEM IN A INDEXED FORMAT
-		if (file1.GetLength() > 0 && LoadOBJ((char *)(LPCTSTR)file1 ,visual,
+		if (file1.GetLength() > 0 && LoadOBJ((char *)(const char*)file1 ,visual,
 				LOADOBJ_VERTEXONLY | LOADOBJ_REUSEVERTICES))
 		{
 			// INFORM THE PHYSICAL SIMULATION OF THE PARTICLES
@@ -740,7 +740,7 @@ void COGLView::LoadFile(const char* file1,const char* baseName,const char* ext)
 			children = (t_Bone *)malloc(sizeof(t_Bone));
 			m_CurBone = &children[m_Skeleton.childCnt];
 			ResetBone(m_CurBone,&m_Skeleton);
-			strcpy(m_CurBone->name,(LPCTSTR)baseName);
+			strcpy(m_CurBone->name,(const char*)baseName);
 			m_CurBone->visuals = visual;
 			m_CurBone->visualCnt = 1;
 			m_Skeleton.childCnt = 1;
