@@ -25,6 +25,7 @@
 #include <GL/gl.h>
 #include <GL/glut.h>
 #include "loadOBJ.h"
+#include <cstring>
 
 ///////////////////////////////////////////////////////////////////////////////
 // Function:	ParseString

@@ -26,6 +26,7 @@
 //#include <GL/glut.h>
 #include "loadOBJ.h"
 #include <cstdlib>
+#include <cstring>
 
 char *gMatName;
 

@@ -30,6 +30,7 @@
 #include "LoadAnim.h"
 
 #include "MainFrm.h"
+#include <cstring>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
