@@ -28,6 +28,7 @@
 #include "OGLView.h"
 #include "LoadOBJ.h"
 #include "ToonSet.h"
+#include <cstring>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

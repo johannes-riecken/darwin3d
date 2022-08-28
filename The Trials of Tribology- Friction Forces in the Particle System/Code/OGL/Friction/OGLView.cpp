@@ -27,6 +27,7 @@
 #include "OGLView.h"
 #include "LoadOBJ.h"
 #include "TimeProps.h"
+#include <cstring>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

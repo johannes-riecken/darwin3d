@@ -28,6 +28,7 @@
 #include "externs.h"	// Data shared between files
 #include "loadtga.h"	// Routines to load the texture files
 #include "Models.h"		// Actual Geometry for balls and cue
+#include <cstring>
 
 /// Application Definitions ///////////////////////////////////////////////////
 #define OGL_AXIS_DLIST		1		// OPENGL DISPLAY LIST ID
