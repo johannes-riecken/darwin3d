@@ -36,8 +36,8 @@
 #endif
 #include <math.h>
 #include "MathDefs.h"
-#include "skeleton.h"
-#include "quatern.h"
+#include "Skeleton.h"
+#include "Quatern.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // Function:	CopyVector
