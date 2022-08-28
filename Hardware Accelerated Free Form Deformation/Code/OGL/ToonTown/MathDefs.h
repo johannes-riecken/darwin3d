@@ -30,7 +30,6 @@
 #define DEGTORAD(A)	((A * M_PI) / 180.0f)
 #define RADTODEG(A)	((A * 180.0f) / M_PI)
 ///////////////////////////////////////////////////////////////////////////////
-typedef unsigned char uchar;
 
 typedef int		bool;
 typedef unsigned int	unsigned int;

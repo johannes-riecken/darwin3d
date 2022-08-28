@@ -11,7 +11,6 @@
 
 typedef long fixed28;
 
-typedef unsigned char uchar;
 
 // STRUCTURE DEFINITIONS...
 // 2D POINT TYPE FOR SECTORS...FIXED POINT X AND Y
@@ -64,7 +63,7 @@ typedef struct {
 	short	nextedge,prevedge,backedge;
 	short	sector,backsector;
 	short	tex1,tex2;
-	uchar	Uoff,Voff,Uscale,Vscale;
+	unsigned char	Uoff,Voff,Uscale,Vscale;
 	long	shade;
 	long	flags;
 	long	pad1,pad2,pad3;
@@ -78,10 +77,10 @@ typedef struct {
 	short	edge,edgecnt;	/* FIRST EDGE # and COUNT */
 	long	ceil_height,floor_height;
 	short	floor_flags,floor_tex;
-	uchar	floor_Uoff,floor_Voff,floor_Uscale,floor_Vscale;
+	unsigned char	floor_Uoff,floor_Voff,floor_Uscale,floor_Vscale;
 	long	floor_shade;
 	short	ceil_flags,ceil_tex;
-	uchar	ceil_Uoff,ceil_Voff,ceil_Uscale,ceil_Vscale;
+	unsigned char	ceil_Uoff,ceil_Voff,ceil_Uscale,ceil_Vscale;
 	long	ceil_shade;
 	long	flags,pad2,pad3;		// FOR LATER EXPANSION
 } tSector;
