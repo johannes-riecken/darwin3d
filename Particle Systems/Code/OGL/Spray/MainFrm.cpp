@@ -19,7 +19,9 @@
 #ifdef _MSC_VER
 #include "stdafx.h"
 #endif
+#ifdef _MSC_VER
 #include <Direct.h>
+#endif
 #include "Spray.h"
 
 #include "MainFrm.h"

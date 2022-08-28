@@ -28,7 +28,9 @@
 #ifdef _MSC_VER
 #include <mmsystem.h>
 #endif
+#ifdef _MSC_VER
 #include <Direct.h>
+#endif
 #include "Fate.h"
 
 #include "MainFrm.h"
