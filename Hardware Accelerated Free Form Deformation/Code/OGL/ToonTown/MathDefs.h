@@ -31,7 +31,6 @@
 #define RADTODEG(A)	((A * 180.0f) / M_PI)
 ///////////////////////////////////////////////////////////////////////////////
 
-typedef int		bool;
 typedef unsigned int	unsigned int;
 typedef unsigned short  unsigned short;
 typedef unsigned char	byte;

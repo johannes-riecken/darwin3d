@@ -33,7 +33,6 @@
 #define MIN(a,b)   ((a < b) ? a : b)
 ///////////////////////////////////////////////////////////////////////////////
 
-typedef int		bool;
 typedef unsigned char	byte;
 
 typedef struct
