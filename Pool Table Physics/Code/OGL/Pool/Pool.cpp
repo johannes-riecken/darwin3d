@@ -26,7 +26,9 @@
 #include <GL/glut.h>             // GLU library
 #include "resource.h"           // About box and other resource identifiers.
 #include "externs.h"
+#ifdef _MSC_VER
 #include <mmsystem.h>
+#endif
 #include <time.h>
 
 

@@ -22,7 +22,9 @@
 #ifdef _MSC_VER
 #include "stdafx.h"
 #endif
+#ifdef _MSC_VER
 #include <mmsystem.h>
+#endif
 #include "Squashy.h"
 #include "OGLView.h"
 #include "LoadOBJ.h"

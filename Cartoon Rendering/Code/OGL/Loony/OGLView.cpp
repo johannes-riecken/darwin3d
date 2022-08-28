@@ -20,7 +20,9 @@
 #ifdef _MSC_VER
 #include "stdafx.h"
 #endif
+#ifdef _MSC_VER
 #include <mmsystem.h>
+#endif
 #include <math.h>
 #include "Loony.h"
 #include "OGLView.h"

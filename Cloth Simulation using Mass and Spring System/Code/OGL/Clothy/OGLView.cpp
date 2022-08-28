@@ -25,7 +25,9 @@
 #ifdef _MSC_VER
 #include "stdafx.h"
 #endif
+#ifdef _MSC_VER
 #include <mmsystem.h>
+#endif
 #include "Clothy.h"
 #include "OGLView.h"
 #include "LoadOBJ.h"

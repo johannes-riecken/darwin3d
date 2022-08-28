@@ -26,7 +26,9 @@
 #ifdef _MSC_VER
 #include "stdafx.h"
 #endif
+#ifdef _MSC_VER
 #include <mmsystem.h>
+#endif
 #include <math.h>
 #include "Skully.h"
 #include "OGLView.h"

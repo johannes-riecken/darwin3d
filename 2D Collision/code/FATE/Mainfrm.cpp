@@ -25,7 +25,9 @@
 #include "stdafx.h"
 #endif
 #include <math.h>
+#ifdef _MSC_VER
 #include <mmsystem.h>
+#endif
 #include <Direct.h>
 #include "Fate.h"
 
