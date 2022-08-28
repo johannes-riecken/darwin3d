@@ -44,7 +44,7 @@ CHierWin::~CHierWin()
 
 bool CHierWin::PreCreateWindow(CREATESTRUCT& cs)
 {
-	CString className;
+	const char* className;
 	HCURSOR arrow;
 
 	arrow = AfxGetApp()->LoadStandardCursor(IDC_ARROW);

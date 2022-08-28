@@ -699,7 +699,7 @@ void COGLView::NewSystem()
 // Procedure:	LoadFiles
 // Purpose:		Loads the OBJ files into memory
 ///////////////////////////////////////////////////////////////////////////////
-void COGLView::LoadFile(CString file1,CString baseName,CString ext)
+void COGLView::LoadFile(const char* file1,const char* baseName,const char* ext)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	t_Bone	*children;
@@ -773,7 +773,7 @@ void COGLView::LoadFile(CString file1,CString baseName,CString ext)
 // Procedure:	SaveFiles
 // Purpose:		Saves the Particle System
 ///////////////////////////////////////////////////////////////////////////////
-void COGLView::SaveFile(CString file1,CString baseName)
+void COGLView::SaveFile(const char* file1,const char* baseName)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	t_Visual *visual;

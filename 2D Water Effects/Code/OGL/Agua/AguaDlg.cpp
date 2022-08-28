@@ -140,7 +140,7 @@ bool CAguaDlg::OnInitDialog()
 	CMenu* pSysMenu = GetSystemMenu(false);
 	if (pSysMenu != NULL)
 	{
-		CString strAboutMenu;
+		const char* strAboutMenu;
 		strAboutMenu.LoadString(IDS_ABOUTBOX);
 		if (!strAboutMenu.IsEmpty())
 		{

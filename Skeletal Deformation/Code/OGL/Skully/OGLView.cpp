@@ -1188,7 +1188,7 @@ void COGLView::IterateBoneWeights(t_Bone *skeleton, bool read, FILE *fp)
 // Purpose:		Load a Weight File
 // Arguments:	Name of the file to open
 ///////////////////////////////////////////////////////////////////////////////
-bool COGLView::LoadWeights(CString name)
+bool COGLView::LoadWeights(const char* name)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	FILE *fp;		// I PREFER THIS STYLE OF FILE ACCESS
@@ -1219,7 +1219,7 @@ bool COGLView::LoadWeights(CString name)
 // Purpose:		Save a Set of Weight Files
 // Arguments:	Name of the file to save
 ///////////////////////////////////////////////////////////////////////////////
-bool COGLView::SaveWeights(CString name)
+bool COGLView::SaveWeights(const char* name)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	FILE *fp;		// I PREFER THIS STYLE OF FILE ACCESS
@@ -1238,7 +1238,7 @@ bool COGLView::SaveWeights(CString name)
 // Purpose:		Load an OBJ Model into the system
 // Arguments:	Name of the file to open
 ///////////////////////////////////////////////////////////////////////////////
-bool COGLView::LoadOBJModel(CString name)
+bool COGLView::LoadOBJModel(const char* name)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -1262,7 +1262,7 @@ bool COGLView::LoadOBJModel(CString name)
 // Purpose:		Load a Skeleton into the system
 // Arguments:	Name of the file to open
 ///////////////////////////////////////////////////////////////////////////////
-bool COGLView::LoadSkeletonFile(CString name)
+bool COGLView::LoadSkeletonFile(const char* name)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////

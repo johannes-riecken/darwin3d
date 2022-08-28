@@ -51,7 +51,7 @@ void CLoadDlg::OnBrowse1()
 {
 	char szFilter[] = "OBJ files (*.obj)|*.obj||";  // WILL INCLUDE Biovision Hierarchy BVH (*.bvh)|*.bvh|
 	CFileDialog	dialog( true, ".obj", NULL, NULL, szFilter, this);
-	CString name;
+	const char* name;
 	if (dialog.DoModal())
 	{
 		name = dialog.GetFileName( ) ;
@@ -64,7 +64,7 @@ void CLoadDlg::OnBrowse2()
 {
 	char szFilter[] = "OBJ files (*.obj)|*.obj||";  // WILL INCLUDE Biovision Hierarchy BVH (*.bvh)|*.bvh|
 	CFileDialog	dialog( true, ".obj", NULL, NULL, szFilter, this);
-	CString name;
+	const char* name;
 	if (dialog.DoModal())
 	{
 		name = dialog.GetFileName( ) ;

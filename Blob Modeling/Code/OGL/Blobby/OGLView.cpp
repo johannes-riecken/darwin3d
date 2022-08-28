@@ -703,7 +703,7 @@ void COGLView::EditSys()
 // Procedure:	LoadFiles
 // Purpose:		Loads the Blob files into memory
 ///////////////////////////////////////////////////////////////////////////////
-void COGLView::LoadFile(CString file1,CString baseName)
+void COGLView::LoadFile(const char* file1,const char* baseName)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	FILE *fp;
@@ -735,7 +735,7 @@ void COGLView::LoadFile(CString file1,CString baseName)
 // Procedure:	SaveFiles
 // Purpose:		Saves the Blob files into memory
 ///////////////////////////////////////////////////////////////////////////////
-void COGLView::SaveFile(CString file1,CString baseName)
+void COGLView::SaveFile(const char* file1,const char* baseName)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	FILE *fp;

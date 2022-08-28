@@ -63,8 +63,8 @@ public:
 	void	HandleKeyDown(UINT nChar);
 	void	resetEmitter();
 	void	editEmitter(tEmitter *emitter);
-	bool	GetEmitter(CString filename);
-	bool	SaveEmitter(CString filename);
+	bool	GetEmitter(const char* filename);
+	bool	SaveEmitter(const char* filename);
 // Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(COGLView)

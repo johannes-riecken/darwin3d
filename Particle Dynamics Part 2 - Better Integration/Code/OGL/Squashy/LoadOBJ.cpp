@@ -35,7 +35,7 @@
 void ParseString(char *buffer,CStringArray *words,int *cnt)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
-	CString in = buffer, temp;
+	const char* in = buffer, temp;
 ///////////////////////////////////////////////////////////////////////////////
 
 	in.TrimLeft();
@@ -59,13 +59,13 @@ void ParseString(char *buffer,CStringArray *words,int *cnt)
 // Purpose:		Handles the Loading of a Material library
 // Arguments:	Name of the Material Library
 ///////////////////////////////////////////////////////////////////////////////
-void LoadMaterialLib(CString name,t_Visual *visual)
+void LoadMaterialLib(const char* name,t_Visual *visual)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	int cnt;
 	char buffer[MAX_STRINGLENGTH];
 	CStringArray words;
-	CString temp;
+	const char* temp;
 	FILE *fp;
 ///////////////////////////////////////////////////////////////////////////////
 	strcpy(visual->map,"");
@@ -128,8 +128,8 @@ void HandleFace(CStringArray *words,t_faceIndex *face)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	int loop,loopcnt;
-	CString temp;
-	CString vStr,nStr,tStr;		// HOLD POINTERS TO ELEMENT POINTERS
+	const char* temp;
+	const char* vStr,nStr,tStr;		// HOLD POINTERS TO ELEMENT POINTERS
 	int nPos,tPos;
 ///////////////////////////////////////////////////////////////////////////////
 	loopcnt = words->GetSize();
@@ -177,7 +177,7 @@ bool LoadOBJ(char *filename,t_Visual *visual, int flags)
 	int loop,loop2,cnt;
 	char buffer[MAX_STRINGLENGTH];
 	CStringArray words;
-	CString temp;
+	const char* temp;
 	FILE *fp;
 	long vCnt = 0, nCnt = 0, tCnt = 0, fCnt = 0;
 	long vPos = 0, nPos = 0, tPos = 0, fPos = 0;

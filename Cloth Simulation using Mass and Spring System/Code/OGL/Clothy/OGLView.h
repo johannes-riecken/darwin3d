@@ -76,8 +76,8 @@ public:
 	GLvoid  morphModel(t_Bone *curBone);
 	GLvoid	LoadBoneTexture(t_Bone *curBone);
 	void	NewSystem();
-	void	LoadFile(CString file1,CString baseName,CString ext);
-	void	SaveFile(CString file1,CString baseName);
+	void	LoadFile(const char* file1,const char* baseName,const char* ext);
+	void	SaveFile(const char* file1,const char* baseName);
 	void	CreateClothPatch();
 	void	RunSim();
 	float	GetTime( void );

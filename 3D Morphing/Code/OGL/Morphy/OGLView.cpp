@@ -632,7 +632,7 @@ void COGLView::OnLButtonDblClk(UINT nFlags, CPoint point)
 // Procedure:	LoadFiles
 // Purpose:		Loads the OBJ files into memory
 ///////////////////////////////////////////////////////////////////////////////
-void COGLView::LoadFiles(CString file1, CString file2)
+void COGLView::LoadFiles(const char* file1, const char* file2)
 {
 	if (m_Skeleton.visuals[0].vertexData != NULL)
 	{

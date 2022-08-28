@@ -25,7 +25,7 @@ public:
 	CStatic	m_Display;
 	int		m_Drip_Radius;
 	float	m_DampingFactor;
-	CString	m_ImageFile;
+	const char*	m_ImageFile;
 	UINT	m_Green;
 	UINT	m_Red;
 	UINT	m_Blue;

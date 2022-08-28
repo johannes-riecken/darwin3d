@@ -68,7 +68,7 @@ public:
 	void	GetGLInfo();
 	void	HandleKeyUp(UINT nChar);
 	void	HandleKeyDown(UINT nChar);
-	bool	LoadOBJModel(CString name);
+	bool	LoadOBJModel(const char* name);
 	void	CartoonSettings();
 // Overrides
 	// ClassWizard generated virtual function overrides

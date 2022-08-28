@@ -33,7 +33,7 @@ protected: // create from serialization only
 
 // Attributes
 public:
-	CString m_ClassName;
+	const char* m_ClassName;
 	HCURSOR m_HArrow;
 	COGLView  m_OGLView;
 

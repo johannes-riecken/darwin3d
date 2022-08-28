@@ -129,7 +129,7 @@ bool COGLView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, unsigned in
 	memcpy(m_DeformedMesh, m_Mesh.desc->frame[m_Mesh.desc->cur_frame]->data,sizeof(tColoredVertex) * m_Mesh.desc->pointCnt);
 
 	// GET A DEFAULT WEIGHT SYSTEM
-	GetWeights(CString("arm.wgt"));
+	GetWeights(const char*("arm.wgt"));
 
 	UpdateStatus();	// DRAW INITIAL STATUS BAR
 	return CWnd::Create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, pContext);
@@ -1022,7 +1022,7 @@ void COGLView::ResetWeights()
 // Arguments:	Filename to get it from
 // Returns:		Success
 ///////////////////////////////////////////////////////////////////////////////
-bool COGLView::GetWeights(CString filename)
+bool COGLView::GetWeights(const char* filename)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	int loop;
@@ -1049,7 +1049,7 @@ bool COGLView::GetWeights(CString filename)
 // Arguments:	Filename to put it in
 // Returns:		Success
 ///////////////////////////////////////////////////////////////////////////////
-bool COGLView::SaveWeights(CString filename)
+bool COGLView::SaveWeights(const char* filename)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	int loop;

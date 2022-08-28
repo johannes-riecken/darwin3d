@@ -65,7 +65,7 @@ public:
 	void	HandleKeyDown(UINT nChar);
 	GLvoid  morphModel(t_Bone *curBone);
 	GLvoid	LoadBoneTexture(t_Bone *curBone);
-	void	LoadFiles(CString file1, CString file2);
+	void	LoadFiles(const char* file1, const char* file2);
 
 // Overrides
 	// ClassWizard generated virtual function overrides

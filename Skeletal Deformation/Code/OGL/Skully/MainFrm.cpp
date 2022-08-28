@@ -242,7 +242,7 @@ void CMainFrame::OnFileOpen()
 /// Local Variables ///////////////////////////////////////////////////////////
 	char BASED_CODE szFilter[] = "Darwin Skeleton (*.dar)|*.dar||";
 	CFileDialog	*dialog;
-	CString exten;
+	const char* exten;
 ///////////////////////////////////////////////////////////////////////////////
 	dialog = new CFileDialog(true,"dar",NULL, NULL,szFilter);
 	if (dialog->DoModal() == IDOK)
@@ -264,7 +264,7 @@ void CMainFrame::OnFileOpencharactermesh()
 /// Local Variables ///////////////////////////////////////////////////////////
 	char BASED_CODE szFilter[] = "Character Mesh OBJ (*.obj)|*.obj||";
 	CFileDialog	*dialog;
-	CString exten;
+	const char* exten;
 ///////////////////////////////////////////////////////////////////////////////
 	dialog = new CFileDialog(true,"dcm",NULL, NULL,szFilter);
 	if (dialog->DoModal() == IDOK)
@@ -283,7 +283,7 @@ void CMainFrame::OnFileOpenweight()
 /// Local Variables ///////////////////////////////////////////////////////////
 	char BASED_CODE szFilter[] = "Weight File (*.wgt)|*.wgt||";
 	CFileDialog	*dialog;
-	CString exten;
+	const char* exten;
 ///////////////////////////////////////////////////////////////////////////////
 	dialog = new CFileDialog(true,"wgt",NULL, NULL,szFilter);
 	if (dialog->DoModal() == IDOK)
@@ -300,7 +300,7 @@ void CMainFrame::OnFileSave()
 /// Local Variables ///////////////////////////////////////////////////////////
 	char BASED_CODE szFilter[] = "Weight File (*.wgt)|*.wgt||";
 	CFileDialog	*dialog;
-	CString exten;
+	const char* exten;
 ///////////////////////////////////////////////////////////////////////////////
 	dialog = new CFileDialog(false,"wgt",NULL, NULL,szFilter);
 	if (dialog->DoModal() == IDOK)

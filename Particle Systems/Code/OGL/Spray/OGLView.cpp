@@ -573,7 +573,7 @@ void COGLView::resetEmitter()
 // Arguments:	Filename to get it from
 // Returns:		Success
 ///////////////////////////////////////////////////////////////////////////////
-bool COGLView::GetEmitter(CString filename)
+bool COGLView::GetEmitter(const char* filename)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	tParticle	*particle;					// NULL TERMINATED LINKED LIST
@@ -602,7 +602,7 @@ bool COGLView::GetEmitter(CString filename)
 // Arguments:	Filename to put it in
 // Returns:		Success
 ///////////////////////////////////////////////////////////////////////////////
-bool COGLView::SaveEmitter(CString filename)
+bool COGLView::SaveEmitter(const char* filename)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	FILE *fp;

@@ -229,7 +229,7 @@ void CMainFrame::OnFileOpen()
 {
 	char szFilter[] = "DPS files (*.dps)|*.dps|OBJ files (*.obj)|*.obj||";  // WILL INCLUDE Biovision Hierarchy BVH (*.bvh)|*.bvh|
 	CFileDialog	dialog( true, ".obj", NULL, OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, szFilter, this);
-	CString name;
+	const char* name;
 	if (dialog.DoModal())
 	{
 		m_OGLView.LoadFile(dialog.GetFileName( ),dialog.GetFileTitle( ),dialog.GetFileExt()  );
@@ -241,7 +241,7 @@ void CMainFrame::OnFileSave()
 {
 	char szFilter[] = "DPS files (*.dps)|*.dps||";  // WILL INCLUDE Biovision Hierarchy BVH (*.bvh)|*.bvh|
 	CFileDialog	dialog( false, ".dps", NULL, OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, szFilter, this);
-	CString name;
+	const char* name;
 	if (dialog.DoModal())
 	{
 		m_OGLView.SaveFile(dialog.GetFileName( ),dialog.GetFileTitle( ));

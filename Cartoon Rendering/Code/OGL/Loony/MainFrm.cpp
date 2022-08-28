@@ -220,7 +220,7 @@ void CMainFrame::OnFileOpen()
 /// Local Variables ///////////////////////////////////////////////////////////
 	char BASED_CODE szFilter[] = "Shade Table (*.shd)|*.shd||";
 	CFileDialog	*dialog;
-	CString exten;
+	const char* exten;
 ///////////////////////////////////////////////////////////////////////////////
 	dialog = new CFileDialog(true,"shd",NULL, NULL,szFilter);
 	if (dialog->DoModal() == IDOK)
@@ -239,7 +239,7 @@ void CMainFrame::OnFileOpenObjectMesh()
 /// Local Variables ///////////////////////////////////////////////////////////
 	char BASED_CODE szFilter[] = "Object Mesh OBJ (*.obj)|*.obj||";
 	CFileDialog	*dialog;
-	CString exten;
+	const char* exten;
 ///////////////////////////////////////////////////////////////////////////////
 	dialog = new CFileDialog(true,"dcm",NULL, NULL,szFilter);
 	if (dialog->DoModal() == IDOK)

@@ -42,7 +42,7 @@
 void ParseString(char *buffer,CStringArray *words,int *cnt)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
-	CString in = buffer, temp;
+	const char* in = buffer, temp;
 ///////////////////////////////////////////////////////////////////////////////
 
 	in.TrimLeft();
@@ -102,14 +102,14 @@ t_Bone *FindBoneParent(t_Bone *bone, char *name)
 // Purpose:		Actually load a BVA file into the system
 // Arguments:	Name of the file to open and root skeleton to put it in
 ///////////////////////////////////////////////////////////////////////////////
-bool LoadBVA(CString name,t_Bone *root)
+bool LoadBVA(const char* name,t_Bone *root)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	FILE *fp;		// I PREFER THIS STYLE OF FILE ACCESS
 	int loop,loop2,cnt;
 	char buffer[MAX_STRINGLENGTH];
 	CStringArray words;
-	CString temp;
+	const char* temp;
 	int frameCnt;
 	float frameTime;
 	t_Bone *tempBones,*curBone;
@@ -222,14 +222,14 @@ bool LoadBVA(CString name,t_Bone *root)
 // Purpose:		Actually load a BVH file into the system
 // Arguments:	Name of the file to open and root skeleton to put it in
 ///////////////////////////////////////////////////////////////////////////////
-bool LoadBVH(CString name,t_Bone *root)
+bool LoadBVH(const char* name,t_Bone *root)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	FILE *fp;		// I PREFER THIS STYLE OF FILE ACCESS
 	int cnt;
 	char buffer[MAX_STRINGLENGTH];
 	CStringArray words;
-	CString temp;
+	const char* temp;
 	t_Bone *tempBones,*curBone,*parent;
 	int boneNum = 0;
 	float **dataptr,*animData = NULL;
@@ -601,7 +601,7 @@ void HandleAcclaimHierarchy(FILE *fp,t_Bone *root)
 // Purpose:		Actually load a Acclaim file into the system
 // Arguments:	Name of the file to open and root skeleton to put it in
 ///////////////////////////////////////////////////////////////////////////////
-bool LoadAcclaim(CString name,t_Bone *root)
+bool LoadAcclaim(const char* name,t_Bone *root)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	int cnt;

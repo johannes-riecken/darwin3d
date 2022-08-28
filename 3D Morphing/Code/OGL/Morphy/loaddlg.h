@@ -19,8 +19,8 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CLoadDlg)
 	enum { IDD = IDD_LOADOBJ };
-	CString	m_File1;
-	CString	m_File2;
+	const char*	m_File1;
+	const char*	m_File2;
 	//}}AFX_DATA
 
 

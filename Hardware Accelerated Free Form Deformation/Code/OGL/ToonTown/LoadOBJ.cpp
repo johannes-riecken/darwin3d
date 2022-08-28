@@ -37,7 +37,7 @@ char *gMatName;
 void ParseOBJString(char *buffer,CStringArray *words,int *cnt)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
-	CString in = buffer, temp;
+	const char* in = buffer, temp;
 ///////////////////////////////////////////////////////////////////////////////
 
 	in.TrimLeft();
@@ -61,13 +61,13 @@ void ParseOBJString(char *buffer,CStringArray *words,int *cnt)
 // Purpose:		Handles the Loading of a Material library
 // Arguments:	Name of the Material Library
 ///////////////////////////////////////////////////////////////////////////////
-void LoadMaterialLib(CString name,t_ToonVisual *visual)
+void LoadMaterialLib(const char* name,t_ToonVisual *visual)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	int cnt;
 	char buffer[MAX_STRINGLENGTH];
 	CStringArray words;
-	CString temp;
+	const char* temp;
 	FILE *fp;
 	int matCnt = 0,curMat = -1;
 ///////////////////////////////////////////////////////////////////////////////
@@ -163,8 +163,8 @@ void HandleFace(CStringArray *words,t_faceIndex *face)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	int loop,loopcnt;
-	CString temp;
-	CString vStr,nStr,tStr;		// HOLD POINTERS TO ELEMENT POINTERS
+	const char* temp;
+	const char* vStr,nStr,tStr;		// HOLD POINTERS TO ELEMENT POINTERS
 	int nPos,tPos;
 ///////////////////////////////////////////////////////////////////////////////
 	loopcnt = words->GetSize();
@@ -188,7 +188,7 @@ void HandleFace(CStringArray *words,t_faceIndex *face)
 ///// HandleFace //////////////////////////////////////////////////////////////
 
 
-int GetCurMat(CString name,t_ToonVisual *visual)
+int GetCurMat(const char* name,t_ToonVisual *visual)
 {
 	for (int loop = 0; loop < visual->matCnt; loop++)
 		if (name == &gMatName[20 * loop])
@@ -209,7 +209,7 @@ int LoadOBJ(const char *filename,t_ToonVisual *visual)
 	int loop,loop2,cnt;
 	char buffer[MAX_STRINGLENGTH];
 	CStringArray words;
-	CString temp;
+	const char* temp;
 	FILE *fp;
 	long vCnt = 0, nCnt = 0, tCnt = 0, fCnt = 0;
 	long vPos = 0, nPos = 0, tPos = 0, fPos = 0;

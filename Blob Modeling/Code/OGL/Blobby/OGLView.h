@@ -73,8 +73,8 @@ public:
 	void	GetGLInfo();
 	void	HandleKeyUp(UINT nChar);
 	void	HandleKeyDown(UINT nChar);
-	void	LoadFile(CString file1,CString baseName);
-	void	SaveFile(CString file1,CString baseName);
+	void	LoadFile(const char* file1,const char* baseName);
+	void	SaveFile(const char* file1,const char* baseName);
 	void	OnGoopAddblob();
 	void	EditBlob();
 	void	EditSys();

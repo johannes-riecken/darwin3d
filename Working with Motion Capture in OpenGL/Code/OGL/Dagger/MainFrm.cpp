@@ -391,7 +391,7 @@ void CMainFrame::OnFileLoadanim()
 /// Local Variables ///////////////////////////////////////////////////////////
 	char BASED_CODE szFilter[] = "Biovision BVA (*.bva)|*.bva|Biovision Heirarchy BVH (*.bvh)|*.bvh|Acclaim File (*.asf)|*.asf||";
 	CFileDialog	*dialog;
-	CString exten;
+	const char* exten;
 ///////////////////////////////////////////////////////////////////////////////
 
 	dialog = new CFileDialog(true,"bva",NULL, NULL,szFilter);

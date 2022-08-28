@@ -44,7 +44,7 @@ public:
 	float	m_speedVar;
 	float	m_yaw;
 	float	m_yawVar;
-	CString	m_name;
+	const char*	m_name;
 	int		m_TotalParticles;
 	//}}AFX_DATA
 

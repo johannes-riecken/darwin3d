@@ -86,7 +86,7 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CBoneInfo)
 	enum { IDD = IDD_BONE_INFO };
-	CString	m_BoneName;
+	const char*	m_BoneName;
 	float	m_Rot_X;
 	float	m_Rot_Y;
 	float	m_Rot_Z;

@@ -58,7 +58,7 @@ public:
 // Operations
 public:
 	bool	SetupPixelFormat(HDC hdc);
-	void	LoadActor(CString filename);
+	void	LoadActor(const char* filename);
 	GLvoid	drawModel(t_Visual *model);
 	GLvoid  drawSkeleton(t_Bone *rootBone);
 	GLvoid	drawScene(bool drawSelectRect);
@@ -77,10 +77,10 @@ public:
 	GLvoid	DeformVertices(t_Bone *rootBone,t_Visual *visual);
 	void	IterateBoneWeights(t_Bone *skeleton, bool read, FILE *fp) ;
 	void	ClearBoneWeights(t_Bone *skeleton);
-	bool	LoadWeights(CString name);
-	bool	SaveWeights(CString name);
-	bool	LoadOBJModel(CString name);
-	bool	LoadSkeletonFile(CString name);
+	bool	LoadWeights(const char* name);
+	bool	SaveWeights(const char* name);
+	bool	LoadOBJModel(const char* name);
+	bool	LoadSkeletonFile(const char* name);
 	void	SetBasePose();
 // Overrides
 	// ClassWizard generated virtual function overrides

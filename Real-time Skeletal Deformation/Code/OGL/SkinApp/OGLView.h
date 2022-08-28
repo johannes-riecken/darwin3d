@@ -68,8 +68,8 @@ public:
 	void	ModifyWeights();
 	void	LoadObjectFile(char *filename,t_Bone *bonePtr);
 	void	ResetWeights();
-	bool	GetWeights(CString filename);
-	bool	SaveWeights(CString filename);
+	bool	GetWeights(const char* filename);
+	bool	SaveWeights(const char* filename);
 	void	CreateBoneDLists(t_Bone *bone);
 	GLvoid	initializeGL(GLsizei width, GLsizei height);
 	GLvoid	resize( GLsizei width, GLsizei height );

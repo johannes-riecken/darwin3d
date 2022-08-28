@@ -23,6 +23,6 @@
 
 #include "Skeleton.h"
 
-bool LoadSkeleton(CString name,t_Bone *root);
+bool LoadSkeleton(const char* name,t_Bone *root);
 
 #endif // !defined(LoadSkel_H__INCLUDED_)

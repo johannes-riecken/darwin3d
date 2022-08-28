@@ -221,7 +221,7 @@ void CMainFrame::OnFileOpen()
 {
 	char szFilter[] = "Blob files (*.blb)|*.blb||";  // WILL INCLUDE Biovision Hierarchy BVH (*.bvh)|*.bvh|
 	CFileDialog	dialog( true, ".obj", NULL, NULL, szFilter, this);
-	CString name;
+	const char* name;
 	if (dialog.DoModal())
 	{
 		m_OGLView.LoadFile(dialog.GetFileName( ),dialog.GetFileTitle( ) );
@@ -232,7 +232,7 @@ void CMainFrame::OnFileSave()
 {
 	char szFilter[] = "Blob files (*.blb)|*.blb||";  // WILL INCLUDE Biovision Hierarchy BVH (*.bvh)|*.bvh|
 	CFileDialog	dialog( false, ".obj", NULL, NULL, szFilter, this);
-	CString name;
+	const char* name;
 	if (dialog.DoModal())
 	{
 		m_OGLView.SaveFile(dialog.GetFileName( ),dialog.GetFileTitle( ) );
