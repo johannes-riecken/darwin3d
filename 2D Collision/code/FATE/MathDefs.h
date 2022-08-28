@@ -19,7 +19,6 @@
 
 #define INT_TO_FIXED28(a)	((a) * WORLD_MULT)
 
-#define M_PI        3.14159265358979323846
 #define MAXPOLY             20000
 #define MAXPOINT            20000
 #define ABS(a)   (((a < 0) ? -a : a))

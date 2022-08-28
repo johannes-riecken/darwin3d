@@ -24,7 +24,6 @@
 #if !defined(MATHSTUFF_H__INCLUDED_)
 #define MATHSTUFF_H__INCLUDED_
 
-#define M_PI        3.14159265358979323846
 #define HALF_PI	    1.57079632679489661923
 
 #define DEGTORAD(d)	((d * (float)M_PI) / 180.0f);

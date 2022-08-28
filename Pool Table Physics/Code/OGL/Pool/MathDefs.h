@@ -24,7 +24,6 @@
 #if !defined(MATHDEFS_H__INCLUDED_)
 #define MATHDEFS_H__INCLUDED_
 
-#define M_PI			3.1415926
 #define HALF_PI			1.5707963
 #define PI_TIMES_TWO	6.2831852
 /// Trig Macros ///////////////////////////////////////////////////////////////
