@@ -87,7 +87,7 @@ bool LoadSkeleton(const char* name,t_Bone *root)
 	t_Bone *child;
 	char	temp[5];
 ///////////////////////////////////////////////////////////////////////////////
-	if (fp = fopen((const char*)name,"rb")) {
+	if ((fp = fopen((const char*)name,"rb"))) {
 		fread(temp,sizeof(char),4,fp);
 		fread(&boneCnt,sizeof(intptr_t),1,fp);
 		bonelist = (tSkeletonNode *)malloc((boneCnt) * sizeof(tSkeletonNode));
@@ -106,7 +106,7 @@ bool LoadSkeleton(const char* name,t_Bone *root)
 			if (parent == -1)
 				tempBone->parent = NULL;
 			else
-				tempBone->parent = (t_Bone *)parent;
+				tempBone->parent = (t_Bone *)(long)parent;
 
 			fread(&tempBone->childCnt,sizeof(intptr_t),1,fp);
 			for (j = 0; j < tempBone->childCnt; j++)
