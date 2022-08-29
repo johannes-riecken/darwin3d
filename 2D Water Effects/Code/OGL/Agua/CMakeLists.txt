@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.10)
 # set the project name
 project(2dwater)
 
-find_path(GLEW_INCLUDE_DIR GL/glew.h)
+find_path(GLEW_INCLUDE_DIR GL/glew.h HINTS /opt/homebrew/include)
 
 find_library(GLEW_LIBRARY GLEW)
 find_library(FREEGLUT3_LIBRARY glut)
