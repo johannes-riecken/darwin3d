@@ -24,34 +24,36 @@
 #endif
 #include <GL/gl.h>
 #include <GL/glut.h>
-#include "loadOBJ.h"
+#include "LoadOBJ.h"
 #include <cstring>
+#include <algorithm>
+#include <vector>
+#include <string>
 
 ///////////////////////////////////////////////////////////////////////////////
 // Function:	ParseString
 // Purpose:		Actually breaks a string of words into individual pieces
 // Arguments:	Source string in, array to put the words and the count
 ///////////////////////////////////////////////////////////////////////////////
-void ParseString(char *buffer,CStringArray *words,int *cnt)
-{
-/// Local Variables ///////////////////////////////////////////////////////////
-	const char* in = buffer, temp;
-///////////////////////////////////////////////////////////////////////////////
+void ParseString(char *buffer, std::vector<std::string> *words, int *cnt) {
+  std::string in = buffer, temp;
 
-	in.TrimLeft();
-	in.TrimRight();
-	*cnt = 0;
-	do
-	{
-		temp = in.SpanExcluding(" \t");		// GET UP TO THE NEXT SPACE OR TAB
-		words->Add(temp);
-		if (temp == in) break;
-		in = in.Right(in.GetLength() - temp.GetLength());
-		in.TrimLeft();
-		*cnt = *cnt + 1;
-	} while (1);
-	*cnt = *cnt + 1;
+  in.erase(0, in.find_first_not_of(" \t"));
+  in.erase(in.find_last_not_of(" \t") + 1);
+  *cnt = 0;
+  do {
+    temp = in.substr(
+        0, in.find_first_of(" \t"));
+    words->push_back(temp);
+    if (temp == in)
+      break;
+    in = in.substr(temp.length());
+    in.erase(0, in.find_first_not_of(" \t"));
+    *cnt = *cnt + 1;
+  } while (1);
+  *cnt = *cnt + 1;
 }
+
 //// ParseString //////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -59,17 +61,17 @@ void ParseString(char *buffer,CStringArray *words,int *cnt)
 // Purpose:		Handles the Loading of a Material library
 // Arguments:	Name of the Material Library
 ///////////////////////////////////////////////////////////////////////////////
-void LoadMaterialLib(const char* name,t_Visual *visual)
+void LoadMaterialLib(std::string name,t_Visual *visual)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	int cnt;
 	char buffer[MAX_STRINGLENGTH];
-	CStringArray words;
-	const char* temp;
+    std::vector<std::string> words;
+    std::string temp;
 	FILE *fp;
 ///////////////////////////////////////////////////////////////////////////////
 	strcpy(visual->map,"");
-	fp = fopen((const char*)name,"r");
+	fp = fopen(name.c_str(), "r");
 	if (fp != NULL)
 	{
 		// FIRST PASS SETS UP THE NUMBER OF OBJECTS IN THE FILE
@@ -79,38 +81,38 @@ void LoadMaterialLib(const char* name,t_Visual *visual)
 			ParseString(buffer,&words,&cnt);	// BREAK THE STRING INTO cnt WORDS
 			if (cnt > 0)						// MAKE SURE SOME WORDS ARE THERE
 			{
-				temp = words.GetAt(0);			// CHECK THE FIRST WORK
-				if (temp.GetLength() > 0)
+				temp = words[0];			// CHECK THE FIRST WORK
+				if (temp.length() > 0)
 				{
 					if (temp == "Ka")			// AMBIENT
 					{
-						visual->Ka.r = atof(words.GetAt(1));
-						visual->Ka.g = atof(words.GetAt(2));
-						visual->Ka.b = atof(words.GetAt(3));
+						visual->Ka.r = atof(words[1].c_str());
+						visual->Ka.g = atof(words[2].c_str());
+						visual->Ka.b = atof(words[3].c_str());
 					}
 					else if (temp == "Kd")		// DIFFUSE COLOR
 					{
-						visual->Kd.r = atof(words.GetAt(1));
-						visual->Kd.g = atof(words.GetAt(2));
-						visual->Kd.b = atof(words.GetAt(3));
+						visual->Kd.r = atof(words[1].c_str());
+						visual->Kd.g = atof(words[2].c_str());
+						visual->Kd.b = atof(words[3].c_str());
 					}
 					else if (temp == "Ks")		// SPECULAR COLOR
 					{
-						visual->Ks.r = atof(words.GetAt(1));
-						visual->Ks.g = atof(words.GetAt(2));
-						visual->Ks.b = atof(words.GetAt(3));
+						visual->Ks.r = atof(words[1].c_str());
+						visual->Ks.g = atof(words[2].c_str());
+						visual->Ks.b = atof(words[3].c_str());
 					}
 					else if (temp == "Ns")		// SPECULAR COEFFICIENT
 					{
-						visual->Ns = atof(words.GetAt(1));
+						visual->Ns = atof(words[1].c_str());
 					}
 					else if (temp == "map_Kd")	// TEXTURE MAP NAME
 					{
-						strcpy(visual->map,(const char*)words.GetAt(1));
+						strcpy(visual->map,words[1].c_str());
 					}
 				}
 			}
-			words.RemoveAll();		// CLEAR WORD BUFFER
+			words.clear();		// CLEAR WORD BUFFER
 		}
 		fclose(fp);
 	}
@@ -124,28 +126,28 @@ void LoadMaterialLib(const char* name,t_Visual *visual)
 // Notes:		Not an Official OBJ loader as it doesn't handle more then
 //				3 vertex polygons.  This only handles Triangles
 ///////////////////////////////////////////////////////////////////////////////
-void HandleFace(CStringArray *words,t_faceIndex *face)
+void HandleFace(std::vector<std::string> *words,t_faceIndex *face)
 {
 /// Local Variables ///////////////////////////////////////////////////////////
 	int loop;
-	const char* temp;
-	const char* vStr,nStr,tStr;		// HOLD POINTERS TO ELEMENT POINTERS
+    std::string temp;
+	   std::string vStr,nStr,tStr;		// HOLD POINTERS TO ELEMENT POINTERS
 	int nPos,tPos;
 ///////////////////////////////////////////////////////////////////////////////
 	// LOOP THROUGH THE 3 WORDS OF THE FACELIST LINE, WORD 0 HAS 'f'
 	for (loop = 1; loop < 4; loop++)
 	{
-		temp = words->GetAt(loop);			// GRAB THE NEXT WORD
+		temp = (*words)[loop];			// GRAB THE NEXT WORD
 		// FACE DATA IS IN THE FORMAT vertex/texture/normal
-		tPos = temp.Find('/');				// FIND THE '/' SEPARATING VERTEX AND TEXTURE
-		vStr = temp.Left(tPos);				// GET THE VERTEX NUMBER
-		temp.SetAt(tPos,' ');				// CHANGE THE '/' TO A SPACE SO I CAN TRY AGAIN
-		nPos = temp.Find('/');				// FIND THE '/' SEPARATING TEXTURE AND NORMAL
-		tStr = temp.Mid(tPos + 1, nPos - tPos - 1);		// GET THE TEXTURE NUMBER
-		nStr = temp.Right(temp.GetLength() - nPos - 1);	// GET THE NORMAL NUMBER
-		face->v[loop - 1] = atoi(vStr);		// STORE OFF THE INDEX FOR THE VERTEX
-		face->t[loop - 1] = atoi(tStr);		// STORE OFF THE INDEX FOR THE TEXTURE
-		face->n[loop - 1] = atoi(nStr);		// STORE OFF THE INDEX FOR THE NORMAL
+		tPos = temp.find('/');				// FIND THE '/' SEPARATING VERTEX AND TEXTURE
+		vStr = temp.substr(0, tPos);				// GET THE VERTEX NUMBER
+		temp[tPos] = ' ';				// CHANGE THE '/' TO A SPACE SO I CAN TRY AGAIN
+		nPos = temp.find('/');				// FIND THE '/' SEPARATING TEXTURE AND NORMAL
+		tStr = temp.substr(tPos + 1, nPos - tPos - 1);		// GET THE TEXTURE NUMBER
+		nStr = temp.substr(nPos + 1);	// GET THE NORMAL NUMBER
+		face->v[loop - 1] = atoi(vStr.c_str());		// STORE OFF THE INDEX FOR THE VERTEX
+		face->t[loop - 1] = atoi(tStr.c_str());		// STORE OFF THE INDEX FOR THE TEXTURE
+		face->n[loop - 1] = atoi(nStr.c_str());		// STORE OFF THE INDEX FOR THE NORMAL
 	}
 }
 ///// HandleFace //////////////////////////////////////////////////////////////
@@ -163,8 +165,8 @@ bool LoadOBJ(char *filename,t_Visual *visual)
 /// Local Variables ///////////////////////////////////////////////////////////
 	int loop,loop2,cnt;
 	char buffer[MAX_STRINGLENGTH];
-	CStringArray words;
-	const char* temp;
+	std::vector<std::string> words;
+	std::string temp;
 	FILE *fp;
 	long vCnt = 0, nCnt = 0, tCnt = 0, fCnt = 0;
 	long vPos = 0, nPos = 0, tPos = 0, fPos = 0;
@@ -182,14 +184,14 @@ bool LoadOBJ(char *filename,t_Visual *visual)
 			ParseString(buffer,&words,&cnt);	// BREAK THE STRING INTO cnt WORDS
 			if (cnt > 0)						// MAKE SURE SOME WORDS ARE THERE
 			{
-				temp = words.GetAt(0);			// CHECK THE FIRST WORK
-				if (temp.GetLength() > 0)
+				temp = words[0];			// CHECK THE FIRST WORK
+				if (temp.length() > 0)
 				{
 					if (temp[0] == 'v')			// ONLY LOOK AT WORDS THAT START WITH v
 					{
-						if (temp.GetLength() > 1 && temp[1] == 'n')			// vn IS A NORMAL
+						if (temp.length() > 1 && temp[1] == 'n')			// vn IS A NORMAL
 							nCnt++;
-						else if (temp.GetLength() > 1 && temp[1] == 't')	// vt IS A TEXTURE
+						else if (temp.length() > 1 && temp[1] == 't')	// vt IS A TEXTURE
 							tCnt++;
 						else
 							vCnt++;											// v IS A VERTEX
@@ -198,7 +200,7 @@ bool LoadOBJ(char *filename,t_Visual *visual)
 						fCnt++;												// f IS A FACE
 				}
 			}
-			words.RemoveAll();		// CLEAR WORD BUFFER
+			words.clear();		// CLEAR WORD BUFFER
 		}
 
 		// NOW THAT I KNOW HOW MANY, ALLOCATE ROOM FOR IT
@@ -221,37 +223,37 @@ bool LoadOBJ(char *filename,t_Visual *visual)
 				ParseString(buffer,&words,&cnt);
 				if (cnt > 0)
 				{
-					temp = words.GetAt(0);
-					if (temp.GetLength() > 0)
+					temp = words[0];
+					if (temp.length() > 0)
 					{
 						if (temp[0] == 'v')		// WORDS STARTING WITH v
 						{
-							if (temp.GetLength() > 1 && temp[1] == 'n')	// vn NORMALS
+							if (temp.length() > 1 && temp[1] == 'n')	// vn NORMALS
 							{
-								normal[nPos].x = atof(words.GetAt(1));
-								normal[nPos].y = atof(words.GetAt(2));
-								normal[nPos].z = atof(words.GetAt(3));
+								normal[nPos].x = atof(words[1].c_str());
+								normal[nPos].y = atof(words[2].c_str());
+								normal[nPos].z = atof(words[3].c_str());
 								nPos++;
 							}
-							else if (temp.GetLength() > 1 && temp[1] == 't')	// vt TEXTURES
+							else if (temp.length() > 1 && temp[1] == 't')	// vt TEXTURES
 							{
-								texture[tPos].u = atof(words.GetAt(1));
-								texture[tPos].v = atof(words.GetAt(2));
+								texture[tPos].u = atof(words[1].c_str());
+								texture[tPos].v = atof(words[2].c_str());
 								tPos++;
 							}
 							else											// VERTICES
 							{
-								vertex[vPos].x = atof(words.GetAt(1));
-								vertex[vPos].y = atof(words.GetAt(2));
-								vertex[vPos].z = atof(words.GetAt(3));
+								vertex[vPos].x = atof(words[1].c_str());
+								vertex[vPos].y = atof(words[2].c_str());
+								vertex[vPos].z = atof(words[3].c_str());
 								vPos++;
 							}
 						}
 						else if (temp[0] == 'f')			// f v/t/n v/t/n v/t/n	FACE LINE
 						{
-							if (words.GetSize() > 4)
+							if (words.size() > 4)
 							{
-								sprintf(buffer,"Face %d has more then 3 vertices",fPos);
+								sprintf(buffer,"Face %ld has more then 3 vertices",fPos);
 // 								MessageBox(NULL,buffer,"ERROR",MB_OK);
 							}
 							HandleFace(&words,&face[fPos]);
@@ -259,11 +261,11 @@ bool LoadOBJ(char *filename,t_Visual *visual)
 						}
 						else if (temp == "mtllib")  // HANDLE THE MATERIAL LIBRARY
 						{
-							LoadMaterialLib(words.GetAt(1),visual);
+							LoadMaterialLib(words[1],visual);
 						}
 					}
 				}
-				words.RemoveAll();		// CLEAR WORD BUFFER
+				words.clear();		// CLEAR WORD BUFFER
 			}
 
 			if (nCnt > 0)

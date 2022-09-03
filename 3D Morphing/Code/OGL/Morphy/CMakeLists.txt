@@ -14,6 +14,6 @@ find_library(GL_LIBRARY GL)
 
 include_directories(${GLEW_INCLUDE_DIR})
 
-add_library(skeleton Skeleton.cpp)
+add_library(skeleton Skeleton.cpp LoadOBJ.cpp)
 
 target_compile_features(skeleton PUBLIC cxx_std_17)
